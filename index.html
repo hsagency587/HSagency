@@ -1,41 +1,203 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>HS Agency - Local SEO & Marketing</title>
-  <meta name="description" content="Agenzia di marketing online specializzata in Local SEO per attività locali.">
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HS Agency — Local SEO per attività locali</title>
+  <meta name="description" content="Local SEO per attività locali: più visibilità su Google, più contatti, più clienti." />
+
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
-  <header class="hero">
-    <nav><!-- logo + nav --></nav>
-    <section class="hero-content">
-      <h1>HS Agency — Local SEO per attività locali</h1>
-      <p>Aiutiamo negozi e professionisti a farsi trovare dai clienti nella tua città.</p>
-      <a href="#servizi" class="cta">Scopri i servizi</a>
-    </section>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Torna all'inizio">
+        <!-- Se hai un logo, mettilo in assets/logo.svg e sblocca l'img qui sotto -->
+        <!-- <img class="brand-logo" src="assets/logo.svg" alt="HS Agency Logo" /> -->
+        <span class="brand-name">HS Agency</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigazione principale">
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#servizi">Servizi</a>
+        <a href="#contatti" class="nav-cta">Contatti</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section id="servizi">
-      <h2>I nostri servizi</h2>
-      <article>
-        <h3>Local SEO</h3>
-        <p>Ottimizzazione scheda Google Business, citazioni locali (NAP), on-page per ricerche locali.</p>
-      </article>
-      <article>
-        <h3>Advertising (futuro)</h3>
-        <p>Gestione campagne Google Ads e Social Ads — aumento rapido di visibilità e clienti.</p>
-      </article>
+  <main id="top">
+    <!-- HERO full screen -->
+    <section class="hero" aria-label="Hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="kicker">Local SEO per attività locali</p>
+          <h1>Portiamo la tua attività nei primi risultati Google.</h1>
+          <p class="subhead">
+            Strategia, ottimizzazione e presenza locale: più visibilità, più contatti, più clienti.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contatti">Richiedi una valutazione</a>
+            <a class="btn btn-ghost" href="#servizi">Scopri i servizi</a>
+          </div>
+
+          <div class="hero-trust">
+            <span>Focus: Google Business Profile</span>
+            <span>Citazioni (NAP)</span>
+            <span>On-page locale</span>
+          </div>
+        </div>
+
+        <div class="hero-card" role="note" aria-label="Nota rapida">
+          <h2>Risultato misurabile</h2>
+          <p>
+            Lavoriamo su keyword locali e segnali di fiducia (GBP, NAP, contenuti) per aumentare richieste e chiamate.
+          </p>
+          <ul class="checklist">
+            <li>Audit rapido</li>
+            <li>Piano d’azione chiaro</li>
+            <li>Ottimizzazione continua</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section id="contatti">
-      <h2>Contattaci</h2>
-      <p>Email: info@tuodominio.it — Telefono: +39 3XX XXX XXXX</p>
+    <!-- CHI SIAMO -->
+    <section id="chi-siamo" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Chi siamo</h2>
+          <p>Due figure operative: strategia + delivery. Niente fumo, solo esecuzione.</p>
+        </div>
+
+        <div class="team-grid">
+          <!-- TU -->
+          <article class="person-card">
+            <img class="person-photo" src="assets/me.jpg" alt="Foto di [TUO NOME]" loading="lazy" />
+            <div class="person-body">
+              <h3>[TUO NOME]</h3>
+              <p class="role">Local SEO Specialist</p>
+              <p class="bio">
+                Ottimizzo Google Business Profile, contenuti e segnali locali per trasformare ricerche in contatti.
+              </p>
+              <div class="person-links">
+                <a href="#" aria-label="LinkedIn di [TUO NOME]">LinkedIn</a>
+                <a href="#" aria-label="Email a [TUO NOME]">Email</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SOCIO -->
+          <article class="person-card">
+            <img class="person-photo" src="assets/socio.jpg" alt="Foto di [NOME SOCIO]" loading="lazy" />
+            <div class="person-body">
+              <h3>[NOME SOCIO]</h3>
+              <p class="role">Strategy & Operations</p>
+              <p class="bio">
+                Strutturo offerte, funnel e processi: dall’analisi alla consegna, con priorità e metriche chiare.
+              </p>
+              <div class="person-links">
+                <a href="#" aria-label="LinkedIn di [NOME SOCIO]">LinkedIn</a>
+                <a href="#" aria-label="Email a [NOME SOCIO]">Email</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIZI -->
+    <section id="servizi" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servizi</h2>
+          <p>Ogni servizio ha una pagina dedicata (che sviluppiamo dopo). Qui li colleghiamo.</p>
+        </div>
+
+        <div class="services-grid">
+          <a class="service-card" href="servizi/local-seo.html">
+            <h3>Local SEO</h3>
+            <p>Ottimizzazione completa per ricerche locali e aumento richieste.</p>
+            <span class="service-link">Scopri di più →</span>
+          </a>
+
+          <a class="service-card" href="servizi/google-business-profile.html">
+            <h3>Google Business Profile</h3>
+            <p>Setup, ottimizzazione, post e strategia recensioni per più chiamate.</p>
+            <span class="service-link">Scopri di più →</span>
+          </a>
+
+          <a class="service-card" href="servizi/citazioni-nap.html">
+            <h3>Citazioni & NAP</h3>
+            <p>Coerenza dati + presenza su directory per autorità locale.</p>
+            <span class="service-link">Scopri di più →</span>
+          </a>
+
+          <a class="service-card service-card-disabled" href="#" aria-disabled="true" tabindex="-1">
+            <h3>Advertising</h3>
+            <p>In arrivo (solo quando abbiamo tracking e basi SEO solide).</p>
+            <span class="service-link">Coming soon</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section id="contatti" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contatti</h2>
+          <p>Scrivici o chiamaci. Se preferisci, mandaci già sito + città + servizio.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Parliamone</h3>
+            <p class="contact-line"><strong>Email:</strong> <a href="mailto:info@tuodominio.it">info@tuodominio.it</a></p>
+            <p class="contact-line"><strong>Telefono:</strong> <a href="tel:+39300111222">+39 300 111 222</a></p>
+            <p class="contact-line"><strong>Area:</strong> Italia (remote + on-site su richiesta)</p>
+
+            <div class="socials" aria-label="Social">
+              <a href="#" aria-label="LinkedIn HS Agency">LinkedIn</a>
+              <a href="#" aria-label="Instagram HS Agency">Instagram</a>
+              <a href="#" aria-label="Facebook HS Agency">Facebook</a>
+            </div>
+
+            <a class="btn btn-primary" href="mailto:info@tuodominio.it?subject=Richiesta%20valutazione%20Local%20SEO">Invia email</a>
+          </div>
+
+          <div class="contact-card contact-card-note">
+            <h3>Per accelerare</h3>
+            <ul class="checklist">
+              <li>Nome attività + città</li>
+              <li>Sito (se esiste)</li>
+              <li>Categoria e servizi principali</li>
+              <li>Obiettivo: chiamate / lead / visite</li>
+            </ul>
+            <p class="small">
+              Rispondiamo con una prima diagnosi e una proposta di piano.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>© HS Agency — Local SEO</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> HS Agency — Local SEO</p>
+      <div class="footer-links">
+        <a href="#top">Torna su</a>
+        <a href="#" aria-label="Privacy Policy">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
