@@ -337,4 +337,6 @@ a { color: inherit; text-decoration: none; }
   .services-grid { grid-template-columns: 1fr; }
   .nav { display: none; } /* Se vuoi, poi facciamo menu mobile */
 }
+.person-photo { width: 220px !important; height: 260px !important; }
+.person-card { grid-template-columns: 220px 1fr !important; }
 
