@@ -390,6 +390,14 @@ a { color: inherit; text-decoration: none; }
     line-height: 1.5;
   }
 }
+.hero {
+  background: linear-gradient(
+    to top,
+    #ffffff 0%,
+    #e9f0ff 60%,
+    #dbe7ff 100%
+  ) !important;
+}
 
 
 
