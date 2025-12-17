@@ -6,11 +6,7 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: #0b1220;
-  background: linear-gradient(
-  to top,
-  #ffffff 0%,
-  #d6e4ff 40%,
-  #9fb8ff 100%
+  background: #f6f8fc
 );
 }
 img { max-width: 100%; display: block; }
@@ -28,7 +24,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .section-alt {
-  background: transparent;
+  background: #f6f8fc;
 }
 
 .section-head {
@@ -90,7 +86,7 @@ a { color: inherit; text-decoration: none; }
   min-height: calc(100vh - 60px);
   display: grid;
   align-items: center;
-  background: transparent;
+  background: #f6f8fc;
 );
 );
   border-bottom: 1px solid #e6eaf2;
