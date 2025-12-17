@@ -191,17 +191,12 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 20px;
-  border: 1px solid #e6eaf2;
-  border-radius: 18px;
-  padding: 16px;
-  background: #ffffff;
 }
 .person-photo {
   width: 220px;
   height: 260px;
   object-fit: cover;
   border-radius: 18px;
-  border: 1px solid #eef2ff;
 }
 .person-body h3 {
   margin: 0 0 4px;
