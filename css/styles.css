@@ -6,7 +6,7 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: #0b1220;
-  background: #f6f8fc
+  background: #ffffff
 );
 }
 img { max-width: 100%; display: block; }
@@ -24,7 +24,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .section-alt {
-  background: #f6f8fc;
+  background: #ffffff;
 }
 
 .section-head {
