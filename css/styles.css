@@ -87,7 +87,6 @@ a { color: inherit; text-decoration: none; }
 
 /* ========== Hero ========== */
 .hero {
-  .hero {
   min-height: auto;
   padding: 120px 0;
   display: grid;
