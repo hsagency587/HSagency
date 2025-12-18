@@ -6,8 +6,7 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: #0b1220;
-  background: #ffffff
-);
+  background: #ffffff;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -87,8 +86,6 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   align-items: center;
   background: #f6f8fc;
-);
-);
   border-bottom: 1px solid #e6eaf2;
 }
 .hero-inner {
@@ -125,10 +122,17 @@ a { color: inherit; text-decoration: none; }
 
 .hero-actions {
   display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.hero-actions-top {
+  display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin: 18px 0 18px;
 }
+
 
 .hero-trust {
   display: flex;
@@ -182,6 +186,11 @@ a { color: inherit; text-decoration: none; }
   border-color: #d7def0;
 }
 .btn-ghost:hover { background: #f0f4ff; }
+/* Bottone largo */
+.btn-wide {
+  width: 100%;
+  max-width: 420px;
+}
 
 /* ========== Team ========== */
 .team-grid {
