@@ -121,10 +121,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-actions {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 14px;
-  margin: 22px 0;
 }
 
 .hero-actions-top {
@@ -189,7 +188,6 @@ a { color: inherit; text-decoration: none; }
 /* Bottone largo */
 .btn-wide {
   width: 100%;
-  max-width: 420px;
 }
 
 /* ========== Team ========== */
