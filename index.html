@@ -166,6 +166,33 @@
         </div>
       </div>
     </section>
+    <section class="booking-section">
+  <div class="booking-form">
+
+    <h2>Richiedi una lezione privata</h2>
+    <p>Riceverai risposta diretta per concordare data e orario.</p>
+
+    <form id="bookingForm">
+      <input type="text" name="nome" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+
+      <label>Disponibilità 1 (preferibile)</label>
+      <input type="date" name="data1" required>
+      <input type="time" name="ora1" required>
+
+      <label>Disponibilità 2 (alternativa)</label>
+      <input type="date" name="data2">
+      <input type="time" name="ora2">
+
+      <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
+
+      <button type="submit">Invia richiesta</button>
+    </form>
+
+    <p id="formStatus" class="form-status"></p>
+
+  </div>
+</section>
   </main>
 
   <!-- Footer -->
