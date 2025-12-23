@@ -438,5 +438,18 @@ a { color: inherit; text-decoration: none; }
     grid-template-columns: 1fr;
   }
 }
+/* Allinea in alto tutta la colonna destra (form) */
+.contact-grid > .booking-section {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  align-self: flex-start;
+}
 
+/* Elimina qualunque margine del titolo del form (anche se non è h3) */
+.booking-section h1,
+.booking-section h2,
+.booking-section h3,
+.booking-section p {
+  margin-top: 0 !important;
+}
 
