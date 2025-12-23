@@ -209,5 +209,33 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <script>
+    (function() {
+      emailjs.init("YQWEfCbwwU7Y7Oo72"); // la tua public key
+    })();
+
+    const form = document.getElementById("bookingForm");
+    const status = document.getElementById("formStatus");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm(
+        "service_0pa3m09",
+        "template_w0pbepo",
+        this
+      ).then(() => {
+        status.textContent = "Richiesta inviata correttamente.";
+        status.style.color = "green";
+        form.reset();
+      }, () => {
+        status.textContent = "Errore nell'invio. Riprova.";
+        status.style.color = "red";
+      });
+    });
+  </script>
+
 </body>
 </html>
