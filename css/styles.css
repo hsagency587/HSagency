@@ -429,7 +429,11 @@ a { color: inherit; text-decoration: none; }
     line-height: 1.5;
   }
 }
-
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 
