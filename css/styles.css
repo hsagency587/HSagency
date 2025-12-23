@@ -297,7 +297,44 @@ a { color: inherit; text-decoration: none; }
 .socials a:hover { background: #ffffff; }
 
 .small { color: #4b5563; font-size: 14px; }
+/* ========== Booking ========== */
+.booking-section {
+  padding: 60px 20px;
+}
 
+.booking-form {
+  max-width: 420px;
+  margin: 0 auto;
+  background: rgba(0,0,0,0.75);
+  padding: 30px;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+.booking-form button {
+  width: 100%;
+  padding: 14px;
+  background: #a65a32;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-status {
+  margin-top: 12px;
+  font-size: 14px;
+}
 /* ========== Checklist ========== */
 .checklist {
   margin: 0;
@@ -305,7 +342,6 @@ a { color: inherit; text-decoration: none; }
   color: #374151;
 }
 .checklist li { margin: 6px 0; }
-
 /* ========== Footer ========== */
 .footer {
   border-top: 1px solid #e6eaf2;
@@ -324,10 +360,8 @@ a { color: inherit; text-decoration: none; }
   gap: 14px;
   font-weight: 700;
 }
-
 /* ========== Responsive ========== */
 @media (max-width: 900px) {
-
   /* HERO */
   .hero-inner {
     grid-template-columns: 1fr;
