@@ -283,6 +283,7 @@ a { color: inherit; text-decoration: none; }
 }
 .contact-line a {
   position: relative;
+  display: inline-block; /* ← QUESTA È LA CHIAVE */
   font-weight: 700;
 }
 .socials {
