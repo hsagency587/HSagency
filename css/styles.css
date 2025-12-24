@@ -307,7 +307,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
-.contact-card a::after {
+.contact-line a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -317,13 +317,8 @@ a { color: inherit; text-decoration: none; }
   background: #1f4fd6;
   opacity: 0.6;
 }
-
-.contact-card a:hover::after {
+.contact-line a:hover::after {
   opacity: 1;
-}
-/* DISATTIVA UNDERLINE SOLO NEI SOCIAL */
-.socials a::after {
-  content: none !important;
 }
 /* ========== Booking ========== */
 .booking-card h3 {
