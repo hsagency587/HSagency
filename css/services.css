@@ -135,33 +135,36 @@ p {
   font-weight: 700;
   text-decoration: none;
 }
-
-/* ===== SERVICES – MOBILE FIX DEFINITIVO ===== */
+/* ===== SERVICES – ORDINE MOBILE CORRETTO ===== */
 @media (max-width: 900px) {
+
+  /* niente fullscreen su mobile */
   .fullscreen {
     min-height: auto;
   }
-}
-@media (max-width: 900px) {
-  .section {
-    padding: 36px 0;
-  }
 
-  .grid-2 {
-    gap: 20px;
-  }
-}
-@media (max-width: 900px) {
-  .grid-2 {
+  /* ogni sezione diventa stack verticale */
+  .grid-2,
+  .grid-2.reverse {
     display: flex;
     flex-direction: column;
+    gap: 20px;
   }
 
-  .grid-2 .content {
+  /* FOTO SEMPRE PRIMA */
+  .grid-2 img,
+  .grid-2.reverse img {
     order: 1;
   }
 
-  .grid-2 img {
+  /* TESTO SEMPRE DOPO */
+  .grid-2 .content,
+  .grid-2.reverse .content {
     order: 2;
+  }
+
+  /* meno aria */
+  .section {
+    padding: 36px 0;
   }
 }
