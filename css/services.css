@@ -135,36 +135,36 @@ p {
   font-weight: 700;
   text-decoration: none;
 }
-/* ===== SERVICES – ORDINE MOBILE CORRETTO ===== */
-@media (max-width: 900px) {
+/* ============================= */
+/* SERVICES – LAYOUT PULITO */
+/* ============================= */
 
-  /* niente fullscreen su mobile */
-  .fullscreen {
-    min-height: auto;
+.service-block {
+  display: flex;
+  flex-direction: column; /* MOBILE FIRST */
+  gap: 20px;
+  padding: 48px 0;
+}
+
+.service-block img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.service-block .content {
+  max-width: 680px;
+}
+
+/* DESKTOP */
+@media (min-width: 901px) {
+  .service-block {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
   }
 
-  /* ogni sezione diventa stack verticale */
-  .grid-2,
-  .grid-2.reverse {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  /* FOTO SEMPRE PRIMA */
-  .grid-2 img,
-  .grid-2.reverse img {
-    order: 1;
-  }
-
-  /* TESTO SEMPRE DOPO */
-  .grid-2 .content,
-  .grid-2.reverse .content {
-    order: 2;
-  }
-
-  /* meno aria */
-  .section {
-    padding: 36px 0;
+  /* alternanza automatica */
+  .service-block:nth-child(even) {
+    flex-direction: row-reverse;
   }
 }
