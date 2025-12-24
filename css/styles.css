@@ -348,6 +348,9 @@ a { color: inherit; text-decoration: none; }
 .booking-card {
   align-self: flex-start;
 }
+.booking-card h3 {
+  margin-top: 0;
+}
 /* ========== Checklist ========== */
 .checklist {
   margin: 0;
