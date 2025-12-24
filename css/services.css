@@ -182,3 +182,17 @@ p {
     flex: 1;
   }
 }
+/* IMMAGINI SERVIZI */
+.media-hero {
+  background-image: url("/img/team-1.png");
+}
+
+.media-process {
+  background-image: url("/img/team-1.png");
+}
+
+.service-block .media {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
