@@ -81,8 +81,8 @@ p {
   display: block;
   margin-bottom: 8px;
 }
-
-
+/* riuso contatti */
+.contact-wrapper {
   border-radius: var(--radius);
   padding: 48px;
   border: 1px solid var(--border);
