@@ -136,18 +136,32 @@ p {
   text-decoration: none;
 }
 
-/* RESPONSIVE */
+/* ===== SERVICES – MOBILE FIX DEFINITIVO ===== */
 @media (max-width: 900px) {
-  .grid-2,
-  .grid-2.reverse {
-    grid-template-columns: 1fr;
+  .fullscreen {
+    min-height: auto;
   }
-
-  h1 {
-    font-size: 2.4rem;
-  }
-
+}
+@media (max-width: 900px) {
   .section {
-    padding: 60px 6%;
+    padding: 36px 0;
+  }
+
+  .grid-2 {
+    gap: 20px;
+  }
+}
+@media (max-width: 900px) {
+  .grid-2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .grid-2 .content {
+    order: 1;
+  }
+
+  .grid-2 img {
+    order: 2;
   }
 }
