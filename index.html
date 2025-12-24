@@ -164,29 +164,38 @@
 
             <a class="btn btn-primary" href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">Invia email</a>
           </div>
-   <div class="booking-form contact-card">
+  <div class="contact-card booking-card">
 
-    <h2>fissa una chiamata</h2>
-    <form id="bookingForm">
-      <input type="text" name="nome" placeholder="Nome" required>
-      <input type="email" name="email" placeholder="Email" required>
+  <h3>fissa una chiamata</h3>
 
-      <label>Disponibilità 1 (preferibile)</label>
+  <form id="bookingForm" class="booking-form">
+
+    <input type="text" name="nome" placeholder="Nome" required>
+    <input type="email" name="email" placeholder="Email" required>
+
+    <label class="booking-label">Disponibilità 1 (preferibile)</label>
+    <div class="booking-row">
       <input type="date" name="data1" required>
       <input type="time" name="ora1" required>
+    </div>
 
-      <label>Disponibilità 2 (alternativa)</label>
+    <label class="booking-label">Disponibilità 2 (alternativa)</label>
+    <div class="booking-row">
       <input type="date" name="data2">
       <input type="time" name="ora2">
+    </div>
 
-      <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
+    <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
 
-      <button type="submit">Invia richiesta</button>
-    </form>
+    <button type="submit" class="btn btn-primary btn-wide">
+      Invia richiesta
+    </button>
 
-    <p id="formStatus" class="form-status"></p>
+  </form>
 
-  </div>
+  <p id="formStatus" class="form-status"></p>
+
+</div>
         </div>
       </div>
     </section>
