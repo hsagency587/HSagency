@@ -24,7 +24,14 @@ body {
 .section-light {
   background: #ffffff;
 }
+.section-head h2 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
 
+.section-head p {
+  color: var(--text-muted);
+}
 .grid-2 {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -131,7 +138,12 @@ p {
 .contact-card a:hover::after {
   opacity: 1;
 }
-
+.contact-wrapper {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 48px;
+  border: 1px solid #e6eaf2;
+}
 /* ========== Booking ========== */
 .booking-card h3 {
   margin: 0 0 14px;
