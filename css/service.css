@@ -28,7 +28,8 @@ body {
 }
 
 .block img {
-  width: 100%;
+  width: 90%;
+  max-width: 480px;
   height: auto;
   border-radius: 18px;
   border: 1px solid #e6eaf2;
