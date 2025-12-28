@@ -51,9 +51,7 @@
             Riserva il tuo posto
           </a>
 
-        </div>
-
-          
+         </div>
         </div>
 
         <div class="hero-card" role="note" aria-label="Nota rapida">
@@ -164,90 +162,3 @@
               <a href="https://www.facebook.com/share/19Ynom8vXU/" aria-label="Facebook di hsagency">Facebook</a>
             </div>
 
-            <a class="btn btn-primary" href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">Invia email</a>
-          </div>
-  <div class="contact-card booking-card">
-
-  <h3>fissa una chiamata</h3>
-
-  <form id="bookingForm" class="booking-form">
-
-    <input type="text" name="nome" placeholder="Nome" required>
-    <input type="email" name="email" placeholder="Email" required>
-
-    <label class="booking-label">Disponibilità 1 (preferibile)</label>
-    <div class="booking-row">
-      <input type="date" name="data1" required>
-      <input type="time" name="ora1" required>
-    </div>
-
-    <label class="booking-label">Disponibilità 2 (alternativa)</label>
-    <div class="booking-row">
-      <input type="date" name="data2">
-      <input type="time" name="ora2">
-    </div>
-
-    <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
-
-    <button type="submit" class="btn btn-primary btn-wide">
-      Invia richiesta
-    </button>
-
-  </form>
-
-  <p id="formStatus" class="form-status"></p>
-
-</div>
-        </div>
-      </div>
-    </section>
-</body>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> HS Agency — Local SEO</p>
-      <div class="footer-links">
-        <a href="#top">Torna su</a>
-        <a href="https://www.iubenda.com/privacy-policy/60892143" target="_blank">
-        Privacy Policy</a>
-        <a href="https://www.iubenda.com/privacy-policy/60892143/cookie-policy" target="_blank">
-        Cookie Policy</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-  <script>
-    (function() {
-      emailjs.init("YQWEfCbwwU7Y7Oo72"); // la tua public key
-    })();
-
-    const form = document.getElementById("bookingForm");
-    const status = document.getElementById("formStatus");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      emailjs.sendForm(
-        "service_0pa3m09",
-        "template_w0pbepo",
-        this
-      ).then(() => {
-        status.textContent = "Richiesta inviata correttamente.";
-        status.style.color = "green";
-        form.reset();
-      }, () => {
-        status.textContent = "Errore nell'invio. Riprova.";
-        status.style.color = "red";
-      });
-    });
-  </script>
-
-</body>
-</html>
