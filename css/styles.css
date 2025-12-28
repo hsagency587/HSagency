@@ -110,7 +110,7 @@ a { color: inherit; text-decoration: none; }
   min-height: calc(100vh - 60px);
   display: grid;
   align-items: center;
-  background: #f6f8fc;
+  background: rgba(246, 248, 252, 0.85);
   border-bottom: 1px solid #e6eaf2;
 }
 .hero-inner {
@@ -269,7 +269,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid #e6eaf2;
   border-radius: 18px;
   padding: 16px;
-  background: #ffffff;
+   background: rgba(255,255,255,0.85);
   transition: transform 120ms ease, box-shadow 120ms ease;
   min-height: 160px;
 }
