@@ -48,7 +48,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .section-alt {
-  background: rgba(255,255,255,0.6);
+  background: transparent;
 }
 
 .section-head {
@@ -110,7 +110,7 @@ a { color: inherit; text-decoration: none; }
   min-height: calc(100vh - 60px);
   display: grid;
   align-items: center;
-  background: rgba(246, 248, 252, 0.6);
+  background: transparent;
   border-bottom: 1px solid #e6eaf2;
 }
 .hero-inner {
