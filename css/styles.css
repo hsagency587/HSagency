@@ -111,7 +111,6 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   align-items: center;
   background: transparent;
-  border-bottom: 1px solid #e6eaf2;
 }
 .hero-inner {
   display: grid;
