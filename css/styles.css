@@ -24,7 +24,7 @@ body::before {
       rgba(235, 245, 255, 0.92),
       rgba(235, 245, 255, 0.92)
     ),
-    url("/img/logo1.png");
+    url("/img/logo.png");
 
   background-repeat: no-repeat;
   background-position: center 30%;
