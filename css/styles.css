@@ -82,14 +82,9 @@ body {
 
 /* ========== Hero ========== */
 .hero {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+  min-height: calc(100vh - 60px);
+  display: grid;
+  align-items: center;
 
   background:
     linear-gradient(
@@ -101,19 +96,12 @@ body {
   background-repeat: no-repeat;
   background-position: center 30%;
   background-size: contain;
-
-  z-index: 0;
-  pointer-events: none;
 }
 .hero-inner {
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
   gap: 28px;
-  padding: 40px 0;
-  
-  position: relative;
-  z-index: 1;
-}
+  padding: 40px 0;}
 .kicker {
   margin: 0 0 10px;
   display: inline-block;
