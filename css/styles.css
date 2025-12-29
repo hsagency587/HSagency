@@ -111,10 +111,6 @@ body {
   gap: 28px;
   padding: 40px 0;
 }
-.hero > * {
-  position: relative;
-  z-index: 1;
-}
 .kicker {
   margin: 0 0 10px;
   display: inline-block;
