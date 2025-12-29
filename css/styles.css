@@ -7,35 +7,10 @@ body {
   line-height: 1.5;
   color: #0b1220;
   background: transparent;
-}
-/* ========== LOGO OVERLAY GLOBALE ========== */
-body {
+
   position: relative;
   z-index: 0;
 }
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background:
-    linear-gradient(
-    rgba(255, 255, 255, 0.88),
-    rgba(255, 255, 255, 0.88)
-    ),
-    url("/img/logo2.png");
-
-  background-repeat: no-repeat;
-  background-position: center 30%;
-  background-size: contain;
-
-  z-index: -1;
-  pointer-events: none;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-
 /* ========== Layout ========== */
 .container {
   width: min(1100px, calc(100% - 32px));
@@ -107,10 +82,28 @@ a { color: inherit; text-decoration: none; }
 
 /* ========== Hero ========== */
 .hero {
-  min-height: calc(100vh - 60px);
-  display: grid;
-  align-items: center;
-  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.88),
+      rgba(255, 255, 255, 0.88)
+    ),
+    url("/img/logo2.png");
+
+  background-repeat: no-repeat;
+  background-position: center 30%;
+  background-size: contain;
+
+  z-index: 0;
+  pointer-events: none;
 }
 .hero-inner {
   display: grid;
@@ -118,7 +111,10 @@ a { color: inherit; text-decoration: none; }
   gap: 28px;
   padding: 40px 0;
 }
-
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
 .kicker {
   margin: 0 0 10px;
   display: inline-block;
