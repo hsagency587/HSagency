@@ -1,10 +1,15 @@
+:root {
+  --font-main: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 /* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+:root {
+  --font-main: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 body {
   font-family: var(--font-main);
   color: #0b1220;
