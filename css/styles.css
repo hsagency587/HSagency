@@ -4,17 +4,54 @@ html { scroll-behavior: smooth; }
 a {
   text-decoration: none;
 }
+:root {
+  --font-main: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-main);
+  line-height: 1.65;
   color: #0b1220;
   background: transparent;
 
   position: relative;
   z-index: 0;
 }
-/* ========== Layout ========== */
+/* ========== Typography (global) ========= */
+h1{
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color:#0b1220;
+  margin-bottom:18px;
+}
+h2{
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing:-0.02em; /* ti manca nel blocco finale, ma ce l’hai sopra */
+  color:#0b1220;
+  margin-bottom:14px;
+}
+h3{
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing:-0.01em;
+  color:#0b1220;
+  margin-bottom:10px;
+}
+p{
+  font-size:17px;
+  line-height:1.65;
+  color:#374151;
+  font-weight:400;
+  letter-spacing:0;
+}
+li{
+  font-weight:400;
+  letter-spacing:0;
+}
+
+/* ========== Layout ========= */
 .container {
   width: min(1100px, calc(100% - 32px));
   margin: 0 auto;
@@ -36,7 +73,21 @@ body {
   margin: 0 0 8px;
   font-size: 32px;
   letter-spacing: -0.02em;
+  position: relative;
+  padding-left: 14px;
 }
+
+.section-head h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  height: 80%;
+  width: 4px;
+  background: #1f4fd6;
+  border-radius: 2px;
+}
+
 .section-head p {
   margin: 0;
   color: #4b5563;
@@ -480,48 +531,6 @@ body {
   }
 }
 /* ====== MIGLIORA LEGGIBILITÀ PAGINE SECONDARIE ====== */
-
-/* Titoli principali */
-h1 {
-  font-size: 42px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #0b1220;
-  margin-bottom: 18px;
-}
-
-/* Titoli di sezione */
-h2 {
-  font-size: 30px;
-  font-weight: 700;
-  color: #0b1220;
-  margin-bottom: 14px;
-}
-
-/* Linea verticale elegante sui titoli */
-.section-head h2 {
-  position: relative;
-  padding-left: 14px;
-}
-
-.section-head h2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 4px;
-  height: 80%;
-  width: 4px;
-  background: #1f4fd6;
-  border-radius: 2px;
-}
-
-/* Testo più leggibile */
-p {
-  font-size: 17px;
-  line-height: 1.65;
-  color: #374151;
-}
-
 /* Testi importanti */
 .section-head p,
 .text p {
@@ -544,4 +553,3 @@ strong {
   padding: 24px;
   box-shadow: 0 12px 30px rgba(15,23,42,0.08);
 }
-
