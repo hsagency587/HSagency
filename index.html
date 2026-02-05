@@ -17,7 +17,6 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Torna all'inizio">
-        <!-- Se hai un logo, mettilo in assets/logo.svg e sblocca l'img qui sotto -->
         <!-- <img class="brand-logo" src="assets/logo.svg" alt="HS Agency Logo" /> -->
         <span class="brand-name">HS Agency</span>
       </a>
@@ -36,28 +35,33 @@
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="kicker">Online Marketing</p>
-          <h1>Portiamo la tua attività in TOP 3 GOOGLE.</h1>
-          
-          <h3>Risultato garantito in 90 giorni oppure ti rimborsiamo l'intera somma.</h3>
 
-         <div class="hero-actions">
+          <!-- NON H1: stesso impatto visivo via CSS -->
+          <p class="hero-title">
+            Portiamo la tua attività in TOP 3 GOOGLE.
+          </p>
 
-           <div class="hero-actions-top">
-             <a class="btn btn-primary" href="#contatti">Richiedi una valutazione</a>
-             <a class="btn btn-ghost" href="#servizi">Scopri i servizi</a>
+          <!-- Gerarchia: qui va bene come H2 (supporto al titolo visuale) -->
+          <h2 class="hero-guarantee">
+            Risultato garantito in 90 giorni oppure ti rimborsiamo l'intera somma.
+          </h2>
+
+          <div class="hero-actions">
+            <div class="hero-actions-top">
+              <a class="btn btn-primary" href="#contatti">Richiedi una valutazione</a>
+              <a class="btn btn-ghost" href="#servizi">Scopri i servizi</a>
+            </div>
+
+            <a class="btn btn-primary btn-wide"
+               href="mailto:hsagency587@gmail.com?subject=PRENOTAZIONE%20CONSULENZA&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi.%0A%0AVorrei%20fissare%20una%20chiamata.%0A%0ASono%20disponbile%20(ora%20e%20giorno):%0A1:%0A2:"
+               target="_blank" rel="noopener">
+              Riserva il tuo posto
+            </a>
           </div>
-
-          <a class="btn btn-primary btn-wide" 
-             href="mailto:hsagency587@gmail.com?subject=PRENOTAZIONE%20CONSULENZA&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi.%0A%0AVorrei%20fissare%20una%20chiamata.%0A%0ASono%20disponbile%20(ora%20e%20giorno):%0A1:%0A2:"
-             target="_blank" rel="noopener">
-            Riserva il tuo posto
-          </a>
-
-         </div>
         </div>
 
         <div class="hero-card" role="note" aria-label="Nota rapida">
-          <h2>Risultato misurabile</h2>
+          <h3 class="hero-card-title">Risultato misurabile</h3>
           <p>
             Lavoriamo su Google Business Profile, citazioni (NAP) e ottimizzazione del sito web per farti trovare da più clienti e generare più contatti.
           </p>
@@ -89,9 +93,9 @@
                 Concretezza, sviluppo ed attenzione al dettaglio
               </p>
               <div class="person-links">
-                <a href="#" aria-label="LinkedIn di [TUO NOME]">LinkedIn</a>
-                <a href="mailto:g.pastormerlobusiness@gmail.com?subject=Richiesta%20informazioni" aria-label="Email a [NOME SOCIO]">E-Mail</a>
-                <a href="tel:+393923850668" aria-label="teleono di GABRIELE">telefono</a>
+                <a href="#" aria-label="LinkedIn di GABRIELE">LinkedIn</a>
+                <a href="mailto:g.pastormerlobusiness@gmail.com?subject=Richiesta%20informazioni" aria-label="Email a GABRIELE">E-Mail</a>
+                <a href="tel:+393923850668" aria-label="telefono di GABRIELE">telefono</a>
               </div>
             </div>
           </article>
@@ -106,9 +110,9 @@
                 Competenza, affidabilità e miglioramento continuo.
               </p>
               <div class="person-links">
-                <a href="https://www.linkedin.com/in/simone-scirè-98433639b/" aria-label="LinkedIn di SIMONE">LinkedIn</a>
-               <a href="mailto:s.scrirebusiness@gmail.com?subject=Richiesta%20informazioni" aria-label="Email a SIMONE">E-Mail</a>
-                <a href="tel:+393920660255" aria-label="teleono di SIMONE">telefono</a>
+                <a href="https://www.linkedin.com/in/simone-scir%C3%A8-98433639b/" aria-label="LinkedIn di SIMONE">LinkedIn</a>
+                <a href="mailto:s.scrirebusiness@gmail.com?subject=Richiesta%20informazioni" aria-label="Email a SIMONE">E-Mail</a>
+                <a href="tel:+393920660255" aria-label="telefono di SIMONE">telefono</a>
               </div>
             </div>
           </article>
@@ -117,28 +121,30 @@
     </section>
 
     <!-- SERVIZI -->
-    <section id="servizi" class="section section-alt">
+    <section id="servizi" class="section section-alt" aria-label="Servizi">
       <div class="container">
-        <div class="section-head">
-          <h2>Servizi</h2>
-          <p>scegli uno dei nostri servizi</p>
-        </div>
+
+        <!-- Manteniamo semantica senza mostrare "Servizi" -->
+        <h2 class="sr-only">Servizi</h2>
+
         <div class="services-grid">
-      <a class="service-card" href="/servizi/Local-seo.html">
-            <h3>Local SEO</h3>
+          <a class="service-card" href="/servizi/Local-seo.html">
+            <!-- 1° SERVIZIO in H1 -->
+            <h1 class="service-title">Local SEO</h1>
             <p>Ottimizzazione completa per ricerche locali e aumento esposizione.</p>
-            <p>Costo del servizio: 750€</p>
-            <p>Scopri di più -></p>
+            <p class="price">Costo del servizio: <strong>750€</strong></p>
+            <p class="service-cta">Scopri di più →</p>
           </a>
 
-
-            <a class="service-card" href="/servizi/sito-web.html"> 
-            <h3>web site</h3>
+          <a class="service-card" href="/servizi/sito-web.html">
+            <!-- 2° SERVIZIO in H1 -->
+            <h1 class="service-title">web site</h1>
             <p>Costruiamo il tuo sito web da zero e lo rendiamo visibile su Google.</p>
-            <p>Costo del servizio: 1500€</p>
-            <p>Scopri di più -></p>
+            <p class="price">Costo del servizio: <strong>1500€</strong></p>
+            <p class="service-cta">Scopri di più →</p>
           </a>
         </div>
+
       </div>
     </section>
 
@@ -153,56 +159,64 @@
         <div class="contact-grid">
           <div class="contact-card">
             <h3>richiedi una valutazione gratuita</h3>
-            <p class="contact-line"><strong>Email:</strong> <a href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">hsagency587@gmail.com</a></p>
+
+            <p class="contact-line">
+              <strong>Email:</strong>
+              <a href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">
+                hsagency587@gmail.com
+              </a>
+            </p>
+
             <p class="contact-line"><strong>Telefono:</strong> <a href="tel:+393534769196">+39 3534769196</a></p>
             <p class="contact-line"><strong>Area:</strong> Italia (remote + on-site su richiesta)</p>
-             <p class="small">
-              Prepareremo un video di 2 minuti con analisi dello stato attuale e azioni da intraprendere. 
+
+            <p class="small">
+              Prepareremo un video di 2 minuti con analisi dello stato attuale e azioni da intraprendere.
             </p>
 
             <div class="socials" aria-label="Social">
-              <a href="https://www.linkedin.com/company/hs-agency-marketing-1/about/?viewAsMember=true" aria-label="LinkedIn di hsagency">LinkedIn</a>
-              <a href="https://www.instagram.com/hs_agency_marketing?igsh=MThzZ2Q0aTFodTY2bQ==" aria-label="Instragram di hsagency">Instagram</a>
-              <a href="https://www.facebook.com/share/19Ynom8vXU/" aria-label="Facebook di hsagency">Facebook</a>
+              <a href="https://www.linkedin.com/company/hs-agency-marketing-1/about/?viewAsMember=true" aria-label="LinkedIn di HS Agency">LinkedIn</a>
+              <a href="https://www.instagram.com/hs_agency_marketing?igsh=MThzZ2Q0aTFodTY2bQ==" aria-label="Instagram di HS Agency">Instagram</a>
+              <a href="https://www.facebook.com/share/19Ynom8vXU/" aria-label="Facebook di HS Agency">Facebook</a>
             </div>
-    <a class="btn btn-primary" href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">Invia email</a>
+
+            <a class="btn btn-primary"
+               href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">
+              Invia email
+            </a>
           </div>
-  <div class="contact-card booking-card">
 
-  <h3>fissa una chiamata</h3>
+          <div class="contact-card booking-card">
+            <h3>fissa una chiamata</h3>
 
-  <form id="bookingForm" class="booking-form">
+            <form id="bookingForm" class="booking-form">
+              <input type="text" name="nome" placeholder="Nome" required>
+              <input type="email" name="email" placeholder="Email" required>
 
-    <input type="text" name="nome" placeholder="Nome" required>
-    <input type="email" name="email" placeholder="Email" required>
+              <label class="booking-label">Disponibilità 1 (preferibile)</label>
+              <div class="booking-row">
+                <input type="date" name="data1" required>
+                <input type="time" name="ora1" required>
+              </div>
 
-    <label class="booking-label">Disponibilità 1 (preferibile)</label>
-    <div class="booking-row">
-      <input type="date" name="data1" required>
-      <input type="time" name="ora1" required>
-    </div>
+              <label class="booking-label">Disponibilità 2 (alternativa)</label>
+              <div class="booking-row">
+                <input type="date" name="data2">
+                <input type="time" name="ora2">
+              </div>
 
-    <label class="booking-label">Disponibilità 2 (alternativa)</label>
-    <div class="booking-row">
-      <input type="date" name="data2">
-      <input type="time" name="ora2">
-    </div>
+              <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
 
-    <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
+              <button type="submit" class="btn btn-primary btn-wide">
+                Invia richiesta
+              </button>
+            </form>
 
-    <button type="submit" class="btn btn-primary btn-wide">
-      Invia richiesta
-    </button>
-
-  </form>
-
-  <p id="formStatus" class="form-status"></p>
-
-</div>
+            <p id="formStatus" class="form-status"></p>
+          </div>
         </div>
       </div>
     </section>
-</body>
   </main>
 
   <!-- Footer -->
@@ -211,10 +225,8 @@
       <p>© <span id="year"></span> HS-Agency <a href="tel:+393534769196">+39 3534769196</a></p>
       <div class="footer-links">
         <a href="#top">Torna su</a>
-        <a href="https://www.iubenda.com/privacy-policy/60892143" target="_blank">
-        Privacy Policy</a>
-        <a href="https://www.iubenda.com/privacy-policy/60892143/cookie-policy" target="_blank">
-        Cookie Policy</a>
+        <a href="https://www.iubenda.com/privacy-policy/60892143" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.iubenda.com/privacy-policy/60892143/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>
       </div>
     </div>
   </footer>
@@ -222,11 +234,11 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("YQWEfCbwwU7Y7Oo72"); // la tua public key
+      emailjs.init("YQWEfCbwwU7Y7Oo72");
     })();
 
     const form = document.getElementById("bookingForm");
@@ -235,20 +247,16 @@
     form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      emailjs.sendForm(
-        "service_0pa3m09",
-        "template_w0pbepo",
-        this
-      ).then(() => {
-        status.textContent = "Richiesta inviata correttamente.";
-        status.style.color = "green";
-        form.reset();
-      }, () => {
-        status.textContent = "Errore nell'invio. Riprova.";
-        status.style.color = "red";
-      });
+      emailjs.sendForm("service_0pa3m09", "template_w0pbepo", this)
+        .then(() => {
+          status.textContent = "Richiesta inviata correttamente.";
+          status.style.color = "green";
+          form.reset();
+        }, () => {
+          status.textContent = "Errore nell'invio. Riprova.";
+          status.style.color = "red";
+        });
     });
   </script>
-
 </body>
 </html>
