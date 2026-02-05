@@ -536,3 +536,23 @@ li{ color: var(--muted); }
   .nav{ display: none; }
   .services-grid{ grid-template-columns: 1fr; }
 }
+/* ========== business card ========== */
+.tagline{
+  margin: 6px 0 12px;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.person-points{
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: #4b5563;
+}
+.person-points li{ margin: 6px 0; }
+
+.proof, .cred{
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #475569;
+  font-weight: 600;
+}
