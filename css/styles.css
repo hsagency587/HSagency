@@ -1,3 +1,5 @@
+
+
 /* ========== Reset base ========== */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -165,7 +167,7 @@ li{ color: var(--muted); }
 
   background-repeat: no-repeat;
   background-position: center 30%;
-  background-size: contain;
+  background-size: min(250%, 900px);
 }
 
 .hero-inner{
