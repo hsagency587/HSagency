@@ -157,20 +157,37 @@ li{ color: var(--muted); }
 
 /* ========== Hero ========== */
 .hero{
+  position: relative;
   min-height: calc(100vh - 60px);
   display: grid;
   align-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+.hero .container{ background: transparent !important; }
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,0.86);
+  z-index:0;
+}
 
-  background:
-    linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)),
-    url("/img/logo2.png");
-
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url("/img/logo2-clean.png"); /* qui metti il file pulito */
   background-repeat: no-repeat;
   background-position: center 40%;
   background-size: min(250%, 900px);
+  pointer-events: none;
+  z-index:0;
 }
 
 .hero-inner{
+  position: relative;
+  z-index: 1;
   display:grid;
   grid-template-columns: 1.25fr 0.75fr;
   gap: 28px;
