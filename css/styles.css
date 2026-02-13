@@ -183,6 +183,7 @@ li{ color: var(--muted); }
   background-size: contain;
   pointer-events: none;
   z-index:0;
+  opacity: 0.25;
 }
 
 .hero-inner{
