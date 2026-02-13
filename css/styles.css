@@ -180,7 +180,7 @@ li{ color: var(--muted); }
   background-image: url("/img/logo2.png"); /* qui metti il file pulito */
   background-repeat: no-repeat;
   background-position: center 40%;
-  background-size: min(250%, 900px);
+  background-size: min(100%, 900px);
   pointer-events: none;
   z-index:0;
 }
