@@ -177,7 +177,7 @@ li{ color: var(--muted); }
   content:"";
   position:absolute;
   inset:0;
-  background-image: url("/img/logo2-clean.png"); /* qui metti il file pulito */
+  background-image: url("/img/logo2.png"); /* qui metti il file pulito */
   background-repeat: no-repeat;
   background-position: center 40%;
   background-size: min(250%, 900px);
