@@ -166,7 +166,7 @@ li{ color: var(--muted); }
     url("/img/logo2.png");
 
   background-repeat: no-repeat;
-  background-position: center 30%;
+  background-position: center 20%;
   background-size: min(250%, 900px);
 }
 
