@@ -1,19 +1,16 @@
 /* =========================
    SECONDARY PAGES (Checkout)
-   Coerente con styles.css
-   - usa tokens: --bg, --text, --muted, --card, --stroke, --shadow, --r*
-   - tipografia allineata a hero/pricing della home
+   Match foto riferimento
 ========================= */
 
-/* sicurezza: la pagina secondaria eredita esattamente base della home */
 body.secondary{
   background: var(--bg);
   color: var(--text);
 }
 
-/* layout */
+/* Layout generale: più simile alla reference (più aria sopra, grid più bilanciata) */
 .secondary-main{
-  padding: 34px 0 58px 0;
+  padding: 46px 0 70px 0; /* più simile alla 2° foto */
 }
 
 .secondary-wrap{
@@ -23,50 +20,52 @@ body.secondary{
 
 .secondary-grid{
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 34px;
+  grid-template-columns: 1.15fr 0.85fr; /* LEFT più largo per tenere H1 su una riga */
+  gap: 40px;
   align-items: start;
 }
 
-/* ===== LEFT ===== */
-
+/* ===== H1: UNA RIGA + PROPORZIONI COME FOTO 2 ===== */
 .secondary-title{
-  margin: 14px 0 18px 0;
-  font-size: clamp(42px, 4.2vw, 66px); /* = .hero__title */
-  line-height: 1.02;
+  margin: 10px 0 16px 0;
+  font-size: clamp(34px, 3.1vw, 48px); /* più piccolo della hero home: evita wrap */
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  font-weight: 1000;
+  font-weight: 900;
+  white-space: nowrap;                 /* forza una riga su desktop */
 }
 
 .secondary-bolt{
   display: inline-block;
-  margin-right: 10px;
-  transform: translateY(-2px);
+  margin-right: 12px;
+  transform: translateY(2px);          /* simile posizione bolt reference */
+  font-size: 1.05em;
 }
 
+/* testo sotto H1 */
 .secondary-sub{
-  margin: 0 0 26px 0;
-  color: var(--muted);
+  margin: 0 0 24px 0;
+  color: rgba(0,0,0,.80);
   font-size: 16px;
   line-height: 1.55;
-  font-weight: 700;
+  font-weight: 650;
 }
 .secondary-sub strong{
-  font-weight: 1000;
+  font-weight: 900;
   color: rgba(0,0,0,.92);
 }
 
-/* form */
+/* ===== FORM ===== */
 .secondary-form{
-  margin-top: 10px;
+  margin-top: 12px;
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
 .field label{
   display: block;
-  font-size: 14px;
-  color: rgba(0,0,0,.70);
+  font-size: 13px;
+  color: rgba(0,0,0,.62);
   font-weight: 800;
   margin-bottom: 8px;
 }
@@ -75,12 +74,10 @@ body.secondary{
   width: 100%;
   height: 56px;
   border-radius: 14px;
-  border: 1px solid var(--stroke);
+  border: 1px solid rgba(0,0,0,.08);
   background: rgba(0,0,0,.03);
   padding: 0 16px;
   font-size: 16px;
-  font-weight: 700;
-  color: rgba(0,0,0,.86);
   outline: none;
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
 }
@@ -92,32 +89,29 @@ body.secondary{
   transform: translateY(-1px);
 }
 
-/* CTA */
 .secondary-submit{
   margin-top: 6px;
-  height: 62px;
+  height: 64px;
   border-radius: 14px;
   border: 0;
   background: #2f2f2f;
   color: #fff;
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 16px 40px rgba(0,0,0,.18);
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
-
 .secondary-submit:hover{
   transform: translateY(-1px);
   box-shadow: 0 18px 52px rgba(0,0,0,.22);
   filter: brightness(1.02);
 }
 
-/* ===== RIGHT ===== */
-
+/* ===== RIGHT CARD ===== */
 .secondary-right{
   display: grid;
-  gap: 14px;
+  gap: 16px;
   justify-items: end;
 }
 
@@ -125,27 +119,25 @@ body.secondary{
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-weight: 900;
+  font-weight: 800;
   color: rgba(0,0,0,.78);
   padding: 10px 12px;
   border-radius: 12px;
   transition: background .18s ease, transform .18s ease;
 }
-
 .secondary-back:hover{
   background: rgba(0,0,0,.05);
   transform: translateY(-1px);
 }
 
-/* card */
 .secondary-card{
   width: 100%;
-  max-width: 440px;
-  background: var(--card);
-  border: 1px solid var(--stroke);
-  border-radius: var(--r24);
-  padding: 20px;
-  box-shadow: var(--shadow);
+  max-width: 470px; /* un filo più grande come reference */
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.08);
 }
 
 .secondary-card__pillRow{
@@ -153,9 +145,6 @@ body.secondary{
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 12px;
-}
-.secondary-card__pillRow--spread{
-  justify-content: flex-end;
 }
 
 .secondary-pill{
@@ -165,12 +154,10 @@ body.secondary{
   padding: 10px 14px;
   border-radius: 999px;
   background: rgba(0,0,0,.04);
-  border: 1px solid var(--stroke);
-  font-weight: 900;
+  border: 1px solid rgba(0,0,0,.08);
+  font-weight: 850;
   color: rgba(0,0,0,.85);
 }
-
-/* ===== PRICING (mancava: ora è identico al pricing home) ===== */
 
 .secondary-priceRow{
   display: flex;
@@ -186,18 +173,16 @@ body.secondary{
 }
 
 .secondary-amount{
-  font-size: 40px;         /* = .price-card__amount */
-  font-weight: 1000;
+  font-size: 44px;          /* più “bold/large” come reference */
+  font-weight: 950;
   letter-spacing: -0.02em;
 }
-
 .secondary-per{
-  color: var(--muted);     /* = .price-card__per */
-  font-weight: 800;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 850;
+  color: rgba(0,0,0,.60);
 }
 
-/* meta + headline */
 .secondary-meta{
   margin-top: 6px;
   color: rgba(0,0,0,.60);
@@ -206,14 +191,13 @@ body.secondary{
 }
 
 .secondary-headline{
-  margin: 12px 0 12px 0;
-  color: rgba(0,0,0,.78);  /* = .price-card__headline */
-  line-height: 1.5;
-  font-weight: 800;
+  margin: 14px 0 12px 0;
+  color: rgba(0,0,0,.82);
+  line-height: 1.45;
+  font-weight: 850;
   font-size: 18px;
 }
 
-/* highlight */
 .secondary-highlight{
   margin: 8px 0 14px 0;
   border-radius: 14px;
@@ -225,58 +209,104 @@ body.secondary{
   background: rgba(45,178,74,.18);
 }
 
-/* bullets */
 .secondary-bullets{
   margin: 0;
   padding-left: 18px;
   color: rgba(0,0,0,.72);
   line-height: 1.9;
-  font-weight: 700;        /* = .bullets */
+  font-weight: 750;
 }
 
-/* ===== TRIMESTRE ===== */
+/* =========================
+   FOOTER (come foto 3)
+   Usa questo SOLO se inserisci HTML footer
+========================= */
 
-.secondary-stackPrices{
-  margin: 6px 0 8px 0;
+.secondary-footer{
+  margin-top: 70px;
+  padding: 70px 0 26px 0;
+  background: rgba(0,0,0,.03);
+  border-top: 1px solid rgba(0,0,0,.06);
 }
 
-.secondary-linePrice{
+.secondary-footer__wrap{
+  width: min(var(--container), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.secondary-footer__grid{
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.secondary-footer__brand{
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
-  padding: 4px 0;
+  margin-bottom: 16px;
 }
 
-.secondary-lineAmount{
-  font-size: 40px;
-  font-weight: 1000;
+.secondary-footer__title{
+  margin: 0 0 10px 0;
+  font-size: 44px;        /* “Dominate Your Local Market.” vibe */
+  line-height: 1.02;
   letter-spacing: -0.02em;
+  font-weight: 950;
 }
 
-.secondary-lineLabel{
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--muted);
+.secondary-footer__sub{
+  margin: 0;
+  color: rgba(0,0,0,.55);
+  font-weight: 700;
 }
 
-.secondary-divider{
-  height: 1px;
-  width: 100%;
-  background: #bfc4cb;
-  margin: 10px 0;
+.secondary-footer__head{
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.secondary-footer__link{
+  display: block;
+  padding: 10px 0;
+  color: rgba(0,0,0,.65);
+  font-weight: 750;
+}
+.secondary-footer__link:hover{ text-decoration: underline; }
+
+.secondary-footer__bottom{
+  width: min(var(--container), calc(100% - 48px));
+  margin: 22px auto 0 auto;
+  color: rgba(0,0,0,.60);
+  font-weight: 700;
+  font-size: 14px;
 }
 
 /* ===== RESPONSIVE ===== */
-
 @media (max-width: 980px){
   .secondary-grid{
     grid-template-columns: 1fr;
     gap: 22px;
   }
+
+  /* su mobile permetti wrap (altrimenti esce dallo schermo) */
+  .secondary-title{
+    white-space: normal;
+    font-size: clamp(36px, 7vw, 54px);
+  }
+
   .secondary-right{
     justify-items: stretch;
   }
   .secondary-card{
     max-width: none;
+  }
+
+  .secondary-footer__grid{
+    grid-template-columns: 1fr;
+  }
+  .secondary-footer__title{
+    font-size: clamp(34px, 7vw, 50px);
   }
 }
