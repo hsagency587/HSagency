@@ -228,3 +228,46 @@ body.secondary{
   .secondary-right{ justify-items: stretch; }
   .secondary-card{ max-width: none; }
 }
+/* =========================
+   TRIMESTRE – separatore elegante
+========================= */
+
+.secondary-stackPrices{
+  margin: 6px 0 14px 0;
+  display: grid;
+  gap: 10px;
+}
+
+.secondary-linePrice{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.secondary-lineAmount{
+  font-size: 54px;
+  font-weight: 1000;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.secondary-lineLabel{
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--muted);
+  transform: translateY(2px);
+}
+
+/* 🔥 Separatore stile card premium */
+.secondary-divider{
+  height: 1px;
+  width: 100%;
+  margin: 10px 0 6px 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0,0,0,.08),
+    transparent
+  );
+  border: 0;
+}
