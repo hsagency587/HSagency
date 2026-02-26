@@ -3,6 +3,29 @@
    Usa styles.css per tokens/base.
 ========================= */
 
+/* ✅ Forza font/tokens del CSS principale sulle pagine secondarie */
+body.secondary{
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* evita differenze di font su componenti */
+body.secondary input,
+body.secondary button,
+body.secondary label,
+body.secondary a,
+body.secondary h1,
+body.secondary h2,
+body.secondary h3,
+body.secondary p,
+body.secondary li{
+  font-family: inherit;
+}
+
 .secondary-main{
   padding: 34px 0 58px 0;
 }
@@ -19,7 +42,7 @@
   align-items: start;
 }
 
-/* Titolo: allineato a .hero__title della home */
+/* Titolo come hero home */
 .secondary-title{
   margin: 14px 0 18px 0;
   font-size: clamp(42px, 4.2vw, 66px);
@@ -34,7 +57,6 @@
   transform: translateY(-2px);
 }
 
-/* Testo: usa muted e pesi coerenti con home */
 .secondary-sub{
   margin: 0 0 26px 0;
   color: var(--muted);
@@ -170,7 +192,7 @@
   gap: 10px;
 }
 
-/* Prezzi: come pricing home */
+/* Prezzi come pricing home */
 .secondary-amount{
   font-size: 40px;
   font-weight: 1000;
@@ -190,7 +212,6 @@
   font-size: 14px;
 }
 
-/* Headline: come .price-card__headline */
 .secondary-headline{
   margin: 12px 0 12px 0;
   color: rgba(0,0,0,.78);
@@ -218,7 +239,7 @@
   font-weight: 700;
 }
 
-/* TRIMESTRE: blocco prezzi stacked */
+/* TRIMESTRE */
 .secondary-stackPrices{
   margin: 6px 0 8px 0;
 }
