@@ -244,14 +244,21 @@ body.secondary{
   gap: 10px;
 }
 
+/* =========================
+   TRIMESTRE – prezzo identico alla card mensile
+========================= */
+
 .secondary-lineAmount{
-  font-size: 54px;
-  font-weight: 1000;
+  font-family: inherit;           /* usa stesso font globale */
+  font-size: 48px;                /* stessa proporzione del €330 */
+  font-weight: 1000;              /* stesso peso del mensile */
   letter-spacing: -0.02em;
   line-height: 1;
+  color: var(--text);
 }
 
 .secondary-lineLabel{
+  font-family: inherit;
   font-size: 18px;
   font-weight: 800;
   color: var(--muted);
