@@ -19,9 +19,10 @@
   align-items: start;
 }
 
+/* Titolo: allineato a .hero__title della home */
 .secondary-title{
-  margin: 14px 0 14px 0;
-  font-size: clamp(38px, 4vw, 58px);
+  margin: 14px 0 18px 0;
+  font-size: clamp(42px, 4.2vw, 66px);
   line-height: 1.02;
   letter-spacing: -0.02em;
   font-weight: 1000;
@@ -33,16 +34,17 @@
   transform: translateY(-2px);
 }
 
+/* Testo: usa muted e pesi coerenti con home */
 .secondary-sub{
   margin: 0 0 26px 0;
-  color: rgba(0,0,0,.78);
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.55;
-  font-weight: 650;
+  font-weight: 700;
 }
 .secondary-sub strong{
   font-weight: 1000;
-  color: rgba(0,0,0,.9);
+  color: rgba(0,0,0,.92);
 }
 
 /* FORM */
@@ -54,9 +56,9 @@
 
 .field label{
   display: block;
-  font-size: 13px;
-  color: rgba(0,0,0,.62);
-  font-weight: 850;
+  font-size: 14px;
+  color: rgba(0,0,0,.70);
+  font-weight: 800;
   margin-bottom: 8px;
 }
 
@@ -68,6 +70,8 @@
   background: rgba(0,0,0,.03);
   padding: 0 16px;
   font-size: 16px;
+  font-weight: 700;
+  color: rgba(0,0,0,.86);
   outline: none;
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
 }
@@ -149,7 +153,7 @@
   border-radius: 999px;
   background: rgba(0,0,0,.04);
   border: 1px solid rgba(0,0,0,.08);
-  font-weight: 950;
+  font-weight: 900;
   color: rgba(0,0,0,.85);
 }
 
@@ -166,30 +170,32 @@
   gap: 10px;
 }
 
+/* Prezzi: come pricing home */
 .secondary-amount{
-  font-size: 44px;
-  font-weight: 1100;
+  font-size: 40px;
+  font-weight: 1000;
   letter-spacing: -0.02em;
 }
 
 .secondary-per{
-  font-size: 18px;
-  font-weight: 900;
-  color: rgba(0,0,0,.60);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--muted);
 }
 
 .secondary-meta{
   margin-top: 6px;
   color: rgba(0,0,0,.60);
-  font-weight: 750;
+  font-weight: 700;
   font-size: 14px;
 }
 
+/* Headline: come .price-card__headline */
 .secondary-headline{
-  margin: 14px 0 12px 0;
-  color: rgba(0,0,0,.82);
-  line-height: 1.45;
-  font-weight: 850;
+  margin: 12px 0 12px 0;
+  color: rgba(0,0,0,.78);
+  line-height: 1.5;
+  font-weight: 800;
   font-size: 18px;
 }
 
@@ -197,7 +203,7 @@
   margin: 8px 0 14px 0;
   border-radius: 14px;
   padding: 12px 14px;
-  font-weight: 950;
+  font-weight: 900;
   border: 1px solid rgba(0,0,0,.06);
 }
 .secondary-highlight--green{
@@ -209,7 +215,7 @@
   padding-left: 18px;
   color: rgba(0,0,0,.72);
   line-height: 1.9;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* TRIMESTRE: blocco prezzi stacked */
@@ -225,15 +231,15 @@
 }
 
 .secondary-lineAmount{
-  font-size: 38px;
-  font-weight: 1100;
+  font-size: 40px;
+  font-weight: 1000;
   letter-spacing: -0.02em;
 }
 
 .secondary-lineLabel{
   font-size: 16px;
-  font-weight: 900;
-  color: rgba(0,0,0,.60);
+  font-weight: 800;
+  color: var(--muted);
 }
 
 .secondary-divider{
