@@ -278,3 +278,37 @@ body.secondary{
   );
   border: 0;
 }
+/* =========================
+   FORCE PRICE STYLE (match foto 1)
+   Incolla in FONDO al secondary-pages.css
+========================= */
+
+/* prezzo singolo + prezzi stacked: IDENTICI */
+body.secondary .secondary-card .secondary-amount,
+body.secondary .secondary-card .secondary-lineAmount{
+  font-family: var(--font) !important;
+  font-size: 44px !important;
+  font-weight: 1000 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1 !important;
+  color: var(--text) !important;
+}
+
+/* /mese + /local SEO label: IDENTICI */
+body.secondary .secondary-card .secondary-per,
+body.secondary .secondary-card .secondary-lineLabel{
+  font-family: var(--font) !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: var(--muted) !important;
+  line-height: 1.1 !important;
+  transform: translateY(2px) !important;
+}
+
+/* separatore come vuoi tu */
+body.secondary .secondary-card .secondary-divider{
+  height: 1px !important;
+  width: 100% !important;
+  background: rgba(0,0,0,.10) !important;
+  margin: 14px 0 !important;
+}
