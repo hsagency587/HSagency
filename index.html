@@ -1,264 +1,577 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BEST internet marketing service at Milan - if you're looking for internet marketing service near me or Web designer & marketing consultant near me - HS-Agency is the agency to call</title>
-  <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
-<link rel="shortcut icon" href="/img/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-<link rel="manifest" href="/img/site.webmanifest" />
-  <meta name="description" content="Local SEO per attività locali: più visibilità su Google, più contatti, più clienti." />
-
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HSagency</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Torna all'inizio">
-        <!-- <img class="brand-logo" src="assets/logo.svg" alt="HS Agency Logo" /> -->
-        <span class="brand-name">HS Agency</span>
-      </a>
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header" id="top">
+    <nav class="nav">
+      <div class="nav__left">
+        <a class="brand" href="#top" aria-label="HSagency - Home">
+          <span class="brand__text">HSagency</span>
+        </a>
+      </div>
 
-      <nav class="nav" aria-label="Navigazione principale">
-        <a href="#chi-siamo">Chi siamo</a>
-        <a href="#servizi">Servizi</a>
-        <a href="#contatti" class="nav-cta">Contatti</a>
-      </nav>
-    </div>
+      <div class="nav__center">
+        <a href="#prima-dopo">Prima / Dopo</a>
+        <a href="#processo">Processo</a>
+        <a href="#faq">Domande</a>
+        <a href="#prezzi">Prezzi</a>
+      </div>
+
+      <div class="nav__right">
+        <a class="pill pill--dark" href="tel:+393534769196">+39 353 476 9196</a>
+      </div>
+    </nav>
   </header>
 
-  <main id="top">
-    <!-- HERO full screen -->
-    <section class="hero" aria-label="Hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="kicker">Online Marketing</p>
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="section hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="hero__loc">
+            <span class="dot dot--green" aria-hidden="true"></span>
+            <span>Milano, Italia</span>
+          </div>
 
-          <!-- NON H1: stesso impatto visivo via CSS -->
-          <p class="hero-title">
-            Portiamo la tua attività in TOP 3 GOOGLE.
+          <h1 class="hero__title">
+            <span>Top 3 su Google</span><br />
+            <span>entro 90 giorni,</span><br />
+            <span class="serif-italic">Garantito.</span>
+          </h1>
+
+          <p class="hero__bold">
+            <strong>Il 75% delle ricerche finisce sui primi 3 risultati di Google Maps.</strong>
           </p>
+          <p class="hero__muted">E se non sei nei primi 3, di fatto sei invisibile.</p>
 
-          <!-- Gerarchia: qui va bene come H2 (supporto al titolo visuale) -->
-          <h2 class="hero-guarantee">
-            Risultato garantito in 90 giorni oppure ti rimborsiamo l'intera somma.
-          </h2>
-
-          <div class="hero-actions">
-            <div class="hero-actions-top">
-              <a class="btn btn-primary" href="#contatti">Richiedi una valutazione</a>
-              <a class="btn btn-ghost" href="#servizi">Scopri i servizi</a>
-            </div>
-
-            <a class="btn btn-primary btn-wide"
-               href="mailto:hsagency587@gmail.com?subject=PRENOTAZIONE%20CONSULENZA&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi.%0A%0AVorrei%20fissare%20una%20chiamata.%0A%0ASono%20disponbile%20(ora%20e%20giorno):%0A1:%0A2:"
-               target="_blank" rel="noopener">
-              Riserva il tuo posto
-            </a>
+          <div class="hero__miniCtas">
+            <a class="pill pill--light" href="mailto:hsagency587@gmail.com">hsagency587@gmail.com</a>
+            <a class="pill pill--light" href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
           </div>
         </div>
 
-        <div class="hero-card" role="note" aria-label="Nota rapida">
-          <h3 class="hero-card-title">Risultato misurabile</h3>
-          <p>
-            Lavoriamo su Google Business Profile, citazioni (NAP) e ottimizzazione del sito web per farti trovare da più clienti e generare più contatti.
-          </p>
-          <ul class="checklist">
-            <li>update settimanale</li>
-            <li>Piano d’azione chiaro</li>
-            <li>risultato garantito in 90 giorni</li>
-          </ul>
+        <!-- VIDEO PLACEHOLDER (1 immagine) --> 
+        <div class="hero__media hero__media--double">
+
+        <!-- VIDEO 1 -->
+        <a class="video-card" href="#prezzi">
+          <img class="video-card__thumb" src="img/video-thumb.jpg" alt="Video 1" />
+          <div class="video-card__overlayText">GUARDA</div>
+          <span class="video-card__play"><span class="video-card__playIcon"></span></span>
+       </a>
+
+       <!-- VIDEO 2 -->
+       <a class="video-card" href="#prezzi">
+         <img class="video-card__thumb" src="img/video-thumb2.jpg" alt="Video 2" />
+         <div class="video-card__overlayText">GUARDA</div>
+         <span class="video-card__play"><span class="video-card__playIcon"></span></span>
+       </a>
+
+       </div>
+
+
+        <div class="hero__stats">
+          <div class="stat lift">
+            <span class="stat__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 20c.7-3.4 4-6 8-6s7.3 2.6 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="stat__text">2+ Clienti soddisfatti</span>
+          </div>
+
+          <div class="stat lift">
+            <span class="stat__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17V9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 17V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M17 17v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
+            </span>
+            <span class="stat__text">1+ Anni di esperienza</span>
+          </div>
+
+          <div class="stat lift">
+            <span class="stat__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="stat__text">Risultati rapidissimi</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CHI SIAMO -->
-    <section id="chi-siamo" class="section">
+    <!-- ===== VANTAGGIO ===== -->
+    <section class="section advantage">
       <div class="container">
         <div class="section-head">
-          <h2>Chi siamo</h2>
-          <p>Due professionisti che seguono ogni progetto dall’idea all’esecuzione, unendo visione strategica e capacità operativa avanzata.</p>
+          <div class="badge">
+            <span class="badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="m8 12 2.5 2.5L16.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Il vantaggio</span>
+          </div>
+
+          <h2 class="h2"><span class="serif-italic">Ma,</span> ne vale davvero la pena?</h2>
         </div>
-       <div class="team-grid">
 
-  <!-- GABRIELE -->
-  <article class="person-card">
-    <img src="/img/GABRIELE.jpeg" class="person-photo" alt="Foto profilo di Gabriele">
-    <div class="person-body">
-      <h3>GABRIELE</h3>
-      <p class="role">Local SEO Specialist & content creation</p>
-      <p class="bio">Concretezza, sviluppo ed attenzione al dettaglio</p>
-      <div class="person-links">
-        <a href="#" aria-label="LinkedIn di GABRIELE">LinkedIn</a>
-        <a href="mailto:g.pastormerlobusiness@gmail.com?subject=Richiesta%20informazioni" aria-label="Email a GABRIELE">E-Mail</a>
-        <a href="tel:+393923850668" aria-label="telefono di GABRIELE">telefono</a>
-      </div>
-    </div>
-  </article>
+        <div class="cards3">
+          <article class="card lift">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 15a3 3 0 1 0-3-3 3 3 0 0 0 3 3Z" fill="currentColor" opacity=".9"/>
+              </svg>
+            </div>
+            <h3>Visibilità</h3>
+            <p>Il 75% dei contatti che cercano i tuoi servizi finisce sui primi 3 risultati. Se non sei lì, sei invisibile.</p>
+          </article>
 
-  <!-- SIMONE -->
-  <article class="person-card">
-    <img src="/img/simo2.jpeg" class="person-photo" alt="Foto profilo di Simone">
-    <div class="person-body">
-      <h3>SIMONE</h3>
-      <p class="role">Local SEO Specialist & web site designer</p>
-      <p class="bio">Competenza, affidabilità e miglioramento continuo.</p>
-      <div class="person-links">
-        <a href="https://www.linkedin.com/in/simone-scir%C3%A8-98433639b/" aria-label="LinkedIn di SIMONE">LinkedIn</a>
-        <a href="mailto:s.scrirebusiness@gmail.com?subject=Richiesta%20informazioni" aria-label="Email a SIMONE">E-Mail</a>
-        <a href="tel:+393920660255" aria-label="telefono di SIMONE">telefono</a>
-      </div>
-    </div>
-  </article>
+          <article class="card lift">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M6 7h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M7.5 12h2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M14 12h2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Zero pubblicità</h3>
+            <p>Niente pay-per-click o budget enormi come con Google Ads, Meta Ads o simili.</p>
+          </article>
 
-</div>
+          <article class="card lift">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22A10 10 0 1 0 12 2a10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Strategia a lungo termine</h3>
+            <p>Appena entri nei primi 3, di solito ci resti per anni. Senza costi mensili aggiuntivi.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- SERVIZI -->
-    <section id="servizi" class="section section-alt" aria-label="Servizi">
+    <!-- ===== PRIMA / DOPO (TABS + 2 IMMAGINI) ===== -->
+    <section class="section difference" id="prima-dopo">
       <div class="container">
+        <div class="section-head section-head--tight">
+          <div class="badge">
+            <span class="badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="m8 12 2.5 2.5L16.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Prima / Dopo</span>
+          </div>
 
-        <!-- Manteniamo semantica senza mostrare "Servizi" -->
-        <h2 class="sr-only">Servizi</h2>
-
-        <div class="services-grid">
-          <a class="service-card" href="/servizi/Local-seo.html">
-            <!-- 1° SERVIZIO in H1 -->
-            <h1 class="service-title">Local SEO</h1>
-            <p>Ottimizzazione completa per ricerche locali e aumento esposizione.</p>
-            <p class="price">Costo del servizio: <strong>750€</strong></p>
-            <p class="service-cta">Scopri di più →</p>
-          </a>
-
-          <a class="service-card" href="/servizi/sito-web.html">
-            <!-- 2° SERVIZIO in H1 -->
-            <h1 class="service-title">web site</h1>
-            <p>Costruiamo il tuo sito web da zero e lo rendiamo visibile su Google.</p>
-            <p class="price">Costo del servizio: <strong>1500€</strong></p>
-            <p class="service-cta">Scopri di più →</p>
-          </a>
+          <h2 class="h2">La <span class="serif-italic">differenza</span></h2>
         </div>
 
-      </div>
-    </section>
+        <div class="panel">
+          <!-- RADIO TABS (solo HTML+CSS) -->
+          <input class="tabRadio" type="radio" name="ba" id="ba-prima" checked>
+          <input class="tabRadio" type="radio" name="ba" id="ba-dopo">
 
-    <!-- CONTATTI -->
-    <section id="contatti" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Contatti</h2>
-          <p>Scrivici o chiamaci. rispondiamo in 24/48H</p>
-        </div>
+          <div class="tabs tabs--radio" role="tablist" aria-label="Selettore Prima/Dopo">
+            <label class="tab tab--radio" for="ba-prima" role="tab">Prima</label>
+            <label class="tab tab--radio" for="ba-dopo" role="tab">Dopo</label>
+          </div>
 
-        <div class="contact-grid">
-          <div class="contact-card">
-            <h3>richiedi una valutazione gratuita</h3>
 
-            <p class="contact-line">
-              <strong>Email:</strong>
-              <a href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">
-                hsagency587@gmail.com
-              </a>
-            </p>
+          <div class="panel__grid">
+            <!-- LEFT (metriche) -->
+            <div class="panel__left">
+              <div class="company">
+                <span class="company__icon" aria-hidden="true">
+                </span>
+                <div class="company__meta">
+                  <div class="company__name">La tua azienda</div>
+                  <div class="company__addr">Indirizzo di esempio 12, 20100 Milano</div>
+                </div>
+              </div>
 
-            <p class="contact-line"><strong>Telefono:</strong> <a href="tel:+393534769196">+39 3534769196</a></p>
-            <p class="contact-line"><strong>Area:</strong> Italia (remote + on-site su richiesta)</p>
+              <div class="baBlock baBlock--prima">
+                <div class="metric">
+                  <div class="metric__label">Posizione media</div>
+                  <div class="metric__val metric__val--red">86</div>
+                </div>
+                <div class="metric">
+                  <div class="metric__label">Quota di mercato</div>
+                  <div class="metric__val metric__val--red">1%</div>
+                </div>
+                <div class="metric">
+                  <div class="metric__label">Click al mese</div>
+                  <div class="metric__val metric__val--red">5</div>
+                </div>
+                <div class="metric">
+                  <div class="metric__label">Clienti al mese</div>
+                  <div class="metric__val metric__val--red">1–2</div>
+                </div>
+              </div>
 
-            <p class="small">
-              Prepareremo un video di 2 minuti con analisi dello stato attuale e azioni da intraprendere.
-            </p>
-
-            <div class="socials" aria-label="Social">
-              <a href="https://www.linkedin.com/company/hs-agency-marketing-1/about/?viewAsMember=true" aria-label="LinkedIn di HS Agency">LinkedIn</a>
-              <a href="https://www.instagram.com/hs_agency_marketing?igsh=MThzZ2Q0aTFodTY2bQ==" aria-label="Instagram di HS Agency">Instagram</a>
-              <a href="https://www.facebook.com/share/19Ynom8vXU/" aria-label="Facebook di HS Agency">Facebook</a>
+              <div class="baBlock baBlock--dopo">
+                <div class="metric">
+                  <div class="metric__label">Posizione media</div>
+                  <div class="metric__val metric__val--green">2</div>
+                </div>
+                <div class="metric">
+                  <div class="metric__label">Quota di mercato</div>
+                  <div class="metric__val metric__val--green">82%</div>
+                </div>
+                <div class="metric">
+                  <div class="metric__label">Click al mese</div>
+                  <div class="metric__val metric__val--green">80</div>
+                </div>
+                <div class="metric">
+                  <div class="metric__label">Clienti al mese</div>
+                  <div class="metric__val metric__val--green">15+</div>
+                </div>
+              </div>
             </div>
 
-            <a class="btn btn-primary"
-               href="mailto:hsagency587@gmail.com?subject=Richiesta%20valutazione&body=Buongiorno,%0A%0Asono%20interessato%20ai%20vostri%20servizi%20.%0A%0APotete%20inviarmi%20una%20valutazione%20di%202%20minuti?%0A%0Anome%20attività:%0Anumero%20di%20telefono:">
-              Invia email
-            </a>
-          </div>
-
-          <div class="contact-card booking-card">
-            <h3>fissa una chiamata</h3>
-
-            <form id="bookingForm" class="booking-form">
-              <input type="text" name="nome" placeholder="Nome" required>
-              <input type="email" name="email" placeholder="Email" required>
-
-              <label class="booking-label">Disponibilità 1 (preferibile)</label>
-              <div class="booking-row">
-                <input type="date" name="data1" required>
-                <input type="time" name="ora1" required>
+            <!-- RIGHT (solo 2 immagini: prima/dopo) -->
+            <div class="panel__right">
+              <div class="mapPhoto">
+                <img class="mapPhoto__img mapPhoto__img--prima" src="img/mappa-prima.jpg" alt="Mappa PRIMA (inserisci la tua immagine)" />
+                <img class="mapPhoto__img mapPhoto__img--dopo"  src="img/mappa-dopo.jpg"  alt="Mappa DOPO (inserisci la tua immagine)" />
               </div>
-
-              <label class="booking-label">Disponibilità 2 (alternativa)</label>
-              <div class="booking-row">
-                <input type="date" name="data2">
-                <input type="time" name="ora2">
-              </div>
-
-              <textarea name="note" placeholder="Note aggiuntive (facoltative)"></textarea>
-
-              <button type="submit" class="btn btn-primary btn-wide">
-                Invia richiesta
-              </button>
-            </form>
-
-            <p id="formStatus" class="form-status"></p>
+              <p class="hint">Sostituisci <strong>img/mappa-prima.jpg</strong> e <strong>img/mappa-dopo.jpg</strong> con le tue due immagini.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ===== PROCESSO ===== -->
+    <section class="section process" id="processo">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">
+            <span class="badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M3 12h5l2 2 4-6 2 4h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Come funziona?</span>
+          </div>
+
+          <h2 class="h2">È piuttosto <span class="serif-italic">semplice.</span></h2>
+        </div>
+
+        <div class="steps">
+          <div class="step lift">
+            <div class="step__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M8 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 9h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <span class="step__num">01. Analisi gratuita</span>
+              <span class="step__desc">Scegli un pacchetto e compila il modulo.</span>
+            </div>
+          </div>
+
+          <div class="step lift">
+            <div class="step__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <span class="step__num">02. Onboarding</span>
+              <span class="step__desc">Ti inviamo istruzioni per accesso sicuro al profilo.</span>
+            </div>
+          </div>
+
+          <div class="step lift">
+            <div class="step__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <span class="step__num">03. Esecuzione</span>
+              <span class="step__desc">Applichiamo la strategia per riempire l’agenda.</span>
+            </div>
+          </div>
+
+          <div class="step lift">
+            <div class="step__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 20V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 6h10l-2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="m14 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <span class="step__num">04. Ottimizzazione</span>
+              <span class="step__desc">Misuriamo ciò che funziona e lo potenziamo.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faqs" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">
+            <span class="badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 17h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>FAQ</span>
+          </div>
+
+          <h2 class="h2">Domande <span class="serif-italic">frequenti</span></h2>
+        </div>
+
+        <div class="accordion faqBox">
+          <details class="acc" open>
+            <summary>
+              <span>Qual è la differenza tra SEO e Google Ads?</span>
+              <span class="acc__plus" aria-hidden="true"></span>
+            </summary>
+            <div class="acc__body">
+Con Google Ads acquisti la prima posizione su Google. Questo significa anche che devi fare aggiornamenti         settimanali e pagare per ogni clic.
+La SEO di solito richiede un po’ più di tempo (circa 90 giorni +/-), ma dopo è gratuita e generalmente offre risultati significativamente migliori.
+I risultati migliori derivano da una combinazione di entrambe, ma la base SEO deve essere già consolidata prima di iniziare con Google Ads (o altre varianti).
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <span>Con quali aziende lavorate?</span>
+              <span class="acc__plus" aria-hidden="true"></span>
+            </summary>
+            <div class="acc__body">
+             Lavoriamo con attività locali che vogliono dominare la propria area su Google per ottenere più chiamate.
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <span>Quanto tempo devo investire?</span>
+              <span class="acc__plus" aria-hidden="true"></span>
+            </summary>
+            <div class="acc__body">
+             Tutti i nostri servizi sono progettati in modo da richiedere il minimo investimento di tempo da parte dei clienti. Tuttavia, questo viene definito e discusso chiaramente prima di iniziare a lavorare insieme.
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <span>Quali sono i termini del contratto?</span>
+              <span class="acc__plus" aria-hidden="true"></span>
+            </summary>
+            <div class="acc__body">
+              Non c’è assolutamente alcun vincolo con le nostre offerte. Tutto è disdicibile mensilmente ed è anche chiaramente documentato per iscritto prima di iniziare a lavorare insieme.
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <span>Come iniziamo?</span>
+              <span class="acc__plus" aria-hidden="true"></span>
+            </summary>
+            <div class="acc__body">
+             Seleziona semplicemente un pacchetto adatto qui sotto e compila il modulo. Inizieremo entro 24 ore e ti invieremo tutte le ulteriori informazioni via email.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PREZZI ===== -->
+    <section class="section pricing" id="prezzi">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">
+            <span class="badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 14h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Pacchetti</span>
+          </div>
+
+          <h2 class="h2">Ottieni <span class="serif-italic">più</span> clienti</h2>
+        </div>
+
+        <div class="pricing3">
+         <!-- Local SEO -->
+          <article class="price-card lift">
+            <div class="price-card__top">
+              <span class="pill pill--light">Local SEO</span>
+            </div>
+
+            <div class="price-card__price">
+              <span class="price-card__amount">€245</span>
+              <span class="price-card__per">/ mese</span>
+            </div>
+
+            <div class="price-card__meta">Impegno 3 mesi. Disdicibile mensilmente dopo.</div>
+
+            <p class="price-card__headline">
+              Top 3 su Google entro 90 giorni.<br />
+              Garantito oppure non paghi.
+            </p>
+
+            <div class="highlight highlight--green">Visibile nel <strong>75%+</strong> dei risultati.</div>
+
+            <ul class="bullets">
+              <li>Analisi completa dei competitor</li>
+              <li>Aggiornamenti ogni due settimane</li>
+              <li><strong>Garanzia soddisfatti o rimborsati</strong></li>
+              <li>Posizionamento per keyword principale</li>
+              <li><strong>Ottimizzazione completa del sito</strong></li>
+              <li>Backlink di alta qualità</li>
+            </ul>
+
+            <a class="btn btn--primary" href="/localseo/index.html">Inizia ora</a>
+            <a class="btn btn--ghost" href="tel:+393534769196">
+              <span class="btn__icon" aria-hidden="true">📞</span> Chiama
+            </a>
+          </article>
+
+          <!-- SEO + WEB SITE -->
+          <article class="price-card lift">
+            <div class="price-card__top">
+              <span class="pill pill--light">Local SEO + Website Design</span>
+            </div>
+
+            <div class="price-card__price">
+              <span class="price-card__amount">€330</span>
+              <span class="price-card__per">/ mese</span>
+            </div>
+
+            <div class="price-card__meta">Impegno 3 mesi. Disdicibile mensilmente dopo.</div>
+
+            <p class="price-card__headline">
+              Top 3 su Google entro 90 giorni.<br />
+              Garantito oppure non paghi.
+            </p>
+
+            <div class="highlight highlight--green">Visibile nel <strong>75%+</strong> dei risultati.</div>
+
+            <ul class="bullets">
+              <li>Aggiornamenti ogni due settimane</li>
+              <li>Posizionamento per keyword principale</li>
+              <li><strong>Garanzia soddisfatti o rimborsati</strong></li>
+              <li>Backlink di alta qualità</li>
+              <li><strong>creazione completa sito</strong></li>
+              <li>aggiornamenti stagionali sul sito</li>
+            </ul>
+
+            <a class="btn btn--primary" href="pagamento/index.html#standard">Inizia ora</a>
+            <a class="btn btn--ghost" href="tel:+393534769196">
+              <span class="btn__icon" aria-hidden="true">📞</span> Chiama
+            </a>
+          </article>
+
+          <!-- TRIMESTRE -->
+          <article class="price-card lift">
+            <div class="price-card__top price-card__top--spread">
+              <span class="pill pill--blue">trimestre</span>
+            </div>
+
+            <div class="price-card__price">
+              <span class="price-card__amount">€645</span>
+              <span class="price-card__per">/ local SEO </span>
+            </div>
+            <div class="price-divider"></div>
+            <div class="price-card__price">
+              <span class="price-card__amount">€870</span>
+              <span class="price-card__per">/ Local SEO + Web site </span>
+            </div>
+
+
+            <div class="price-card__meta">Disdicibile ogni 3 MESI.</div>
+
+            <p class="price-card__headline">
+              Top 3 su Google entro 90 giorni.<br />
+              Garantito oppure non paghi.
+            </p>
+
+            <div class="highlight highlight--green">Visibile nel <strong>75%+</strong> dei risultati.</div>
+
+             <ul class="bullets">
+              <li>comprende le caratteristiche del pacchetto scelto</li>
+              <li><strong>12% di sconto</strong></li>
+              <li><strong>Garanzia soddisfatti o rimborsati</strong></li>
+
+            </ul>
+
+
+            <a class="btn btn--primary" href="pagamento/index.html#trimestre">Inizia ora</a>
+            <a class="btn btn--ghost" href="tel:+393534769196">
+              <span class="btn__icon" aria-hidden="true">📞</span> Chiama
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="contatti">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <span class="brand__text">HSagency</span>
+          </div>
+
+          <h3 class="footer__title">Domina il tuo<br />mercato locale.</h3>
+
+          <div class="footer__contacts">
+            <a class="footer__pill" href="mailto:hsagency587@gmail.com">hsagency587@gmail.com</a>
+            <a class="footer__pill" href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="footer__pill" href="tel:+393534769196">Telefono</a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <div class="footer__head">Legale</div>
+          <!-- TODO: linkare pagina termini vera -->
+          <a class="footer__link" href="#">Termini di servizio</a>
+          <!-- TODO: linkare privacy vera -->
+          <a class="footer__link" href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a>
+        </div>
+      </div>
+
+      <div class="container footer__bottom">
+        <p>© 2026 Tutti i diritti riservati da HSagency. Info legali su richiesta.</p>
+      </div>
+    </footer>
   </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> HS-Agency <a href="tel:+393534769196">+39 3534769196</a></p>
-      <div class="footer-links">
-        <a href="#top">Torna su</a>
-        <a href="https://www.iubenda.com/privacy-policy/60892143" target="_blank" rel="noopener">Privacy Policy</a>
-        <a href="https://www.iubenda.com/privacy-policy/60892143/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function() {
-      emailjs.init("YQWEfCbwwU7Y7Oo72");
-    })();
-
-    const form = document.getElementById("bookingForm");
-    const status = document.getElementById("formStatus");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      emailjs.sendForm("service_0pa3m09", "template_w0pbepo", this)
-        .then(() => {
-          status.textContent = "Richiesta inviata correttamente.";
-          status.style.color = "green";
-          form.reset();
-        }, () => {
-          status.textContent = "Errore nell'invio. Riprova.";
-          status.style.color = "red";
-        });
-    });
-  </script>
 </body>
 </html>
