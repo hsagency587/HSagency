@@ -41,34 +41,40 @@
   Inizia ora in <span class="serif-italic">2 minuti</span>.
 </h1>
 
-          <p class="secondary-sub">
-            Se la tua azienda è idonea, verrai contattato automaticamente.<br />
-            Lavoriamo con <strong>una sola azienda per città e settore</strong>.
-          </p>
+        <p class="secondary-sub"> 
+  Se la tua azienda è idonea, verrai contattato automaticamente.<br />
+  Lavoriamo con <strong>una sola azienda per città e settore</strong>.
+</p>
 
-          <form class="secondary-form" action="#" method="post">
-            <div class="field">
-              <label for="name">Nome e cognome</label>
-              <input id="name" name="name" type="text" placeholder="X" autocomplete="name" required>
-            </div>
+<form class="secondary-form"
+      action="https://formspree.io/f/IL_TUO_ID"
+      method="POST">
 
-            <div class="field">
-              <label for="phone">Numero di telefono</label>
-              <input id="phone" name="phone" type="tel" placeholder="+39 3XX XXX XXXX" autocomplete="tel" required>
-            </div>
+  <input type="hidden" name="_subject" value="Nuova richiesta HSagency" />
+  <input type="hidden" name="_redirect" value="https://tuodominio.it/payment/grazie.html" />
 
-            <div class="field">
-              <label for="city">Città e zona (se applicabile)</label>
-              <input id="city" name="city" type="text" placeholder="X" autocomplete="address-level2" required>
-            </div>
+  <div class="field">
+    <label for="name">Nome e cognome</label>
+    <input id="name" name="name" type="text" placeholder="X" autocomplete="name" required>
+  </div>
 
-            <div class="field">
-              <label for="industry">Settore</label>
-              <input id="industry" name="industry" type="text" placeholder="Idraulico, dentista, giardiniere, ecc." required>
-            </div>
+  <div class="field">
+    <label for="phone">Numero di telefono</label>
+    <input id="phone" name="phone" type="tel" placeholder="+39 3XX XXX XXXX" autocomplete="tel" required>
+  </div>
 
-            <button class="secondary-submit" type="submit">Invia richiesta</button>
-          </form>
+  <div class="field">
+    <label for="city">Città e zona (se applicabile)</label>
+    <input id="city" name="city" type="text" placeholder="X" autocomplete="address-level2" required>
+  </div>
+
+  <div class="field">
+    <label for="industry">Settore</label>
+    <input id="industry" name="industry" type="text" placeholder="Idraulico, dentista, giardiniere, ecc." required>
+  </div>
+
+  <button class="secondary-submit" type="submit">Invia richiesta</button>
+</form>
         </div>
 
         <!-- RIGHT -->
