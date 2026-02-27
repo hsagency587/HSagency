@@ -51,6 +51,9 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+
+  /* ✅ FIX mobile: previene micro overflow orizzontale */
+  overflow-x: hidden;
 }
 
 img{ max-width:100%; height:auto; display:block; }
@@ -231,7 +234,6 @@ a{ color:inherit; text-decoration:none; }
 .stat__text{
   /* ✅ */
   font-weight: 600;
-
   color: rgba(0,0,0,.82);
 }
 
@@ -335,7 +337,6 @@ a{ color:inherit; text-decoration:none; }
 .metric__label{
   /* ✅ */
   font-weight: 600;
-
   color: rgba(0,0,0,.85);
 }
 
@@ -364,7 +365,77 @@ a{ color:inherit; text-decoration:none; }
   font-weight: 500;
 }
 
-@media (max-width: 980px){ .panel__grid{ grid-template-columns: 1fr; } .mapPhoto{ aspect-ratio: 16 / 10; } }
+/* ✅ FIX MOBILE SPECIFICO per il pannello (il tuo “problemino” su telefono)
+   - compatta tabs/metriche/mappa
+   - evita sensazione “troppo arioso”
+*/
+@media (max-width: 520px){
+
+  /* pannello: meno padding, più compatto */
+  .panel{
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  /* tabs: full width, centrati, più compatti */
+  .tabs{
+    width: 100%;
+    padding: 6px;
+    gap: 6px;
+    border-radius: 14px;
+  }
+  .tab{
+    flex: 1;
+    text-align: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  /* company + metriche */
+  .company{
+    padding: 14px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+  }
+  .metric{
+    padding: 12px 14px;
+    border-radius: 16px;
+    margin: 12px 0;
+  }
+  .metric__val{
+    min-width: 54px;
+    padding: 7px 10px;
+    border-radius: 10px;
+  }
+
+  /* mappa: più area utile, meno cornice */
+  .mapPhoto{
+    padding: 10px;
+    border-radius: 16px;
+    aspect-ratio: 16 / 11;
+  }
+  .mapPhoto::before{
+    inset: 10px;
+    border-radius: 12px;
+  }
+  .mapPhoto__img{
+    inset: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border-radius: 12px;
+  }
+
+  .hint{
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+/* responsive: 1 colonna */
+@media (max-width: 980px){
+  .panel__grid{ grid-template-columns: 1fr; }
+  .mapPhoto{ aspect-ratio: 16 / 10; }
+}
 
 /* =========================
    STEPS
@@ -426,7 +497,11 @@ a{ color:inherit; text-decoration:none; }
 }
 .acc[open] .acc__body{ border-top: 1px solid rgba(0,0,0,.08); }
 
-@media (max-width: 980px){ .acc summary{ padding: 16px 16px; } .acc__plus{ width: 44px; height: 44px; } .acc__body{ padding: 14px 16px 16px 16px; } }
+@media (max-width: 980px){
+  .acc summary{ padding: 16px 16px; }
+  .acc__plus{ width: 44px; height: 44px; }
+  .acc__body{ padding: 14px 16px 16px 16px; }
+}
 
 /* =========================
    PRICING
