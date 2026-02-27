@@ -7,18 +7,13 @@
 body.secondary{
   background: var(--bg);
   color: var(--text);
+  /* ✅ prof: base non troppo bold */
+  font-weight: 500;
 }
 
 /* assicurati che niente tagli il footer */
-.secondary-main{ 
-  padding: 52px 0 70px 0;
-  overflow: visible;
-}
-
-.secondary-wrap{
-  width: min(var(--container), calc(100% - 48px));
-  margin: 0 auto;
-}
+.secondary-main{ padding: 52px 0 70px 0; overflow: visible; }
+.secondary-wrap{ width: min(var(--container), calc(100% - 48px)); margin: 0 auto; }
 
 /* proporzioni come reference: sinistra più ariosa */
 .secondary-grid{
@@ -35,7 +30,10 @@ body.secondary{
   font-size: clamp(34px, 3.0vw, 46px);
   line-height: 1.08;
   letter-spacing: -0.02em;
-  font-weight: 1000;
+
+  /* ✅ prof: forte ma non “black” */
+  font-weight: 700;
+
   white-space: nowrap; /* 1 riga su desktop */
 }
 
@@ -52,25 +50,24 @@ body.secondary{
   color: rgba(0,0,0,.78);
   font-size: 16px;
   line-height: 1.55;
-  font-weight: 700;
+
+  /* ✅ prof */
+  font-weight: 500;
 }
+
 .secondary-sub strong{
-  font-weight: 1000;
+  font-weight: 700;
   color: rgba(0,0,0,.92);
 }
 
 /* ===== FORM ===== */
-.secondary-form{
-  margin-top: 14px;
-  display: grid;
-  gap: 18px;
-}
+.secondary-form{ margin-top: 14px; display: grid; gap: 18px; }
 
 .field label{
   display: block;
   font-size: 13px;
   color: rgba(0,0,0,.62);
-  font-weight: 900;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
@@ -82,7 +79,10 @@ body.secondary{
   background: rgba(0,0,0,.03);
   padding: 0 16px;
   font-size: 16px;
-  font-weight: 700;
+
+  /* ✅ prof */
+  font-weight: 500;
+
   outline: none;
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
 }
@@ -102,12 +102,16 @@ body.secondary{
   border: 0;
   background: #2f2f2f;
   color: #fff;
-  font-weight: 1000;
+
+  /* ✅ prof */
+  font-weight: 700;
+
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 16px 40px rgba(0,0,0,.18);
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
+
 .secondary-submit:hover{
   transform: translateY(-1px);
   box-shadow: 0 18px 52px rgba(0,0,0,.22);
@@ -115,26 +119,22 @@ body.secondary{
 }
 
 /* ===== RIGHT ===== */
-.secondary-right{
-  display: grid;
-  gap: 16px;
-  justify-items: end;
-}
+.secondary-right{ display: grid; gap: 16px; justify-items: end; }
 
 .secondary-back{
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-weight: 900;
+
+  /* ✅ prof */
+  font-weight: 600;
+
   color: rgba(0,0,0,.78);
   padding: 10px 12px;
   border-radius: 12px;
   transition: background .18s ease, transform .18s ease;
 }
-.secondary-back:hover{
-  background: rgba(0,0,0,.05);
-  transform: translateY(-1px);
-}
+.secondary-back:hover{ background: rgba(0,0,0,.05); transform: translateY(-1px); }
 
 /* card più “alta” e piena come reference */
 .secondary-card{
@@ -162,7 +162,10 @@ body.secondary{
   border-radius: 999px;
   background: rgba(0,0,0,.04);
   border: 1px solid rgba(0,0,0,.08);
-  font-weight: 900;
+
+  /* ✅ prof */
+  font-weight: 600;
+
   color: rgba(0,0,0,.85);
 }
 
@@ -171,19 +174,20 @@ body.secondary{
 
 .secondary-amount{
   font-size: 46px;
-  font-weight: 1100;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
+
 .secondary-per{
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 600;
   color: rgba(0,0,0,.60);
 }
 
 .secondary-meta{
   margin-top: 6px;
   color: rgba(0,0,0,.60);
-  font-weight: 750;
+  font-weight: 500;
   font-size: 14px;
 }
 
@@ -191,7 +195,10 @@ body.secondary{
   margin: 14px 0 12px 0;
   color: rgba(0,0,0,.82);
   line-height: 1.45;
-  font-weight: 900;
+
+  /* ✅ prof */
+  font-weight: 600;
+
   font-size: 18px;
 }
 
@@ -199,7 +206,10 @@ body.secondary{
   margin: 10px 0 16px 0;
   border-radius: 14px;
   padding: 12px 14px;
-  font-weight: 900;
+
+  /* ✅ prof */
+  font-weight: 600;
+
   border: 1px solid rgba(0,0,0,.06);
 }
 .secondary-highlight--green{ background: rgba(45,178,74,.18); }
@@ -209,59 +219,49 @@ body.secondary{
   padding-left: 18px;
   color: rgba(0,0,0,.72);
   line-height: 1.9;
-  font-weight: 750;
+
+  /* ✅ prof */
+  font-weight: 500;
 }
 
 /* =========================
    TRIMESTRE – separatore elegante
 ========================= */
+.secondary-stackPrices{ margin: 6px 0 14px 0; display: grid; gap: 10px; }
 
-.secondary-stackPrices{
-  margin: 6px 0 14px 0;
-  display: grid;
-  gap: 10px;
-}
-
-.secondary-linePrice{
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
+.secondary-linePrice{ display: flex; align-items: baseline; gap: 10px; }
 
 .secondary-lineAmount{
   font-size: 54px;
-  font-weight: 1000;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .secondary-lineLabel{
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--muted);
   transform: translateY(2px);
 }
-/* 🔥 Separatore stile card premium */ 
+
+/* Separatore stile card premium */
 .secondary-divider{
-   height: 1px; 
-   width: 100%; 
-   margin: 10px 0 6px 0; 
-   background: linear-gradient( to right, transparent, rgba(0,0,0,.08), transparent ); 
-   border: 0; }
+  height: 1px;
+  width: 100%;
+  margin: 10px 0 6px 0;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,.08), transparent);
+  border: 0;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 980px){
-  .secondary-grid{
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
+  .secondary-grid{ grid-template-columns: 1fr; gap: 22px; }
   .secondary .secondary-title,
   .secondary .hero__title{
     white-space: normal;
     font-size: clamp(36px, 7vw, 54px);
   }
-
   .secondary-right{ justify-items: stretch; }
   .secondary-card{ max-width: none; }
 }
