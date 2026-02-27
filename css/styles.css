@@ -605,30 +605,11 @@ a{ color:inherit; text-decoration:none; }
   .mapPhoto__img{ min-height: 320px; }
   .hero__media--double{ grid-template-columns: 1fr; }
 }
-@media (max-width: 1200px){
-  .difference .panel .panel__grid{
-    grid-template-columns: 1fr;
-  }
 
-  .difference .panel .panel__left,
-  .difference .panel .panel__right{
-    grid-column: 1 / -1;
-  }
-
-  .difference .panel .panel__right{
-    margin-top: 14px;
-  }
-}
-
-/* extra-tight telefoni */
-@media (max-width: 520px){
-  .difference .panel{ padding: 18px; border-radius: 22px; }
-
-  .difference .panel .tabs{
-    width: 100%;
-  }
-  .difference .panel .tab{
-    flex: 1;
-    text-align: center;
-  }
+@media (max-width: 980px){
+  .panel__grid{
+    display: block; }
+  .panel__left, .panel__right{ width: 100%; }
+  .panel__right{ margin-top: 16px; }
+  .panel, .mapPhoto{ max-width: 100%; }
 }
