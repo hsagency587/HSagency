@@ -44,29 +44,65 @@
             Lavoriamo con <strong>una sola azienda per città e settore</strong>.
           </p>
 
-          <form class="secondary-form" action="#" method="post">
-            <div class="field">
-              <label for="name">Nome e cognome</label>
-              <input id="name" name="name" type="text" placeholder="X" autocomplete="name" required>
-            </div>
+         <form id="leadForm" class="secondary-form">
 
-            <div class="field">
-              <label for="phone">Numero di telefono</label>
-              <input id="phone" name="phone" type="tel" placeholder="+393534769196" autocomplete="tel" required>
-            </div>
+  <div class="field">
+    <label for="name">Nome e cognome</label>
+    <input id="name" name="name" type="text" placeholder="X" required>
+  </div>
 
-            <div class="field">
-              <label for="city">Città e zona (se applicabile)</label>
-              <input id="city" name="city" type="text" placeholder="X" autocomplete="address-level2" required>
-            </div>
+  <div class="field">
+    <label for="phone">Numero di telefono</label>
+    <input id="phone" name="phone" type="tel" placeholder="+39 3XX XXX XXXX" required>
+  </div>
 
-            <div class="field">
-              <label for="industry">Settore</label>
-              <input id="industry" name="industry" type="text" placeholder="Idraulico, dentista, giardiniere, ecc." required>
-            </div>
+  <div class="field">
+    <label for="city">Città e zona (se applicabile)</label>
+    <input id="city" name="city" type="text" placeholder="X" required>
+  </div>
 
-            <button class="secondary-submit" type="submit">Invia richiesta</button>
-          </form>
+  <div class="field">
+    <label for="industry">Settore</label>
+    <input id="industry" name="industry" type="text" placeholder="Idraulico, dentista, giardiniere, ecc." required>
+  </div>
+
+  <button class="secondary-submit" type="submit">Invia richiesta</button>
+
+  <p id="formStatus" style="margin-top:12px;"></p>
+
+</form>
+          <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  (function () {
+    emailjs.init("YQWEfCbwwU7Y7Oo72"); // la tua public key
+  })();
+
+  const form = document.getElementById("leadForm");
+  const status = document.getElementById("formStatus");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      status.textContent = "Invio in corso...";
+      status.style.color = "";
+
+      emailjs.sendForm(
+        "service_fe6cb8e",      // stesso service
+        "template_rxwlxp9",     // oppure creane uno nuovo
+        this
+      ).then(() => {
+        status.textContent = "Richiesta inviata correttamente.";
+        status.style.color = "green";
+        form.reset();
+      }, () => {
+        status.textContent = "Errore nell'invio. Riprova.";
+        status.style.color = "red";
+      });
+    });
+  }
+</script>
         </div>
 
         <!-- RIGHT -->
