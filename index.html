@@ -57,33 +57,38 @@
           </div>
         </div>
 
-        <!-- VIDEO PLACEHOLDER (1 immagine) --> 
-        <div class="hero__media hero__media--double">
+    <!-- WISTIA SCRIPT -->
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/a7favwkihk.js" async type="module"></script>
 
-<!-- VIDEO 1 -->
-<a
-  class="video-card wistia_embed wistia_async_SEU_VIDEO_ID popover=true"
-  href="#"
-  aria-label="Guarda il video"
->
-  <img class="video-card__thumb" src="img/video-thumb.jpg" alt="Video 1" />
-  <div class="video-card__overlayText">GUARDA</div>
-  <span class="video-card__play"><span class="video-card__playIcon"></span></span>
-</a>
+<!-- VIDEO PLACEHOLDER (2 box: 1 attivo + 1 predisposto) -->
+<div class="hero__media hero__media--double">
+  <!-- VIDEO 1 ATTIVO -->
+  <div class="video-slot">
+    <style>
+      wistia-player[media-id='a7favwkihk']:not(:defined) {
+        background: center / cover no-repeat url('https://fast.wistia.com/embed/medias/a7favwkihk/swatch');
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <wistia-player media-id="a7favwkihk" aspect="0.5625"></wistia-player>
+  </div>
 
-
-<!-- VIDEO 1 -->
-<a
-  class="video-card wistia_embed wistia_async_SEU_VIDEO_ID popover=true"
-  href="#"
-  aria-label="Guarda il video"
->
-  <img class="video-card__thumb" src="img/video-thumb.jpg" alt="Video 1" />
-  <div class="video-card__overlayText">GUARDA</div>
-  <span class="video-card__play"><span class="video-card__playIcon"></span></span>
-</a>
-
-       </div>
+  <!-- VIDEO 2 PREDISPOSTO -->
+  <div class="video-slot">
+    <a
+      class="video-card wistia_embed wistia_async_SECONDO_VIDEO_ID popover=true"
+      href="#"
+      aria-label="Guarda il video 2"
+    >
+      <img class="video-card__thumb" src="img/video-thumb-2.jpg" alt="Video 2" />
+      <div class="video-card__overlayText">GUARDA</div>
+      <span class="video-card__play"><span class="video-card__playIcon"></span></span>
+    </a>
+  </div>
+</div>
 
 
         <div class="hero__stats">
