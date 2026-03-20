@@ -462,180 +462,95 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* =========================
-   STEPS / PROCESS TIMELINE
+   PROCESS TIMELINE
 ========================= */
-.process-rows{
-  display: grid;
-  gap: 22px;
-  margin-top: 16px;
+.processRoadmap{
+  margin-top: 18px;
 }
 
-.process-row{
-  display: grid;
-  gap: 12px;
-}
-
-.process-row__grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.process-line{
+.processSteps{
   position: relative;
-  height: 44px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.processLine{
+  position: relative;
+  height: 56px;
   width: 100%;
 }
 
-.process-line__track{
+.processLine::before{
+  content: "";
   position: absolute;
   left: 0;
-  right: 22px;
-  top: 25px;
-  height: 4px;
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.14) 0%,
-      rgba(0,0,0,.24) 18%,
-      rgba(0,0,0,.20) 50%,
-      rgba(0,0,0,.24) 82%,
-      rgba(0,0,0,.14) 100%
-    );
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.45),
-    0 1px 2px rgba(0,0,0,.04);
+  right: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  border: 4px solid #000;
+  background: transparent;
+  box-sizing: border-box;
 }
 
-.process-line__track::before{
-  content:"";
-  position:absolute;
-  left: 0;
-  right: 0;
-  top: -7px;
-  height: 18px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
-  pointer-events: none;
-}
-
-.process-line__arrow{
+.processLine::after{
+  content: "";
   position: absolute;
   right: 0;
-  top: 17px;
-  width: 22px;
-  height: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 28px;
+  border-top: 4px solid #000;
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
+  background: transparent;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
-.process-line__arrow::before,
-.process-line__arrow::after{
-  content:"";
+.processLine__tick{
   position: absolute;
-  right: 1px;
-  width: 14px;
-  height: 3px;
+  top: 50%;
+  width: 5px;
+  height: 34px;
+  background: rgba(0,0,0,.42);
   border-radius: 999px;
-  background: rgba(0,0,0,.24);
-  box-shadow: 0 1px 1px rgba(255,255,255,.25);
-  transform-origin: right center;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
-.process-line__arrow::before{
-  top: 4px;
-  transform: rotate(42deg);
-}
+.processLine__tick--1{ left: 33.333%; }
+.processLine__tick--2{ left: 66.666%; }
 
-.process-line__arrow::after{
-  bottom: 4px;
-  transform: rotate(-42deg);
-}
-
-.process-line__label{
+.processLine__label{
   position: absolute;
   top: 0;
-  font-size: 13px;
+  transform: translateX(-50%);
+  font-size: 15px;
   line-height: 1;
+  color: rgba(0,0,0,.72);
   font-weight: 700;
-  letter-spacing: .01em;
-  color: rgba(0,0,0,.62);
   white-space: nowrap;
 }
 
-.process-line__label--mid{
-  left: 50%;
-  transform: translateX(-50%);
-}
+.processLine__label--mid{ left: 50%; }
+.processLine__label--end{ right: 0; left: auto; transform: none; }
 
-.process-line__label--end{
-  right: 0;
-  transform: translateX(10%);
-}
-
-.step{
-  background: var(--card);
-  border: 1px solid var(--stroke);
-  border-radius: var(--r20);
-  padding: 22px 20px;
-  display:flex;
-  gap: 16px;
-  align-items:flex-start;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
-}
-
-.step__icon{
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  border-radius: 18px;
-  display:grid;
-  place-items:center;
-  background: linear-gradient(180deg, rgba(0,0,0,.035), rgba(0,0,0,.05));
-  border: 1px solid rgba(0,0,0,.07);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-}
-
-.step__icon svg{
-  width: 20px;
-  height: 20px;
-}
-
-.step__text{
-  display: grid;
-  gap: 4px;
-  min-width: 0;
-}
-
-.step__num{
-  display:block;
-  margin-bottom: 2px;
-  letter-spacing: -0.01em;
-  font-weight: 700;
-  font-size: 18px;
-  color: #0f0f0f;
-}
-
-.step__desc{
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.45;
+.processLine--bottom .processLine__label{
+  top: auto;
+  bottom: 0;
 }
 
 @media (max-width: 980px){
-  .process-line{
+  .processLine{
     display: none;
   }
 
-  .process-row__grid{
-    grid-template-columns: 1fr;
-  }
-
-  .step{
-    padding: 20px 18px;
+  .processSteps{
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
-
 /* =========================
    FAQ ACCORDION (tendina unica)
 ========================= */
