@@ -263,97 +263,85 @@
         </span>
         <span>Come funziona?</span>
       </div>
-
       <h2 class="h2">È piuttosto <span class="serif-italic">semplice.</span></h2>
     </div>
 
-    <div class="process-rows">
+    <div class="processRoadmap">
+      <!-- LINEA 1 -->
+      <div class="processLine processLine--top" aria-hidden="true">
+        <span class="processLine__tick processLine__tick--1"></span>
+        <span class="processLine__tick processLine__tick--2"></span>
+        <span class="processLine__label processLine__label--mid">3 mesi</span>
+        <span class="processLine__label processLine__label--end">6 mesi</span>
+      </div>
 
-      <!-- RIGA 1 -->
-      <div class="process-row">
-        <div class="process-line" aria-hidden="true">
-          <span class="process-line__label process-line__label--mid">3 mesi</span>
-          <span class="process-line__label process-line__label--end">6 mesi</span>
-
-          <div class="process-line__track"></div>
-          <div class="process-line__split"></div>
-          <div class="process-line__arrow"></div>
+      <!-- BOX -->
+      <div class="steps processSteps">
+        <div class="step lift">
+          <div class="step__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M8 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 9h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="step__text">
+            <span class="step__num">01. Analisi gratuita</span>
+            <span class="step__desc">Scegli un pacchetto e compila il modulo, riceverai un analisi gratuita</span>
+          </div>
         </div>
 
-        <div class="process-row__grid">
-          <div class="step lift">
-            <div class="step__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M8 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M16 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M4 9h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </div>
-            <div class="step__text">
-              <span class="step__num">01. Analisi gratuita</span>
-              <span class="step__desc">Scegli un pacchetto e compila il modulo, riceverai un analisi gratuita</span>
-            </div>
+        <div class="step lift">
+          <div class="step__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
+          <div class="step__text">
+            <span class="step__num">02. Onboarding</span>
+            <span class="step__desc">Ti invieremo istruzioni chiare per ottenere un accesso sicuro al tuo profilo.</span>
+          </div>
+        </div>
 
-          <div class="step lift">
-            <div class="step__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="step__text">
-              <span class="step__num">02. Onboarding</span>
-              <span class="step__desc">Ti invieremo istruzioni chiare per ottenere un accesso sicuro al tuo profilo.</span>
-            </div>
+        <div class="step lift">
+          <div class="step__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M4 6h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="step__text">
+            <span class="step__num">03. Esecuzione</span>
+            <span class="step__desc">Ti illustriamo ogni fase del processo, senza rallentare la tua attività.</span>
+          </div>
+        </div>
+
+        <div class="step lift">
+          <div class="step__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M4 20V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 6h10l-2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="m14 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="step__text">
+            <span class="step__num">04. Ottimizzazione</span>
+            <span class="step__desc">Misuriamo ciò che funziona e lo potenziamo.</span>
           </div>
         </div>
       </div>
 
-      <!-- RIGA 2 -->
-      <div class="process-row">
-        <div class="process-line" aria-hidden="true">
-          <span class="process-line__label process-line__label--mid">9 mesi</span>
-          <span class="process-line__label process-line__label--end">12 mesi</span>
-
-          <div class="process-line__track"></div>
-          <div class="process-line__split"></div>
-          <div class="process-line__arrow"></div>
-        </div>
-
-        <div class="process-row__grid">
-          <div class="step lift">
-            <div class="step__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M4 6h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="step__text">
-              <span class="step__num">03. Esecuzione</span>
-              <span class="step__desc">Ti illustriamo ogni fase del processo, senza rallentare la tua attività.</span>
-            </div>
-          </div>
-
-          <div class="step lift">
-            <div class="step__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M4 20V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M4 6h10l-2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="m14 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="step__text">
-              <span class="step__num">04. Ottimizzazione</span>
-              <span class="step__desc">Misuriamo ciò che funziona e lo potenziamo.</span>
-            </div>
-          </div>
-        </div>
+      <!-- LINEA 2 -->
+      <div class="processLine processLine--bottom" aria-hidden="true">
+        <span class="processLine__tick processLine__tick--1"></span>
+        <span class="processLine__tick processLine__tick--2"></span>
+        <span class="processLine__label processLine__label--mid">9 mesi</span>
+        <span class="processLine__label processLine__label--end">12 mesi</span>
       </div>
-
     </div>
   </div>
 </section>
