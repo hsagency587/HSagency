@@ -1,4 +1,4 @@
-```css
+
 /* =========================
    FONT LOAD (a monte, senza override)
 ========================= */
@@ -638,4 +638,3 @@ a{ color:inherit; text-decoration:none; }
   .panel__right{ margin-top: 16px; }
   .panel, .mapPhoto{ max-width: 100%; }
 }
-```
