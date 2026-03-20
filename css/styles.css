@@ -1,4 +1,4 @@
-
+```css
 /* =========================
    FONT LOAD (a monte, senza override)
 ========================= */
@@ -463,290 +463,25 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* =========================
-   STEPS / PROCESS TIMELINE
+   STEPS
 ========================= */
-.process-flow{
-  display: grid;
-  gap: 30px;
-  margin-top: 16px;
-}
+.steps{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+.step{ background: var(--card); border: 1px solid var(--stroke); border-radius: var(--r20); padding: 18px; display:flex; gap: 14px; align-items:flex-start; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+.step__icon{ width: 44px; height: 44px; border-radius: 16px; display:grid; place-items:center; background: rgba(0,0,0,.04); border: 1px solid rgba(0,0,0,.06); }
 
-.process-row{
-  display: grid;
-  gap: 16px;
-}
+.step__num{
+  /* ✅ */
+  font-weight: 700;
 
-.process-line{
-  position: relative;
-  padding: 0 10px;
-}
-
-.process-line__top{
-  position: relative;
-  min-height: 42px;
-  margin-bottom: 6px;
-}
-
-.process-line__step,
-.process-line__time{
-  position: absolute;
-  top: 0;
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 600;
-  color: rgba(0,0,0,.92);
-  line-height: 1;
+  display:block; margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
 
-.process-line__step{
-  left: 24px;
-  font-size: 17px;
-}
-
-.process-line__step--center{
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-.process-line__time{
-  left: 50%;
-  top: 10px;
-  transform: translateX(-56%);
-  font-size: 16px;
-}
-
-.process-line__time--end{
-  left: auto;
-  right: 4px;
-  top: 10px;
-  transform: none;
-}
-
-.process-line__track{
-  position: relative;
-  height: 34px;
-}
-
-.process-line__wave{
-  display: block;
-  width: 100%;
-  height: 34px;
-  overflow: visible;
-  filter: drop-shadow(0 1px 0 rgba(255,255,255,.35));
-}
-
-.process-line__wave path{
-  fill: none;
-  stroke: rgba(17,17,17,.96);
-  stroke-width: 3.2;
-  stroke-linecap: round;
-}
-
-.process-line__marker{
-  position: absolute;
-  top: 2px;
-  width: 7px;
-  height: 38px;
-  border-radius: 999px;
-  background: rgba(17,17,17,.96);
-  box-shadow:
-    0 0 0 1px rgba(17,17,17,.04),
-    0 8px 16px rgba(0,0,0,.08);
-}
-
-.process-line__marker--mid{
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.process-line__marker--end{
-  right: 22px;
-}
-
-.process-line__arrow{
-  position: absolute;
-  right: -2px;
-  top: 4px;
-  width: 22px;
-  height: 24px;
-}
-
-.process-line__arrow span{
-  position: absolute;
-  right: 0;
-  width: 18px;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(17,17,17,.96);
-  transform-origin: right center;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
-}
-
-.process-line__arrow span:first-child{
-  top: 5px;
-  transform: rotate(36deg);
-}
-
-.process-line__arrow span:last-child{
-  bottom: 5px;
-  transform: rotate(-36deg);
-}
-
-.steps{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-.step{
-  background: rgba(255,255,255,.78);
-  border: 1px solid rgba(0,0,0,.07);
-  border-radius: 26px;
-  padding: 22px 22px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  box-shadow:
-    0 10px 26px rgba(0,0,0,.045),
-    inset 0 1px 0 rgba(255,255,255,.5);
-  backdrop-filter: blur(6px);
-}
-
-.step__icon{
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.055));
-  border: 1px solid rgba(0,0,0,.08);
-  color: rgba(17,17,17,.9);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
-}
-
-.step__text{
-  display: grid;
-  gap: 6px;
-  padding-top: 2px;
-}
-
-.step__num{
-  display: block;
-  margin: 0;
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: rgba(0,0,0,.96);
-}
-
 .step__desc{
-  color: rgba(0,0,0,.68);
+  color: var(--muted);
   font-weight: 500;
-  font-size: 15px;
-  line-height: 1.3;
 }
 
-@media (max-width: 980px){
-  .process-flow{
-    gap: 24px;
-  }
-
-  .process-line{
-    padding: 0 2px;
-  }
-
-  .process-line__top{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 14px;
-    min-height: auto;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-  }
-
-  .process-line__step,
-  .process-line__time{
-    position: static;
-    transform: none;
-  }
-
-  .process-line__step--center,
-  .process-line__time--end{
-    transform: none;
-  }
-
-  .process-line__step{
-    font-size: 16px;
-  }
-
-  .process-line__time{
-    font-size: 15px;
-  }
-
-  .steps{
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .process-line__marker--mid{
-    left: 50%;
-  }
-
-  .process-line__marker--end{
-    right: 18px;
-  }
-}
-
-@media (max-width: 640px){
-  .process-line__wave{
-    height: 28px;
-  }
-
-  .process-line__track{
-    height: 28px;
-  }
-
-  .process-line__marker{
-    height: 32px;
-    top: 0;
-  }
-
-  .process-line__arrow{
-    width: 18px;
-    right: -1px;
-  }
-
-  .process-line__arrow span{
-    width: 14px;
-    height: 2.5px;
-  }
-
-  .step{
-    border-radius: 22px;
-    padding: 18px;
-  }
-
-  .step__icon{
-    width: 50px;
-    height: 50px;
-    flex-basis: 50px;
-    border-radius: 16px;
-  }
-
-  .step__num{
-    font-size: 16px;
-  }
-
-  .step__desc{
-    font-size: 14px;
-    line-height: 1.4;
-  }
-}
 /* =========================
    FAQ ACCORDION (tendina unica)
 ========================= */
@@ -903,3 +638,4 @@ a{ color:inherit; text-decoration:none; }
   .panel__right{ margin-top: 16px; }
   .panel, .mapPhoto{ max-width: 100%; }
 }
+```
