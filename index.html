@@ -254,32 +254,34 @@
       </div>
     </section>
 
-    <!-- ===== PROCESSO ===== -->
-    <section class="section process" id="processo">
-      <div class="container">
-        <div class="section-head">
-          <div class="badge">
-            <span class="badge__icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M3 12h5l2 2 4-6 2 4h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span>Il nostro Metodo</span>
-          </div>
-
-          <h2 class="h2">È piuttosto <span class="serif-italic">semplice.</span></h2>
-        </div>
-
-        <div class="process-flow">
-  <div class="process-row process-row--primary">
-    <div class="process-line process-line--solid" aria-hidden="true">
-      <span class="process-line__rail"></span>
-      <span class="process-line__stop process-line__stop--active"></span>
-      <span class="process-line__stop"></span>
+    <!-- ===== PROCESSO (con timeline e step opzionali) ===== -->
+<section class="section process" id="processo">
+  <div class="container">
+    <div class="section-head">
+      <div class="badge">
+        <span class="badge__icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12h5l2 2 4-6 2 4h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Il nostro Metodo</span>
+      </div>
+      <h2 class="h2">È piuttosto <span class="serif-italic">semplice.</span></h2>
     </div>
 
-    <div class="steps">
-      <div class="step step--base lift">
+    <!-- TIMELINE (mesi) -->
+    <div class="process-timeline">
+      <div class="timeline-segment">0</div>
+      <div class="timeline-segment">3</div>
+      <div class="timeline-segment">6</div>
+      <div class="timeline-segment">9</div>
+      <div class="timeline-segment">12</div>
+    </div>
+
+    <!-- GRIGLIA STEP -->
+    <div class="steps-grid">
+      <!-- STEP 1 (BASIC) -->
+      <div class="step step-primary lift">
         <div class="step__icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M8 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -289,19 +291,13 @@
           </svg>
         </div>
         <div class="step__text">
-          <span class="step__num"><strong>BASIC Top 3</strong> su Google</span>
-          <span class="step__desc">ottimmiziato GBP e WebSite + Backlinks di qualità per farti raggiungere la top 3 su google.</span>
+          <span class="step__num"><strong>Top 3</strong> su google</span>
+          <span class="step__desc">ottimizzato GBP e WebSite + Backlinks di qualità per farti raggiungere la top 3 su google.</span>
         </div>
       </div>
 
-      <div class="step step--optional lift">
-        <div class="step__optionMark" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="m13 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-
+      <!-- STEP 2 (Google ADS) - OPZIONALE -->
+      <div class="step step-optional lift">
         <div class="step__icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2"/>
@@ -311,33 +307,12 @@
         </div>
         <div class="step__text">
           <span class="step__num">Google ADS</span>
-          <span class="step__desc">grazie alle ottimizazioni precedentemente eseguite le Google ADS saranno più efficaci.<br>Google conosce già la tua attività e indirizzerà meglio le pubblicità.</span>
+          <span class="step__desc">grazie alle ottimizzazioni precedentemente eseguite le Google ADS saranno più efficaci.<br> Google conosce già la tua attività e indirizzerà meglio le pubblicità</span>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="process-connector" aria-hidden="true">
-    <span class="process-connector__stem"></span>
-    <span class="process-connector__elbow"></span>
-  </div>
-
-  <div class="process-row process-row--secondary">
-    <div class="process-line process-line--dashed" aria-hidden="true">
-      <span class="process-line__rail"></span>
-      <span class="process-line__stop"></span>
-      <span class="process-line__stop"></span>
-    </div>
-
-    <div class="steps">
-      <div class="step step--optional lift">
-        <div class="step__optionMark" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="m13 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-
+      <!-- STEP 3 (Social profiles) - OPZIONALE -->
+      <div class="step step-optional lift">
         <div class="step__icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M4 6h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -347,18 +322,12 @@
         </div>
         <div class="step__text">
           <span class="step__num">Social profiles</span>
-          <span class="step__desc">approdiamo sui Social; creando e gestendo profilo instagram e facebook.<br>Se ne sei già in possesso li possiamo gestire.<br>Se hai uno specialista ad occuparsene passa allo step 4.</span>
+          <span class="step__desc">approdiamo sui Social; creando e gestendo profilo Instagram e Facebook.<br> Se ne sei già in possesso li possiamo gestire. <br> Se hai uno specialista ad occuparsene passa allo step 4</span>
         </div>
       </div>
 
-      <div class="step step--optional lift">
-        <div class="step__optionMark" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="m13 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-
+      <!-- STEP 4 (Meta ADS) - OPZIONALE -->
+      <div class="step step-optional lift">
         <div class="step__icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M4 20V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -373,8 +342,7 @@
       </div>
     </div>
   </div>
-</div>
-    </section>
+</section>
 
     <!-- ===== FAQ ===== -->
     <section class="section faqs" id="faq">
