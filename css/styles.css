@@ -532,11 +532,10 @@ a{ color:inherit; text-decoration:none; }
 
 /* scritte BASIC / STEP */
 .timeline-row--top .timeline-segment:first-child::after,
-.timeline-row--top .timeline-segment:nth-child(2)::after,
 .timeline-row--bottom .timeline-segment:first-child::after,
+.timeline-row--top .timeline-segment:nth-child(2)::after,
 .timeline-row--bottom .timeline-segment:nth-child(2)::after{
   position:absolute;
-  left:18px;
   top:calc(50% + 18px);
   z-index:2;
   font-size:13px;
@@ -552,18 +551,22 @@ a{ color:inherit; text-decoration:none; }
 
 .timeline-row--top .timeline-segment:first-child::after{
   content:"BASIC";
+  left:18px;
 }
 
 .timeline-row--top .timeline-segment:nth-child(2)::after{
   content:"STEP 2";
+  left:34px;
 }
 
 .timeline-row--bottom .timeline-segment:first-child::after{
   content:"STEP 3";
+  left:18px;
 }
 
 .timeline-row--bottom .timeline-segment:nth-child(2)::after{
   content:"STEP 4";
+  left:34px;
 }
 
 /* marker singolo a sinistra sotto la linea */
@@ -650,13 +653,13 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .timeline-row--top .timeline-bar::after{
-  top: -18px;
-  height: 206px;
+  top: -8px;
+  height: 186px;
 }
 
 .timeline-row--bottom .timeline-bar::after{
-  top: -10px;
-  height: 138px;
+  top: -8px;
+  height: 186px;
 }
 /* step */
 .step{
