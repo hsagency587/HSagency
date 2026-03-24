@@ -510,20 +510,7 @@ a{ color:inherit; text-decoration:none; }
   height:2px;
   transform:translateY(-50%);
   z-index:0;
-  background:
-    linear-gradient(to right,
-      rgba(0,0,0,.18) 0%,
-      rgba(0,0,0,.18) 74%,
-      transparent 74%,
-      transparent 100%
-    ),
-    repeating-linear-gradient(to right,
-      rgba(0,0,0,.18) 0 9px,
-      transparent 9px 15px
-    );
-  background-size:74% 2px, 18% 2px;
-  background-repeat:no-repeat,no-repeat;
-  background-position:left center, calc(74% + 4%) center;
+  background: rgba(0,0,0,.18);
 }
 
 /* mesi */
@@ -621,14 +608,9 @@ a{ color:inherit; text-decoration:none; }
   position:absolute;
   left:0;
   top:50%;
-  width:10px;
+  width:14px;
   height:2px;
-  background:
-    repeating-linear-gradient(
-      to right,
-      rgba(0,0,0,.18) 0 7px,
-      transparent 7px 13px
-    );
+  background: rgba(0,0,0,.18);
   transform:translateY(-50%);
 }
 
@@ -642,7 +624,41 @@ a{ color:inherit; text-decoration:none; }
   font-weight:600;
   color:#2b6cff;
 }
+/* divisoria centrale verticale: piena + finale tratteggiato */
+.timeline-row--top .timeline-bar::after,
+.timeline-row--bottom .timeline-bar::after{
+  content:"";
+  position:absolute;
+  left: calc((100% - 46px) / 2);
+  transform: translateX(-50%);
+  width: 3px;
+  border-radius: 999px;
+  z-index: 3;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,.28) 0%,
+      rgba(0,0,0,.28) 82%,
+      transparent 82%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(to bottom,
+      rgba(0,0,0,.28) 0 10px,
+      transparent 10px 16px
+    );
+  background-size: 3px 82%, 3px 14%;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center calc(82% + 2%);
+}
 
+.timeline-row--top .timeline-bar::after{
+  top: -18px;
+  height: 206px;
+}
+
+.timeline-row--bottom .timeline-bar::after{
+  top: -10px;
+  height: 138px;
+}
 /* step */
 .step{
   background:var(--card);
@@ -768,6 +784,10 @@ a{ color:inherit; text-decoration:none; }
   .step__desc{
     max-width:100%;
   }
+   .timeline-row--top .timeline-bar::after,
+.timeline-row--bottom .timeline-bar::after{
+  display:none;
+}
 }
 /* ========================= FAQ ACCORDION (tendina unica) ========================= */ 
 .faqBox{ background: transparent; border: 0; padding: 0; box-shadow: none; display: grid; gap: 12px; } 
