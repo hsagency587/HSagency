@@ -573,27 +573,30 @@ a{ color:inherit; text-decoration:none; }
 .month-markers{
   position:absolute;
   left:0;
-  right:0;
-  top:calc(50% + 14px);
-  display:flex;
-  justify-content:flex-start;
-  padding:0 16px;
+  right:72px;
+  top:50%;
+  height:16px;
+  transform:translateY(-50%);
   z-index:1;
+  pointer-events:none;
 }
 
 .month-marker{
-  display:inline-block;
+  position:absolute;
+  top:50%;
   width:2px;
-  height:16px;
-  background:rgba(0,0,0,.24);
+  height:14px;
+  background:rgba(0,0,0,.18);
   border-radius:2px;
+  transform:translate(-50%, -50%);
 }
 
-.month-marker + .month-marker{
-  display:none;
+.month-marker:first-child{
+  left:33.333%;
 }
-.timeline-row .timeline-segment:nth-child(2) .month-markers{
-  display: none;
+
+.month-marker:last-child{
+  left:66.666%;
 }
 /* freccia finale */
 .timeline-arrow{
