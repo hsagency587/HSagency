@@ -544,10 +544,10 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* scritte BASIC / STEP */
-.timeline-row:first-of-type .timeline-segment:first-child::after,
-.timeline-row:first-of-type .timeline-segment:nth-child(2)::after,
-.timeline-row:last-of-type .timeline-segment:first-child::after,
-.timeline-row:last-of-type .timeline-segment:nth-child(2)::after{
+.timeline-row--top .timeline-segment:first-child::after,
+.timeline-row--top .timeline-segment:nth-child(2)::after,
+.timeline-row--bottom .timeline-segment:first-child::after,
+.timeline-row--bottom .timeline-segment:nth-child(2)::after{
   position:absolute;
   left:18px;
   top:calc(50% + 18px);
@@ -563,19 +563,19 @@ a{ color:inherit; text-decoration:none; }
   white-space:nowrap;
 }
 
-.timeline-row:first-of-type .timeline-segment:first-child::after{
+.timeline-row--top .timeline-segment:first-child::after{
   content:"BASIC";
 }
 
-.timeline-row:first-of-type .timeline-segment:nth-child(2)::after{
+.timeline-row--top .timeline-segment:nth-child(2)::after{
   content:"STEP 2";
 }
 
-.timeline-row:last-of-type .timeline-segment:first-child::after{
+.timeline-row--bottom .timeline-segment:first-child::after{
   content:"STEP 3";
 }
 
-.timeline-row:last-of-type .timeline-segment:nth-child(2)::after{
+.timeline-row--bottom .timeline-segment:nth-child(2)::after{
   content:"STEP 4";
 }
 
@@ -731,15 +731,14 @@ a{ color:inherit; text-decoration:none; }
     padding:0 8px 0 10px;
   }
 
-  .timeline-row:first-of-type .timeline-segment:first-child::after,
-  .timeline-row:first-of-type .timeline-segment:nth-child(2)::after,
-  .timeline-row:last-of-type .timeline-segment:first-child::after,
-  .timeline-row:last-of-type .timeline-segment:nth-child(2)::after{
-    left:10px;
-    top:calc(50% + 16px);
-    font-size:12px;
-  }
-
+  .timeline-row--top .timeline-segment:first-child::after,
+.timeline-row--top .timeline-segment:nth-child(2)::after,
+.timeline-row--bottom .timeline-segment:first-child::after,
+.timeline-row--bottom .timeline-segment:nth-child(2)::after{
+  left:10px;
+  top:calc(50% + 16px);
+  font-size:12px;
+}
   .month-markers{
     top:calc(50% + 12px);
     padding:0 10px;
