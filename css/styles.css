@@ -734,80 +734,67 @@ a{ color:inherit; text-decoration:none; }
 
 @media (max-width: 780px){
   .process .container{
+    position: relative;
     width: min(var(--container), calc(100% - 28px));
+    padding-right: 26px;
   }
 
+  /* nascondo le timeline orizzontali */
   .timeline-row{
-    margin: 14px 0 10px 0;
+    display: none;
   }
 
+  /* una sola colonna */
   .steps-row{
     grid-template-columns: 1fr;
     gap: 16px;
-    margin: 0 0 22px 0;
+    margin: 0 0 16px 0;
   }
 
-  .timeline-bar{
-    grid-template-columns: 1fr 1fr 22px;
-    align-items: center;
+  /* linea verticale unica a destra */
+  .process .container::after{
+    content: "";
+    position: absolute;
+    top: 112px;
+    bottom: 18px;
+    right: 10px;
+    width: 2px;
+    z-index: 1;
+    background:
+      linear-gradient(to bottom,
+        rgba(0,0,0,.24) 0%,
+        rgba(0,0,0,.24) 88%,
+        transparent 88%,
+        transparent 100%
+      ),
+      repeating-linear-gradient(to bottom,
+        rgba(0,0,0,.24) 0 8px,
+        transparent 8px 14px
+      );
+    background-size: 2px 88%, 2px 10%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center top, center calc(88% + 2%);
   }
 
-  .timeline-segment{
-    min-height: 38px;
-  }
-
-  .segment-label{
-    font-size: 11px;
-    padding: 0 6px 0 8px;
-  }
-
-  .timeline-row--top .timeline-segment:first-child::after,
-  .timeline-row--bottom .timeline-segment:first-child::after,
-  .timeline-row--top .timeline-segment:nth-child(2)::after,
-  .timeline-row--bottom .timeline-segment:nth-child(2)::after{
-    top: calc(50% + 13px);
-    font-size: 10px;
-  }
-
-  .timeline-row--top .timeline-segment:first-child::after,
-  .timeline-row--bottom .timeline-segment:first-child::after{
-    left: 8px;
-  }
-
-  .timeline-row--top .timeline-segment:nth-child(2)::after,
-  .timeline-row--bottom .timeline-segment:nth-child(2)::after{
-    left: 16px;
-  }
-
-  .month-markers{
-    right: 48px;
-    top: 50%;
-    height: 12px;
-    transform: translateY(-50%);
-  }
-
-  .month-marker{
-    height: 10px;
-  }
-
-  .timeline-arrow{
-    width: 22px;
-    height: 38px;
-  }
-
-  .timeline-arrow::before{
-    width: 6px;
-  }
-
-  .timeline-arrow::after{
-    font-size: 14px;
-    transform: translateY(-52%);
-  }
-
+  /* box */
   .step{
+    position: relative;
     padding: 16px 14px;
     gap: 12px;
     align-items: flex-start;
+    margin-right: 20px;
+  }
+
+  /* collegamento dal box alla linea verticale */
+  .step::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    width: 20px;
+    height: 2px;
+    background: rgba(0,0,0,.24);
+    transform: translateY(-50%);
   }
 
   .step__icon{
@@ -827,7 +814,7 @@ a{ color:inherit; text-decoration:none; }
   }
 
   .step__num{
-    font-size: clamp(1rem, 4.2vw, 1.12rem);
+    font-size: clamp(1rem, 4.3vw, 1.12rem);
     line-height: 1.15;
     margin-bottom: 6px;
   }
@@ -844,11 +831,6 @@ a{ color:inherit; text-decoration:none; }
     width: 24px;
     height: 24px;
     background-size: 12px;
-  }
-
-  .timeline-row--top .timeline-bar::after,
-  .timeline-row--bottom .timeline-bar::after{
-    display: none;
   }
 }
 /* ========================= FAQ ACCORDION (tendina unica) ========================= */ 
