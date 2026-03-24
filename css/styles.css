@@ -866,6 +866,41 @@ a{ color:inherit; text-decoration:none; }
   .process .container > .steps-row:nth-of-type(5) .step:last-child .step__text::after{
     content: "12 mesi";
   }
+   /* targhette sopra tutti i box */
+.process .container > .steps-row:nth-child(3) .step:first-child .step__text::before,
+.process .container > .steps-row:nth-child(3) .step:last-child .step__text::before,
+.process .container > .steps-row:nth-child(5) .step:first-child .step__text::before,
+.process .container > .steps-row:nth-child(5) .step:last-child .step__text::before{
+  position: absolute;
+  top: -28px;
+  left: -52px;
+  z-index: 3;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: .01em;
+  color: rgba(0,0,0,.42);
+  background: var(--bg);
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.process .container > .steps-row:nth-child(3) .step:first-child .step__text::before{
+  content: "BASIC";
+}
+
+.process .container > .steps-row:nth-child(3) .step:last-child .step__text::before{
+  content: "STEP 2";
+}
+
+.process .container > .steps-row:nth-child(5) .step:first-child .step__text::before{
+  content: "STEP 3";
+}
+
+.process .container > .steps-row:nth-child(5) .step:last-child .step__text::before{
+  content: "STEP 4";
+}
 }
 /* ========================= FAQ ACCORDION (tendina unica) ========================= */ 
 .faqBox{ background: transparent; border: 0; padding: 0; box-shadow: none; display: grid; gap: 12px; } 
