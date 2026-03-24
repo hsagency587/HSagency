@@ -592,7 +592,9 @@ a{ color:inherit; text-decoration:none; }
 .month-marker + .month-marker{
   display:none;
 }
-
+.timeline-row .timeline-segment:nth-child(2) .month-markers{
+  display: none;
+}
 /* freccia finale */
 .timeline-arrow{
   position:relative;
@@ -625,7 +627,7 @@ a{ color:inherit; text-decoration:none; }
   transform:translateY(-54%);
   font-size:22px;
   font-weight:600;
-  color:#2b6cff;
+  color: rgba(0,0,0,.22);
 }
 /* divisoria centrale verticale: piena + finale tratteggiato */
 .timeline-row--top .timeline-bar::after,
