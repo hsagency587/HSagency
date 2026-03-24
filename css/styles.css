@@ -629,23 +629,22 @@ a{ color:inherit; text-decoration:none; }
 .timeline-row--bottom .timeline-bar::after{
   content:"";
   position:absolute;
-  left: calc((100% - 46px) / 2);
+  left: calc(50% - 23px);
   transform: translateX(-50%);
-  width: 3px;
-  border-radius: 999px;
+  width: 2px;
   z-index: 3;
   background:
     linear-gradient(to bottom,
-      rgba(0,0,0,.28) 0%,
-      rgba(0,0,0,.28) 82%,
+      rgba(0,0,0,.18) 0%,
+      rgba(0,0,0,.18) 82%,
       transparent 82%,
       transparent 100%
     ),
     repeating-linear-gradient(to bottom,
-      rgba(0,0,0,.28) 0 10px,
-      transparent 10px 16px
+      rgba(0,0,0,.18) 0 8px,
+      transparent 8px 14px
     );
-  background-size: 3px 82%, 3px 14%;
+  background-size: 2px 82%, 2px 14%;
   background-repeat: no-repeat, no-repeat;
   background-position: center top, center calc(82% + 2%);
 }
