@@ -462,50 +462,134 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* =========================
-   PROCESSO: TIMELINE + STEP OPZIONALI
+   PROCESSO: 2x2 + timeline pulita
 ========================= */
-.process-timeline {
+
+/* Contenitore righe di step */
+.steps-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 0 0 24px 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 0 0 32px 0;
+}
+
+/* Spaziatura tra timeline e box */
+.timeline-row {
+  margin: 24px 0 16px 0;
+}
+
+/* Barra timeline */
+.timeline-bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  column-gap: 0;
+  padding: 0;
+}
+
+/* tolgo la linea vecchia che causava la doppia riga */
+.timeline-bar::before {
+  content: none;
+}
+
+/* ogni segmento costruisce la propria metà di linea */
+.timeline-segment {
   position: relative;
   text-align: center;
-}
-
-.timeline-segment {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.55);
-  background: transparent;
-  border-top: 2px solid rgba(0, 0, 0, 0.15);
-  padding-top: 8px;
-  position: relative;
-}
-
-.timeline-segment:first-child {
-  border-top: none;
   padding-top: 0;
-  text-align: left;
+  min-height: 42px;
 }
 
-.timeline-segment:last-child {
-  text-align: right;
+/* linea singola uniforme */
+.timeline-segment::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+  z-index: 0;
 }
 
-/* Griglia step allineata con i segmenti della timeline */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 0;
+/* etichetta mesi */
+.segment-label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  background: var(--bg);
+  padding: 0 12px;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.72);
+  line-height: 1;
 }
 
-/* Stile base per ogni step (eredita da .step) */
+/* markers sotto la linea */
+.month-markers {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + 14px);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 1;
+}
+
+/* singolo marker */
+.month-marker {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.24);
+  border-radius: 2px;
+}
+
+/* freccia finale allineata alla linea */
+.timeline-arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 44px;
+  height: 42px;
+  margin-left: 0;
+  font-size: 0;
+  line-height: 1;
+}
+
+/* piccolo tratto finale così la linea arriva alla punta */
+.timeline-arrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 18px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+}
+
+/* punta freccia pulita */
+.timeline-arrow::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-54%);
+  font-size: 22px;
+  font-weight: 600;
+  color: #2b6cff;
+}
+
+/* step */
 .step {
   background: var(--card);
-  border: 1px solid var(--stroke);
   border-radius: var(--r20);
-  padding: 18px;
+  padding: 20px;
   display: flex;
   gap: 14px;
   align-items: flex-start;
@@ -514,20 +598,16 @@ a{ color:inherit; text-decoration:none; }
   position: relative;
 }
 
-/* Step primario (Basic) – bordo pieno */
 .step-primary {
   border: 1px solid rgba(0, 0, 0, 0.12);
   background: #fff;
 }
 
-/* Step opzionali – bordo tratteggiato e sfondo più chiaro */
 .step-optional {
   border: 1px dashed rgba(0, 0, 0, 0.35);
-  background: rgba(255, 255, 255, 0.75);
-  opacity: 0.95;
+  background: rgba(255, 255, 255, 0.85);
 }
 
-/* Icona “+” per opzionalità (senza testo) */
 .step-optional::after {
   content: "";
   position: absolute;
@@ -537,22 +617,16 @@ a{ color:inherit; text-decoration:none; }
   height: 24px;
   background: rgba(0, 0, 0, 0.08);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.5);
-  pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 14px;
+  pointer-events: none;
 }
 
-/* Mantieni le icone e i testi come prima */
 .step__icon {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 16px;
   display: grid;
   place-items: center;
@@ -562,54 +636,60 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .step__num {
-  font-weight: 700;
+  font-weight: 800;
   display: block;
   margin-bottom: 6px;
   letter-spacing: -0.01em;
+  font-size: 1.1rem;
 }
 
 .step__desc {
   color: var(--muted);
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.5;
+  font-size: 0.9rem;
 }
 
-/* Responsive: su mobile la timeline e la griglia diventano colonna */
+/* mobile */
 @media (max-width: 780px) {
-  .process-timeline {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 32px;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .timeline-segment {
-    flex: 1;
-    text-align: center;
-    border-top: none;
-    border-left: 2px solid rgba(0, 0, 0, 0.15);
-    padding-top: 0;
-    padding-left: 8px;
-  }
-  .timeline-segment:first-child {
-    border-left: none;
-    padding-left: 0;
-    text-align: left;
-  }
-  .timeline-segment:last-child {
-    text-align: right;
-  }
-
-  .steps-grid {
+  .steps-row {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .step-optional::after {
-    top: 8px;
-    right: 8px;
-    width: 20px;
-    height: 20px;
-    background-size: 10px;
+
+  .timeline-bar {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  .timeline-segment {
+    min-height: 36px;
+  }
+
+  .segment-label {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+
+  .month-markers {
+    top: calc(50% + 12px);
+    padding: 0 10px;
+  }
+
+  .month-marker {
+    height: 10px;
+  }
+
+  .timeline-arrow {
+    width: 34px;
+    height: 36px;
+  }
+
+  .timeline-arrow::before {
+    width: 12px;
+  }
+
+  .timeline-arrow::after {
+    font-size: 18px;
   }
 }
 /* =========================
@@ -722,178 +802,4 @@ a{ color:inherit; text-decoration:none; }
   .panel__right{ margin-top: 16px; }
   .panel, .mapPhoto{ max-width: 100%; }
 }
-/* =========================
-   PROCESSO: 2x2 + doppia timeline
-========================= */
 
-/* Contenitore righe di step */
-.steps-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 0 0 32px 0;
-}
-
-/* Spaziatura tra le due timeline e le righe */
-.timeline-row {
-  margin: 24px 0 16px 0;
-}
-
-/* Barra della timeline */
-.timeline-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 12px 0;
-}
-
-/* Linea orizzontale di base */
-.timeline-bar::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 0;
-  transform: translateY(-50%);
-}
-
-/* Segmenti della timeline (due per barra) */
-.timeline-segment {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  text-align: center;
-}
-
-/* Etichetta del periodo (3 mesi, 6 mesi, ecc.) */
-.segment-label {
-  display: inline-block;
-  background: var(--bg);
-  padding: 0 12px;
-  font-weight: 700;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.7);
-  border-radius: 20px;
-  margin-bottom: 8px;
-}
-
-/* Contenitore dei piccoli divisori mensili */
-.month-markers {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  padding: 0 10px;
-}
-
-/* Singolo divisore mensile (piccola linea verticale) */
-.month-marker {
-  display: inline-block;
-  width: 2px;
-  height: 12px;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 2px;
-}
-
-/* Freccia a destra */
-.timeline-arrow {
-  position: relative;
-  z-index: 1;
-  margin-left: 16px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #2b6cff;
-  line-height: 1;
-  transform: translateY(-2px);
-}
-
-/* Stili per i box step (già definiti, ma qui rafforziamo) */
-.step {
-  background: var(--card);
-  border-radius: var(--r20);
-  padding: 20px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-  position: relative;
-}
-
-/* Step primario (Basic) – bordo pieno */
-.step-primary {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: #fff;
-}
-
-/* Step opzionali – bordo tratteggiato + icona "+" */
-.step-optional {
-  border: 1px dashed rgba(0, 0, 0, 0.35);
-  background: rgba(255, 255, 255, 0.85);
-}
-
-.step-optional::after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 24px;
-  height: 24px;
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 50%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 14px;
-  pointer-events: none;
-}
-
-.step__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  flex-shrink: 0;
-}
-
-.step__num {
-  font-weight: 800;
-  display: block;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-  font-size: 1.1rem;
-}
-
-.step__desc {
-  color: var(--muted);
-  font-weight: 500;
-  line-height: 1.5;
-  font-size: 0.9rem;
-}
-
-/* Responsive: su mobile le righe diventano a colonna singola */
-@media (max-width: 780px) {
-  .steps-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .timeline-bar::before {
-    width: calc(100% - 30px);
-  }
-  .timeline-arrow {
-    margin-left: 8px;
-    font-size: 20px;
-  }
-  .segment-label {
-    font-size: 12px;
-    padding: 0 8px;
-  }
-  .month-marker {
-    height: 8px;
-  }
-}
