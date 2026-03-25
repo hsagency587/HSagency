@@ -69,7 +69,28 @@ a{ color:inherit; text-decoration:none; }
    HEADER / NAV
 ========================= */
 .site-header{ position: sticky; top: 0; z-index: 50; background: rgba(242,238,230,.92); backdrop-filter: blur(10px); }
-.nav{ width: min(var(--container), calc(100% - 48px)); margin: 0 auto; display:flex; align-items:center; justify-content: space-between; gap: 18px; padding: 18px 0; }
+.nav{
+  width: min(var(--container), calc(100% - 48px));
+  margin: 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  line-height: 0;
+}
+
+.brand__logo{
+  display:block;
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
 .nav__center{ display:flex; gap: 22px; align-items:center; }
 
 .nav__center a{
@@ -84,17 +105,6 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .nav__center a:hover{ background: rgba(0,0,0,.05); transform: translateY(-1px); color: rgba(0,0,0,.9); }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-
-  /* ✅ snellito */
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: -0.01em;
-}
 
 .brand__mark{ width: 34px; height: 34px; border-radius: 10px; display:grid; place-items:center; background: #000; color:#fff; box-shadow: 0 10px 25px rgba(0,0,0,.15); }
 .brand__mark--small{ width: 28px; height: 28px; border-radius: 10px; }
