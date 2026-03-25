@@ -86,10 +86,11 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .brand__logo{
-  display:block;
+  display: block;
   height: 129px;
   width: auto;
   object-fit: contain;
+  margin: -21.5px 0;
 }
 .nav__center{ display:flex; gap: 22px; align-items:center; }
 
