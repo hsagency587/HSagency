@@ -746,10 +746,10 @@ a{ color:inherit; text-decoration:none; }
 
   /* una sola colonna */
   .steps-row{
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin: 0 0 16px 0;
-  }
+  grid-template-columns: 1fr;
+  gap: 34px;
+  margin: 0 0 16px 0;
+}
 
   /* linea verticale unica a destra */
   .process .container::after{
@@ -786,15 +786,15 @@ a{ color:inherit; text-decoration:none; }
 
   /* collegamento dal box alla linea verticale */
   .step::before{
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -28px;
-    width: 28px;
-    height: 2px;
-    background: rgba(0,0,0,.24);
-    transform: translateY(-50%);
-  }
+  content: "";
+  position: absolute;
+  right: -28px;
+  bottom: -18px;
+  width: 28px;
+  height: 2px;
+  background: rgba(0,0,0,.24);
+  transform: none;
+}
 
   .step__icon{
     width: 40px;
@@ -839,9 +839,10 @@ a{ color:inherit; text-decoration:none; }
 .process .container > .steps-row:nth-of-type(5) .step:first-child .step__text::after,
 .process .container > .steps-row:nth-of-type(5) .step:last-child .step__text::after{
   position: absolute;
-  top: 50%;
+  top: auto;
   right: -54px;
-  transform: translateY(10px);
+  bottom: -22px;
+  transform: none;
   z-index: 3;
   font-size: 10px;
   line-height: 1;
