@@ -11,6 +11,70 @@
 
 <body class="secondary">
 
+  <!-- POPUP OFFERTA TRIMESTRALE: autonomo, si apre al caricamento pagina -->
+  <div id="offerPopup" class="offer-popup" aria-hidden="true">
+    <div class="offer-popup__card" role="dialog" aria-modal="true" aria-label="Offerta trimestrale">
+      <button class="offer-popup__close" type="button" aria-label="Chiudi popup">×</button>
+
+      <img class="offer-popup__logo" src="/img/logo-header.png" alt="HSagency">
+
+      <div class="offer-popup__eyebrow">Offerta disponibile</div>
+
+      <p class="offer-popup__title">
+        Ottieni uno <span class="serif-italic">sconto del 12%</span><br>
+        con l'abbonamento trimestrale.
+      </p>
+
+      <div class="offer-popup__actions">
+        <a class="offer-popup__btn offer-popup__btn--primary" href="/payment/checkout-trimestre.html">
+          Scopri l'offerta
+        </a>
+
+        <button class="offer-popup__btn offer-popup__btn--ghost" type="button" data-offer-close>
+          Prosegui mensilmente
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const offerPopup = document.getElementById("offerPopup");
+
+      if (!offerPopup) return;
+
+      function openOfferPopup() {
+        offerPopup.classList.add("is-visible");
+        offerPopup.setAttribute("aria-hidden", "false");
+        document.body.classList.add("popup-open");
+      }
+
+      function closeOfferPopup() {
+        offerPopup.classList.remove("is-visible");
+        offerPopup.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("popup-open");
+      }
+
+      openOfferPopup();
+
+      offerPopup.addEventListener("click", function (e) {
+        if (
+          e.target === offerPopup ||
+          e.target.classList.contains("offer-popup__close") ||
+          e.target.hasAttribute("data-offer-close")
+        ) {
+          closeOfferPopup();
+        }
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && offerPopup.classList.contains("is-visible")) {
+          closeOfferPopup();
+        }
+      });
+    })();
+  </script>
+
   <header class="site-header">
     <nav class="nav">
       <div class="nav__left">
@@ -74,6 +138,7 @@
 
           </form>
 
+          <!-- POPUP SUCCESSO FORM: si apre solo dopo invio corretto del modulo -->
           <div id="successPopup" class="success-popup" aria-hidden="true">
             <div class="success-popup__card" role="dialog" aria-modal="true" aria-label="Richiesta inviata">
               <img class="success-popup__logo" src="/img/logo-header.png" alt="HSagency">
