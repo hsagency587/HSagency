@@ -68,39 +68,105 @@
     <input id="industry" name="industry" type="text" placeholder="Se non ne possiedi uno, fallo presente." required>
   </div>
 
-  <button class="secondary-submit" type="submit">Invia richiesta</button>
+<button class="secondary-submit" type="submit">Invia richiesta</button>
 
-  <p id="formStatus" style="margin-top:12px;"></p>
+<p id="formStatus" class="form-status" aria-live="polite"></p>
 
 </form>
-          <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<div id="successPopup" class="success-popup" aria-hidden="true">
+  <div class="success-popup__card" role="dialog" aria-modal="true" aria-label="Richiesta inviata">
+    <img class="success-popup__logo" src="/img/logo-header.png" alt="HSagency">
+
+    <div class="success-popup__badge">Richiesta inviata</div>
+
+    <p class="success-popup__title">
+      Grazie di aver inviato la <span class="serif-italic">richiesta</span><br>
+      siamo lieti di <span class="serif-italic">prenderla in carico</span>
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
   (function () {
-    emailjs.init("YQWEfCbwwU7Y7Oo72"); // la tua public key
+    emailjs.init("YQWEfCbwwU7Y7Oo72");
   })();
 
   const form = document.getElementById("leadForm");
   const status = document.getElementById("formStatus");
+  const successPopup = document.getElementById("successPopup");
+  let successPopupTimer = null;
+
+  function openSuccessPopup() {
+    if (!successPopup) return;
+
+    successPopup.classList.add("is-visible");
+    successPopup.setAttribute("aria-hidden", "false");
+    document.body.classList.add("popup-open");
+
+    clearTimeout(successPopupTimer);
+
+    successPopupTimer = setTimeout(() => {
+      closeSuccessPopup();
+    }, 5000);
+  }
+
+  function closeSuccessPopup() {
+    if (!successPopup) return;
+
+    successPopup.classList.remove("is-visible");
+    successPopup.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("popup-open");
+
+    clearTimeout(successPopupTimer);
+  }
+
+  if (successPopup) {
+    successPopup.addEventListener("click", function (e) {
+      if (e.target === successPopup) {
+        closeSuccessPopup();
+      }
+    });
+  }
 
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      const submitButton = form.querySelector(".secondary-submit");
+
       status.textContent = "Invio in corso...";
       status.style.color = "";
 
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Invio in corso...";
+      }
+
       emailjs.sendForm(
-        "service_fe6cb8e",      // stesso service
-        "template_rxwlxp9",     // oppure creane uno nuovo
+        "service_fe6cb8e",
+        "template_rxwlxp9",
         this
       ).then(() => {
-        status.textContent = "Richiesta inviata correttamente.";
-        status.style.color = "green";
+        status.textContent = "";
+        status.style.color = "";
         form.reset();
+        openSuccessPopup();
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Invia richiesta";
+        }
       }, () => {
         status.textContent = "Errore nell'invio. Riprova.";
         status.style.color = "red";
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Invia richiesta";
+        }
       });
     });
   }
