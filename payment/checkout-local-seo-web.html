@@ -11,7 +11,7 @@
 
 <body class="secondary">
 
-  <!-- POPUP OFFERTA TRIMESTRALE: autonomo, si apre al caricamento pagina -->
+  <!-- POPUP OFFERTA TRIMESTRALE: si apre subito al caricamento pagina -->
   <div id="offerPopup" class="offer-popup" aria-hidden="true">
     <div class="offer-popup__card" role="dialog" aria-modal="true" aria-label="Offerta trimestrale">
       <button class="offer-popup__close" type="button" aria-label="Chiudi popup">×</button>
@@ -46,13 +46,13 @@
       function openOfferPopup() {
         offerPopup.classList.add("is-visible");
         offerPopup.setAttribute("aria-hidden", "false");
-        document.body.classList.add("popup-open");
+        document.body.classList.add("offer-popup-open");
       }
 
       function closeOfferPopup() {
         offerPopup.classList.remove("is-visible");
         offerPopup.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("popup-open");
+        document.body.classList.remove("offer-popup-open");
       }
 
       openOfferPopup();
