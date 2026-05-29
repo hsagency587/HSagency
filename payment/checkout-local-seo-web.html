@@ -74,16 +74,41 @@
 
           </form>
 
-          <div id="successPopup" class="success-popup" aria-hidden="true">
+                   <div id="successPopup" class="success-popup" aria-hidden="true">
             <div class="success-popup__card" role="dialog" aria-modal="true" aria-label="Richiesta inviata">
               <img class="success-popup__logo" src="/img/logo-header.png" alt="HSagency">
 
               <div class="success-popup__badge">Richiesta inviata</div>
 
-           <p class="success-popup__title">
-  <span class="serif-italic">Grazie</span> di aver inviato la richiesta<br>
-  siamo lieti di <span class="serif-italic">prenderla in carico</span>
-</p>
+              <p class="success-popup__title">
+                <span class="serif-italic">Grazie</span> di aver inviato la richiesta<br>
+                siamo lieti di <span class="serif-italic">prenderla in carico</span>
+              </p>
+            </div>
+          </div>
+
+          <div id="offerPopup" class="offer-popup" aria-hidden="true">
+            <div class="offer-popup__card" role="dialog" aria-modal="true" aria-label="Offerta trimestrale">
+              <button class="offer-popup__close" type="button" aria-label="Chiudi popup">×</button>
+
+              <img class="offer-popup__logo" src="/img/logo-header.png" alt="HSagency">
+
+              <div class="offer-popup__eyebrow">Offerta disponibile</div>
+
+              <p class="offer-popup__title">
+                Ottieni uno <span class="serif-italic">sconto del 12%</span><br>
+                con l'abbonamento trimestrale.
+              </p>
+
+              <div class="offer-popup__actions">
+                <a class="offer-popup__btn offer-popup__btn--primary" href="/payment/checkout-trimestre.html">
+                  Scopri l'offerta
+                </a>
+
+                <button class="offer-popup__btn offer-popup__btn--ghost" type="button" data-offer-close>
+                  Prosegui mensilmente
+                </button>
+              </div>
             </div>
           </div>
 
@@ -97,6 +122,7 @@
             const form = document.getElementById("leadForm");
             const status = document.getElementById("formStatus");
             const successPopup = document.getElementById("successPopup");
+            const offerPopup = document.getElementById("offerPopup");
             let successPopupTimer = null;
 
             function openSuccessPopup() {
@@ -123,10 +149,48 @@
               clearTimeout(successPopupTimer);
             }
 
+            function openOfferPopup() {
+              if (!offerPopup) return;
+
+              offerPopup.classList.add("is-visible");
+              offerPopup.setAttribute("aria-hidden", "false");
+              document.body.classList.add("popup-open");
+            }
+
+            function closeOfferPopup() {
+              if (!offerPopup) return;
+
+              offerPopup.classList.remove("is-visible");
+              offerPopup.setAttribute("aria-hidden", "true");
+              document.body.classList.remove("popup-open");
+            }
+
             if (successPopup) {
               successPopup.addEventListener("click", function (e) {
                 if (e.target === successPopup) {
                   closeSuccessPopup();
+                }
+              });
+            }
+
+            if (offerPopup) {
+              requestAnimationFrame(() => {
+                openOfferPopup();
+              });
+
+              offerPopup.addEventListener("click", function (e) {
+                if (
+                  e.target === offerPopup ||
+                  e.target.classList.contains("offer-popup__close") ||
+                  e.target.hasAttribute("data-offer-close")
+                ) {
+                  closeOfferPopup();
+                }
+              });
+
+              document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape" && offerPopup.classList.contains("is-visible")) {
+                  closeOfferPopup();
                 }
               });
             }
