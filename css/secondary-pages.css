@@ -324,9 +324,10 @@ body.popup-open{
 
 .success-popup__logo{
   position: absolute;
-  top: 12px;
-  right: 16px;
-  width: 180px;
+  top: 14px;
+  right: 18px;
+  width: 150px;
+  max-width: 150px;
   height: auto;
   object-fit: contain;
 }
@@ -374,12 +375,12 @@ body.popup-open{
     border-radius: 24px;
   }
 
-  .success-popup__logo{
-  width: 138px;
-  top: 12px;
+ .success-popup__logo{
+  width: 126px;
+  max-width: 126px;
+  top: 14px;
   right: 14px;
 }
-
   .success-popup__title{
     font-size: 25px;
   }
@@ -419,7 +420,7 @@ body.offer-popup-open{
 .offer-popup__card{
   position: relative;
   width: min(560px, calc(100vw - 36px));
-  padding: 86px 34px 34px 34px;
+  padding: 74px 34px 34px 34px;
   border-radius: 28px;
   border: 1px solid rgba(0,0,0,.08);
   background:
@@ -477,21 +478,7 @@ body.offer-popup-open{
   display: block;
 }
 
-.offer-popup__eyebrow{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 18px auto;
-  padding: 9px 15px;
-  border-radius: 999px;
-  border: 1px solid rgba(196,154,90,.34);
-  background: rgba(196,154,90,.12);
-  color: rgba(0,0,0,.74);
-  font-size: 13px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: .02em;
-}
+
 
 .offer-popup__title{
   margin: 0 auto;
@@ -563,7 +550,7 @@ body.offer-popup-open{
   }
 
   .offer-popup__card{
-    padding: 76px 22px 28px 22px;
+    padding: 68px 22px 28px 22px;
     border-radius: 24px;
   }
 
