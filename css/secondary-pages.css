@@ -301,6 +301,7 @@ body.popup-open{
   padding: 62px 34px 36px 34px;
   border-radius: 28px;
   border: 2px solid #00c853;
+  font-family: inherit;
   background:
     radial-gradient(circle at top right, rgba(0,200,83,.14), transparent 34%),
     linear-gradient(135deg, rgba(246,241,232,.98), rgba(255,255,255,.96));
@@ -322,13 +323,12 @@ body.popup-open{
 
 .success-popup__logo{
   position: absolute;
-  top: 18px;
-  right: 20px;
-  width: 86px;
+  top: 16px;
+  right: 18px;
+  width: 116px;
   height: auto;
   object-fit: contain;
 }
-
 .success-popup__badge{
   display: inline-flex;
   align-items: center;
@@ -372,10 +372,10 @@ body.popup-open{
   }
 
   .success-popup__logo{
-    width: 70px;
-    top: 16px;
-    right: 18px;
-  }
+  width: 88px;
+  top: 16px;
+  right: 16px;
+}
 
   .success-popup__title{
     font-size: 25px;
