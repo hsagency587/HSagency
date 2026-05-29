@@ -423,6 +423,7 @@ body.offer-popup-open{
   padding: 74px 34px 34px 34px;
   border-radius: 28px;
   border: 1px solid rgba(0,0,0,.08);
+  font-family: inherit;
   background:
     radial-gradient(circle at top right, rgba(196,154,90,.18), transparent 38%),
     linear-gradient(135deg, rgba(246,241,232,.98), rgba(255,255,255,.97));
