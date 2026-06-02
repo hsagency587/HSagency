@@ -169,88 +169,93 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 
           <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-          <script>
-            (function () {
-              emailjs.init("YQWEfCbwwU7Y7Oo72");
-            })();
+       <script>
+  (function () {
+    emailjs.init("YQWEfCbwwU7Y7Oo72");
+  })();
 
-            const form = document.getElementById("leadForm");
-            const status = document.getElementById("formStatus");
-            const successPopup = document.getElementById("successPopup");
-            let successPopupTimer = null;
+  const form = document.getElementById("leadForm");
+  const status = document.getElementById("formStatus");
+  const successPopup = document.getElementById("successPopup");
+  let successPopupTimer = null;
 
-            function openSuccessPopup() {
-              if (!successPopup) return;
+  function openSuccessPopup() {
+    if (!successPopup) return;
 
-              successPopup.classList.add("is-visible");
-              successPopup.setAttribute("aria-hidden", "false");
-              document.body.classList.add("popup-open");
+    successPopup.classList.add("is-visible");
+    successPopup.setAttribute("aria-hidden", "false");
+    document.body.classList.add("popup-open");
 
-              clearTimeout(successPopupTimer);
+    clearTimeout(successPopupTimer);
 
-              successPopupTimer = setTimeout(() => {
-                closeSuccessPopup();
-              }, 10000);
-            }
+    successPopupTimer = setTimeout(() => {
+      closeSuccessPopup();
+    }, 10000);
+  }
 
-            function closeSuccessPopup() {
-              if (!successPopup) return;
+  function closeSuccessPopup() {
+    if (!successPopup) return;
 
-              successPopup.classList.remove("is-visible");
-              successPopup.setAttribute("aria-hidden", "true");
-              document.body.classList.remove("popup-open");
+    successPopup.classList.remove("is-visible");
+    successPopup.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("popup-open");
 
-              clearTimeout(successPopupTimer);
-            }
+    clearTimeout(successPopupTimer);
+  }
 
-            if (successPopup) {
-              successPopup.addEventListener("click", function (e) {
-                if (e.target === successPopup) {
-                  closeSuccessPopup();
-                }
-              });
-            }
+  if (successPopup) {
+    successPopup.addEventListener("click", function (e) {
+      if (e.target === successPopup) {
+        closeSuccessPopup();
+      }
+    });
+  }
 
-            if (form) {
-              form.addEventListener("submit", function (e) {
-                e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-                const submitButton = form.querySelector(".secondary-submit");
+      const submitButton = form.querySelector(".secondary-submit");
 
-                status.textContent = "Invio in corso...";
-                status.style.color = "";
+      status.textContent = "Invio in corso...";
+      status.style.color = "";
 
-                if (submitButton) {
-                  submitButton.disabled = true;
-                  submitButton.textContent = "Invio in corso...";
-                }
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Invio in corso...";
+      }
 
-                emailjs.sendForm(
-                  "service_fe6cb8e",
-                  "template_rxwlxp9",
-                  this
-                ).then(() => {
-                  status.textContent = "";
-                  status.style.color = "";
-                  form.reset();
-                  openSuccessPopup();
+      emailjs.sendForm(
+        "service_fe6cb8e",
+        "template_rxwlxp9",
+        this
+      ).then(() => {
+        status.textContent = "";
+        status.style.color = "";
+        form.reset();
 
-                  if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = "Invia richiesta";
-                  }
-                }, () => {
-                  status.textContent = "Errore nell'invio. Riprova.";
-                  status.style.color = "red";
+        if (typeof fbq === "function") {
+          fbq("track", "Lead");
+        }
 
-                  if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = "Invia richiesta";
-                  }
-                });
-              });
-            }
-          </script>
+        openSuccessPopup();
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Invia richiesta";
+        }
+      }, () => {
+        status.textContent = "Errore nell'invio. Riprova.";
+        status.style.color = "red";
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Invia richiesta";
+        }
+      });
+    });
+  }
+</script>
         </div>
 
         <!-- RIGHT -->
