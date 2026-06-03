@@ -171,6 +171,11 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
         status.textContent = "";
         status.style.color = "";
         form.reset();
+
+        if (typeof fbq === "function") {
+          fbq("track", "Lead");
+        }
+        
         openSuccessPopup();
 
         if (submitButton) {
