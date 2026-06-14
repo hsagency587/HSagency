@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="stylesheet" href="/css/secondary-pages.css" />
+  <script src="/js/navigation.js" defer></script>
   <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -28,22 +29,42 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 
 <body class="secondary">
 
-  <header class="site-header">
-    <nav class="nav">
-     <div class="nav__left">
-  <a class="brand" aria-label="HSagency - Home">
-    <img class="brand__logo" src="/img/logo-header.png" alt="HSagency">
-  </a>
-</div>
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Navigazione principale">
+      <div class="nav__left">
+        <a class="brand" href="/index.html" aria-label="HS Agency - Home">
+          <img class="brand__logo" src="/img/logo-header.png" alt="HS Agency">
+        </a>
+      </div>
 
-      <div class="nav__center">
+      <button class="nav__menuToggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="nav__menuIcon" aria-hidden="true"></span>
+        <span class="nav__menuLabel">Menu</span>
+      </button>
+
+      <div class="nav__center" id="primary-navigation">
         <a href="/index.html#prima-dopo">Prima / Dopo</a>
-        <a href="/index.html#processo">Processo</a>
-        <a href="/index.html#faq">Domande</a>
+        <div class="nav__dropdown">
+          <div class="nav__dropdownControl">
+            <a class="nav__pathLink" href="/index.html#processo">Percorso</a>
+            <button class="nav__dropdownToggle" type="button" aria-expanded="false" aria-controls="path-navigation" aria-label="Apri le pagine del percorso"></button>
+          </div>
+          <div class="nav__dropdownMenu" id="path-navigation">
+            <a href="/percorso/consulenza.html">Prima consulenza</a>
+            <a href="/percorso/top3.html">Top 3 su Google</a>
+            <a href="/percorso/gads.html">Google Ads</a>
+            <a href="/percorso/mads.html">Meta Ads</a>
+          </div>
+        </div>
         <a href="/index.html#prezzi">Prezzi</a>
       </div>
 
-      <a class="pill pill--dark" href="tel:+393534769196">+39 3534769196</a>
+      <div class="nav__right">
+        <a class="nav__phone" href="tel:+393534769196">
+          <span class="nav__phoneFull">+39 353 476 9196</span>
+          <span class="nav__phoneShort">Chiama</span>
+        </a>
+      </div>
     </nav>
   </header>
 
@@ -196,78 +217,54 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 </script>
         </div>
 
-        <!--
-        <aside class="secondary-right">
-          <a class="secondary-back" href="/index.html#prezzi">← Scegli un altro pacchetto</a>
-
-          <div class="secondary-card">
-            <div class="secondary-card__pillRow secondary-card__pillRow--spread">
-              <span class="secondary-pill">trimestre</span>
-            </div>
-
-         <div class="secondary-stackPrices">
- 
-
-  <div class="secondary-priceRow">
-    <div class="secondary-price">
-      <span class="secondary-amount">€870</span>
-      <span class="secondary-per">/ Local SEO + Web site</span>
-    </div>
-  </div>
-</div>
-
-            <div class="secondary-meta">Disdicibile ogni 3 mesi.</div>
-
-            <div class="secondary-headline">
-              <strong>Top 3 su Google entro 90 giorni.</strong><br />
-              <strong>Garantito oppure non paghi.</strong>
-            </div>
-
-            <div class="secondary-highlight secondary-highlight--green">
-              Visibile nel <strong>75%+</strong> dei risultati.
-            </div>
-
-            <ul class="secondary-bullets">
-              <li>Comprende le caratteristiche del pacchetto scelto</li>
-              <li><strong>12% di sconto</strong></li>
-              <li>Garanzia soddisfatti o rimborsati</li>
-            </ul>
-          </div>
-        </aside>
-
-      </div>  RIGHT -->
+      </div>
     </section>
   </main>  
  <!-- ===== FOOTER ===== -->
     <footer class="footer" id="contatti">
       <div class="container footer__grid">
         <div class="footer__brand">
-         <div class="footer__logo">
-        <a class="footer__brandLink" href="#top" aria-label="HSagency - Home">
-          <img class="footer__logoImg" src="/img/logo-header.png" alt="HSagency">
-        </a>
-      </div>
-
-          <h3 class="footer__title">Domina il tuo<br />mercato locale.</h3>
-
-          <div class="footer__contacts">
-            <a class="footer__pill" href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
-            <a class="footer__pill" href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="footer__pill" href="tel:+393534769196">Telefono</a>
-          </div>
+          <a class="footer__brandLink" href="/index.html" aria-label="HS Agency - Home">HS Agency</a>
+          <p class="footer__description">Marketing locale, Local SEO, siti web e campagne digitali per attività che vogliono aumentare visibilità, contatti e richieste online.</p>
+          <a class="footer__cta" href="/payment/checkout-local-seo-web.html">Parliamo del tuo caso</a>
         </div>
-
+        <nav class="footer__col" aria-label="Servizi">
+          <h2 class="footer__head">Servizi</h2>
+          <ul class="footer__list">
+            <li><a href="/percorso/consulenza.html">Prima consulenza</a></li>
+            <li><a href="/percorso/top3.html">Top 3 su Google</a></li>
+            <li><a href="/percorso/gads.html">Google Ads</a></li>
+            <li><a href="/percorso/mads.html">Meta Ads</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__col" aria-label="Link rapidi">
+          <h2 class="footer__head">Link rapidi</h2>
+          <ul class="footer__list">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/index.html#prima-dopo">Prima / Dopo</a></li>
+            <li><a href="/index.html#processo">Processo</a></li>
+            <li><a href="/index.html#faq">Domande</a></li>
+          </ul>
+        </nav>
         <div class="footer__col">
-          <div class="footer__head">Legale</div>
-          <!-- TODO: linkare pagina termini vera -->
-            <a class="footer__link" href="https://www.termsfeed.com/live/1dd06d56-203d-4c0a-83f9-c783618125e8">Termini di servizio</a>
-          <!-- TODO: linkare privacy vera -->
-          <a class="footer__link" href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a>
+          <h2 class="footer__head">Contatti</h2>
+          <address class="footer__address">
+            <a href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
+            <a href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="tel:+393534769196">+39 353 476 9196</a>
+            <span>Milano, Italia</span>
+          </address>
         </div>
+        <nav class="footer__col" aria-label="Informazioni legali">
+          <h2 class="footer__head">Legale</h2>
+          <ul class="footer__list">
+            <li><a href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a></li>
+            <li><a href="https://www.termsfeed.com/live/e916e57c-cdeb-4a6c-bc7b-e3d7b2a6f97d">Termini di servizio</a></li>
+          </ul>
+        </nav>
       </div>
-
       <div class="container footer__bottom">
-        <p>© 2026 Tutti i diritti riservati da HSagency.</p>
+        <p>© 2026 HS Agency. Tutti i diritti riservati.</p>
       </div>
     </footer>
 </body>
