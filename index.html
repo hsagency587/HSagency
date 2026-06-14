@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agenzia di marketing online a Milano | HSagency. se stai cercando servizi di intenert marketing vicino a me o Local SEO vicino a me HS agency è il team a cui affidarsi.</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="/js/navigation.js" defer></script>
   <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -27,22 +28,41 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 <body>
   <!-- ===== HEADER / NAV ===== -->
   <header class="site-header" id="top">
-    <nav class="nav">
+    <nav class="nav" aria-label="Navigazione principale">
       <div class="nav__left">
-  <a class="brand" aria-label="HSagency - Home">
-    <img class="brand__logo" src="img/logo-header.png" alt="HSagency">
-  </a>
-</div>
+        <a class="brand" href="/index.html" aria-label="HS Agency - Home">
+          <img class="brand__logo" src="/img/logo-header.png" alt="HS Agency">
+        </a>
+      </div>
 
-      <div class="nav__center">
-        <a href="#prima-dopo">Prima / Dopo</a>
-        <a href="#processo">Processo</a>
+      <button class="nav__menuToggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="nav__menuIcon" aria-hidden="true"></span>
+        <span class="nav__menuLabel">Menu</span>
+      </button>
+
+      <div class="nav__center" id="primary-navigation">
+        <a href="/index.html#prima-dopo">Prima / Dopo</a>
+        <div class="nav__dropdown">
+          <div class="nav__dropdownControl">
+            <a class="nav__pathLink" href="/index.html#processo">Percorso</a>
+            <button class="nav__dropdownToggle" type="button" aria-expanded="false" aria-controls="path-navigation" aria-label="Apri le pagine del percorso"></button>
+          </div>
+          <div class="nav__dropdownMenu" id="path-navigation">
+            <a href="/percorso/consulenza.html">Prima consulenza</a>
+            <a href="/percorso/top3.html">Top 3 su Google</a>
+            <a href="/percorso/gads.html">Google Ads</a>
+            <a href="/percorso/mads.html">Meta Ads</a>
+          </div>
+        </div>
         <a href="#faq">Domande</a>
-        <a href="#prezzi">Prezzi</a>
+        <a href="/index.html#prezzi">Prezzi</a>
       </div>
 
       <div class="nav__right">
-        <a class="pill pill--dark" href="tel:+393534769196">+39 353 476 9196</a>
+        <a class="nav__phone" href="tel:+393534769196">
+          <span class="nav__phoneFull">+39 353 476 9196</span>
+          <span class="nav__phoneShort">Chiama</span>
+        </a>
       </div>
     </nav>
   </header>
@@ -69,7 +89,7 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
           <p class="hero__muted">E se non sei nei primi 3, di fatto sei invisibile.</p>
 
           <div class="hero__miniCtas">
-            <a class="pill pill--light" href="mailto:hs.agency.marketing@gmail.com">Email
+            <a class="pill pill--light" href="/payment/checkout-local-seo-web.html">Email
           </a>
             <a class="pill pill--light" href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
           </div>
@@ -257,6 +277,13 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
                   <div class="metric__val metric__val--green">15+</div>
                 </div>
               </div>
+
+              <div class="difference__cta">
+                <a class="pill pill--dark" href="/primadopo/">
+                  Approfondisci il Prima / Dopo
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
             </div>
 
             <!-- RIGHT (solo 2 immagini: prima/dopo) -->
@@ -271,7 +298,7 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
       </div>
     </section>
 
-  <!-- ===== PROCESSO (2x2 con doppia timeline) ===== -->
+  <!-- ===== PROCESSO (2x2) ===== -->
 <section class="section process" id="processo">
   <div class="container">
     <div class="section-head">
@@ -286,31 +313,26 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
       <h2 class="h2">È piuttosto <span class="serif-italic">semplice.</span></h2>
     </div>
 
-    <!-- PRIMA TIMELINE (step 1 e 2) -->
-    <div class="timeline-row timeline-row--top">
-      <div class="timeline-bar">
-        <div class="timeline-segment">
-          <div class="segment-label">3 mesi</div>
-          <div class="month-markers">
-            <span class="month-marker"></span>
-            <span class="month-marker"></span>
-          </div>
-        </div>
-        <div class="timeline-segment">
-          <div class="segment-label">6 mesi</div>
-          <div class="month-markers">
-            <span class="month-marker"></span>
-            <span class="month-marker"></span>
-          </div>
-        </div>
-        <div class="timeline-arrow">→</div>
-      </div>
-    </div>
-
     <!-- PRIMA RIGA DI STEP (1 e 2) -->
+    <div class="process-path process-path--top" aria-hidden="true"></div>
     <div class="steps-row">
-      <!-- STEP 1 (BASIC) -->
-      <div class="step step-primary lift">
+      <!-- STEP 1 (CONSULENZA) -->
+      <a class="step step-primary lift" href="/percorso/consulenza.html">
+        <div class="step__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="step__text">
+          <span class="step__num">Prima consulenza</span>
+          <span class="step__desc">Svolgiamo una consulenza gratuita in cui valutiamo la situazione attuale, l'obiettivo da raggiungere e troviamo lo strumento più adatto per raggiungerlo.</span>
+          <span class="step__more">Approfondisci</span>
+        </div>
+      </a>
+
+      <!-- STEP 2 (TOP 3) -->
+      <a class="step step-primary lift" href="/percorso/top3.html">
         <div class="step__icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -320,11 +342,16 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
         <div class="step__text">
           <span class="step__num"><strong>Top 3</strong> su Google</span>
           <span class="step__desc">ottimizzato GBP e WebSite + Backlinks di qualità per farti raggiungere la top 3 su Google.</span>
+          <span class="step__more">Approfondisci</span>
         </div>
-      </div>
+      </a>
+    </div>
 
-      <!-- STEP 2 (Google ADS) OPZIONALE -->
-      <div class="step step-optional lift">
+    <!-- SECONDA RIGA DI STEP (3 e 4) -->
+    <div class="process-path process-path--bottom" aria-hidden="true"></div>
+    <div class="steps-row">
+      <!-- STEP 3 (GOOGLE ADS) -->
+      <a class="step step-primary lift" href="/percorso/gads.html">
         <div class="step__icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M4 12v-2a2 2 0 0 1 2-2h2l8-3v14l-8-3H6a2 2 0 0 1-2-2v-2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -335,50 +362,12 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
         <div class="step__text">
           <span class="step__num">Google ADS</span>
           <span class="step__desc">grazie alle ottimizzazioni precedentemente eseguite le Google ADS saranno più efficaci.<br> Google conosce già la tua attività e indirizzerà meglio le pubblicità</span>
+          <span class="step__more">Approfondisci</span>
         </div>
-      </div>
-    </div>
+      </a>
 
-    <!-- SECONDA TIMELINE (step 3 e 4) -->
-    <div class="timeline-row timeline-row--bottom">
-      <div class="timeline-bar">
-        <div class="timeline-segment">
-          <div class="segment-label">9 mesi</div>
-          <div class="month-markers">
-            <span class="month-marker"></span>
-            <span class="month-marker"></span>
-          </div>
-        </div>
-        <div class="timeline-segment">
-          <div class="segment-label">12 mesi</div>
-          <div class="month-markers">
-            <span class="month-marker"></span>
-            <span class="month-marker"></span>
-          </div>
-        </div>
-        <div class="timeline-arrow">→</div>
-      </div>
-    </div>
-
-    <!-- SECONDA RIGA DI STEP (3 e 4) -->
-    <div class="steps-row">
-      <!-- STEP 3 (Social profiles) OPZIONALE -->
-      <div class="step step-optional lift">
-        <div class="step__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="currentColor" stroke-width="2"/>
-            <path d="M10 7.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M12 18h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="step__text">
-          <span class="step__num">Social profiles</span>
-          <span class="step__desc">approdiamo sui Social; creando e gestendo profilo Instagram e Facebook.<br> Se ne sei già in possesso li possiamo gestire. <br> Se hai uno specialista ad occuparsene passa allo step 4</span>
-        </div>
-      </div>
-
-      <!-- STEP 4 (Meta ADS) OPZIONALE -->
-      <div class="step step-optional lift">
+      <!-- STEP 4 (META ADS) -->
+      <a class="step step-primary lift" href="/percorso/mads.html">
         <div class="step__icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="2"/>
@@ -390,8 +379,9 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
         <div class="step__text">
           <span class="step__num">Meta ADS</span>
           <span class="step__desc">il passo finale è coprire anche i social con le ADS, mantenendo il profilo attivo per aumentarne l'efficacia.</span>
+          <span class="step__more">Approfondisci</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -520,7 +510,7 @@ I risultati migliori derivano da una combinazione di entrambe, ma la base SEO de
               <li>aggiornamenti stagionali sul sito</li>
             </ul>
 
-            <a class="btn btn--primary" href="payment/checkout-local-seo-web.html">Inizia ora</a>
+            <a class="btn btn--primary" href="/payment/checkout-local-seo-web.html">Inizia ora</a>
             <a class="btn btn--ghost" href="tel:+393534769196">
               <span class="btn__icon" aria-hidden="true">📞</span> Chiama
             </a>
@@ -557,7 +547,7 @@ I risultati migliori derivano da una combinazione di entrambe, ma la base SEO de
             </ul>
 
 
-            <a class="btn btn--primary" href="/payment/checkout-trimestre.html">Inizia ora</a>
+            <a class="btn btn--primary" href="/payment/checkout-local-seo-web.html">Inizia ora</a>
             <a class="btn btn--ghost" href="tel:+393534769196">
               <span class="btn__icon" aria-hidden="true">📞</span> Chiama
             </a>
@@ -566,35 +556,57 @@ I risultati migliori derivano da una combinazione di entrambe, ma la base SEO de
       </div>
     </section>
 
-   <footer class="footer" id="contatti">
-  <div class="container footer__grid">
-    <div class="footer__left">
-      <div class="footer__logo">
-        <a class="footer__brandLink" href="#top" aria-label="HSagency - Home">
-          <img class="footer__logoImg" src="img/logo-header.png" alt="HSagency">
-        </a>
+    <footer class="footer" id="contatti">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <a class="footer__brandLink" href="/index.html" aria-label="HS Agency - Home">HS Agency</a>
+          <p class="footer__description">Marketing locale, Local SEO, siti web e campagne digitali per attività che vogliono aumentare visibilità, contatti e richieste online.</p>
+          <a class="footer__cta" href="/payment/checkout-local-seo-web.html">Parliamo del tuo caso</a>
+        </div>
+
+        <nav class="footer__col" aria-label="Servizi">
+          <h2 class="footer__head">Servizi</h2>
+          <ul class="footer__list">
+            <li><a href="/percorso/consulenza.html">Prima consulenza</a></li>
+            <li><a href="/percorso/top3.html">Top 3 su Google</a></li>
+            <li><a href="/percorso/gads.html">Google Ads</a></li>
+            <li><a href="/percorso/mads.html">Meta Ads</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Link rapidi">
+          <h2 class="footer__head">Link rapidi</h2>
+          <ul class="footer__list">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/index.html#prima-dopo">Prima / Dopo</a></li>
+            <li><a href="/index.html#processo">Processo</a></li>
+            <li><a href="/index.html#faq">Domande</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__col">
+          <h2 class="footer__head">Contatti</h2>
+          <address class="footer__address">
+            <a href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
+            <a href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="tel:+393534769196">+39 353 476 9196</a>
+            <span>Milano, Italia</span>
+          </address>
+        </div>
+
+        <nav class="footer__col" aria-label="Informazioni legali">
+          <h2 class="footer__head">Legale</h2>
+          <ul class="footer__list">
+            <li><a href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a></li>
+            <li><a href="https://www.termsfeed.com/live/e916e57c-cdeb-4a6c-bc7b-e3d7b2a6f97d">Termini di servizio</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <h3 class="footer__title">Domina il tuo<br>mercato locale.</h3>
-
-      <div class="footer__contacts">
-        <a class="footer__pill" href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
-        <a class="footer__pill" href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="footer__pill" href="Il-nostro-percorso.pdf" target="_blank" rel="noopener">Il nostro percorso</a>
+      <div class="container footer__bottom">
+        <p>© 2026 HS Agency. Tutti i diritti riservati.</p>
       </div>
-    </div>
-
-    <div class="footer__col">
-      <div class="footer__head">Legale</div>
-      <a class="footer__link" href="https://www.termsfeed.com/live/e916e57c-cdeb-4a6c-bc7b-e3d7b2a6f97d">Termini di servizio</a>
-      <a class="footer__link" href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a>
-    </div>
-  </div>
-
-  <div class="container footer__bottom">
-    <p>© 2026 Tutti i diritti riservati da HSagency. </p>
-  </div>
-</footer>
+    </footer>
   </main>
 </body>
 </html>

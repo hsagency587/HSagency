@@ -13,6 +13,10 @@ body.secondary{ background: var(--bg); color: var(--text); font-weight: 500; }
 /* proporzioni come reference: sinistra più ariosa */
 .secondary-grid{ display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 44px; align-items: start; }
 
+@media (min-width: 981px){
+  .secondary-grid{ grid-template-columns: minmax(0, 650px); justify-content: center; }
+}
+
 /* ===== TITOLO (funziona sia con .secondary-title che con .hero__title) ===== */
 .secondary .secondary-title, .secondary .hero__title{
   margin: 8px 0 14px 0;
