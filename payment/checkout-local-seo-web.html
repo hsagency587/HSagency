@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Local SEO + Website Design | HS Agency. Agenzia di marketing online.</title>
+  <title>3 consigli per entrare in top 3 su Google .</title>
 
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="stylesheet" href="/css/secondary-pages.css" />
@@ -30,44 +30,6 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 <body class="secondary">
 
   
-
-  <script>
-    (function () {
-      const offerPopup = document.getElementById("offerPopup");
-
-      if (!offerPopup) return;
-
-      function openOfferPopup() {
-        offerPopup.classList.add("is-visible");
-        offerPopup.setAttribute("aria-hidden", "false");
-        document.body.classList.add("offer-popup-open");
-      }
-
-      function closeOfferPopup() {
-        offerPopup.classList.remove("is-visible");
-        offerPopup.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("offer-popup-open");
-      }
-
-      openOfferPopup();
-
-      offerPopup.addEventListener("click", function (e) {
-        if (
-          e.target === offerPopup ||
-          e.target.classList.contains("offer-popup__close") ||
-          e.target.hasAttribute("data-offer-close")
-        ) {
-          closeOfferPopup();
-        }
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && offerPopup.classList.contains("is-visible")) {
-          closeOfferPopup();
-        }
-      });
-    })();
-  </script>
 
   <header class="site-header" id="top">
     <nav class="nav" aria-label="Navigazione principale">
@@ -110,61 +72,73 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 
   <main class="secondary-main">
     <section class="secondary-wrap">
-      <div class="secondary-grid">
+      <section class="secondary-intro" aria-labelledby="analysis-title">
+        <div class="secondary-intro__copy">
+          <span class="secondary-kicker">Analisi gratuita</span>
+          <h1 id="analysis-title">3 aspetti da migliorare per aiutare la tua attività a ottenere più visibilità su Google</h1>
+          <p>Analizzeremo gratuitamente la presenza online della tua attività e ti indicheremo azioni concrete da cui partire, senza impegno.</p>
+          <a class="btn btn--primary" href="#request-form">Richiedi ora la tua analisi</a>
+        </div>
 
-        <!-- LEFT -->
-        <div class="secondary-left">
-          <h1 class="hero__title">
-            <span class="secondary-bolt">⚡</span>
-            Inizia ora in <span class="serif-italic">2 minuti</span>.
-          </h1>
-
-          <p class="secondary-sub"> 
-            Se la tua azienda è idonea, riceverai la video analisi gratuita e 2 consigli per ricevere più chiamate fin da subito.<br />
-            Lavoriamo con <strong>una sola azienda per città e settore</strong>.
-          </p>
-
-          <form id="leadForm" class="secondary-form">
-
-            <div class="field">
-              <label for="name">Nome</label>
-              <input id="name" name="name" type="text" placeholder="X" required>
-            </div>
-
-            <div class="field">
-              <label for="phone">Numero di telefono</label>
-              <input id="phone" name="phone" type="tel" placeholder="+39 XXX XXX XXXX" required>
-            </div>
-
-            <div class="field">
-              <label for="city">indirizzo / area attività</label>
-              <input id="city" name="city" type="text" placeholder="Via + Numero + Città" required>
-            </div>
-
-            <div class="field">
-              <label for="industry">nome del profilo google business</label>
-              <input id="industry" name="industry" type="text" placeholder="Se non ne possiedi uno, fallo presente." required>
-            </div>
-
-            <button class="secondary-submit" type="submit">Invia richiesta</button>
-
-            <p id="formStatus" class="form-status" aria-live="polite"></p>
-
-          </form>
-
-          <!-- POPUP SUCCESSO FORM: si apre solo dopo invio corretto del modulo -->
-          <div id="successPopup" class="success-popup" aria-hidden="true">
-            <div class="success-popup__card" role="dialog" aria-modal="true" aria-label="Richiesta inviata">
-              <img class="success-popup__logo" src="/img/logo-header.png" alt="HSagency">
-
-              <div class="success-popup__badge">Richiesta inviata</div>
-
-              <p class="success-popup__title">
-                <span class="serif-italic">Grazie</span> di aver inviato la richiesta<br>
-                siamo lieti di <span class="serif-italic">prenderla in carico</span>
-              </p>
-            </div>
+        <div class="secondary-video" aria-label="Spazio riservato al video di presentazione">
+          <!-- Inserire qui il nuovo embed Wistia dedicato a questa pagina. -->
+          <div class="secondary-video__placeholder">
+            <span class="secondary-video__play" aria-hidden="true"></span>
+            <strong>Video di presentazione</strong>
+            <small>Guarda cosa analizziamo nella tua presenza online</small>
           </div>
+        </div>
+      </section>
+
+      <section class="secondary-formCard" id="request-form" aria-labelledby="form-title">
+        <div class="secondary-formCard__eyebrow">
+          <span class="secondary-formCard__icon" aria-hidden="true">⚡</span>
+          <span class="secondary-formCard__kicker">Inizia in 2 <span class="serif-italic">minuti</span></span>
+        </div>
+        <h2 id="form-title">Compila il modulo qui sotto per ricevere la tua <span class="serif-italic">analisi gratuita</span>.</h2>
+
+        <form id="leadForm" class="secondary-form">
+          <fieldset class="secondary-fieldset">
+            <legend>I tuoi dati</legend>
+            <div class="secondary-fields">
+              <div class="field">
+                <label for="name">Nome</label>
+                <input id="name" name="first_name" type="text" autocomplete="given-name" placeholder="Nome" required>
+              </div>
+              <div class="field">
+                <label for="phone">Numero di telefono</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+39 XXX XXX XXXX" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="secondary-fieldset">
+            <legend>Informazioni sull'attività</legend>
+            <div class="secondary-fields">
+              <div class="field">
+                <label for="company">Nome del profilo Google business</label>
+                <input id="company" name="company" type="text" autocomplete="organization" placeholder="Nome del profilo Google business" required>
+              </div>
+              <div class="field">
+                <label for="website">Sito web</label>
+                <input id="website" name="website" type="url" autocomplete="url" placeholder="Sito web">
+              </div>
+              <div class="field secondary-field--full">
+                <label for="city">Indirizzo o area dell'attività</label>
+                <input id="city" name="city" type="text" autocomplete="street-address" placeholder="Indirizzo o area dell'attività" required>
+              </div>
+            </div>
+          </fieldset>
+
+          
+
+          <input id="emailjsName" name="name" type="hidden">
+          <input id="emailjsIndustry" name="industry" type="hidden">
+          <p class="secondary-consent">Inviando il modulo accetti di essere ricontattato da HS Agency tramite email o telefono in merito alla richiesta. Puoi chiedere in qualsiasi momento di non ricevere ulteriori comunicazioni.</p>
+          <button class="secondary-submit" type="submit">Invia richiesta <span aria-hidden="true">→</span></button>
+          <p id="formStatus" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
 
           <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -175,40 +149,6 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
 
   const form = document.getElementById("leadForm");
   const status = document.getElementById("formStatus");
-  const successPopup = document.getElementById("successPopup");
-  let successPopupTimer = null;
-
-  function openSuccessPopup() {
-    if (!successPopup) return;
-
-    successPopup.classList.add("is-visible");
-    successPopup.setAttribute("aria-hidden", "false");
-    document.body.classList.add("popup-open");
-
-    clearTimeout(successPopupTimer);
-
-    successPopupTimer = setTimeout(() => {
-      closeSuccessPopup();
-    }, 10000);
-  }
-
-  function closeSuccessPopup() {
-    if (!successPopup) return;
-
-    successPopup.classList.remove("is-visible");
-    successPopup.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("popup-open");
-
-    clearTimeout(successPopupTimer);
-  }
-
-  if (successPopup) {
-    successPopup.addEventListener("click", function (e) {
-      if (e.target === successPopup) {
-        closeSuccessPopup();
-      }
-    });
-  }
 
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -224,6 +164,14 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
         submitButton.textContent = "Invio in corso...";
       }
 
+      form.elements.name.value = `${form.elements.first_name.value} ${form.elements.surname.value}`.trim();
+      form.elements.industry.value = [
+        `Profilo Google Business: ${form.elements.google_business.value}`,
+        `Email: ${form.elements.email.value}`,
+        `Attività: ${form.elements.company.value}`,
+        `Sito web: ${form.elements.website.value || "Non indicato"}`
+      ].join("\n");
+
       emailjs.sendForm(
         "service_fe6cb8e",
         "template_rxwlxp9",
@@ -231,18 +179,12 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
       ).then(() => {
         status.textContent = "";
         status.style.color = "";
-        form.reset();
-
-        if (typeof fbq === "function") {
-          fbq("track", "Lead");
+        try {
+          sessionStorage.setItem("hsagencyLead", "pending");
+        } catch (error) {
+          // Il redirect deve continuare anche se lo storage non è disponibile.
         }
-
-        openSuccessPopup();
-
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = "Invia richiesta";
-        }
+        window.location.assign("/payment/ringraziamento/grazie-local-seo-web.html");
       }, () => {
         status.textContent = "Errore nell'invio. Riprova.";
         status.style.color = "red";
@@ -255,9 +197,6 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
     });
   }
 </script>
-        </div>
-
-      </div>
     </section>
   </main>  
 
@@ -267,7 +206,7 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
       <div class="footer__brand">
         <a class="footer__brandLink" href="/index.html" aria-label="HS Agency - Home">HS Agency</a>
         <p class="footer__description">Marketing locale, Local SEO, siti web e campagne digitali per attività che vogliono aumentare visibilità, contatti e richieste online.</p>
-        <a class="footer__cta" href="/payment/checkout-local-seo-web.html">Parliamo del tuo caso</a>
+        <a class="footer__cta" href="/payment/checkout-local-seo-web.html">Torna al modulo</a>
       </div>
       <nav class="footer__col" aria-label="Servizi">
         <h2 class="footer__head">Servizi</h2>
