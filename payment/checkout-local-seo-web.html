@@ -81,12 +81,17 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
         </div>
 
         <div class="secondary-video" aria-label="Spazio riservato al video di presentazione">
-          <!-- Inserire qui il nuovo embed Wistia dedicato a questa pagina. -->
-          <div class="secondary-video__placeholder">
-            <span class="secondary-video__play" aria-hidden="true"></span>
-            <strong>Video di presentazione</strong>
-            <small>Guarda cosa analizziamo nella tua presenza online</small>
-          </div>
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/kdgg81om27.js" async type="module"></script>
+          <style>
+            wistia-player[media-id='kdgg81om27']:not(:defined) {
+              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/kdgg81om27/swatch');
+              display: block;
+              filter: blur(5px);
+              padding-top: 177.78%;
+            }
+          </style>
+          <wistia-player media-id="kdgg81om27" aspect="0.5625"></wistia-player>
         </div>
       </section>
 
@@ -95,7 +100,7 @@ src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
           <span class="secondary-formCard__icon" aria-hidden="true">⚡</span>
           <span class="secondary-formCard__kicker">Inizia in 2 <span class="serif-italic">minuti</span></span>
         </div>
-        <h2 id="form-title">Compila il modulo qui sotto per ricevere la tua <span class="serif-italic">analisi gratuita</span>.</h2>
+        <h2 id="form-title">Compila il modulo per ricevere la tua <span class="serif-italic">analisi gratuita</span>.</h2>
 
         <form id="leadForm" class="secondary-form">
           <fieldset class="secondary-fieldset">
