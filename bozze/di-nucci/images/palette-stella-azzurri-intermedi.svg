@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-labelledby="title desc">
+  <title id="title">Palette azzurri intermedi per la stella</title>
+  <desc id="desc">Cinque tonalità ordinate dalla più chiara alla più vicina al blu del simbolo euro.</desc>
+  <rect width="1200" height="260" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle">
+    <g transform="translate(20 20)">
+      <rect width="220" height="170" rx="4" fill="#ABDDED"/>
+      <text x="110" y="214" fill="#172a31">01 · #ABDDED</text>
+    </g>
+    <g transform="translate(255 20)">
+      <rect width="220" height="170" rx="4" fill="#96D2E5"/>
+      <text x="110" y="214" fill="#172a31">02 · #96D2E5</text>
+    </g>
+    <g transform="translate(490 20)">
+      <rect width="220" height="170" rx="4" fill="#80C8DD"/>
+      <text x="110" y="214" fill="#172a31">03 · #80C8DD</text>
+    </g>
+    <g transform="translate(725 20)">
+      <rect width="220" height="170" rx="4" fill="#6ABDD5"/>
+      <text x="110" y="214" fill="#172a31">04 · #6ABDD5</text>
+    </g>
+    <g transform="translate(960 20)">
+      <rect width="220" height="170" rx="4" fill="#55B3CD"/>
+      <text x="110" y="214" fill="#172a31">05 · #55B3CD</text>
+    </g>
+  </g>
+</svg>
