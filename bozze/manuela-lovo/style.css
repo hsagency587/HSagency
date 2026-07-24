@@ -81,3 +81,65 @@ body .metaslider .coin-slider,body .metaslider .nivoSlider,body .metaslider .niv
 #pg-7-10 > .panel-row-style {
 	padding-top: 30px !important;
 }
+
+/* Homepage mobile: ogni sezione mostra testi, foto 1 e foto 2. */
+@media only screen and (max-width: 780px) {
+	#homepage-main-title .widget-title {
+		font-size: 24px !important;
+	}
+
+	#pg-7-2 > .panel-row-style,
+	#pg-7-12 > .panel-row-style,
+	#pg-7-4 > .panel-row-style,
+	#pg-7-3 > .panel-row-style,
+	#pg-7-6 > .panel-row-style,
+	#pg-7-5 > .panel-row-style,
+	#pg-7-7 > .panel-row-style {
+		display: flex !important;
+		flex-direction: column;
+	}
+
+	#pgc-7-2-0,
+	#pgc-7-12-0,
+	#pgc-7-4-0,
+	#pgc-7-3-2,
+	#pgc-7-6-0,
+	#pgc-7-5-2,
+	#pgc-7-7-2 {
+		order: 1;
+	}
+
+	#pgc-7-2-1,
+	#pgc-7-12-1,
+	#pgc-7-4-1,
+	#pgc-7-3-0,
+	#pgc-7-6-1,
+	#pgc-7-5-0,
+	#pgc-7-7-0 {
+		order: 2;
+	}
+
+	#pgc-7-2-2,
+	#pgc-7-12-2,
+	#pgc-7-4-2,
+	#pgc-7-3-1,
+	#pgc-7-6-2,
+	#pgc-7-5-1,
+	#pgc-7-7-1 {
+		order: 3;
+	}
+}
+
+/* Menu mobile: impedisce l'allargamento orizzontale della pagina quando è aperto. */
+@media only screen and (max-width: 991px) {
+	html.responsive-menu-open,
+	html.responsive-menu-open body {
+		overflow-x: hidden !important;
+	}
+
+	html.responsive-menu-open #responsive-menu-button {
+		position: fixed;
+		right: 20px !important;
+		left: auto !important;
+	}
+}
