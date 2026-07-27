@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="La mia routine quotidiana: una checklist semplice, privata e pensata per il telefono."
+    />
+    <meta name="theme-color" content="#f4efe5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="La mia routine" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="La mia routine" />
+    <meta property="og:description" content="Ogni giorno, un passo." />
+    <meta property="og:image" content="og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="La mia routine" />
+    <meta name="twitter:description" content="Ogni giorno, un passo." />
+    <meta name="twitter:image" content="og.png" />
+    <title>La mia routine</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="../img/logo-header.png" />
+    <link rel="apple-touch-icon" href="../img/logo-header.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="header-row">
+          <div>
+            <p class="eyebrow">Ogni giorno, un passo</p>
+            <h1>La mia routine</h1>
+          </div>
+          <button
+            class="icon-button"
+            id="theme-toggle"
+            type="button"
+            aria-label="Attiva tema scuro"
+            title="Cambia tema"
+          >
+            <span aria-hidden="true">◐</span>
+          </button>
+        </div>
+
+        <div class="date-nav" aria-label="Seleziona il giorno">
+          <button class="date-button" id="previous-day" type="button" aria-label="Giorno precedente">
+            ‹
+          </button>
+          <button class="date-current" id="date-picker-button" type="button">
+            <span id="date-label">Oggi</span>
+            <span class="date-full" id="date-full"></span>
+          </button>
+          <input class="visually-hidden" id="date-picker" type="date" aria-label="Scegli una data" />
+          <button class="date-button" id="next-day" type="button" aria-label="Giorno successivo">
+            ›
+          </button>
+        </div>
+
+        <section class="progress-card" aria-labelledby="progress-title">
+          <div class="progress-ring" id="progress-ring" aria-hidden="true">
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-copy">
+            <p id="progress-title">Progresso di oggi</p>
+            <strong id="progress-count">0 di 15 tappe</strong>
+            <span id="progress-message">Inizia dalla prima tappa.</span>
+          </div>
+          <div class="streak">
+            <span aria-hidden="true">✦</span>
+            <strong id="streak-count">0</strong>
+            <small>serie</small>
+          </div>
+        </section>
+      </header>
+
+      <main>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Percorso giornaliero</p>
+            <h2 id="list-title">La prossima tappa ti aspetta</h2>
+          </div>
+          <button class="text-button" id="reset-day" type="button">Azzera</button>
+        </div>
+
+        <div class="routine-list" id="routine-list" aria-live="polite"></div>
+
+        <section class="complete-card" id="complete-card" hidden>
+          <span class="complete-mark" aria-hidden="true">✓</span>
+          <p class="eyebrow">Giornata completata</p>
+          <h2>Hai mantenuto la promessa.</h2>
+          <p>Tutte le tappe della routine sono concluse. Domani si riparte da uno.</p>
+        </section>
+      </main>
+
+      <footer>
+        <p>I dati restano salvati solo su questo dispositivo.</p>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
