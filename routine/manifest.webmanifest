@@ -1,0 +1,19 @@
+{
+  "name": "La mia routine",
+  "short_name": "Routine",
+  "description": "Checklist quotidiana personale, semplice e pensata per il telefono.",
+  "lang": "it",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4efe5",
+  "theme_color": "#f4efe5",
+  "icons": [
+    {
+      "src": "../img/logo-header.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
