@@ -1,4 +1,4 @@
-const CACHE_NAME = "hs-routine-v1";
+const CACHE_NAME = "hs-routine-v8";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -9,6 +9,9 @@ const APP_FILES = [
   "./fonts/inter-regular.woff2",
   "./fonts/inter-medium.woff2",
   "./fonts/inter-bold.woff2",
+  "./images/day-result-complete.png",
+  "./images/day-result-progress.png",
+  "./images/day-result-bottom.png",
 ];
 
 self.addEventListener("install", (event) => {

@@ -45,38 +45,59 @@
           </button>
         </div>
 
-        <div class="date-nav" aria-label="Seleziona il giorno">
-          <button class="date-button" id="previous-day" type="button" aria-label="Giorno precedente">
-            ‹
+        <nav class="view-switch" aria-label="Seleziona la sezione">
+          <button
+            class="view-button is-active"
+            type="button"
+            aria-pressed="true"
+            data-view-target="routine"
+          >
+            Routine
           </button>
-          <button class="date-current" id="date-picker-button" type="button">
-            <span id="date-label">Oggi</span>
-            <span class="date-full" id="date-full"></span>
+          <button
+            class="view-button"
+            type="button"
+            aria-pressed="false"
+            data-view-target="dashboard"
+          >
+            Dashboard
           </button>
-          <input class="visually-hidden" id="date-picker" type="date" aria-label="Scegli una data" />
-          <button class="date-button" id="next-day" type="button" aria-label="Giorno successivo">
-            ›
-          </button>
-        </div>
+        </nav>
 
-        <section class="progress-card" aria-labelledby="progress-title">
-          <div class="progress-ring" id="progress-ring" aria-hidden="true">
-            <span id="progress-percent">0%</span>
+        <div class="routine-header-panel" id="routine-header-panel">
+          <div class="date-nav" aria-label="Seleziona il giorno">
+            <button class="date-button" id="previous-day" type="button" aria-label="Giorno precedente">
+              ‹
+            </button>
+            <button class="date-current" id="date-picker-button" type="button">
+              <span id="date-label">Oggi</span>
+              <span class="date-full" id="date-full"></span>
+            </button>
+            <input class="visually-hidden" id="date-picker" type="date" aria-label="Scegli una data" />
+            <button class="date-button" id="next-day" type="button" aria-label="Giorno successivo">
+              ›
+            </button>
           </div>
-          <div class="progress-copy">
-            <p id="progress-title">Progresso di oggi</p>
-            <strong id="progress-count">0 di 15 tappe</strong>
-            <span id="progress-message">Inizia dalla prima tappa.</span>
-          </div>
-          <div class="streak">
-            <span aria-hidden="true">✦</span>
-            <strong id="streak-count">0</strong>
-            <small>serie</small>
-          </div>
-        </section>
+
+          <section class="progress-card" aria-labelledby="progress-title">
+            <div class="progress-ring" id="progress-ring" aria-hidden="true">
+              <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-copy">
+              <p id="progress-title">Progresso di oggi</p>
+              <strong id="progress-count">0 di 17 tappe</strong>
+              <span id="progress-message">Inizia dalla prima tappa.</span>
+            </div>
+            <div class="streak">
+              <span aria-hidden="true">✦</span>
+              <strong id="streak-count">0</strong>
+              <small>serie</small>
+            </div>
+          </section>
+        </div>
       </header>
 
-      <main>
+      <main class="view-panel" id="routine-view">
         <div class="section-heading">
           <div>
             <p class="eyebrow">Percorso giornaliero</p>
@@ -95,10 +116,168 @@
         </section>
       </main>
 
+      <main class="view-panel dashboard-view" id="dashboard-view" hidden>
+        <div class="dashboard-heading">
+          <p class="eyebrow">Dashboard</p>
+          <h2>Il tuo andamento</h2>
+        </div>
+
+        <section class="dashboard-section" aria-labelledby="primary-metrics-title">
+          <h2 id="primary-metrics-title">Parametri principali</h2>
+          <div class="dashboard-grid dashboard-grid-primary">
+            <button
+              class="metric-card metric-card-primary metric-card-button"
+              type="button"
+              data-metric="weekly-report"
+              data-report-days="7"
+            >
+              <p class="metric-kicker">Parametro principale</p>
+              <h3>Resoconto settimanale</h3>
+              <span class="metric-open">Apri resoconto <span aria-hidden="true">→</span></span>
+            </button>
+
+            <button
+              class="metric-card metric-card-primary metric-card-button"
+              type="button"
+              data-metric="monthly-report"
+              data-report-days="30"
+            >
+              <p class="metric-kicker">Parametro principale</p>
+              <h3>Resoconto mensile</h3>
+              <span class="metric-open">Apri resoconto <span aria-hidden="true">→</span></span>
+            </button>
+          </div>
+        </section>
+
+        <section class="dashboard-section" aria-labelledby="secondary-metrics-title">
+          <h2 id="secondary-metrics-title">Parametri secondari</h2>
+          <div class="dashboard-grid">
+            <article class="metric-card" data-metric="full-day-active-streak">
+              <p class="metric-kicker">Parametro secondario</p>
+              <h3>Full day active streak</h3>
+              <div class="metric-value-row">
+                <strong class="metric-value" id="full-day-active-streak-value">0</strong>
+                <span>giorni</span>
+              </div>
+            </article>
+
+            <article class="metric-card" data-metric="personal-record-streak">
+              <p class="metric-kicker">Parametro secondario</p>
+              <h3>Personal record streak</h3>
+              <div class="metric-value-row">
+                <strong class="metric-value" id="personal-record-streak-value">0</strong>
+                <span>giorni</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <main class="view-panel report-view" id="report-view" hidden aria-live="polite">
+        <button class="report-back" id="report-back" type="button">
+          <span aria-hidden="true">‹</span> Dashboard
+        </button>
+
+        <div class="report-heading">
+          <p class="eyebrow" id="report-eyebrow">Resoconto</p>
+          <h2 id="report-title">Resoconto settimanale</h2>
+          <p id="report-range"></p>
+        </div>
+
+        <section class="report-section" aria-labelledby="workout-report-title">
+          <div class="report-section-heading">
+            <div>
+              <p class="metric-kicker">Attività</p>
+              <h3 id="workout-report-title">Allenamento</h3>
+            </div>
+          </div>
+
+          <div class="workout-report-grid">
+            <article class="report-stat-card">
+              <span>Full</span>
+              <strong id="report-workout-full">0</strong>
+              <small>giorni</small>
+            </article>
+            <article class="report-stat-card">
+              <span>Med</span>
+              <strong id="report-workout-med">0</strong>
+              <small>giorni</small>
+            </article>
+            <article class="report-stat-card is-missed">
+              <span>Saltati</span>
+              <strong id="report-workout-skipped">0</strong>
+              <small>giorni</small>
+            </article>
+          </div>
+        </section>
+
+        <section class="report-section" aria-labelledby="missed-tasks-title">
+          <div class="report-section-heading">
+            <div>
+              <p class="metric-kicker">Non svolte ogni giorno</p>
+              <h3 id="missed-tasks-title">Task saltate</h3>
+            </div>
+            <span class="report-section-count" id="missed-tasks-count">0</span>
+          </div>
+          <div class="report-task-list" id="missed-tasks-list"></div>
+        </section>
+
+        <section class="report-section" aria-labelledby="consolidated-tasks-title">
+          <div class="report-section-heading">
+            <div>
+              <p class="metric-kicker">Completate ogni giorno</p>
+              <h3 id="consolidated-tasks-title">Task consolidate</h3>
+            </div>
+            <span class="report-section-count" id="consolidated-tasks-count">0</span>
+          </div>
+          <div class="report-task-list" id="consolidated-tasks-list"></div>
+        </section>
+
+        <section class="report-section report-special-card" aria-labelledby="no-masturbation-title">
+          <div>
+            <p class="metric-kicker">Focus specifico</p>
+            <h3 id="no-masturbation-title">Days without self destruction</h3>
+            <p>Numero di giorni in cui la task non risulta completata.</p>
+          </div>
+          <div class="report-special-value">
+            <strong id="no-masturbation-missed">0</strong>
+            <span id="no-masturbation-total">su 7 giorni</span>
+          </div>
+        </section>
+      </main>
+
       <footer>
         <p>I dati restano salvati solo su questo dispositivo.</p>
       </footer>
     </div>
+
+    <section
+      class="day-result-overlay"
+      id="day-result-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="day-result-title"
+      hidden
+    >
+      <div class="day-result-shade">
+        <button
+          class="day-result-close"
+          id="day-result-close"
+          type="button"
+          aria-label="Chiudi schermata finale"
+        >
+          ×
+        </button>
+        <div class="day-result-content">
+          <p class="day-result-kicker">Esito della giornata</p>
+          <h2 id="day-result-title"></h2>
+          <p id="day-result-message"></p>
+          <button class="day-result-return" id="day-result-return" type="button">
+            Torna alla routine
+          </button>
+        </div>
+      </div>
+    </section>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
