@@ -1,6 +1,6 @@
 (() => {
   const STORAGE_KEY = "hs-personal-routine-v1";
-  const ROUTINE_VERSION = 3;
+  const ROUTINE_VERSION = 4;
 
   const routine = [
     {
@@ -71,6 +71,53 @@
     { id: "sleep-before-23", title: "Dormire prima delle 23" },
   ];
 
+  const missingResultPhrases = {
+    "morning__0": "non hai fatto il massaggio al viso al sole",
+    "morning__1": "non hai preso Fireblood, Crea e Fish Oil",
+    "morning__2": "non hai bevuto un bicchiere d’acqua",
+    "morning__3": "non hai recitato il Top G Code ad alta voce",
+    "morning__4": "non hai scritto il main target of the day",
+    "morning__5": "non hai camminato per 10 minuti",
+    "morning__6": "non hai mangiato 2 frutti",
+    "starting-day": "non hai completato le Starting Day Tasks",
+    "morning-coffee": "non hai bevuto il caffè",
+    "work-1": "non hai completato la 1st G Work Session",
+    snack: "non hai mangiato lo spuntino da 100 g di formaggio",
+    "work-2": "non hai completato la 2nd G Work Session",
+    "workout__0": "non hai fatto l’allenamento",
+    "workout__1": "non hai fatto la doccia",
+    "lunch__0": "non hai mangiato lo zenzero",
+    "lunch__1": "non hai mangiato 130/90 g di pasta o riso",
+    "lunch__2": "non hai mangiato 200 g di uova o pesce",
+    "midday-routine__0": "non hai camminato o fatto movimento per 15 minuti",
+    "midday-routine__1": "non hai bevuto il caffè",
+    "fruit-15": "non hai mangiato 2/3 frutti alle 15",
+    "work-3": "non hai completato la 3rd G Work Session",
+    "work-4": "non hai completato la 4th G Work Session",
+    "dinner__0": "non hai mangiato uno spicchio d’aglio crudo",
+    "dinner__1": "non hai mangiato 300 g di carne",
+    "dinner__2": "non hai aggiunto l’eventuale uovo",
+    study: "non hai studiato",
+    "closing-day": "non hai completato la Closing Day Task",
+    "evening-routine__0": "non hai fatto le pulizie",
+    "evening-routine__1": "non ti sei lavato i denti",
+    "evening-routine__2": "non hai rispettato No masturbation",
+    "evening-routine__3": "non hai esaminato la giornata",
+    "evening-routine__4": "non hai raggiunto il main target of the day",
+    "evening-routine__5": "non hai organizzato la giornata di domani",
+    "evening-routine__6": "non hai tenuto le gambe sul muro",
+    "sleep-before-23": "non sei andato a dormire prima delle 23",
+  };
+
+  const wholeCategoryResultPhrases = {
+    morning: "hai saltato l’intera sveglia delle 7:15",
+    workout: "hai saltato l’intero workout",
+    lunch: "hai saltato l’intero pranzo",
+    "midday-routine": "hai saltato l’intera routine pomeridiana",
+    dinner: "hai saltato l’intera cena",
+    "evening-routine": "hai saltato l’intera routine serale",
+  };
+
   const elements = {
     list: document.querySelector("#routine-list"),
     dateLabel: document.querySelector("#date-label"),
@@ -98,6 +145,10 @@
     reportBack: document.querySelector("#report-back"),
     fullDayActiveStreak: document.querySelector("#full-day-active-streak-value"),
     personalRecordStreak: document.querySelector("#personal-record-streak-value"),
+    workoutPie: document.querySelector("#workout-pie"),
+    workoutChartFull: document.querySelector("#workout-chart-full"),
+    workoutChartMed: document.querySelector("#workout-chart-med"),
+    workoutChartSkip: document.querySelector("#workout-chart-skip"),
     reportEyebrow: document.querySelector("#report-eyebrow"),
     reportTitle: document.querySelector("#report-title"),
     reportRange: document.querySelector("#report-range"),
@@ -121,6 +172,7 @@
   let selectedDate = localDateKey(new Date());
   let currentReportDays = null;
   let toastTimeout;
+  let dayRolloverTimeout;
 
   function defaultState() {
     return {
@@ -192,6 +244,16 @@
       });
     }
 
+    if (savedVersion < 4) {
+      Object.entries(migrated.days).forEach(([dateKey, savedDay]) => {
+        if (!savedDay || typeof savedDay !== "object") return;
+
+        migrated.days[dateKey] = Object.fromEntries(
+          Object.entries(savedDay).filter(([key]) => !key.endsWith("__not-completed")),
+        );
+      });
+    }
+
     migrated.routineVersion = ROUTINE_VERSION;
     return migrated;
   }
@@ -246,11 +308,6 @@
     return `${task.id}__${index}`;
   }
 
-  function notCompletedId(task, index) {
-    const id = Number.isInteger(index) ? subtaskId(task, index) : task.id;
-    return `${id}__not-completed`;
-  }
-
   function choiceStateId(task, index) {
     return `${subtaskId(task, index)}__choice`;
   }
@@ -274,28 +331,20 @@
 
   function taskIsComplete(task, dateKey = selectedDate) {
     const day = state.days[dateKey] || {};
-    if (day[notCompletedId(task)]) return false;
     if (!task.subtasks) return Boolean(day[task.id]);
-    return task.subtasks.every(
-      (_, index) =>
-        subtaskIsComplete(task, index, day) && !Boolean(day[notCompletedId(task, index)]),
-    );
+    return task.subtasks.every((_, index) => subtaskIsComplete(task, index, day));
+  }
+
+  function isPastDay(dateKey = selectedDate) {
+    return dateKey < localDateKey(new Date());
   }
 
   function taskIsResolved(task, dateKey = selectedDate) {
-    const day = state.days[dateKey] || {};
-    if (day[notCompletedId(task)]) return true;
-    if (!task.subtasks) return Boolean(day[task.id]);
-    return task.subtasks.every(
-      (_, index) =>
-        subtaskIsComplete(task, index, day) || Boolean(day[notCompletedId(task, index)]),
-    );
+    return isPastDay(dateKey) || taskIsComplete(task, dateKey);
   }
 
   function taskIsNotCompleted(task, dateKey = selectedDate) {
-    const day = state.days[dateKey] || {};
-    if (day[notCompletedId(task)]) return true;
-    return Boolean(task.subtasks) && taskIsResolved(task, dateKey) && !taskIsComplete(task, dateKey);
+    return isPastDay(dateKey) && !taskIsComplete(task, dateKey);
   }
 
   function completedCount(dateKey = selectedDate) {
@@ -368,16 +417,12 @@
 
   function reportEntryIsComplete(entry, dateKey) {
     const day = state.days[dateKey] || {};
-    if (day[notCompletedId(entry.task)]) return false;
 
     if (!Number.isInteger(entry.subtaskIndex)) {
-      return Boolean(day[entry.task.id]) && !Boolean(day[notCompletedId(entry.task)]);
+      return Boolean(day[entry.task.id]);
     }
 
-    return (
-      subtaskIsComplete(entry.task, entry.subtaskIndex, day) &&
-      !Boolean(day[notCompletedId(entry.task, entry.subtaskIndex)])
-    );
+    return subtaskIsComplete(entry.task, entry.subtaskIndex, day);
   }
 
   function dayResultEntries() {
@@ -391,10 +436,29 @@
     return Boolean(entry && reportEntryIsComplete(entry, dateKey));
   }
 
-  function missingTaskLabels(dateKey = selectedDate) {
-    return routine
-      .filter((task) => !taskIsComplete(task, dateKey))
-      .map((task) => task.title);
+  function missingTaskPhrases(dateKey = selectedDate) {
+    const day = state.days[dateKey] || {};
+
+    return routine.flatMap((task) => {
+      if (taskIsComplete(task, dateKey)) return [];
+
+      if (!task.subtasks) {
+        return [missingResultPhrases[task.id]];
+      }
+
+      const completedSubtasks = task.subtasks.filter((_, index) =>
+        subtaskIsComplete(task, index, day),
+      ).length;
+
+      if (completedSubtasks === 0) {
+        return [wholeCategoryResultPhrases[task.id]];
+      }
+
+      return task.subtasks.flatMap((_, index) => {
+        const isComplete = subtaskIsComplete(task, index, day);
+        return isComplete ? [] : [missingResultPhrases[subtaskId(task, index)]];
+      });
+    });
   }
 
   function showDayResult() {
@@ -411,12 +475,12 @@
       title =
         "Complimenti hai proseguito nella strada per diventare il TOP G. Sei 1 giorno più vicino a diventare il TOP G.";
     } else {
-      const missingTasks = missingTaskLabels().filter(
-        (label) => label.toLocaleLowerCase("it-IT") !== "no masturbation",
-      );
+      const missingTasks = missingTaskPhrases();
       const missingList = missingTasks
-        .map((label, index) => `${index === 0 ? "Non" : "non"} ${label}`)
-        .join(", ");
+        .map((phrase, index) =>
+          index === 0 ? phrase.charAt(0).toLocaleUpperCase("it-IT") + phrase.slice(1) : phrase,
+        )
+        .join("; ");
 
       resultCase = "progress";
       title = "Oggi sei avanzato comunque sulla strada del TOP G";
@@ -443,13 +507,11 @@
 
     dateKeys.forEach((dateKey) => {
       const day = state.days[dateKey] || {};
-      const taskSkipped = Boolean(day[notCompletedId(workout)]);
-      const choiceSkipped = Boolean(day[notCompletedId(workout, 0)]);
       const choice = day[choiceStateId(workout, 0)];
 
-      if (!taskSkipped && !choiceSkipped && choice === "full") {
+      if (choice === "full") {
         summary.full += 1;
-      } else if (!taskSkipped && !choiceSkipped && choice === "med") {
+      } else if (choice === "med") {
         summary.med += 1;
       } else {
         summary.skipped += 1;
@@ -498,8 +560,21 @@
   }
 
   function renderDashboard() {
+    const workout = workoutReport(previousPeriodDateKeys(30));
+    const fullEnd = (workout.full / 30) * 360;
+    const medEnd = ((workout.full + workout.med) / 30) * 360;
+
     elements.fullDayActiveStreak.textContent = fullDayActiveStreak();
     elements.personalRecordStreak.textContent = personalRecordStreak();
+    elements.workoutPie.style.setProperty("--workout-full-end", `${fullEnd}deg`);
+    elements.workoutPie.style.setProperty("--workout-med-end", `${medEnd}deg`);
+    elements.workoutPie.setAttribute(
+      "aria-label",
+      `WORKOUT negli ultimi 30 giorni conclusi: Full ${workout.full}, MED ${workout.med}, Skip ${workout.skipped}.`,
+    );
+    elements.workoutChartFull.textContent = workout.full;
+    elements.workoutChartMed.textContent = workout.med;
+    elements.workoutChartSkip.textContent = workout.skipped;
   }
 
   function reportRangeLabel(dateKeys) {
@@ -578,11 +653,7 @@
     const day = dayState();
     day[task.id] = !day[task.id];
     const isNowComplete = Boolean(day[task.id]);
-    if (day[task.id]) {
-      delete day[notCompletedId(task)];
-    } else {
-      delete day[task.id];
-    }
+    if (!day[task.id]) delete day[task.id];
     saveState();
     render();
 
@@ -597,11 +668,7 @@
     const id = subtaskId(task, index);
     const wasTaskComplete = taskIsComplete(task);
     day[id] = !day[id];
-    if (day[id]) {
-      delete day[notCompletedId(task, index)];
-    } else {
-      delete day[id];
-    }
+    if (!day[id]) delete day[id];
     const isNowComplete = taskIsComplete(task);
     saveState();
     render();
@@ -624,7 +691,6 @@
       delete day[id];
     } else {
       day[id] = choiceId;
-      delete day[notCompletedId(task, index)];
     }
 
     const isNowComplete = taskIsComplete(task);
@@ -636,70 +702,16 @@
     }
   }
 
-  function toggleNotCompleted(task, index) {
-    const day = dayState();
-    const isSubtask = Number.isInteger(index);
-    const id = notCompletedId(task, index);
-    const isNowNotCompleted = !day[id];
-
-    if (isNowNotCompleted) {
-      day[id] = true;
-      if (isSubtask) {
-        delete day[subtaskId(task, index)];
-        delete day[choiceStateId(task, index)];
-      } else if (!task.subtasks) {
-        delete day[task.id];
-      }
-    } else {
-      delete day[id];
-    }
-
-    saveState();
-    render();
-
-    const label = isSubtask ? subtaskLabel(task, index) : task.title;
-    showToast(
-      isNowNotCompleted
-        ? `${label}: non completata.`
-        : `${label}: stato non completata rimosso.`,
-    );
-
-    if (!isSubtask && task.id === "sleep-before-23" && isNowNotCompleted) {
-      showDayResult();
-    }
-  }
-
-  function notCompletedControl(task, selected, index, label = task.title) {
-    const subtaskAttribute = Number.isInteger(index) ? ` data-subtask-index="${index}"` : "";
-    return `
-      <button
-        class="not-completed-button${selected ? " is-selected" : ""}"
-        type="button"
-        aria-label="${
-          selected ? "Rimuovi stato non completata" : "Segna come non completata"
-        }: ${label}"
-        aria-pressed="${selected}"
-        data-action="toggle-not-completed"
-        data-task-id="${task.id}"
-        ${subtaskAttribute}
-      >Non completata</button>
-    `;
-  }
-
   function taskMarkup(task, index, activeIndex) {
     const complete = taskIsComplete(task);
     const notCompleted = taskIsNotCompleted(task);
     const hasSubtasks = Boolean(task.subtasks);
     const day = dayState();
-    const subtaskResolved = hasSubtasks
-      ? task.subtasks.filter(
-          (_, subIndex) =>
-            subtaskIsComplete(task, subIndex, day) || day[notCompletedId(task, subIndex)],
-        ).length
+    const completedSubtasks = hasSubtasks
+      ? task.subtasks.filter((_, subIndex) => subtaskIsComplete(task, subIndex, day)).length
       : 0;
-    const directlyNotCompleted = Boolean(day[notCompletedId(task)]);
     const isActive = index === activeIndex;
-    const isOpen = hasSubtasks && (isActive || subtaskResolved > 0);
+    const isOpen = hasSubtasks && (isActive || completedSubtasks > 0);
     const stateClass = complete
       ? "is-complete"
       : notCompleted
@@ -711,14 +723,14 @@
 
     const headingControl = hasSubtasks
       ? `
-        <span class="task-count">${subtaskResolved}/${task.subtasks.length}</span>
+        <span class="task-count">${completedSubtasks}/${task.subtasks.length}</span>
         <span class="chevron" aria-hidden="true">⌄</span>
       `
       : `
         <button
           class="task-toggle"
           type="button"
-          aria-label="${complete ? "Segna come non completata" : "Segna come completata"}: ${task.title}"
+          aria-label="${complete ? "Rimuovi conferma" : "Segna come completata"}: ${task.title}"
           aria-pressed="${complete}"
           data-action="toggle-task"
           data-task-id="${task.id}"
@@ -735,7 +747,7 @@
                 const hasChoices = subtaskHasChoices(task, subIndex);
                 const selectedChoice = hasChoices ? day[choiceStateId(task, subIndex)] : "";
                 const done = subtaskIsComplete(task, subIndex, day);
-                const skipped = Boolean(day[notCompletedId(task, subIndex)]);
+                const skipped = isPastDay() && !done;
                 const completionControl = hasChoices
                   ? `
                     <div class="choice-subtask-control">
@@ -783,7 +795,6 @@
                     done ? " is-complete" : ""
                   }${skipped ? " is-not-completed" : ""}">
                     ${completionControl}
-                    ${notCompletedControl(task, skipped, subIndex, label)}
                   </div>
                 `;
               })
@@ -791,9 +802,7 @@
             ${
               complete
                 ? '<div class="category-complete">Categoria completata · +1 tappa</div>'
-                : notCompleted
-                  ? '<div class="category-complete category-not-completed">Categoria non completata</div>'
-                  : ""
+                : ""
             }
           </div>
         </div>
@@ -810,7 +819,6 @@
               <span class="task-title">${task.title}</span>
             </div>
             <div class="task-actions">
-              ${notCompletedControl(task, directlyNotCompleted)}
               ${
                 hasSubtasks
                   ? `<button
@@ -879,9 +887,9 @@
       elements.listTitle.textContent = "Tutto fatto per questo giorno";
     } else if (resolved === routine.length) {
       elements.progressMessage.textContent = `${notCompleted} ${
-        notCompleted === 1 ? "tappa non completata" : "tappe non completate"
+        notCompleted === 1 ? "tappa non confermata" : "tappe non confermate"
       }.`;
-      elements.listTitle.textContent = "Giornata registrata";
+      elements.listTitle.textContent = "Giornata conclusa";
     } else {
       elements.progressMessage.textContent = `${routine.length - resolved} tappe ancora da registrare.`;
       elements.listTitle.textContent = "Continua da dove hai lasciato";
@@ -900,6 +908,18 @@
     elements.toast.textContent = message;
     elements.toast.classList.add("is-visible");
     toastTimeout = window.setTimeout(() => elements.toast.classList.remove("is-visible"), 2600);
+  }
+
+  function scheduleDayRollover() {
+    window.clearTimeout(dayRolloverTimeout);
+    const now = new Date();
+    const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const delay = Math.max(1000, nextDay.getTime() - now.getTime() + 1000);
+
+    dayRolloverTimeout = window.setTimeout(() => {
+      render();
+      scheduleDayRollover();
+    }, delay);
   }
 
   function setActiveView(view) {
@@ -947,14 +967,6 @@
         Number(control.dataset.subtaskIndex),
         control.dataset.choiceId,
       );
-      return;
-    }
-
-    if (control.dataset.action === "toggle-not-completed") {
-      const subtaskIndex = control.hasAttribute("data-subtask-index")
-        ? Number(control.dataset.subtaskIndex)
-        : undefined;
-      toggleNotCompleted(task, subtaskIndex);
       return;
     }
 
@@ -1015,8 +1027,15 @@
       closeDayResult();
     }
   });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      render();
+      scheduleDayRollover();
+    }
+  });
 
   render();
+  scheduleDayRollover();
 
   if ("serviceWorker" in navigator && window.location.protocol.startsWith("http")) {
     window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
