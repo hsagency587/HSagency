@@ -146,6 +146,9 @@
     fullDayActiveStreak: document.querySelector("#full-day-active-streak-value"),
     personalRecordStreak: document.querySelector("#personal-record-streak-value"),
     workoutPie: document.querySelector("#workout-pie"),
+    workoutPieFull: document.querySelector("#workout-pie-full"),
+    workoutPieMed: document.querySelector("#workout-pie-med"),
+    workoutPieSkip: document.querySelector("#workout-pie-skip"),
     workoutChartFull: document.querySelector("#workout-chart-full"),
     workoutChartMed: document.querySelector("#workout-chart-med"),
     workoutChartSkip: document.querySelector("#workout-chart-skip"),
@@ -561,13 +564,19 @@
 
   function renderDashboard() {
     const workout = workoutReport(previousPeriodDateKeys(30));
-    const fullEnd = (workout.full / 30) * 360;
-    const medEnd = ((workout.full + workout.med) / 30) * 360;
+    const circumference = 2 * Math.PI * 24;
+    const setPieSegment = (element, value, offset) => {
+      const segmentLength = (value / 30) * circumference;
+      const segmentOffset = (offset / 30) * circumference;
+      element.setAttribute("stroke-dasharray", `${segmentLength} ${circumference - segmentLength}`);
+      element.setAttribute("stroke-dashoffset", `${-segmentOffset}`);
+    };
 
     elements.fullDayActiveStreak.textContent = fullDayActiveStreak();
     elements.personalRecordStreak.textContent = personalRecordStreak();
-    elements.workoutPie.style.setProperty("--workout-full-end", `${fullEnd}deg`);
-    elements.workoutPie.style.setProperty("--workout-med-end", `${medEnd}deg`);
+    setPieSegment(elements.workoutPieFull, workout.full, 0);
+    setPieSegment(elements.workoutPieMed, workout.med, workout.full);
+    setPieSegment(elements.workoutPieSkip, workout.skipped, workout.full + workout.med);
     elements.workoutPie.setAttribute(
       "aria-label",
       `WORKOUT negli ultimi 30 giorni conclusi: Full ${workout.full}, MED ${workout.med}, Skip ${workout.skipped}.`,

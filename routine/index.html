@@ -160,12 +160,40 @@
             </div>
 
             <div class="workout-chart-layout">
-              <div
+              <svg
                 class="workout-pie"
                 id="workout-pie"
+                viewBox="0 0 100 100"
+                width="220"
+                height="220"
                 role="img"
                 aria-label="WORKOUT negli ultimi 30 giorni"
-              ></div>
+              >
+                <circle
+                  class="workout-pie-segment is-full"
+                  id="workout-pie-full"
+                  cx="50"
+                  cy="50"
+                  r="24"
+                  transform="rotate(-90 50 50)"
+                ></circle>
+                <circle
+                  class="workout-pie-segment is-med"
+                  id="workout-pie-med"
+                  cx="50"
+                  cy="50"
+                  r="24"
+                  transform="rotate(-90 50 50)"
+                ></circle>
+                <circle
+                  class="workout-pie-segment is-skip"
+                  id="workout-pie-skip"
+                  cx="50"
+                  cy="50"
+                  r="24"
+                  transform="rotate(-90 50 50)"
+                ></circle>
+              </svg>
 
               <ul class="workout-chart-legend" aria-label="Legenda WORKOUT">
                 <li>
