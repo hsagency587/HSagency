@@ -149,6 +149,51 @@
           </div>
         </section>
 
+        <section class="dashboard-section" aria-labelledby="workout-chart-title">
+          <article class="metric-card workout-chart-card">
+            <div class="workout-chart-heading">
+              <div>
+                <p class="metric-kicker">Ultimi 30 giorni conclusi</p>
+                <h3 id="workout-chart-title">WORKOUT</h3>
+              </div>
+              <span>30 giorni</span>
+            </div>
+
+            <div class="workout-chart-layout">
+              <div
+                class="workout-pie"
+                id="workout-pie"
+                role="img"
+                aria-label="WORKOUT negli ultimi 30 giorni"
+              ></div>
+
+              <ul class="workout-chart-legend" aria-label="Legenda WORKOUT">
+                <li>
+                  <span class="workout-chart-label">
+                    <span class="workout-chart-swatch is-full" aria-hidden="true"></span>
+                    Full
+                  </span>
+                  <strong id="workout-chart-full">0</strong>
+                </li>
+                <li>
+                  <span class="workout-chart-label">
+                    <span class="workout-chart-swatch is-med" aria-hidden="true"></span>
+                    MED
+                  </span>
+                  <strong id="workout-chart-med">0</strong>
+                </li>
+                <li>
+                  <span class="workout-chart-label">
+                    <span class="workout-chart-swatch is-skip" aria-hidden="true"></span>
+                    Skip
+                  </span>
+                  <strong id="workout-chart-skip">0</strong>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
         <section class="dashboard-section" aria-labelledby="secondary-metrics-title">
           <h2 id="secondary-metrics-title">Parametri secondari</h2>
           <div class="dashboard-grid">
