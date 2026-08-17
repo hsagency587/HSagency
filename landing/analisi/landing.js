@@ -18,6 +18,7 @@
   const searchStatus = document.getElementById("search-status");
   const formStatus = document.getElementById("form-status");
   const submitButton = form.querySelector(".analysis-submit");
+  const searchDebounceMs = 100;
 
   const state = {
     mode: "google",
@@ -28,12 +29,6 @@
     mapsAuthFailed: false,
     searchTimer: null,
     requestId: 0
-  };
-
-  const previousGoogleAuthFailure = window.gm_authFailure;
-  window.gm_authFailure = () => {
-    state.mapsAuthFailed = true;
-    if (typeof previousGoogleAuthFailure === "function") previousGoogleAuthFailure();
   };
 
   const getMapsApiKey = () => {
@@ -61,6 +56,11 @@
   const closeResults = () => {
     resultsPanel.hidden = true;
     businessSearch.setAttribute("aria-expanded", "false");
+    businessSearch.removeAttribute("aria-activedescendant");
+
+    resultsList.querySelectorAll(".autocomplete__option").forEach((option) => {
+      option.setAttribute("aria-selected", "false");
+    });
   };
 
   const clearResults = () => {
@@ -73,6 +73,26 @@
     businessSearch.removeAttribute("data-place-selected");
   };
 
+  const cancelPendingSearch = () => {
+    window.clearTimeout(state.searchTimer);
+    state.searchTimer = null;
+    state.requestId += 1;
+  };
+
+  const showManualFallback = (message) => {
+    state.sessionToken = null;
+    clearResults();
+    searchStatus.textContent = message;
+  };
+
+  const previousGoogleAuthFailure = window.gm_authFailure;
+  window.gm_authFailure = () => {
+    state.mapsAuthFailed = true;
+    cancelPendingSearch();
+    showManualFallback("La ricerca Google non è disponibile. Puoi proseguire inserendo il nome manualmente.");
+    if (typeof previousGoogleAuthFailure === "function") previousGoogleAuthFailure();
+  };
+
   const resetLocationFallback = () => {
     locationField.hidden = true;
     hideLocationButton.hidden = true;
@@ -83,11 +103,13 @@
   const loadMaps = () => {
     if (state.mapsPromise) return state.mapsPromise;
 
+    if (state.mapsAuthFailed) {
+      return Promise.reject(new Error("maps-auth-error"));
+    }
+
     const apiKey = getMapsApiKey();
     if (!apiKey) {
-      state.mapsPromise = Promise.reject(new Error("missing-api-key"));
-      state.mapsPromise.catch(() => {});
-      return state.mapsPromise;
+      return Promise.reject(new Error("missing-api-key"));
     }
 
     state.mapsPromise = new Promise((resolve, reject) => {
@@ -101,15 +123,36 @@
       }
 
       const callbackName = `hsAgencyMapsReady${Date.now()}`;
-      const script = document.createElement("script");
       const source = new URL("https://maps.googleapis.com/maps/api/js");
+      const existingScript = Array.from(document.scripts).find((candidate) =>
+        candidate.src.startsWith(source.origin + source.pathname)
+      );
+      const script = existingScript || document.createElement("script");
       let settled = false;
+      let readinessTimer = null;
 
       const finish = (callback, value) => {
         if (settled) return;
         settled = true;
         window.clearTimeout(timeoutId);
+        window.clearInterval(readinessTimer);
+        script.removeEventListener("load", handleExistingScriptLoad);
+        script.removeEventListener("error", handleScriptError);
         callback(value);
+      };
+
+      const resolveWhenReady = () => {
+        if (state.mapsAuthFailed) {
+          finish(reject, new Error("maps-auth-error"));
+        } else if (window.google?.maps?.importLibrary) {
+          finish(resolve, window.google.maps);
+        }
+      };
+
+      const handleExistingScriptLoad = () => resolveWhenReady();
+      const handleScriptError = () => {
+        delete window[callbackName];
+        finish(reject, new Error("maps-load-error"));
       };
 
       const timeoutId = window.setTimeout(() => {
@@ -122,22 +165,26 @@
       source.searchParams.set("v", "weekly");
       source.searchParams.set("callback", callbackName);
 
-      window[callbackName] = () => {
-        delete window[callbackName];
-        if (state.mapsAuthFailed) {
-          finish(reject, new Error("maps-auth-error"));
-          return;
-        }
-        finish(resolve, window.google.maps);
-      };
+      if (existingScript) {
+        script.addEventListener("load", handleExistingScriptLoad, { once: true });
+        script.addEventListener("error", handleScriptError, { once: true });
+        readinessTimer = window.setInterval(resolveWhenReady, 50);
+      } else {
+        window[callbackName] = () => {
+          delete window[callbackName];
+          resolveWhenReady();
+        };
 
-      script.src = source.toString();
-      script.async = true;
-      script.onerror = () => {
-        delete window[callbackName];
-        finish(reject, new Error("maps-load-error"));
-      };
-      document.head.append(script);
+        script.src = source.toString();
+        script.async = true;
+        script.addEventListener("error", handleScriptError, { once: true });
+        document.head.append(script);
+      }
+    });
+
+    state.mapsPromise = state.mapsPromise.catch((error) => {
+      state.mapsPromise = null;
+      throw error;
     });
 
     return state.mapsPromise;
@@ -148,43 +195,63 @@
     const maps = await loadMaps();
     if (state.mapsAuthFailed) throw new Error("maps-auth-error");
     state.placesLibrary = await maps.importLibrary("places");
+
+    if (!state.placesLibrary.AutocompleteSuggestion || !state.placesLibrary.AutocompleteSessionToken) {
+      throw new Error("places-new-api-unavailable");
+    }
+
     return state.placesLibrary;
   };
 
-  const startSession = async () => {
-    const { AutocompleteSessionToken } = await getPlacesLibrary();
-    state.sessionToken = new AutocompleteSessionToken();
+  const predictionText = (value) => {
+    if (!value) return "";
+    return typeof value.toString === "function" ? value.toString().trim() : String(value).trim();
   };
 
-  const selectPlace = async (placePrediction) => {
-    searchStatus.textContent = "Selezione dell'attività…";
+  const getPredictionData = (prediction) => {
+    const fullText = predictionText(prediction.text);
+    const name = predictionText(prediction.mainText) || fullText;
+    const address = predictionText(prediction.secondaryText);
 
-    try {
-      const place = placePrediction.toPlace();
-      await place.fetchFields({ fields: ["id"] });
-      const selectedLabel = placePrediction.text.toString();
+    return {
+      id: String(prediction.placeId || "").trim(),
+      name,
+      address,
+      fullText
+    };
+  };
 
-      state.selectedPlace = {
-        id: place.id,
-        label: selectedLabel
-      };
+  const selectPlace = (placePrediction) => {
+    cancelPendingSearch();
+    const selected = getPredictionData(placePrediction);
 
-      businessSearch.dataset.placeSelected = "true";
-      businessSearch.value = selectedLabel;
-      manualBusinessName.value = selectedLabel;
-      searchStatus.textContent = `Attività selezionata: ${selectedLabel}`;
-      clearResults();
-      state.sessionToken = null;
-    } catch (error) {
+    if (!selected.id || !selected.name) {
       clearSelectedPlace();
-      searchStatus.textContent = "Non siamo riusciti a selezionare il risultato. Puoi inviare il nome manualmente.";
+      showManualFallback("Non siamo riusciti a selezionare il risultato. Puoi inviare il nome manualmente.");
+      return;
     }
+
+    state.selectedPlace = {
+      id: selected.id,
+      label: selected.name,
+      address: selected.address,
+      text: selected.fullText
+    };
+
+    businessSearch.dataset.placeSelected = "true";
+    businessSearch.value = selected.name;
+    manualBusinessName.value = selected.name;
+    searchStatus.textContent = selected.address
+      ? `Attività selezionata: ${selected.name} — ${selected.address}`
+      : `Attività selezionata: ${selected.name}`;
+    clearResults();
+    state.sessionToken = null;
   };
 
   const renderSuggestions = (suggestions) => {
     resultsList.replaceChildren();
 
-    const predictions = suggestions
+    const predictions = (suggestions || [])
       .map((suggestion) => suggestion.placePrediction)
       .filter(Boolean)
       .slice(0, 6);
@@ -195,15 +262,37 @@
       return;
     }
 
-    predictions.forEach((prediction) => {
+    predictions.forEach((prediction, index) => {
+      const predictionData = getPredictionData(prediction);
       const item = document.createElement("li");
-      item.setAttribute("role", "option");
+      item.setAttribute("role", "presentation");
 
       const button = document.createElement("button");
+      button.id = `business-result-${index}`;
       button.className = "autocomplete__option";
       button.type = "button";
-      button.textContent = prediction.text.toString();
+      button.setAttribute("role", "option");
+      button.setAttribute("aria-selected", "false");
+
+      const name = document.createElement("span");
+      name.className = "autocomplete__optionName";
+      name.textContent = predictionData.name;
+      button.appendChild(name);
+
+      if (predictionData.address) {
+        const address = document.createElement("span");
+        address.className = "autocomplete__optionAddress";
+        address.textContent = predictionData.address;
+        button.appendChild(address);
+      }
+
       button.addEventListener("click", () => selectPlace(prediction));
+      button.addEventListener("focus", () => {
+        resultsList.querySelectorAll(".autocomplete__option").forEach((option) => {
+          option.setAttribute("aria-selected", String(option === button));
+        });
+        businessSearch.setAttribute("aria-activedescendant", button.id);
+      });
 
       item.appendChild(button);
       resultsList.appendChild(item);
@@ -214,13 +303,12 @@
     searchStatus.textContent = `${predictions.length} risultati trovati.`;
   };
 
-  const searchBusinesses = async () => {
+  const searchBusinesses = async (currentRequestId) => {
     const name = businessSearch.value.trim();
     const location = businessLocation.value.trim();
     const query = [name, location].filter(Boolean).join(", ");
-    const currentRequestId = ++state.requestId;
 
-    if (name.length < 3) {
+    if (!name) {
       clearResults();
       searchStatus.textContent = "";
       state.sessionToken = null;
@@ -230,8 +318,9 @@
     searchStatus.textContent = "Ricerca dell'attività in corso…";
 
     try {
-      const { AutocompleteSuggestion } = await getPlacesLibrary();
-      if (!state.sessionToken) await startSession();
+      const { AutocompleteSuggestion, AutocompleteSessionToken } = await getPlacesLibrary();
+      if (currentRequestId !== state.requestId) return;
+      if (!state.sessionToken) state.sessionToken = new AutocompleteSessionToken();
 
       const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: query,
@@ -245,22 +334,25 @@
       renderSuggestions(suggestions);
     } catch (error) {
       if (currentRequestId !== state.requestId) return;
-      clearResults();
+      console.warn("Google Places search unavailable:", error);
       if (error.message === "missing-api-key") {
-        searchStatus.textContent = "La ricerca Google non è configurata. Puoi inviare il nome manualmente.";
+        showManualFallback("La ricerca Google non è configurata. Puoi proseguire inserendo il nome manualmente.");
       } else if (error.message === "maps-auth-error") {
-        searchStatus.textContent = "La ricerca Google non è autorizzata per questa pagina. Puoi inviare il nome manualmente.";
+        showManualFallback("La ricerca Google non è autorizzata per questa pagina. Puoi proseguire inserendo il nome manualmente.");
       } else if (error.message === "maps-load-error" || error.message === "maps-load-timeout") {
-        searchStatus.textContent = "La ricerca Google non è disponibile in questo momento. Puoi inviare il nome manualmente.";
+        showManualFallback("La ricerca Google non è disponibile in questo momento. Puoi proseguire inserendo il nome manualmente.");
+      } else if (error.message === "places-new-api-unavailable") {
+        showManualFallback("La ricerca Google non è disponibile. Puoi proseguire inserendo il nome manualmente.");
       } else {
-        searchStatus.textContent = "Non siamo riusciti a completare la ricerca. Puoi inviare il nome manualmente.";
+        showManualFallback("Non siamo riusciti a completare la ricerca. Puoi proseguire inserendo il nome manualmente.");
       }
     }
   };
 
   const scheduleSearch = () => {
     window.clearTimeout(state.searchTimer);
-    state.searchTimer = window.setTimeout(searchBusinesses, 350);
+    const currentRequestId = ++state.requestId;
+    state.searchTimer = window.setTimeout(() => searchBusinesses(currentRequestId), searchDebounceMs);
   };
 
   const setMode = (mode) => {
@@ -281,12 +373,13 @@
     if (isManual) {
       manualBusinessName.value = manualBusinessName.value || businessSearch.value;
       state.sessionToken = null;
+      cancelPendingSearch();
       clearResults();
       manualBusinessName.focus();
     } else {
       businessSearch.value = businessSearch.value || manualBusinessName.value;
       businessSearch.focus();
-      if (businessSearch.value.trim().length >= 3) scheduleSearch();
+      if (businessSearch.value.trim()) scheduleSearch();
     }
   };
 
@@ -302,11 +395,60 @@
       return;
     }
 
-    if (event.key === "ArrowDown" && !resultsPanel.hidden) {
-      const firstOption = resultsList.querySelector("button");
-      if (firstOption) {
+    const options = Array.from(resultsList.querySelectorAll(".autocomplete__option"));
+
+    if ((event.key === "ArrowDown" || event.key === "ArrowUp") && options.length) {
+      if (resultsPanel.hidden) {
+        resultsPanel.hidden = false;
+        businessSearch.setAttribute("aria-expanded", "true");
+      }
+
+      const option = event.key === "ArrowDown" ? options[0] : options[options.length - 1];
+      if (option) {
         event.preventDefault();
-        firstOption.focus();
+        option.focus();
+      }
+      return;
+    }
+
+    if (event.key === "Enter" && !resultsPanel.hidden && options.length) {
+      event.preventDefault();
+      options[0].click();
+    }
+  });
+
+  resultsList.addEventListener("keydown", (event) => {
+    if (!(event.target instanceof HTMLButtonElement)) return;
+
+    const options = Array.from(resultsList.querySelectorAll(".autocomplete__option"));
+    const currentIndex = options.indexOf(event.target);
+    if (currentIndex < 0) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeResults();
+      businessSearch.focus();
+      return;
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.target.click();
+      return;
+    }
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      options[(currentIndex + 1) % options.length].focus();
+      return;
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      if (currentIndex === 0) {
+        businessSearch.focus();
+      } else {
+        options[currentIndex - 1].focus();
       }
     }
   });
@@ -326,13 +468,13 @@
     showLocationButton.hidden = true;
     hideLocationButton.hidden = false;
     businessLocation.focus();
-    if (businessSearch.value.trim().length >= 3) scheduleSearch();
+    if (businessSearch.value.trim()) scheduleSearch();
   });
 
   hideLocationButton.addEventListener("click", () => {
     resetLocationFallback();
     businessSearch.focus();
-    if (businessSearch.value.trim().length >= 3) scheduleSearch();
+    if (businessSearch.value.trim()) scheduleSearch();
   });
 
   document.getElementById("show-manual-path").addEventListener("click", () => setMode("manual"));
@@ -356,11 +498,12 @@
     const sector = businessSector.value.trim();
     const whatsapp = document.getElementById("phone").value.trim();
 
-    const hasGbpLink = Boolean(state.selectedPlace?.id);
-    const hasManualInfo = isManual && Boolean(sector) && Boolean(companyName);
+    const hasBusinessInfo = isManual
+      ? Boolean(companyName) && Boolean(sector)
+      : Boolean(companyName);
 
-    if (!whatsapp || (!hasGbpLink && !hasManualInfo)) {
-      formStatus.textContent = "Inserisci WhatsApp e almeno l'attività trovata su Google oppure settore e nome attività.";
+    if (!whatsapp || !hasBusinessInfo) {
+      formStatus.textContent = "Inserisci WhatsApp e il nome dell'attività. Nel percorso senza Profilo Google inserisci anche il settore.";
       formStatus.style.color = "var(--red-text)";
       return;
     }

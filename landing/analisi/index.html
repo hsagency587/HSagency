@@ -34,8 +34,8 @@
   </script>
 
   <script src="./runtime-config.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <script src="./landing.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 </head>
 
 <body class="analysis-page">
@@ -62,7 +62,7 @@
     <section class="analysis-hero" aria-labelledby="analysis-title">
       <div class="container analysis-hero__grid">
         <div class="analysis-hero__copy">
-          <h1 id="analysis-title">Il <span class="analysis-hero__desktopWord">tuo </span><span class="serif-italic">prossimo passo</span> per venir trovato su Google</h1>
+          <h1 id="analysis-title"><span class="analysis-hero__mobileLine">Il <span class="analysis-hero__desktopWord">tuo </span><span class="serif-italic">prossimo passo</span></span> <span class="analysis-hero__mobileLine">per venir trovato</span> <span class="analysis-hero__mobileLine">su Google</span></h1>
           <p>Analizzeremo gratuitamente la presenza online della tua attività e ti indicheremo azioni concrete da cui partire, senza impegno.</p>
         </div>
 
@@ -98,7 +98,9 @@
                     placeholder="Cerca la tua attività su Google"
                     role="combobox"
                     aria-autocomplete="list"
+                    aria-haspopup="listbox"
                     aria-controls="business-results"
+                    aria-describedby="search-status"
                     aria-expanded="false"
                     required
                   >

@@ -45,26 +45,29 @@ body.analysis-page {
 .analysis-microRow {
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
   margin-bottom: 26px;
 }
 
 .analysis-micro {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 7px;
   color: #bf8c12;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: .12em;
+  letter-spacing: .02em;
   line-height: 1.2;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .analysis-micro__icon {
   display: inline-block;
   color: var(--yellow);
-  font-size: 30px;
+  font-size: 48px;
   font-weight: 800;
   line-height: 1;
   filter: drop-shadow(0 7px 12px rgba(0, 0, 0, .12));
@@ -75,8 +78,8 @@ body.analysis-page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 48px;
+  height: 48px;
 }
 
 .analysis-micro__icon--lock svg {
@@ -290,14 +293,32 @@ body.analysis-page {
   font-weight: 600;
   line-height: 1.4;
   text-align: left;
+  touch-action: manipulation;
   cursor: pointer;
 }
 
 .autocomplete__option:hover,
-.autocomplete__option:focus-visible {
+.autocomplete__option:focus-visible,
+.autocomplete__option[aria-selected="true"] {
   color: #111;
   background: rgba(0, 0, 0, .045);
   outline: none;
+}
+
+.autocomplete__optionName,
+.autocomplete__optionAddress {
+  display: block;
+}
+
+.autocomplete__optionName {
+  color: inherit;
+}
+
+.autocomplete__optionAddress {
+  margin-top: 2px;
+  color: rgba(0, 0, 0, .54);
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .autocomplete__attribution {
@@ -417,7 +438,7 @@ body.analysis-page {
   }
 
   .analysis-microRow {
-    justify-content: center;
+    justify-content: space-between;
   }
 }
 
@@ -432,8 +453,13 @@ body.analysis-page {
   }
 
   .analysis-hero__copy h1 {
-    font-size: clamp(36px, 10.8vw, 46px);
+    font-size: clamp(32px, 10.8vw, 46px);
     line-height: 1;
+  }
+
+  .analysis-hero__mobileLine {
+    display: block;
+    white-space: nowrap;
   }
 
   .analysis-hero__copy {
@@ -455,27 +481,24 @@ body.analysis-page {
   }
 
   .analysis-microRow {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
+    display: flex;
+    gap: clamp(6px, 1.8vw, 12px);
     margin-bottom: 22px;
   }
 
   .analysis-micro {
-    width: 100%;
-    justify-content: center;
-    gap: 7px;
-    font-size: clamp(9px, 3.4vw, 12px);
-    white-space: nowrap;
+    gap: clamp(5px, 1.8vw, 7px);
+    font-size: clamp(16px, 5.13vw, 20px);
+    letter-spacing: 0;
   }
 
   .analysis-micro__icon {
-    font-size: clamp(18px, 6.5vw, 27px);
+    font-size: clamp(38px, 12.3vw, 48px);
   }
 
   .analysis-micro__icon--lock {
-    width: clamp(18px, 6.5vw, 27px);
-    height: clamp(18px, 6.5vw, 27px);
+    width: clamp(38px, 12.3vw, 48px);
+    height: clamp(38px, 12.3vw, 48px);
   }
 
   .analysis-form {
