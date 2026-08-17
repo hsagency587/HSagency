@@ -88,7 +88,7 @@
               <legend><span class="analysis-legend">La tua attività<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
 
               <div id="google-profile-path" class="activity-path">
-                <div class="analysis-field analysis-field--full autocomplete">
+                <div id="business-autocomplete" class="analysis-field analysis-field--full autocomplete">
                   <label class="visually-hidden" for="business-search">Nome dell'attività</label>
                   <input
                     id="business-search"
@@ -114,7 +114,24 @@
 
                 <div id="location-field" class="analysis-field analysis-field--full" hidden>
                   <label class="visually-hidden" for="business-location">Posizione</label>
-                  <input id="business-location" name="business_location" type="text" autocomplete="address-level2" placeholder="Posizione">
+                  <div id="location-autocomplete" class="autocomplete">
+                    <input
+                      id="business-location"
+                      name="business_location"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Posizione"
+                      role="combobox"
+                      aria-autocomplete="list"
+                      aria-haspopup="listbox"
+                      aria-controls="location-results"
+                      aria-expanded="false"
+                    >
+                    <div id="location-results-panel" class="autocomplete__panel" hidden>
+                      <ul id="location-results" class="autocomplete__results" role="listbox"></ul>
+                      <img class="autocomplete__attribution" src="https://storage.googleapis.com/geo-devrel-public-buckets/powered_by_google_on_white.png" alt="Powered by Google">
+                    </div>
+                  </div>
                   <button id="hide-location" class="activity-link activity-link--return" type="button" hidden>Torna alla ricerca</button>
                 </div>
 

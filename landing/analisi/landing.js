@@ -15,6 +15,10 @@
   const businessSector = document.getElementById("business-sector");
   const resultsPanel = document.getElementById("business-results-panel");
   const resultsList = document.getElementById("business-results");
+  const businessAutocomplete = document.getElementById("business-autocomplete");
+  const locationAutocomplete = document.getElementById("location-autocomplete");
+  const locationResultsPanel = document.getElementById("location-results-panel");
+  const locationResultsList = document.getElementById("location-results");
   const searchStatus = document.getElementById("search-status");
   const formStatus = document.getElementById("form-status");
   const submitButton = form.querySelector(".analysis-submit");
@@ -28,7 +32,10 @@
     mapsPromise: null,
     mapsAuthFailed: false,
     searchTimer: null,
-    requestId: 0
+    requestId: 0,
+    locationSessionToken: null,
+    locationSearchTimer: null,
+    locationRequestId: 0
   };
 
   const getMapsApiKey = () => {
@@ -98,6 +105,8 @@
     hideLocationButton.hidden = true;
     showLocationButton.hidden = false;
     businessLocation.value = "";
+    cancelPendingCitySearch();
+    clearLocationResults();
   };
 
   const loadMaps = () => {
@@ -324,6 +333,7 @@
 
       const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: query,
+        includedPrimaryTypes: ["establishment"],
         includedRegionCodes: ["it"],
         language: "it-IT",
         region: "it",
@@ -353,6 +363,129 @@
     window.clearTimeout(state.searchTimer);
     const currentRequestId = ++state.requestId;
     state.searchTimer = window.setTimeout(() => searchBusinesses(currentRequestId), searchDebounceMs);
+  };
+
+  const closeLocationResults = () => {
+    locationResultsPanel.hidden = true;
+    businessLocation.setAttribute("aria-expanded", "false");
+    businessLocation.removeAttribute("aria-activedescendant");
+
+    locationResultsList.querySelectorAll(".autocomplete__option").forEach((option) => {
+      option.setAttribute("aria-selected", "false");
+    });
+  };
+
+  const clearLocationResults = () => {
+    locationResultsList.replaceChildren();
+    closeLocationResults();
+  };
+
+  const cancelPendingCitySearch = () => {
+    window.clearTimeout(state.locationSearchTimer);
+    state.locationSearchTimer = null;
+    state.locationRequestId += 1;
+  };
+
+  const selectCity = (cityPrediction) => {
+    cancelPendingCitySearch();
+    const selected = getPredictionData(cityPrediction);
+    businessLocation.value = selected.fullText || selected.name;
+    clearLocationResults();
+    state.locationSessionToken = null;
+    clearSelectedPlace();
+    scheduleSearch();
+  };
+
+  const renderCitySuggestions = (suggestions) => {
+    locationResultsList.replaceChildren();
+
+    const predictions = (suggestions || [])
+      .map((suggestion) => suggestion.placePrediction)
+      .filter(Boolean)
+      .slice(0, 6);
+
+    if (!predictions.length) {
+      closeLocationResults();
+      return;
+    }
+
+    predictions.forEach((prediction, index) => {
+      const predictionData = getPredictionData(prediction);
+      const item = document.createElement("li");
+      item.setAttribute("role", "presentation");
+
+      const button = document.createElement("button");
+      button.id = `location-result-${index}`;
+      button.className = "autocomplete__option";
+      button.type = "button";
+      button.setAttribute("role", "option");
+      button.setAttribute("aria-selected", "false");
+
+      const name = document.createElement("span");
+      name.className = "autocomplete__optionName";
+      name.textContent = predictionData.name;
+      button.appendChild(name);
+
+      if (predictionData.address) {
+        const address = document.createElement("span");
+        address.className = "autocomplete__optionAddress";
+        address.textContent = predictionData.address;
+        button.appendChild(address);
+      }
+
+      button.addEventListener("click", () => selectCity(prediction));
+      button.addEventListener("focus", () => {
+        locationResultsList.querySelectorAll(".autocomplete__option").forEach((option) => {
+          option.setAttribute("aria-selected", String(option === button));
+        });
+        businessLocation.setAttribute("aria-activedescendant", button.id);
+      });
+
+      item.appendChild(button);
+      locationResultsList.appendChild(item);
+    });
+
+    locationResultsPanel.hidden = false;
+    businessLocation.setAttribute("aria-expanded", "true");
+  };
+
+  const searchCities = async (currentRequestId) => {
+    const city = businessLocation.value.trim();
+
+    if (!city) {
+      clearLocationResults();
+      state.locationSessionToken = null;
+      return;
+    }
+
+    try {
+      const { AutocompleteSuggestion, AutocompleteSessionToken } = await getPlacesLibrary();
+      if (currentRequestId !== state.locationRequestId) return;
+      if (!state.locationSessionToken) state.locationSessionToken = new AutocompleteSessionToken();
+
+      const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+        input: city,
+        includedPrimaryTypes: ["(cities)"],
+        includedRegionCodes: ["it"],
+        language: "it-IT",
+        region: "it",
+        sessionToken: state.locationSessionToken
+      });
+
+      if (currentRequestId !== state.locationRequestId) return;
+      renderCitySuggestions(suggestions);
+    } catch (error) {
+      if (currentRequestId !== state.locationRequestId) return;
+      console.warn("Google city search unavailable:", error);
+      clearLocationResults();
+      state.locationSessionToken = null;
+    }
+  };
+
+  const scheduleCitySearch = () => {
+    window.clearTimeout(state.locationSearchTimer);
+    const currentRequestId = ++state.locationRequestId;
+    state.locationSearchTimer = window.setTimeout(() => searchCities(currentRequestId), searchDebounceMs);
   };
 
   const setMode = (mode) => {
@@ -456,6 +589,71 @@
   businessLocation.addEventListener("input", () => {
     clearSelectedPlace();
     scheduleSearch();
+    scheduleCitySearch();
+  });
+
+  businessLocation.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLocationResults();
+      return;
+    }
+
+    const options = Array.from(locationResultsList.querySelectorAll(".autocomplete__option"));
+
+    if ((event.key === "ArrowDown" || event.key === "ArrowUp") && options.length) {
+      if (locationResultsPanel.hidden) {
+        locationResultsPanel.hidden = false;
+        businessLocation.setAttribute("aria-expanded", "true");
+      }
+
+      const option = event.key === "ArrowDown" ? options[0] : options[options.length - 1];
+      if (option) {
+        event.preventDefault();
+        option.focus();
+      }
+      return;
+    }
+
+    if (event.key === "Enter" && !locationResultsPanel.hidden && options.length) {
+      event.preventDefault();
+      options[0].click();
+    }
+  });
+
+  locationResultsList.addEventListener("keydown", (event) => {
+    if (!(event.target instanceof HTMLButtonElement)) return;
+
+    const options = Array.from(locationResultsList.querySelectorAll(".autocomplete__option"));
+    const currentIndex = options.indexOf(event.target);
+    if (currentIndex < 0) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeLocationResults();
+      businessLocation.focus();
+      return;
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.target.click();
+      return;
+    }
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      options[(currentIndex + 1) % options.length].focus();
+      return;
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      if (currentIndex === 0) {
+        businessLocation.focus();
+      } else {
+        options[currentIndex - 1].focus();
+      }
+    }
   });
 
   manualBusinessName.addEventListener("input", () => {
@@ -481,7 +679,9 @@
   document.getElementById("show-google-path").addEventListener("click", () => setMode("google"));
 
   document.addEventListener("click", (event) => {
-    if (event.target instanceof Element && !event.target.closest(".autocomplete")) closeResults();
+    if (!(event.target instanceof Element)) return;
+    if (!businessAutocomplete.contains(event.target)) closeResults();
+    if (!locationAutocomplete.contains(event.target)) closeLocationResults();
   });
 
   form.addEventListener("submit", async (event) => {
