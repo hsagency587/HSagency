@@ -23,6 +23,7 @@
   --green: #2db24a;
   --green2: #1d8f35;
   --red: #e04848;
+  --red-text: #c62e2e; /* variante scurita di --red, per testo su sfondo chiaro: contrasto AA (~4.7:1 su --bg) */
   --yellow: #f5c144;
   --blue: #2b6cff;
 
@@ -1352,6 +1353,12 @@ a{ color:inherit; text-decoration:none; }
 }
 
 @media (max-width: 640px){
+  .hero__title,
+  .hero__bold,
+  .hero__muted{
+    text-align: center;
+  }
+
   .nav{
     width: min(var(--container), calc(100% - 28px));
   }

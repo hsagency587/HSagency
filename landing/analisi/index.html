@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BEST Agenzia Local SEO Milano | Analisi gratuita della presenza online | HS Agency</title>
+  <meta name="description" content="Analizzeremo gratuitamente la presenza online della tua attività e ti indicheremo azioni concrete da cui partire, senza impegno.">
+  <meta name="robots" content="noindex,nofollow">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="./landing.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "HS Agency",
+    "url": "https://hsagency-seo.com/landing/analisi/",
+    "email": "seo.hsagency@gmail.com",
+    "telephone": "+39 353 476 9196",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Italia"
+    },
+    "serviceType": [
+      "Local SEO",
+      "Analisi della presenza online"
+    ]
+  }
+  </script>
+
+  <script src="./runtime-config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <script src="./landing.js" defer></script>
+</head>
+
+<body class="analysis-page">
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Navigazione principale">
+      <div class="nav__left">
+        <a class="brand" href="/index.html" aria-label="HS Agency - Home">
+          <img class="brand__logo" src="/img/logo-header.png" alt="HS Agency">
+        </a>
+      </div>
+
+      <div class="nav__center" id="primary-navigation"></div>
+
+      <div class="nav__right">
+        <a class="nav__phone" href="tel:+393534769196">
+          <span class="nav__phoneFull">+39 353 476 9196</span>
+          <span class="nav__phoneShort">Chiama</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="analysis-hero" aria-labelledby="analysis-title">
+      <div class="container analysis-hero__grid">
+        <div class="analysis-hero__copy">
+          <h1 id="analysis-title">Il tuo <span class="serif-italic">prossimo passo</span> per venir trovato su Google</h1>
+          <p>Analizzeremo gratuitamente la presenza online della tua attività e ti indicheremo azioni concrete da cui partire, senza impegno.</p>
+        </div>
+
+        <div class="analysis-hero__formColumn">
+          <div class="analysis-microRow" aria-label="Compilazione rapida e senza impegno">
+            <span class="analysis-micro">
+              <span class="analysis-micro__icon" aria-hidden="true">⚡</span>
+              <span>3 minuti</span>
+            </span>
+            <span class="analysis-micro">
+              <span class="analysis-micro__icon analysis-micro__icon--lock" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <path d="M8 10.5V7a5 5 0 0 1 9.9-1" fill="none" stroke="#9a9a9a" stroke-width="2.4" stroke-linecap="round"/>
+                  <rect x="4" y="10.5" width="14" height="10.5" rx="2.5" fill="currentColor"/>
+                </svg>
+              </span>
+              <span>Senza impegno</span>
+            </span>
+          </div>
+
+          <form id="analysis-form" class="analysis-form">
+            <fieldset class="analysis-fieldset">
+              <legend><span class="analysis-legend">La tua attività<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
+
+              <div id="google-profile-path" class="activity-path">
+                <div class="analysis-field analysis-field--full autocomplete">
+                  <label class="visually-hidden" for="business-search">Nome dell'attività</label>
+                  <input
+                    id="business-search"
+                    name="business_name"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Cerca la tua attività su Google"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-controls="business-results"
+                    aria-expanded="false"
+                    required
+                  >
+                  <div id="business-results-panel" class="autocomplete__panel" hidden>
+                    <ul id="business-results" class="autocomplete__results" role="listbox"></ul>
+                    <img class="autocomplete__attribution" src="https://storage.googleapis.com/geo-devrel-public-buckets/powered_by_google_on_white.png" alt="Powered by Google">
+                  </div>
+                </div>
+
+                <p id="search-status" class="activity-status" aria-live="polite"></p>
+
+                <div id="location-field" class="analysis-field analysis-field--full" hidden>
+                  <label class="visually-hidden" for="business-location">Posizione</label>
+                  <input id="business-location" name="business_location" type="text" autocomplete="address-level2" placeholder="Posizione">
+                  <button id="hide-location" class="activity-link activity-link--return" type="button" hidden>Torna alla ricerca</button>
+                </div>
+
+                <div class="activity-options">
+                  <button id="show-location" class="activity-link" type="button">Non trovi la tua attività?</button>
+                  <button id="show-manual-path" class="activity-link" type="button">Non ho un Profilo Google</button>
+                </div>
+              </div>
+
+              <div id="manual-business-path" class="activity-path" hidden>
+                <div class="analysis-fields">
+                  <div class="analysis-field">
+                    <label class="visually-hidden" for="manual-business-name">Nome attività</label>
+                    <input id="manual-business-name" name="manual_business_name" type="text" autocomplete="organization" placeholder="Nome attività">
+                  </div>
+                  <div class="analysis-field">
+                    <label class="visually-hidden" for="business-sector">Settore</label>
+                    <input id="business-sector" name="business_sector" type="text" placeholder="Settore">
+                  </div>
+                </div>
+                <button id="show-google-path" class="activity-link activity-link--return" type="button">Torna alla ricerca</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="analysis-fieldset">
+              <legend><span class="analysis-legend">Contatti<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
+              <div class="analysis-fields">
+                <div class="analysis-field">
+                  <label class="visually-hidden" for="phone">Contatto WhatsApp</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Contatto WhatsApp" required>
+                </div>
+                <div class="analysis-field">
+                  <label class="visually-hidden" for="first-name">Nome · opzionale</label>
+                  <input id="first-name" name="first_name" type="text" autocomplete="given-name" placeholder="Nome · opzionale">
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="analysis-privacy">
+              <p class="analysis-disclaimer">Le informazioni non saranno utilizzate per scopi di spam. Verranno usate esclusivamente per il contatto relativo alla tua richiesta. Puoi chiedere in qualsiasi momento di non ricevere ulteriori comunicazioni.</p>
+            </div>
+
+            <button class="analysis-submit" type="submit">
+              <span>Richiedi l'analisi</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <p id="form-status" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="footer__brandLink" href="/index.html" aria-label="HS Agency - Home">HS Agency</a>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__head">Contatti</h2>
+        <address class="footer__address">
+          <a href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
+          <a href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="tel:+393534769196">+39 353 476 9196</a>
+        </address>
+      </div>
+
+      <nav class="footer__col" aria-label="Informazioni legali">
+        <h2 class="footer__head">Legale</h2>
+        <ul class="footer__list">
+          <li><a href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2026 HS Agency. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+</body>
+</html>
