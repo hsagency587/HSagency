@@ -1,0 +1,10 @@
+name = "hsagency-capi-lead"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Variabili non sensibili possono stare qui in chiaro.
+# META_PIXEL_ID e META_CAPI_TOKEN vanno impostati come SECRET (mai committati):
+#   wrangler secret put META_PIXEL_ID
+#   wrangler secret put META_CAPI_TOKEN
+[vars]
+ALLOWED_ORIGIN = "https://hsagency-seo.com"

@@ -12,6 +12,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/consent.css">
   <link rel="stylesheet" href="./landing.css">
 
   <script type="application/ld+json">
@@ -34,17 +35,31 @@
   </script>
 
   <script src="./runtime-config.js" defer></script>
+  <script src="/js/consent.js" defer></script>
   <script src="./landing.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      var pixelId = window.HS_AGENCY_ANALYSIS_CONFIG && window.HS_AGENCY_ANALYSIS_CONFIG.metaPixelId;
+      var waitForConsent = function () {
+        if (window.HSConsent) {
+          window.HSConsent.onGrant(function () { window.loadMetaPixel(pixelId); });
+        } else {
+          setTimeout(waitForConsent, 50);
+        }
+      };
+      waitForConsent();
+    });
+  </script>
 </head>
 
 <body class="analysis-page">
   <header class="site-header" id="top">
     <nav class="nav" aria-label="Navigazione principale">
       <div class="nav__left">
-        <a class="brand" href="/index.html" aria-label="HS Agency - Home">
+        <span class="brand">
           <img class="brand__logo" src="/img/logo-header.png" alt="HS Agency">
-        </a>
+        </span>
       </div>
 
       <div class="nav__center" id="primary-navigation"></div>
@@ -188,21 +203,24 @@
   <footer class="footer">
     <div class="container footer__grid">
       <div class="footer__brand">
-        <a class="footer__brandLink" href="/index.html" aria-label="HS Agency - Home">HS Agency</a>
+        <span class="brand">
+          <img class="footer__logo" src="/img/logo-header.png" alt="HS Agency">
+        </span>
+        <p class="footer__description">Domina il tuo mercato locale</p>
       </div>
 
-      <div class="footer__col">
+      <nav class="footer__col" aria-label="Contatti">
         <h2 class="footer__head">Contatti</h2>
-        <address class="footer__address">
-          <a href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
-          <a href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="tel:+393534769196">+39 353 476 9196</a>
-        </address>
-      </div>
-
-      <nav class="footer__col" aria-label="Informazioni legali">
-        <h2 class="footer__head">Legale</h2>
         <ul class="footer__list">
+          <li><a href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a></li>
+          <li><a href="tel:+393534769196">+39 353 476 9196</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__col" aria-label="Link utili">
+        <h2 class="footer__head">Link utili</h2>
+        <ul class="footer__list">
+          <li><a href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a></li>
         </ul>
       </nav>

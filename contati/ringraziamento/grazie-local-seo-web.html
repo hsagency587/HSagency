@@ -11,32 +11,39 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="stylesheet" href="/css/secondary-pages.css" />
+  <link rel="stylesheet" href="/css/consent.css" />
   <script src="/js/navigation.js" defer></script>
-  <!-- Meta Pixel Code -->
+  <script src="/js/consent.js" defer></script>
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2437661746700984');
-  fbq('track', 'PageView');
-  try {
-    if (sessionStorage.getItem('hsagencyLead') === 'pending') {
-      sessionStorage.removeItem('hsagencyLead');
-      fbq('track', 'Lead');
-    }
-  } catch (error) {
-    // PageView resta attivo anche quando lo storage non è disponibile.
-  }
+    // Pixel Meta caricato solo dopo consenso (vedi js/consent.js). Se l'utente arriva qui
+    // avendo appena inviato il form sulla landing, sessionStorage contiene l'event_id
+    // generato in quel momento: lo riusiamo per Lead così Meta deduplica Pixel + CAPI.
+    window.addEventListener("DOMContentLoaded", () => {
+      const waitForConsent = () => {
+        if (!window.HSConsent) {
+          setTimeout(waitForConsent, 50);
+          return;
+        }
+        window.HSConsent.onGrant(() => {
+          window.loadMetaPixel("2437661746700984");
+
+          try {
+            const raw = sessionStorage.getItem("hsagencyLead");
+            if (raw) {
+              sessionStorage.removeItem("hsagencyLead");
+              const { eventId } = JSON.parse(raw);
+              if (eventId) {
+                fbq("track", "Lead", { content_name: "analisi-gratuita" }, { eventID: eventId });
+              }
+            }
+          } catch (error) {
+            // Se il parsing fallisce restiamo comunque con il solo PageView.
+          }
+        });
+      };
+      waitForConsent();
+    });
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2437661746700984&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
 </head>
 <body class="secondary">
   <header class="site-header" id="top">

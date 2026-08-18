@@ -45,7 +45,51 @@
   };
 
   const emailjsConfig = window.HS_AGENCY_ANALYSIS_CONFIG?.emailjs || {};
+  const capiEndpoint = window.HS_AGENCY_ANALYSIS_CONFIG?.capiEndpoint || "";
   let emailjsInitialized = false;
+
+  const readCookie = (name) => {
+    const match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+    return match ? decodeURIComponent(match[1]) : "";
+  };
+
+  const withTimeout = (promise, ms) =>
+    Promise.race([
+      promise,
+      new Promise((resolve) => window.setTimeout(resolve, ms))
+    ]);
+
+  // Manda il Lead alla Conversions API (server-side), in parallelo al Pixel che scatterà
+  // sulla thank-you page. Usa lo STESSO event_id passato poi a fbq('track','Lead', ..., {eventID})
+  // così Meta può deduplicare i due eventi. Fallisce silenziosamente: il Pixel resta il fallback.
+  const sendCapiLead = async (eventId, { whatsapp, sourceUrl }) => {
+    if (!capiEndpoint || !window.HSConsent?.hasConsent()) return;
+
+    const params = new URLSearchParams(window.location.search);
+
+    try {
+      await withTimeout(
+        fetch(capiEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify({
+            eventId,
+            eventSourceUrl: sourceUrl,
+            phone: whatsapp,
+            fbp: readCookie("_fbp"),
+            fbc: readCookie("_fbc"),
+            fbclid: params.get("fbclid") || ""
+          })
+        }).catch((error) => {
+          console.warn("CAPI lead invio fallito (non bloccante):", error);
+        }),
+        800
+      );
+    } catch (error) {
+      console.warn("CAPI lead invio fallito (non bloccante):", error);
+    }
+  };
 
   const ensureEmailjsInitialized = () => {
     if (emailjsInitialized) return;
@@ -727,11 +771,16 @@
       ensureEmailjsInitialized();
       await window.emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams);
 
+      const eventId = crypto.randomUUID();
+
       try {
-        sessionStorage.setItem("hsagencyLead", "pending");
+        sessionStorage.setItem("hsagencyLead", JSON.stringify({ eventId }));
       } catch (error) {
         // Il redirect deve continuare anche se lo storage non è disponibile.
       }
+
+      // Best-effort, non blocca il redirect oltre il timeout interno (800ms).
+      await sendCapiLead(eventId, { whatsapp, sourceUrl: window.location.href });
 
       window.location.assign("/contati/ringraziamento/grazie-local-seo-web.html");
     } catch (error) {
