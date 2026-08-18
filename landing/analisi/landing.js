@@ -708,7 +708,9 @@
     showLocationButton.hidden = true;
     hideLocationButton.hidden = false;
     businessLocation.focus();
-    if (businessSearch.value.trim()) scheduleSearch();
+    cancelPendingSearch();
+    closeResults();
+    businessLocation.focus();
   });
 
   hideLocationButton.addEventListener("click", () => {
