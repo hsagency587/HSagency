@@ -482,23 +482,23 @@ body.analysis-page {
 
   .analysis-microRow {
     display: flex;
-    gap: clamp(6px, 1.8vw, 12px);
+    gap: clamp(8px, 2.4vw, 14px);
     margin-bottom: 22px;
   }
 
   .analysis-micro {
-    gap: clamp(5px, 1.8vw, 7px);
-    font-size: clamp(16px, 5.13vw, 20px);
+    gap: clamp(4px, 1.2vw, 6px);
+    font-size: clamp(11px, 3.4vw, 14px);
     letter-spacing: 0;
   }
 
   .analysis-micro__icon {
-    font-size: clamp(38px, 12.3vw, 48px);
+    font-size: clamp(18px, 5.6vw, 24px);
   }
 
   .analysis-micro__icon--lock {
-    width: clamp(38px, 12.3vw, 48px);
-    height: clamp(38px, 12.3vw, 48px);
+    width: clamp(18px, 5.6vw, 24px);
+    height: clamp(18px, 5.6vw, 24px);
   }
 
   .analysis-form {
