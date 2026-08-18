@@ -71,9 +71,9 @@
     el.setAttribute("aria-live", "polite");
     el.innerHTML = `
       <p class="hs-consent__text">
-        Usiamo cookie tecnici e, solo con il tuo consenso, strumenti di misurazione e marketing
-        (es. Meta Pixel) per capire come funzionano le nostre campagne.
-        <a href="https://www.iubenda.com/privacy-policy/60892143" target="_blank" rel="noopener">Leggi la privacy policy</a>.
+        Questo sito utilizza cookie tecnici e, previo consenso, cookie di profilazione (anche di terze
+        parti) per finalità statistiche e di marketing.
+        <a href="https://www.iubenda.com/privacy-policy/60892143" target="_blank" rel="noopener">Consulta la Cookie Policy</a>.
       </p>
       <div class="hs-consent__actions">
         <button type="button" class="hs-consent__btn hs-consent__btn--accept" data-hs-consent="accept">Accetta</button>

@@ -42,12 +42,14 @@
   appearance: none;
   border: 1px solid var(--stroke, rgba(0,0,0,.12));
   border-radius: 999px;
-  padding: 10px 18px;
-  font-size: 14px;
+  padding: 13px 22px;
+  min-height: 46px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   background: transparent;
   color: var(--text, #111);
+  flex: 1 1 auto;
 }
 
 .hs-consent__btn--accept {
@@ -75,4 +77,5 @@
 
 @media (max-width: 480px) {
   .hs-consent { left: 10px; right: 10px; bottom: 10px; padding: 16px; }
+  .hs-consent__btn { flex: 1 1 100%; }
 }
