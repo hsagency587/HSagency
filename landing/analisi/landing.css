@@ -3,8 +3,10 @@ body.analysis-page {
   background: var(--bg);
 }
 
-body.analysis-page .footer__grid {
-  grid-template-columns: minmax(260px, 1.5fr) repeat(2, minmax(160px, .7fr));
+@media (min-width: 761px) {
+  body.analysis-page .footer__grid {
+    grid-template-columns: minmax(260px, 1.5fr) repeat(2, minmax(160px, .7fr));
+  }
 }
 
 .footer__logo {
