@@ -6,7 +6,11 @@
  *   - HSConsent.hasConsent()      -> true | false | null (null = non ancora deciso)
  *   - HSConsent.onGrant(callback) -> esegue callback subito se già concesso,
  *                                    altrimenti lo mette in coda finché l'utente accetta
- *   - HSConsent.reset()           -> riapre il banner (usato dal link "Preferenze cookie")
+ *
+ * Solo l'accettazione viene ricordata (persistita) e nasconde il banner per sempre,
+ * senza lasciare alcuna icona. Se l'utente rifiuta, il banner si riduce a una
+ * piccola icona in basso (non persistita: torna comunque il banner intero ad ogni
+ * nuovo caricamento) da cui può riaprirlo e cambiare idea in qualsiasi momento.
  *
  * Include anche `loadMetaPixel(pixelId)`, usato dalle pagine che devono
  * caricare il Pixel dopo il consenso.
@@ -18,19 +22,20 @@
   const queue = [];
   let decided = null;
 
+  // Solo "granted" viene letto/persistito: un rifiuto non blocca il banner ai
+  // load successivi, così l'utente può sempre cambiare idea e accettare.
   const readStoredConsent = () => {
     try {
-      const value = window.localStorage.getItem(STORAGE_KEY);
-      if (value === "granted" || value === "denied") return value;
+      if (window.localStorage.getItem(STORAGE_KEY) === "granted") return "granted";
     } catch (error) {
       // localStorage non disponibile (es. modalità privata restrittiva): trattare come non deciso.
     }
     return null;
   };
 
-  const storeConsent = (value) => {
+  const storeGranted = () => {
     try {
-      window.localStorage.setItem(STORAGE_KEY, value);
+      window.localStorage.setItem(STORAGE_KEY, "granted");
     } catch (error) {
       // Se non possiamo persistere la scelta, il banner ricomparirà al prossimo load: accettabile.
     }
@@ -49,16 +54,16 @@
 
   const grant = () => {
     decided = "granted";
-    storeConsent("granted");
+    storeGranted();
     hideBanner();
     runQueue();
   };
 
   const deny = () => {
     decided = "denied";
-    storeConsent("denied");
-    hideBanner();
     queue.length = 0;
+    hideBanner();
+    showManageIcon();
   };
 
   let bannerEl = null;
@@ -88,14 +93,14 @@
     return el;
   };
 
-  const buildManageLink = () => {
+  const buildManageIcon = () => {
     const el = document.createElement("button");
     el.type = "button";
     el.className = "hs-consent__manage";
     el.textContent = "Preferenze cookie";
     el.hidden = true;
     el.addEventListener("click", () => {
-      el.hidden = true;
+      hideManageIcon();
       showBanner();
     });
     document.body.appendChild(el);
@@ -105,23 +110,27 @@
   function showBanner() {
     if (!bannerEl) bannerEl = buildBanner();
     bannerEl.hidden = false;
-    if (manageEl) manageEl.hidden = true;
+    hideManageIcon();
   }
 
   function hideBanner() {
     if (bannerEl) bannerEl.hidden = true;
-    if (manageEl && decided) manageEl.hidden = false;
+  }
+
+  function showManageIcon() {
+    if (!manageEl) manageEl = buildManageIcon();
+    manageEl.hidden = false;
+  }
+
+  function hideManageIcon() {
+    if (manageEl) manageEl.hidden = true;
   }
 
   const init = () => {
     decided = readStoredConsent();
-    manageEl = buildManageLink();
 
     if (decided === "granted") {
-      manageEl.hidden = false;
       runQueue();
-    } else if (decided === "denied") {
-      manageEl.hidden = false;
     } else {
       showBanner();
     }
@@ -142,12 +151,6 @@
         queue.push(callback);
       }
       // decided === "denied": non accodiamo nulla, l'utente ha rifiutato esplicitamente.
-    },
-    reset: () => {
-      decided = null;
-      try { window.localStorage.removeItem(STORAGE_KEY); } catch (error) {}
-      if (manageEl) manageEl.hidden = true;
-      showBanner();
     }
   };
 
