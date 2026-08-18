@@ -350,7 +350,7 @@
       item.appendChild(button);
       resultsList.appendChild(item);
     });
-
+    closeLocationResults();
     resultsPanel.hidden = false;
     businessSearch.setAttribute("aria-expanded", "true");
     searchStatus.textContent = `${predictions.length} risultati trovati.`;
@@ -488,7 +488,7 @@
       item.appendChild(button);
       locationResultsList.appendChild(item);
     });
-
+    closeResults();
     locationResultsPanel.hidden = false;
     businessLocation.setAttribute("aria-expanded", "true");
   };
@@ -630,12 +630,10 @@
     }
   });
 
-  businessLocation.addEventListener("input", () => {
+    businessLocation.addEventListener("input", () => {
     clearSelectedPlace();
-    scheduleSearch();
     scheduleCitySearch();
   });
-
   businessLocation.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeLocationResults();
