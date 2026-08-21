@@ -248,6 +248,13 @@
   height: 40px;
 }
 
+/* Footer condiviso: sempre visibile subito dopo il feed Instagram. */
+.site-footer {
+  display: block !important;
+  clear: both;
+  width: 100%;
+}
+
 @media only screen and (max-width: 1100px) {
   .contact-section-band .contact-section-grid {
     grid-template-columns: minmax(0, 1fr) minmax(260px, 320px) minmax(0, 1fr);
@@ -312,5 +319,19 @@
   .contact-section-band .contact-explore-list li {
     min-width: 0;
     text-align: center;
+  }
+}
+
+/* Navbar mobile condivisa con la home. */
+@media only screen and (max-width: 991px) {
+  html.responsive-menu-open,
+  html.responsive-menu-open body {
+    overflow-x: hidden !important;
+  }
+
+  html.responsive-menu-open #responsive-menu-button {
+    position: fixed;
+    right: 20px !important;
+    left: auto !important;
   }
 }

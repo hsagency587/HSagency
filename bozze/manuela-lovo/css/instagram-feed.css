@@ -1,0 +1,88 @@
+.rank2-instagram-section {
+  clear: both;
+  position: relative;
+  left: 50%;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 0 0 -50vw !important;
+  padding: 0 55px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.rank2-instagram-section > .panel-row-style {
+  padding: 100px 0 !important;
+}
+
+.rank2-instagram-section .panel-grid-cell {
+  width: 100%;
+}
+
+.page-id-28 #pgc-28-0-0 {
+  width: 100%;
+}
+
+.rank2-instagram-section #sbi_images {
+  display: grid !important;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+  float: none !important;
+  padding: 5px !important;
+}
+
+.rank2-instagram-section #sbi_images .sbi_item {
+  width: auto !important;
+  float: none !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+}
+
+.rank2-instagram-section .sbi_photo_wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: #f3f3f3;
+}
+
+.rank2-instagram-section #sb_instagram .sbi_photo {
+  display: block;
+  width: 100%;
+  height: 100% !important;
+  padding-bottom: 0 !important;
+}
+
+.rank2-instagram-section #sb_instagram .sbi_photo > img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  opacity: 1 !important;
+}
+
+.rank2-instagram-section .sbi-owl-nav,
+.rank2-instagram-section .sbi-owl-dots,
+.rank2-instagram-section .owl-nav,
+.rank2-instagram-section .owl-prev,
+.rank2-instagram-section .owl-next {
+  display: none !important;
+}
+
+@media (max-width: 780px) {
+  .rank2-instagram-section {
+    padding: 0 15px;
+  }
+
+  .rank2-instagram-section > .panel-row-style {
+    padding: 60px 0 !important;
+  }
+
+  .rank2-instagram-section #sbi_images {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .rank2-instagram-section #sbi_images {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

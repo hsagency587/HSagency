@@ -82,6 +82,131 @@ body .metaslider .coin-slider,body .metaslider .nivoSlider,body .metaslider .niv
 	padding-top: 30px !important;
 }
 
+/* Homepage: il contenuto della sezione laghi resta allineato alle fotografie.
+   Il titolo occupa tre righe: riduciamo solo le spaziature di questo blocco,
+   così al massimo può fuoriuscire la CTA, mai il testo descrittivo. */
+@media only screen and (min-width: 781px) {
+	#pg-7-12 > .panel-row-style {
+		display: flex;
+		align-items: stretch;
+	}
+
+	#pgc-7-12-0,
+	#panel-7-12-0-0,
+	#panel-7-12-0-0 > .panel-widget-style,
+	#panel-7-12-0-0 .so-widget-sow-editor {
+		height: 100%;
+	}
+
+	#panel-7-12-0-0 .so-widget-sow-editor {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#panel-7-12-0-0 > .panel-widget-style {
+		padding-top: 28px;
+		box-sizing: border-box;
+	}
+
+	#panel-7-12-0-0 .widget-title {
+		font-size: 42px;
+		line-height: 1.18;
+		margin-bottom: 24px;
+	}
+
+	#panel-7-12-0-0 .textwidget h3 {
+		margin: 0 0 18px;
+	}
+
+	#panel-7-12-0-0 .textwidget p {
+		margin-bottom: 0;
+		line-height: 1.55;
+	}
+
+	#panel-7-12-0-0 .ow-button-base {
+		margin-top: 18px !important;
+	}
+
+	#panel-7-4-0-0 > .panel-widget-style {
+		padding-top: 28px;
+	}
+
+	#panel-7-12-0-0 .home-lake-preferred-locations {
+		margin-top: auto;
+		padding-top: 28px;
+	}
+}
+
+/* Homepage: location preferite nelle sole sezioni Laghi e Wedding. */
+.home-preferred-locations {
+	text-align: center;
+}
+
+.home-preferred-locations__title {
+	margin: 0 0 10px;
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.home-preferred-locations__list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.home-preferred-locations__list li {
+	margin: 0;
+	line-height: 1.65;
+}
+
+.home-preferred-locations__list h4 {
+	margin: 0;
+	color: inherit;
+	font-size: calc(1em + 1px);
+	font-weight: inherit;
+	line-height: inherit;
+}
+
+.home-lake-preferred-locations {
+	margin-top: 28px;
+	text-align: center;
+}
+
+.home-lake-preferred-locations__lists {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-top: 10px;
+	border-top: 1px solid #9e937f;
+	padding-top: 10px;
+}
+
+.home-lake-preferred-locations__lists .home-preferred-locations__list + .home-preferred-locations__list {
+	border-left: 1px solid #9e937f;
+}
+
+.home-preferred-locations--wedding {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-items: center;
+	margin-top: 28px;
+}
+
+.home-preferred-locations--wedding .home-preferred-locations__title {
+	margin: 0;
+}
+
+.home-preferred-locations--wedding .home-preferred-locations__list {
+	border-left: 1px solid #9e937f;
+	padding-left: 20px;
+}
+
+/* Wedding: il sottotitolo spezzato mantiene un normale ritorno a capo. */
+#panel-7-4-0-0 .textwidget h3,
+#panel-7-4-0-0 .textwidget h3 span {
+	font-size: 12px !important;
+	line-height: 1.25 !important;
+}
+
 /* Homepage mobile: ogni sezione mostra testi, foto 1 e foto 2. */
 @media only screen and (max-width: 780px) {
 	#homepage-main-title .widget-title {

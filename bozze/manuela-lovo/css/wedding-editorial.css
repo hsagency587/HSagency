@@ -1,0 +1,541 @@
+.wedding-hero,
+.wedding-hero * {
+  box-sizing: border-box;
+}
+
+.wedding-hero {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wedding-hero-media {
+  position: relative;
+  min-height: clamp(500px, 66vw, 760px);
+  overflow: hidden;
+  background: #1c1c1c;
+}
+
+.wedding-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.wedding-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 38%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.wedding-hero-copy {
+  position: absolute;
+  z-index: 1;
+  right: clamp(24px, 7vw, 92px);
+  bottom: clamp(38px, 7vw, 86px);
+  left: clamp(24px, 7vw, 92px);
+  text-align: right;
+}
+
+.wedding-hero h1 {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding-bottom: 22px;
+  color: #fff;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 300;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.wedding-hero h1::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52px;
+  height: 1px;
+  background: currentColor;
+}
+
+.wedding-editorial,
+.wedding-editorial * {
+  box-sizing: border-box;
+}
+
+.wedding-editorial {
+  max-width: 100%;
+  color: #303030;
+  background: #fff;
+  text-align: left;
+}
+
+#pg-20-1.wedding-editorial {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.wedding-editorial .lake-stories {
+  padding-top: clamp(32px, 4vw, 56px);
+  padding-bottom: clamp(37px, 4.7vw, 61px);
+}
+
+.wedding-editorial .lake-story {
+  display: grid;
+  grid-template-columns: minmax(260px, 390px) minmax(0, 650px);
+  gap: clamp(42px, 5vw, 72px);
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  border-top: 1px solid rgba(158, 147, 127, 0.24);
+}
+
+.wedding-editorial .lake-story--media-right {
+  grid-template-columns: minmax(0, 650px) minmax(260px, 390px);
+}
+
+.wedding-editorial .lake-story--media-right .lake-story-media {
+  order: 2;
+}
+
+.wedding-editorial .lake-story-media {
+  width: min(100%, 420px);
+  margin: 0 auto;
+}
+
+.wedding-editorial .lake-story-copy {
+  max-width: 650px;
+}
+
+.wedding-editorial .lake-story-kicker {
+  margin: 0 0 16px;
+  color: #9e937f;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.wedding-editorial .lake-story-copy h2 {
+  position: relative;
+  margin: 0 0 26px;
+  padding-bottom: 18px;
+  color: #9e937f;
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.wedding-editorial .lake-story-copy h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: currentColor;
+}
+
+.wedding-editorial .lake-story-copy p:not(.lake-story-kicker) {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.wedding-editorial .lake-story-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.wedding-editorial .lake-story-note {
+  padding-top: 8px;
+  color: #424242;
+  font-family: Didot, "Bodoni MT", "Bodoni 72", "Times New Roman", serif;
+  font-size: 18px !important;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.65 !important;
+}
+
+.wedding-photo-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  background: #f1efeb;
+  color: #68635a;
+  border: 1px solid rgba(158, 147, 127, 0.4);
+  text-align: center;
+}
+
+.wedding-photo-slot--portrait {
+  aspect-ratio: 2 / 3;
+  box-shadow: 0 18px 48px rgba(28, 28, 28, 0.08);
+}
+
+.wedding-photo-slot--landscape {
+  position: absolute;
+  inset: 0;
+}
+
+.wedding-photo-slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wedding-photo-slot span {
+  margin-bottom: 10px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.wedding-photo-slot strong {
+  padding: 0 20px;
+  color: #443f3f;
+  font-family: Didot, "Bodoni MT", "Bodoni 72", "Times New Roman", serif;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.wedding-locations {
+  padding: clamp(54px, 7vw, 90px) 0;
+  background: transparent;
+}
+
+.wedding-locations h2 {
+  position: relative;
+  margin: 0 auto clamp(38px, 5vw, 62px);
+  padding: 0 0 20px;
+  color: #443f3f;
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 300;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.wedding-locations h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 54px;
+  height: 1px;
+  background: #9e937f;
+  transform: translateX(-50%);
+}
+
+.wedding-locations-layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.65fr);
+  gap: clamp(42px, 6vw, 88px);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.wedding-location-tabs {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.wedding-location-tab {
+  position: relative;
+  width: 100%;
+  padding: 15px 0 15px 24px;
+  background: transparent;
+  color: #443f3f;
+  border: 0;
+  border-bottom: 1px solid rgba(68, 63, 63, 0.14);
+  border-radius: 0;
+  font: inherit;
+  font-size: clamp(17px, 1.65vw, 23px);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  text-transform: none;
+  transition: color 180ms ease;
+}
+
+.wedding-location-tab::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 0;
+  width: 1px;
+  background: transparent;
+}
+
+.wedding-location-tab:first-child {
+  border-top: 1px solid rgba(68, 63, 63, 0.14);
+}
+
+.wedding-location-tab:hover,
+.wedding-location-tab.is-active,
+.wedding-location-tab[aria-selected="true"] {
+  color: #9e937f;
+}
+
+.wedding-location-tab.is-active,
+.wedding-location-tab[aria-selected="true"] {
+  text-transform: uppercase;
+}
+
+.wedding-location-tab.is-active::before,
+.wedding-location-tab[aria-selected="true"]::before {
+  background: #9e937f;
+}
+
+.wedding-location-tab:focus-visible {
+  color: #9e937f;
+  outline: 2px solid #9e937f;
+  outline-offset: 4px;
+}
+
+.wedding-location-photos {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 360px;
+  overflow: hidden;
+  background: #f1efeb;
+}
+
+.wedding-location-photo {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 240ms ease, visibility 240ms ease;
+}
+
+.wedding-location-photo.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Collegamento alla pagina dedicata della location, sovrapposto allo slot
+   fotografico. Non è dentro il pulsante di selezione: resta un elemento
+   indipendente, così la rotazione delle foto continua a funzionare. */
+.wedding-location-link {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #443f3f;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-decoration: none;
+  border-radius: 2px;
+  box-shadow: 0 6px 18px rgba(28, 28, 28, 0.14);
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.wedding-location-link:hover,
+.wedding-location-link:focus-visible {
+  background: #fff;
+  color: #9e937f;
+}
+
+.wedding-location-link:focus-visible {
+  outline: 2px solid #9e937f;
+  outline-offset: 2px;
+}
+
+/* Il blocco approvato "Due laghi, due atmosfere" resta autonomo dalle
+   regole condivise delle pagine lago. */
+.wedding-editorial + .lake-location-links {
+  padding: clamp(52px, 6vw, 80px) 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.wedding-editorial + .lake-location-links h2 {
+  position: relative;
+  margin: 0 0 22px;
+  padding-bottom: 18px;
+  color: #9e937f;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.wedding-editorial + .lake-location-links h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 1px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
+
+.wedding-editorial + .lake-location-links p {
+  max-width: 720px;
+  margin: 0 auto 28px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.wedding-editorial + .lake-location-links .lake-location-links-list {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wedding-editorial + .lake-location-links .lake-location-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 22px;
+  color: #9e937f;
+  border: 1px solid rgba(158, 147, 127, 0.7);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.wedding-editorial + .lake-location-links .lake-location-link:hover,
+.wedding-editorial + .lake-location-links .lake-location-link:focus-visible {
+  background: #9e937f;
+  color: #fff;
+}
+
+.wedding-editorial + .lake-location-links .lake-location-link:focus-visible {
+  outline: 2px solid #9e937f;
+  outline-offset: 4px;
+}
+
+@media only screen and (max-width: 767px) {
+  .wedding-hero-media {
+    min-height: 560px;
+  }
+
+  .wedding-hero-copy {
+    right: 22px;
+    bottom: 42px;
+    left: 22px;
+  }
+
+  .wedding-hero h1 {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+
+  .wedding-editorial .lake-wedding-container,
+  .wedding-locations .lake-wedding-container {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+
+  .wedding-editorial .lake-story,
+  .wedding-editorial .lake-story--media-right {
+    grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  .wedding-editorial .lake-story--media-right .lake-story-media {
+    order: 0;
+  }
+
+  .wedding-editorial .lake-story-media,
+  .wedding-editorial .lake-story-copy {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .wedding-editorial .lake-story-copy h2,
+  .wedding-locations h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .wedding-editorial .lake-story-copy,
+  .wedding-editorial .lake-story-copy h2 {
+    text-align: center;
+  }
+
+  .wedding-editorial .lake-story-copy h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .wedding-editorial + .lake-location-links .lake-location-links-list {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .wedding-editorial + .lake-location-links .lake-location-link {
+    width: 100%;
+  }
+
+  .wedding-locations-layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .wedding-location-tabs {
+    align-items: stretch;
+  }
+
+  .wedding-location-tab {
+    min-height: 48px;
+    font-size: 18px;
+  }
+
+  .wedding-location-photos {
+    min-height: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .wedding-hero-media {
+    min-height: 520px;
+  }
+
+  .wedding-editorial .lake-wedding-container {
+    width: calc(100% - 24px);
+  }
+
+  .wedding-locations {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .wedding-photo-slot strong {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-location-tab,
+  .wedding-location-photo {
+    transition: none;
+  }
+}

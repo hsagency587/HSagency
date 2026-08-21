@@ -1,0 +1,405 @@
+/* Pagine location (rank 3): hero fotografica o editoriale, presentazione con
+   mappa, location vicine e galleria. Estende lake-wedding.css e ne riusa
+   palette, tipografia e spaziature. */
+
+/* Variante editoriale per le location prive di fotografie reali. Il wrapper
+   non usa il media fotografico, quindi non eredita altezza, overlay o sfondo
+   scuro dalla hero standard. */
+.location-hero--text {
+  width: 100%;
+  max-width: none;
+  background: #f1efeb;
+}
+
+.location-hero--text .lake-wedding-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(52px, 6vw, 76px);
+}
+
+.location-hero--text .lake-wedding-hero-copy {
+  position: static;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #424242;
+}
+
+.location-hero--text .lake-wedding-eyebrow {
+  color: #817561;
+}
+
+.location-hero--text h1 {
+  color: #424242;
+}
+
+.location-hero--text .lake-wedding-subtitle {
+  color: #68635a;
+}
+
+.location-hero--text + .location-intro {
+  padding-top: clamp(44px, 5vw, 64px);
+}
+
+/* Presentazione: la mappa affianca il testo; le righe successive continuano
+   a tutta larghezza sotto di essa. */
+.location-intro {
+  padding-top: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(56px, 7vw, 88px);
+}
+
+.location-intro-copy.lake-editorial-copy {
+  display: flow-root;
+  max-width: none;
+}
+
+.location-map {
+  float: right;
+  width: min(36%, 360px);
+  margin: 0 0 18px clamp(20px, 2.6vw, 32px);
+  padding-left: clamp(20px, 2.6vw, 32px);
+  border-left: 1px solid rgba(158, 147, 127, 0.32);
+}
+
+.location-map-frame {
+  display: block;
+  width: 100%;
+  height: clamp(264px, 24vw, 320px);
+  min-height: 264px;
+  border: 1px solid rgba(158, 147, 127, 0.4);
+  border-radius: 0;
+  overflow: hidden;
+  background: #f1efeb;
+  box-shadow: none;
+}
+
+.location-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  color: #817561;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.location-map-link svg {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.location-map-link:hover,
+.location-map-link:focus-visible {
+  color: #9e937f;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Location vicine */
+.location-nearby {
+  padding: clamp(36px, 5vw, 56px) 0;
+}
+
+.location-nearby-title {
+  position: relative;
+  margin: 0 0 34px;
+  padding-bottom: 18px;
+  color: #424242;
+  font-size: clamp(19px, 2vw, 22px);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.location-nearby-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 40px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: #9e937f;
+}
+
+.location-nearby-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.location-nearby-card {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.location-nearby-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #9e937f;
+}
+
+.location-nearby-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.location-nearby-name {
+  display: block;
+  color: #424242;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.location-nearby-card:hover .location-nearby-name,
+.location-nearby-card:focus-visible .location-nearby-name,
+.location-nearby-card:hover .location-nearby-icon,
+.location-nearby-card:focus-visible .location-nearby-icon {
+  color: #9e937f;
+}
+
+.location-nearby-distance {
+  display: block;
+  margin-top: 3px;
+  color: #817561;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+@media only screen and (max-width: 780px) {
+  /* L'header mobile assoluto misura 140px; la breadcrumb resta nel flusso e
+     ne occupa almeno 38px. Il compenso colma solo lo spazio residuo e cresce
+     naturalmente quando la breadcrumb va a capo. */
+  .location-hero--text {
+    margin-top: 102px;
+  }
+
+  .location-hero--text .lake-wedding-container {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .location-hero--text + .location-intro {
+    padding-top: 44px;
+  }
+
+  .location-intro {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .location-intro-copy.lake-editorial-copy {
+    text-align: center;
+  }
+
+  .location-intro-copy.lake-editorial-copy h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .location-map {
+    float: none;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto 32px;
+    padding-left: 0;
+    border-left: 0;
+    text-align: left;
+  }
+
+  .location-map-frame {
+    height: 280px;
+  }
+
+  .location-nearby-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+}
+
+/* ==========================================================================
+   Strutture 2, 3, 4 (impaginazioni alternative per le pagine location).
+   La struttura 1 (Principato di Lucedio) resta quella definita sopra, invariata.
+   Tutto ciò che segue è scoperto sotto ".location-intro-body" / modificatori
+   dedicati: elementi assenti dalla pagina del Lucedio, quindi innocuo per essa.
+   ========================================================================== */
+
+/* Base condivisa: su mobile titolo, testo e mappa restano un unico flusso in
+   colonna con la mappa dopo i paragrafi; da 781px in su ciascuna struttura
+   impone la propria griglia. */
+.location-intro-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 5vw, 34px);
+}
+
+.location-intro-body > h2 {
+  order: 1;
+}
+
+.location-intro-body .location-intro-text {
+  order: 2;
+}
+
+.location-intro-body .location-map {
+  order: 3;
+  float: none;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.location-intro--corner .location-intro-row--top {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 5vw, 34px);
+}
+
+.location-intro--corner .location-intro-lead {
+  order: 1;
+}
+
+.location-intro--corner .location-intro-row--top .location-map {
+  order: 2;
+  float: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.location-intro--corner .location-intro-row--bottom {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 5vw, 34px);
+  margin-top: clamp(22px, 5vw, 34px);
+}
+
+.location-intro--corner .location-intro-row--bottom p + p {
+  margin-top: 0;
+}
+
+@media only screen and (min-width: 781px) {
+  /* Struttura 2 — specchiata e asimmetrica: titolo a tutta larghezza, poi
+     mappa (35%) a sinistra e testo (65%) a destra. */
+  .location-intro--mirrored .location-intro-body {
+    display: grid;
+    grid-template-columns: minmax(220px, 35%) 1fr;
+    grid-template-areas: "heading heading" "map text";
+    column-gap: clamp(36px, 5vw, 64px);
+    row-gap: clamp(10px, 2vw, 20px);
+    align-items: start;
+  }
+
+  .location-intro--mirrored .location-intro-body > h2,
+  .location-intro--mirrored .location-intro-body .location-map,
+  .location-intro--mirrored .location-intro-body .location-intro-text {
+    order: 0;
+  }
+
+  .location-intro--mirrored .location-intro-body > h2 {
+    grid-area: heading;
+  }
+
+  .location-intro--mirrored .location-intro-body .location-map {
+    grid-area: map;
+    padding-right: clamp(20px, 2.6vw, 32px);
+    border-right: 1px solid rgba(158, 147, 127, 0.32);
+  }
+
+  .location-intro--mirrored .location-intro-body .location-intro-text {
+    grid-area: text;
+  }
+
+  /* Struttura 3 — editoriale verticale: titolo e mappa in colonna sinistra,
+     i tre paragrafi scorrono nella colonna destra come blocchi separati. */
+  .location-intro--editorial .location-intro-body {
+    display: grid;
+    grid-template-columns: minmax(240px, 38%) 1fr;
+    grid-template-areas: "heading text" "map text";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(40px, 5vw, 72px);
+    align-items: start;
+  }
+
+  .location-intro--editorial .location-intro-body > h2,
+  .location-intro--editorial .location-intro-body .location-map,
+  .location-intro--editorial .location-intro-body .location-intro-text {
+    order: 0;
+  }
+
+  .location-intro--editorial .location-intro-body > h2 {
+    grid-area: heading;
+  }
+
+  .location-intro--editorial .location-intro-body .location-map {
+    grid-area: map;
+    margin-top: 22px;
+  }
+
+  .location-intro--editorial .location-intro-body .location-intro-text {
+    grid-area: text;
+  }
+
+  .location-intro--editorial .location-intro-text p {
+    margin: 0;
+    padding: 22px 0;
+    border-top: 1px solid rgba(158, 147, 127, 0.28);
+  }
+
+  .location-intro--editorial .location-intro-text p:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .location-intro--editorial .location-intro-text p + p {
+    margin-top: 0;
+  }
+
+  /* Struttura 4 — composizione a "L": riga superiore titolo+paragrafo (62%)
+     e mappa (38%); riga inferiore due paragrafi affiancati (50/50). */
+  .location-intro--corner .location-intro-row--top {
+    display: grid;
+    grid-template-columns: 62fr 38fr;
+    gap: clamp(32px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .location-intro--corner .location-intro-lead,
+  .location-intro--corner .location-intro-row--top .location-map {
+    order: 0;
+  }
+
+  .location-intro--corner .location-intro-row--top .location-map {
+    padding-left: clamp(20px, 2.6vw, 32px);
+    border-left: 1px solid rgba(158, 147, 127, 0.32);
+  }
+
+  .location-intro--corner .location-intro-row--bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 4vw, 56px);
+    margin-top: clamp(32px, 4vw, 48px);
+  }
+}
