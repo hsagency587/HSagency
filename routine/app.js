@@ -5,49 +5,37 @@
   const routine = [
     {
       id: "morning",
-      title: "Sveglia 7:15",
+      title: "Sveglia 6:45",
       subtasks: [
         "Massaggio faccia al sole",
-        "Fireblood, Crea e Fish Oil",
+        "Ascolto Morning Call",
         "1 bicchiere di acqua",
-        "Top G Code aloud",
-        "Write main target of the day",
-        "Cammina per 10 min",
-        "2 frutti",
+        "Write Main Target of the Day",
+        "Fireblood",
+        "2/3 frutti",
       ],
     },
-    { id: "starting-day", title: "Starting Day Tasks" },
-    { id: "morning-coffee", title: "Caffè" },
-    { id: "work-1", title: "1st G Work Session" },
-    { id: "snack", title: "Spuntino · 100 g formaggio" },
-    { id: "work-2", title: "2nd G Work Session" },
+    { id: "daily-routine", title: "Fascia daily routine" },
+    { id: "work-1", title: "1st G Work Session", subtasks: ["Caffè"] },
+    { id: "work-2", title: "2nd G Work Session", subtasks: ["Spuntino · 80/100 g formaggio"] },
+    { id: "work-3", title: "3rd G Work Session" },
     {
       id: "workout",
       title: "Workout",
-      subtasks: [
-        {
-          label: "Allenamento",
-          choices: [
-            { id: "full", label: "Full" },
-            { id: "med", label: "Med" },
-          ],
-        },
-        "Doccia",
-      ],
+      subtasks: ["Full", "Med", "Doccia"],
     },
     {
       id: "lunch",
       title: "Pranzo",
-      subtasks: ["Zenzero", "130/90 g pasta o riso", "200 g uova o pesce"],
+      subtasks: ["Zenzero", "110/80 g pasta o riso", "200 g uova o pesce"],
     },
     {
       id: "midday-routine",
       title: "Routine pomeridiana",
-      subtasks: ["15 min cammino o movimento", "Caffè"],
+      subtasks: ["15 min movimento", "Caffè", "Daily lessons", "Daily puzzle"],
     },
-    { id: "fruit-15", title: "2/3 frutti alle 15" },
-    { id: "work-3", title: "3rd G Work Session" },
-    { id: "work-4", title: "4th G Work Session" },
+    { id: "work-4", title: "4th G Work Session", subtasks: ["2/3 frutti alle 15"] },
+    { id: "work-5", title: "5th G Work Session" },
     {
       id: "dinner",
       title: "Cena",
@@ -61,14 +49,13 @@
       subtasks: [
         "Pulizie",
         "Denti",
-        "No masturbation",
         "Esamina la giornata",
-        "Main target of the day raggiunto",
         "Domani organizzato",
         "Gambe sul muro",
       ],
     },
-    { id: "sleep-before-23", title: "Dormire prima delle 23" },
+    { id: "no-pmo", title: "Non masturbarti" },
+    { id: "main-target", title: "Main Target of the Day raggiunto" },
   ];
 
   const missingResultPhrases = {
