@@ -758,6 +758,7 @@
       nome_attivita: companyName,
       whatsapp,
       nome_persona: firstName,
+      domanda: document.getElementById("question").value.trim(),
       data_invio: new Date().toLocaleString("it-IT", { dateStyle: "medium", timeStyle: "short" })
     };
 
