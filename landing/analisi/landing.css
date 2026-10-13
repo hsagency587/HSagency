@@ -52,8 +52,8 @@ body.analysis-page {
   margin: 0;
   font-size: clamp(40px, 4.2vw, 58px);
   font-weight: 700;
-  line-height: .98;
-  letter-spacing: -.052em;
+  line-height: 1.02;
+  letter-spacing: -.02em; /* come l'H1 della home del sito */
 }
 
 .analysis-hero__copy p {
@@ -493,7 +493,7 @@ body.analysis-page {
 
   .analysis-hero__copy h1 {
     font-size: clamp(27px, 8.6vw, 40px);
-    line-height: 1;
+    line-height: 1.04;
   }
 
   .analysis-hero__mobileLine {
@@ -571,3 +571,6 @@ body.analysis-page {
     transition: none;
   }
 }
+
+/* "su Google e dalle IA" resta unito, anche su desktop */
+.analysis-hero__mobileLine.serif-italic{ display: inline-block; }

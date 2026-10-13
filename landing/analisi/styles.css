@@ -1,7 +1,7 @@
 /* =========================
    FONT LOAD (a monte, senza override)
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=swap');
 
 /* =========================
    BASE / TOKENS
@@ -31,10 +31,10 @@
   --gap: 26px;
 
   /* ✅ Sans più simile al prof */
-  --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font: "Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   /* ✅ Serif italic più simile */
-  --serif: "Playfair Display", Georgia, "Times New Roman", Times, serif;
+  --serif: "Lora", Georgia, "Times New Roman", Times, serif;
 }
 
 *{ box-sizing:border-box; }
@@ -340,9 +340,8 @@ a{ color:inherit; text-decoration:none; }
 .serif-italic{
   font-family: var(--serif);
   font-style: italic;
-
-  /* ✅ */
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 .hero__bold{
