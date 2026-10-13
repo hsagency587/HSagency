@@ -14,7 +14,7 @@
   border-radius: var(--r16, 16px);
   box-shadow: var(--shadow, 0 14px 40px rgba(0,0,0,.16));
   padding: 18px 20px;
-  font-family: var(--font, "Inter", system-ui, sans-serif);
+  font-family: var(--font, "Hanken Grotesk", system-ui, sans-serif);
   color: var(--text, #111);
 }
 
@@ -22,7 +22,7 @@
 
 .hs-consent__text {
   margin: 0 0 14px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--muted, rgba(0,0,0,.7));
 }
@@ -44,7 +44,7 @@
   border-radius: 999px;
   padding: 13px 22px;
   min-height: 46px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   cursor: pointer;
   background: transparent;
@@ -60,7 +60,8 @@
 
 @media (max-width: 480px) {
   .hs-consent { left: 10px; right: 10px; bottom: 10px; padding: 16px; }
-  .hs-consent__btn { flex: 1 1 100%; }
+  .hs-consent__text { font-size: 15px; margin-bottom: 12px; }
+  .hs-consent__btn { flex: 1 1 0; padding: 11px 14px; min-height: 44px; }
 }
 
 .hs-consent__manage {
@@ -68,8 +69,8 @@
   left: 16px;
   bottom: 16px;
   z-index: 9998;
-  font-family: var(--font, "Inter", system-ui, sans-serif);
-  font-size: 12px;
+  font-family: var(--font, "Hanken Grotesk", system-ui, sans-serif);
+  font-size: 14px;
   color: var(--muted, rgba(0,0,0,.55));
   background: var(--card, #fff);
   border: 1px solid var(--stroke, rgba(0,0,0,.10));

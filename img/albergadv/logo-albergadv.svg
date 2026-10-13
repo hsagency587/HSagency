@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="406" height="96" viewBox="0 0 406 96" role="img" aria-label="AlbergADV">
+  <circle cx="48" cy="48" r="48" fill="#187C31"/>
+  <circle cx="48" cy="48" r="42.1" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1.25"/>
+  <text x="48" y="48" text-anchor="middle" dominant-baseline="central" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="50" letter-spacing="-1.5" fill="#FFFFFF">A</text>
+  <text x="118" y="48" dominant-baseline="central" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="54" letter-spacing="-1.9"><tspan font-weight="700" fill="#1A1A18">Alberg</tspan><tspan font-weight="800" fill="#187C31">ADV</tspan></text>
+</svg>

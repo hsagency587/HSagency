@@ -1,1 +1,0 @@
-# Manuela-Lovo-fotografa

@@ -61,7 +61,7 @@
 
   const deny = () => {
     decided = "denied";
-    queue.length = 0;
+    // La coda resta: se l'utente riapre il banner e accetta, i tracciamenti partono.
     hideBanner();
     showManageIcon();
   };
@@ -147,10 +147,10 @@
     onGrant: (callback) => {
       if (decided === "granted") {
         callback();
-      } else if (decided !== "denied") {
+      } else {
+        // Non ancora deciso o rifiutato: parte solo se e quando l'utente accetta.
         queue.push(callback);
       }
-      // decided === "denied": non accodiamo nulla, l'utente ha rifiutato esplicitamente.
     }
   };
 

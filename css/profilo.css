@@ -1,0 +1,89 @@
+/* Pagina profilo "L'agente di marketing più tenace del Nord Italia" (12/10/2026).
+   Pagina da leggere: colonna di testo stretta, titoli sopra il testo, spazi larghi.
+   Solo token di :root (styles.css); nessun colore nuovo. CTA nere come nel resto del sito. */
+
+/* Foto nella hero: stesse misure del riquadro video (.hero-video) delle pagine servizio */
+.hero-photo{ width: min(100%, 360px); justify-self: end; margin: 0; }
+.hero-photo img{
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 4 / 5; object-fit: cover; object-position: top;
+  border-radius: var(--r24); border: 1px solid var(--stroke);
+  box-shadow: 0 24px 58px rgba(0,0,0,.2);
+}
+
+/* Sezioni */
+.prof-section{ padding: 88px 0; }
+.prof-section--soft{ background: rgba(255,255,255,.35); border-block: 1px solid rgba(0,0,0,.04); }
+.prof-col{ max-width: 760px; margin-inline: auto; }
+.prof-col--center{ text-align: center; }
+.prof-col--center .badge{ margin-inline: auto; }
+.prof-section h2, .prof-panel h2{ margin: 14px 0 26px; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -.03em; text-wrap: balance; }
+.prof-intro{ margin: -10px auto 40px; color: var(--muted); font-size: 18px; line-height: 1.6; }
+
+/* Testo da leggere */
+.prof-prose p{ margin: 0; color: rgba(0,0,0,.72); font-size: 18px; line-height: 1.75; }
+.prof-prose p + p, .prof-prose * + p{ margin-top: 20px; }
+.prof-prose .prof-lead{ color: #111; font-size: 21px; font-weight: 600; line-height: 1.55; }
+.prof-prose strong{ color: #111; }
+.prof-prose a{ color: #111; text-decoration: underline; text-underline-offset: 3px; }
+.prof-prose a:focus-visible{ outline: 3px solid rgba(0,0,0,.35); outline-offset: 3px; border-radius: 4px; }
+
+/* Frase in evidenza: barra verde come dettaglio, testo nero, niente corsivo */
+.prof-quote{ margin: 36px 0; padding: 4px 0 4px 24px; border-left: 4px solid var(--green); }
+.prof-prose .prof-quote p{ margin: 0; color: #111; font-size: clamp(22px, 2.2vw, 27px); font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+.prof-highlight{ margin-top: 28px; font-size: 18px; line-height: 1.5; }
+
+/* Studio del mercato: pannello bianco, titolo a sinistra e testo a destra */
+.prof-panel{
+  display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); gap: 56px;
+  max-width: 1080px; margin: 0 auto; padding: 56px;
+  background: var(--card); border: 1px solid var(--stroke); border-radius: var(--r24); box-shadow: var(--shadow);
+}
+.prof-panel h2{ margin-bottom: 0; text-align: center; }
+
+/* Card della tenacia: 3 sopra, 2 sotto centrate */
+.prof-cards{ display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; max-width: 1080px; margin: 0 auto; }
+.prof-card{ grid-column: span 2; padding: 28px; background: var(--card); border: 1px solid var(--stroke); border-radius: var(--r20); box-shadow: 0 10px 30px rgba(0,0,0,.05); }
+.prof-card:nth-child(4){ grid-column: 2 / span 2; }
+.prof-card .card__icon{ margin-bottom: 18px; }
+.prof-card h3{ margin: 0 0 10px; font-size: 19px; letter-spacing: -.015em; }
+.prof-card p{ margin: 0; color: var(--muted); font-size: 18px; line-height: 1.55; }
+.prof-card strong{ color: #111; }
+
+/* Clienti: una striscia sottile */
+.prof-clients{ padding: 56px 0 80px; }
+.prof-clients__strip{
+  display: flex; align-items: center; gap: 20px;
+  max-width: 1080px; margin: 0 auto; padding: 24px 28px;
+  background: var(--card); border: 1px solid var(--stroke); border-radius: var(--r20);
+}
+.prof-clients__strip .card__icon{ flex: 0 0 auto; margin: 0; }
+.prof-clients__strip h2{ margin: 0; font-size: 20px; letter-spacing: -.01em; }
+.prof-clients__strip p{ margin: 4px 0 0; color: var(--muted); font-size: 17px; line-height: 1.5; }
+
+@media (max-width: 980px){
+  .hero-photo{ justify-self: center; }
+  .prof-panel{ grid-template-columns: 1fr; gap: 8px; padding: 40px; }
+  .prof-panel h2{ margin-bottom: 18px; }
+  .prof-cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prof-card, .prof-card:nth-child(4){ grid-column: auto; }
+  .prof-card:nth-child(5){ grid-column: 1 / -1; }
+}
+@media (max-width: 640px){
+  .hero-photo{ width: min(100%, 300px); }
+  .prof-section{ padding: 56px 0; }
+  .prof-section h2, .prof-panel h2{ font-size: clamp(25px, 7vw, 30px); margin-bottom: 20px; }
+  .prof-prose p{ font-size: 18px; line-height: 1.6; }
+  .prof-prose .prof-lead{ font-size: 18.5px; }
+  .prof-quote{ margin: 28px 0; padding-left: 18px; }
+  .prof-panel{ padding: 26px 22px; }
+  .prof-cards{ grid-template-columns: 1fr; gap: 14px; }
+  .prof-card, .prof-card:nth-child(5){ grid-column: auto; padding: 22px; }
+  /* come le card con icona del sito su telefono: icona accanto al titolo, testo sotto */
+  .prof-card{ display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; align-items: center; }
+  .prof-card .card__icon{ width: 44px; height: 44px; margin: 0; }
+  .prof-card h3{ margin: 0; }
+  .prof-card p{ grid-column: 1 / -1; margin-top: 12px; }
+  .prof-clients{ padding: 40px 0 56px; }
+  .prof-clients__strip{ align-items: flex-start; padding: 20px; gap: 14px; }
+}

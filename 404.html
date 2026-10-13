@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagina non trovata | HS Agency</title>
+  <meta name="robots" content="noindex,follow" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script>
+    // Vecchi indirizzi già online: GitHub Pages non ha redirect veri, li porta qui e li rimandiamo alla pagina nuova.
+    (function () {
+      var map = {
+        "/percorso/top3.html": "/google-maps/",
+        "/percorso/siti-web.html": "/seo/",
+        "/percorso/consulenza.html": "/consulenza/",
+        "/percorso/gads.html": "/google-ads/",
+        "/percorso/mads.html": "/meta-ads/",
+        "/contati/form.html": "/contatti/",
+        "/contati/ringraziamento/grazie-local-seo-web.html": "/contatti/grazie-analisi/",
+        "/landing/analisi/": "/chatgpt/analisi/",
+        "/landing/analisi/index.html": "/chatgpt/analisi/",
+        "/primadopo/": "/google-maps/prima-e-dopo/",
+        "/primadopo/index.html": "/google-maps/prima-e-dopo/"
+      };
+      var path = location.pathname.replace(/([^/])$/, function (c) { return /\.html$/.test(location.pathname) ? c : c + "/"; });
+      var to = map[path];
+      if (to) location.replace(to + location.search + location.hash);
+    })();
+  </script>
+</head>
+<body>
+  <main class="container" style="padding:120px 16px;text-align:center">
+    <h1>Questa pagina non esiste</h1>
+    <p>L'indirizzo potrebbe essere cambiato. Riparti dalla home.</p>
+    <p><a class="btn btn--primary" href="/">Torna alla home</a></p>
+  </main>
+</body>
+</html>

@@ -1,32 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://hsagency-seo.com/</loc>
   </url>
-
   <url>
-    <loc>https://hsagency-seo.com/primadopo/</loc>
+    <loc>https://hsagency-seo.com/google-maps/</loc>
   </url>
-
   <url>
-    <loc>https://hsagency-seo.com/percorso/consulenza.html</loc>
+    <loc>https://hsagency-seo.com/google-maps/analisi/</loc>
   </url>
-
   <url>
-    <loc>https://hsagency-seo.com/percorso/top3.html</loc>
+    <loc>https://hsagency-seo.com/google-maps/prima-e-dopo/</loc>
   </url>
-
   <url>
-    <loc>https://hsagency-seo.com/percorso/gads.html</loc>
+    <loc>https://hsagency-seo.com/chatgpt/</loc>
   </url>
-
   <url>
-    <loc>https://hsagency-seo.com/percorso/mads.html</loc>
+    <loc>https://hsagency-seo.com/chatgpt/analisi/</loc>
   </url>
-
   <url>
-    <loc>https://hsagency-seo.com/contati/form.html</loc>
+    <loc>https://hsagency-seo.com/seo/</loc>
   </url>
-
+  <url>
+    <loc>https://hsagency-seo.com/seo/analisi/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/google-ads/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/google-ads/consulenza/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/meta-ads/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/meta-ads/consulenza/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/consulenza/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/consulenza/prenota/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/casi-studio/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/contatti/</loc>
+  </url>
+  <url>
+    <loc>https://hsagency-seo.com/agente-marketing-piu-tenace-nord-italia/</loc>
+  </url>
 </urlset>
