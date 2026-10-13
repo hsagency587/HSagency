@@ -87,3 +87,12 @@
   .prof-clients{ padding: 40px 0 56px; }
   .prof-clients__strip{ align-items: flex-start; padding: 20px; gap: 14px; }
 }
+
+/* Cambio lingua (pagina profilo): due bandierine in alto a destra della hero */
+.prof .service-hero{ position: relative; }
+.lang-switch{ position: absolute; top: 22px; right: 24px; z-index: 2; display: inline-flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid var(--stroke); border-radius: 999px; background: var(--card); }
+.lang-switch a{ display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .04em; text-decoration: none; line-height: 1; }
+.lang-switch a svg{ display: block; border-radius: 2px; }
+.lang-switch a.is-active{ color: #111; background: rgba(0,0,0,.06); }
+.lang-switch a:hover{ color: #111; }
+@media (max-width: 640px){ .lang-switch{ top: 12px; right: 14px; } }
