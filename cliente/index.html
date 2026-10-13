@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lead diventato cliente | HS Agency</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/styles.css?v=20261015e" />
+  <link rel="stylesheet" href="/css/pagine-contatti.css?v=20261015a" />
+  <script src="/js/navigation.js?v=20261014m" defer></script>
+  <script src="/js/runtime-config.js?v=20261014a"></script>
+</head>
+<body class="secondary analysis-page">
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Navigazione principale">
+      <div class="nav__left">
+        <a class="brand" href="/" aria-label="HS Agency - Home">
+          <img class="brand__logo" src="/img/logo-hs-agency.png" alt="HS Agency" width="141" height="38">
+        </a>
+      </div>
+
+      <button class="nav__menuToggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="nav__menuIcon" aria-hidden="true"></span>
+        <span class="nav__menuLabel">Menu</span>
+      </button>
+
+      <div class="nav__center" id="primary-navigation">
+        <div class="nav__dropdown">
+          <div class="nav__dropdownControl">
+            <a class="nav__pathLink" href="/#processo">Servizi</a>
+            <button class="nav__dropdownToggle" type="button" aria-expanded="false" aria-controls="path-navigation" aria-label="Apri le pagine dei servizi"></button>
+          </div>
+          <div class="nav__dropdownMenu" id="path-navigation">
+            <a href="/consulenza/">Consulenza gratuita</a>
+            <a href="/seo/">SEO</a>
+            <a href="/google-maps/">Top 3 su Google</a>
+            <a href="/chatgpt/">AI Search</a>
+            <a href="/google-ads/">Google Ads</a>
+            <a href="/meta-ads/">Meta Ads</a>
+          </div>
+        </div>
+        <a href="/seo/analisi/#casi-studio">Casi studio</a>
+        <a href="/seo/analisi/" aria-current="page">Contatti</a>
+      </div>
+
+      <div class="nav__right">
+        <a class="nav__phone" href="tel:+393534769196">
+          <span class="nav__phoneFull">Chiamaci</span>
+          <span class="nav__phoneShort">Chiamaci</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="secondary-main">
+    <section class="analysis-hero">
+      <div class="container analysis-hero__grid">
+        <div class="analysis-hero__copy">
+          <h1 id="analysis-title">Lead diventato <span class="serif-italic">cliente</span></h1>
+          <p>Quando un lead firma o paga, lo dici qui. Il worker manda a Meta l'evento <strong>Purchase</strong>, abbinato alla persona tramite telefono o email: così la campagna impara chi diventa cliente, non solo chi compila il modulo. Mandalo entro pochi giorni dalla chiusura.</p>
+          <p>Pagina riservata: non è nel menu né nella sitemap, e senza la chiave non invia niente.</p>
+        </div>
+
+        <div class="analysis-hero__formColumn">
+          <form id="purchase-form" class="analysis-form" novalidate>
+            <fieldset class="analysis-fieldset">
+              <legend><span class="analysis-legend">Il cliente<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
+              <div class="analysis-fields">
+                <div class="analysis-field">
+                  <label class="visually-hidden" for="phone">Telefono del cliente</label>
+                  <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="Telefono (quello del lead)" autocomplete="off">
+                </div>
+                <div class="analysis-field">
+                  <label class="visually-hidden" for="email">Email del cliente · opzionale</label>
+                  <input id="email" name="email" type="email" inputmode="email" placeholder="Email · opzionale" autocomplete="off">
+                </div>
+                <div class="analysis-field">
+                  <label class="visually-hidden" for="value">Importo in euro</label>
+                  <input id="value" name="value" type="text" inputmode="decimal" placeholder="Importo in € (es. 450)" required>
+                </div>
+                <div class="analysis-field">
+                  <label class="visually-hidden" for="date">Data della chiusura</label>
+                  <input id="date" name="date" type="date" required>
+                </div>
+                <div class="analysis-field analysis-field--full">
+                  <label class="visually-hidden" for="note">Servizio · opzionale</label>
+                  <input id="note" name="note" type="text" placeholder="Servizio (es. Top 3 su Google) · opzionale" maxlength="100">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="analysis-fieldset">
+              <legend><span class="analysis-legend">Chiave<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
+              <div class="analysis-fields">
+                <div class="analysis-field analysis-field--full">
+                  <label class="visually-hidden" for="key">Chiave segreta</label>
+                  <input id="key" name="key" type="password" placeholder="Chiave segreta (resta salvata su questo telefono)" autocomplete="off">
+                </div>
+                <div class="analysis-field analysis-field--full">
+                  <label class="visually-hidden" for="test">Codice Test events · opzionale</label>
+                  <input id="test" name="test" type="text" placeholder="Codice Test events · solo per provare" autocomplete="off">
+                </div>
+              </div>
+            </fieldset>
+
+            <button class="analysis-submit" type="submit">
+              <span>Invia a Meta</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contatti">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="footer__brandLink" href="/" aria-label="HS Agency - Home">HS Agency</a>
+        <p class="footer__description">Domina il tuo mercato e diventa il punto di riferimento nel tuo settore.</p>
+        <a class="footer__cta" href="/seo/analisi/">Torna al modulo</a>
+      </div>
+      <nav class="footer__col" aria-label="Servizi">
+        <h2 class="footer__head">Servizi</h2>
+        <ul class="footer__list">
+          <li><a href="/consulenza/">Consulenza gratuita</a></li>
+          <li><a href="/seo/">SEO</a></li>
+          <li><a href="/google-maps/">Top 3 su Google</a></li>
+          <li><a href="/chatgpt/">AI Search</a></li>
+          <li><a href="/google-ads/">Google Ads</a></li>
+          <li><a href="/meta-ads/">Meta Ads</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="Link rapidi">
+        <h2 class="footer__head">Link rapidi</h2>
+        <ul class="footer__list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/casi-studio/">Casi studio</a></li>
+          <li><a href="/#prezzi">Prezzi</a></li>
+          <li><a href="/seo/analisi/">Contatti</a></li>
+        </ul>
+      </nav>
+      <div class="footer__col">
+        <h2 class="footer__head">Contatti</h2>
+        <address class="footer__address">
+          <span>HS Agency</span>
+          <a href="https://share.google/C3YFTgQXKu4kr22w1" target="_blank" rel="noopener">Via Roma, 72, 27025 Gambolò PV</a>
+          <a href="tel:+393534769196">+39 353 476 9196</a>
+          <a href="mailto:seo.hsagency@gmail.com">seo.hsagency@gmail.com</a>
+          <a href="https://wa.me/393534769196" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.instagram.com/hs.agency_seo" target="_blank" rel="noopener">Instagram</a>
+        </address>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__head">Orari</h2>
+        <ul class="footer__hours">
+          <li>Lun–ven 09:00–18:00</li>
+          <li>Sabato 09:00–17:00</li>
+          <li>Domenica 09:00–12:00</li>
+        </ul>
+        <h2 class="footer__head footer__head--next">Legale</h2>
+        <ul class="footer__list">
+          <li><a href="https://www.iubenda.com/privacy-policy/60892143">Privacy</a></li>
+          <li><a href="https://www.termsfeed.com/live/e916e57c-cdeb-4a6c-bc7b-e3d7b2a6f97d">Termini di servizio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__map">
+      <iframe src="https://www.google.com/maps?q=HS%20Agency%2C%20Via%20Roma%2072%2C%2027025%20Gambol%C3%B2%20PV&output=embed" title="HS Agency sulla mappa di Google: Via Roma 72, Gambolò" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 HS Agency · Via Roma, 72, 27025 Gambolò PV · Lavoriamo con attività nel Nord Italia.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const form = document.getElementById("purchase-form");
+      const status = form.querySelector("[data-form-status]");
+      const button = form.querySelector(".analysis-submit");
+      const keyInput = document.getElementById("key");
+      const dateInput = document.getElementById("date");
+      const endpoint = ((window.HS_AGENCY_ANALYSIS_CONFIG || {}).capiEndpoint || "").replace(/\/+$/, "") + "/purchase";
+
+      dateInput.value = new Date().toISOString().slice(0, 10);
+      try { keyInput.value = localStorage.getItem("hs_purchase_key") || ""; } catch (e) {}
+
+      const say = (msg, ok) => { status.textContent = msg; status.style.color = ok ? "var(--green2, #1f9d55)" : "var(--red-text, #b42318)"; };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const value = document.getElementById("value").value.trim();
+        const date = dateInput.value;
+        const note = document.getElementById("note").value.trim();
+        const key = keyInput.value.trim();
+        const testEventCode = document.getElementById("test").value.trim();
+
+        if (!key) return say("Manca la chiave.", false);
+        if (!phone && !email) return say("Serve il telefono o l'email del cliente.", false);
+        if (!value) return say("Manca l'importo.", false);
+        if (!date) return say("Manca la data.", false);
+
+        try { localStorage.setItem("hs_purchase_key", key); } catch (e) {}
+
+        const label = button.innerHTML;
+        button.disabled = true; button.textContent = "Invio in corso…"; say("", true);
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-HS-Key": key },
+            body: JSON.stringify({ phone, email, value, date, note, testEventCode })
+          });
+          const text = await res.text();
+          if (!res.ok) throw new Error(text || ("Errore " + res.status));
+          let info = ""; try { info = " · " + (JSON.parse(text).eventId || ""); } catch (e) {}
+          say("Inviato a Meta" + info + (testEventCode ? " (test)" : ""), true);
+          form.reset(); dateInput.value = new Date().toISOString().slice(0, 10); keyInput.value = key;
+        } catch (error) {
+          say("Non inviato: " + error.message, false);
+        } finally {
+          button.disabled = false; button.innerHTML = label;
+        }
+      });
+    })();
+  </script>
+  
+</body>
+</html>
