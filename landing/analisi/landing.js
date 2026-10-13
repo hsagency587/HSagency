@@ -783,7 +783,7 @@
       // Best-effort, non blocca il redirect oltre il timeout interno (800ms).
       await sendCapiLead(eventId, { whatsapp, sourceUrl: window.location.href });
 
-      window.location.assign("/contati/ringraziamento/grazie-local-seo-web.html");
+      window.location.assign("/landing/analisi/grazie/");
     } catch (error) {
       formStatus.textContent = "Errore nell'invio. Riprova.";
       formStatus.style.color = "var(--red-text)";
