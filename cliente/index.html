@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lead diventato cliente | HS Agency</title>
+  <title>Segnala un lead | HS Agency</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
@@ -60,58 +60,46 @@
     <section class="analysis-hero">
       <div class="container analysis-hero__grid">
         <div class="analysis-hero__copy">
-          <h1 id="analysis-title">Lead diventato <span class="serif-italic">cliente</span></h1>
-          <p>Quando un lead firma o paga, lo dici qui. Il worker manda a Meta l'evento <strong>Purchase</strong>, abbinato alla persona tramite telefono o email: così la campagna impara chi diventa cliente, non solo chi compila il modulo. Mandalo entro pochi giorni dalla chiusura.</p>
-          <p>Pagina riservata: non è nel menu né nella sitemap, e senza la chiave non invia niente.</p>
+          <h1 id="analysis-title">Segnala un lead <span class="serif-italic">a Meta</span></h1>
+          <p>Dopo la chiamata, se il lead è buono: scrivi il telefono e premi <strong>Lead qualificato</strong>. Se ha già firmato o pagato, metti anche l'importo e premi <strong>Cliente</strong>.</p>
+          <p>Va fatto <strong>entro 7 giorni</strong> dalla richiesta: dopo Meta non lo accetta più. Pagina riservata: non è nel sito né su Google, e senza la chiave non invia niente.</p>
         </div>
 
         <div class="analysis-hero__formColumn">
           <form id="purchase-form" class="analysis-form" novalidate>
             <fieldset class="analysis-fieldset">
-              <legend><span class="analysis-legend">Il cliente<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
+              <legend><span class="analysis-legend">Il lead<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
               <div class="analysis-fields">
-                <div class="analysis-field">
-                  <label class="visually-hidden" for="phone">Telefono del cliente</label>
-                  <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="Telefono (quello del lead)" autocomplete="off">
-                </div>
-                <div class="analysis-field">
-                  <label class="visually-hidden" for="email">Email del cliente · opzionale</label>
-                  <input id="email" name="email" type="email" inputmode="email" placeholder="Email · opzionale" autocomplete="off">
-                </div>
-                <div class="analysis-field">
-                  <label class="visually-hidden" for="value">Importo in euro</label>
-                  <input id="value" name="value" type="text" inputmode="decimal" placeholder="Importo in € (es. 450)" required>
-                </div>
-                <div class="analysis-field">
-                  <label class="visually-hidden" for="date">Data della chiusura</label>
-                  <input id="date" name="date" type="date" required>
+                <div class="analysis-field analysis-field--full">
+                  <label class="visually-hidden" for="phone">Telefono del lead</label>
+                  <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="Telefono del lead" autocomplete="off">
                 </div>
                 <div class="analysis-field analysis-field--full">
-                  <label class="visually-hidden" for="note">Servizio · opzionale</label>
-                  <input id="note" name="note" type="text" placeholder="Servizio (es. Top 3 su Google) · opzionale" maxlength="100">
+                  <label class="visually-hidden" for="value">Importo in euro · solo se è cliente</label>
+                  <input id="value" name="value" type="text" inputmode="decimal" placeholder="Importo in € · solo se è già cliente" autocomplete="off">
                 </div>
               </div>
             </fieldset>
 
-            <fieldset class="analysis-fieldset">
-              <legend><span class="analysis-legend">Chiave<span class="analysis-legend__line" aria-hidden="true"></span></span></legend>
+            <div class="cliente-actions">
+              <button class="analysis-submit" type="submit" data-type="qualified"><span>Lead qualificato</span><span aria-hidden="true">→</span></button>
+              <button class="analysis-submit cliente-actions__purchase" type="submit" data-type="purchase"><span>Cliente</span><span aria-hidden="true">→</span></button>
+            </div>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+
+            <details class="cliente-more">
+              <summary>Chiave e prova</summary>
               <div class="analysis-fields">
                 <div class="analysis-field analysis-field--full">
                   <label class="visually-hidden" for="key">Chiave segreta</label>
                   <input id="key" name="key" type="password" placeholder="Chiave segreta (resta salvata su questo telefono)" autocomplete="off">
                 </div>
                 <div class="analysis-field analysis-field--full">
-                  <label class="visually-hidden" for="test">Codice Test events · opzionale</label>
+                  <label class="visually-hidden" for="test">Codice Test events · solo per provare</label>
                   <input id="test" name="test" type="text" placeholder="Codice Test events · solo per provare" autocomplete="off">
                 </div>
               </div>
-            </fieldset>
-
-            <button class="analysis-submit" type="submit">
-              <span>Invia a Meta</span>
-              <span aria-hidden="true">→</span>
-            </button>
-            <p class="form-status" data-form-status aria-live="polite"></p>
+            </details>
           </form>
         </div>
       </div>
@@ -178,54 +166,59 @@
     </div>
   </footer>
 
+  <style>
+    .cliente-actions{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .cliente-actions .analysis-submit{ width: 100%; justify-content: center; }
+    .cliente-actions__purchase{ background: #fff; color: #111; border: 1px solid var(--stroke); }
+    .cliente-more{ margin-top: 18px; font-size: 15px; color: var(--muted); }
+    .cliente-more summary{ cursor: pointer; margin-bottom: 10px; }
+  </style>
   <script>
     (() => {
       const form = document.getElementById("purchase-form");
       const status = form.querySelector("[data-form-status]");
-      const button = form.querySelector(".analysis-submit");
       const keyInput = document.getElementById("key");
-      const dateInput = document.getElementById("date");
+      const more = form.querySelector(".cliente-more");
       const endpoint = ((window.HS_AGENCY_ANALYSIS_CONFIG || {}).capiEndpoint || "").replace(/\/+$/, "") + "/purchase";
 
-      dateInput.value = new Date().toISOString().slice(0, 10);
       try { keyInput.value = localStorage.getItem("hs_purchase_key") || ""; } catch (e) {}
+      if (!keyInput.value) more.open = true;
 
       const say = (msg, ok) => { status.textContent = msg; status.style.color = ok ? "var(--green2, #1f9d55)" : "var(--red-text, #b42318)"; };
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        const btn = event.submitter;
+        const type = btn && btn.dataset.type === "purchase" ? "purchase" : "qualified";
         const phone = document.getElementById("phone").value.trim();
-        const email = document.getElementById("email").value.trim();
         const value = document.getElementById("value").value.trim();
-        const date = dateInput.value;
-        const note = document.getElementById("note").value.trim();
         const key = keyInput.value.trim();
         const testEventCode = document.getElementById("test").value.trim();
 
-        if (!key) return say("Manca la chiave.", false);
-        if (!phone && !email) return say("Serve il telefono o l'email del cliente.", false);
-        if (!value) return say("Manca l'importo.", false);
-        if (!date) return say("Manca la data.", false);
+        if (!key) { more.open = true; return say("Manca la chiave (in «Chiave e prova»).", false); }
+        if (!phone) return say("Manca il telefono del lead.", false);
+        if (type === "purchase" && !value) return say("Per «Cliente» scrivi l'importo.", false);
 
         try { localStorage.setItem("hs_purchase_key", key); } catch (e) {}
 
-        const label = button.innerHTML;
-        button.disabled = true; button.textContent = "Invio in corso…"; say("", true);
+        const buttons = form.querySelectorAll(".analysis-submit");
+        buttons.forEach((b) => (b.disabled = true));
+        say("Invio in corso…", true);
         try {
           const res = await fetch(endpoint, {
             method: "POST",
             headers: { "Content-Type": "application/json", "X-HS-Key": key },
-            body: JSON.stringify({ phone, email, value, date, note, testEventCode })
+            body: JSON.stringify({ type, phone, value, testEventCode })
           });
           const text = await res.text();
           if (!res.ok) throw new Error(text || ("Errore " + res.status));
-          let info = ""; try { info = " · " + (JSON.parse(text).eventId || ""); } catch (e) {}
-          say("Inviato a Meta" + info + (testEventCode ? " (test)" : ""), true);
-          form.reset(); dateInput.value = new Date().toISOString().slice(0, 10); keyInput.value = key;
+          say((type === "purchase" ? "Cliente segnalato a Meta" : "Lead qualificato segnalato a Meta") + (testEventCode ? " (test)" : "") + ".", true);
+          document.getElementById("phone").value = "";
+          document.getElementById("value").value = "";
         } catch (error) {
           say("Non inviato: " + error.message, false);
         } finally {
-          button.disabled = false; button.innerHTML = label;
+          buttons.forEach((b) => (b.disabled = false));
         }
       });
     })();
