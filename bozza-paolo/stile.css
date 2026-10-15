@@ -1,0 +1,1282 @@
+/* ============================================================
+   fisioleone.it — stile della home
+   Sistema visivo: DESIGN-BRIEF.md · geometrie: riferimento-visivo\
+   ============================================================ */
+
+/* ---------- Font, ospitati in locale (niente CDN Google) ---------- */
+@font-face{
+  font-family:"Inter";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("font/inter.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Newsreader";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("font/newsreader.woff2") format("woff2");
+}
+
+/* ---------- Colori del sistema — nessun altro colore entra ---------- */
+:root{
+  --base:#FFFFFF;
+  --antracite:#3C4147;
+  --grigio:#6B7178;
+  --blu:#0F6BA8;
+  --verde:#25D366; /* SOLO il cerchio dietro il glifo della CTA: niente testo, fondi o bordi verdi */
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--base);color:var(--antracite);
+     font-family:Inter,system-ui,sans-serif;font-size:17px;line-height:1.7}
+button{font:inherit}
+img{max-width:100%}
+/* la sola barra blu e' ferma in alto: 48 di barra + 16 di aria
+   (misurata nel browser il 15/09 dopo l'ingrandimento di «Menu sito») */
+[id]{scroll-margin-top:64px}
+
+/* gabbia unica da 1440 per tutte le sezioni; il respiro delle sezioni e'
+   fluido, con clamp: niente soglie per il padding */
+.wrapc{max-width:1440px;margin:0 auto}
+.sez{padding:clamp(44px,5vw,84px) clamp(20px,4vw,48px)}
+
+.eb{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--blu);margin:0 0 14px}
+h1{font-family:Newsreader,serif;font-weight:500;font-size:52px;line-height:1.10;
+   letter-spacing:-.02em;margin:0 0 18px;color:var(--antracite)}
+/* scala nuova dal 29/09 (Fronte 12): ~29 a 1440, 22 sotto i ~1000 — piu'
+   piccolo della banda (32/24) e piu' grande del testo (17). Era
+   clamp(28px,calc(2.6vw + 2px),40px) dal 25/09 (M2) */
+h2{font-family:Newsreader,serif;font-weight:500;font-size:clamp(22px,calc(1.6vw + 6px),30px);line-height:1.14;
+   letter-spacing:-.015em;color:var(--blu);margin:0 0 20px}
+h3{font-family:Newsreader,serif;font-weight:600;font-size:23px;line-height:1.28;
+   color:var(--antracite);margin:0 0 8px}
+p{font-size:17px;line-height:1.7;color:var(--grigio);margin:0 0 18px}
+p.forte{color:var(--antracite)}
+
+/* ---------- La banda col nome della sezione (M3, 25/09) ----------
+   E' la barra «Menu sito» ripetuta in testa alle sezioni: fondo blu,
+   scritta bianca col corpo e il peso di .apri (20px 600, 19 sotto i 900),
+   alta 48 (44), centrata, larga quanto lo schermo. Non e' sticky: scorre e
+   passa sotto la barra del menu (z-index 30). Sta DOPO il respiro della
+   sezione, e sotto lascia 14px (lo stacco occhiello-titolo) al contenuto.
+   Dove e' l'H2 della sezione non ne prende mai la misura.
+   Tutta larghezza senza toccare il layout: l'ombra piena e il clip-path
+   allargato dipingono il blu fino ai bordi dello schermo, ma non creano
+   scorrimento orizzontale (l'ombra non e' overflow) — funziona anche
+   dentro lo studio, che ha una gabbia sua.
+   Dal 29/09 (Fronte 12) non ha piu' la misura di «Menu sito»: 32px, alta
+   quanto la riga di testo piu' 4px sopra e 4 sotto, senza altezza minima: 46 (37 sotto i 900). Nella stessa giornata era 54, poi 50 (46 sotto i 900): troppo spazio sopra e sotto (Simone), la cosa piu' grande della sezione, sopra l'H2.
+   Dal 06/10/2026 (richiesta di Paolo) la stessa misura dell'H2, 22-30px: non e' piu' sopra l'H2 (prima 31 / 23) */
+.banda{display:flex;align-items:center;justify-content:center;min-height:0;
+       margin:0 0 14px;padding:4px 16px;background:var(--blu);color:#fff;
+       box-shadow:0 0 0 100vmax var(--blu);clip-path:inset(0 -100vmax);
+       font-family:Inter,system-ui,sans-serif;font-size:clamp(22px,calc(1.6vw + 6px),30px);font-weight:600;
+       line-height:1.2;letter-spacing:0;text-align:center}
+
+/* ---------- La forma — il taglio, fisso in pixel ---------- */
+.shape{border-radius:0 8px 34px 8px;
+  clip-path:polygon(70px 0,100% 0,100% 100%,0 100%,0 20px,.6px 17.3px,2.7px 15.1px,64px 1.9px,66.9px .8px)}
+/* lo strato interno usa la STESSA sagoma dell'esterno: essendo spostato di 2px
+   dal padding, i due tagli restano paralleli e la linea diagonale del bordo
+   è piena e uniforme fino in fondo (col poligono ridotto si assottigliava) */
+.shape-in{border-radius:0 6px 31px 6px;
+  clip-path:polygon(70px 0,100% 0,100% 100%,0 100%,0 20px,.6px 17.3px,2.7px 15.1px,64px 1.9px,66.9px .8px)}
+.shape-el{border-radius:0 10px 56px 10px;
+  clip-path:polygon(92px 0,100% 0,100% 100%,0 100%,0 26px,.8px 22.5px,3.5px 19.6px,84.5px 2.4px,87.5px 1px)}
+
+/* ---------- La CTA — non piu' la pillola: Paolo l'ha vista e ha chiesto lo
+   spigolo arrotondato della foto che ha rimandato lo stesso giorno (foto 3 e
+   4 del suo PDF — S5 di STATO.md, DESIGN-BRIEF §6) ----------
+   Fondo base, bordo e testo blu, a sinistra il cerchio verde col glifo bianco.
+   L'<a> NON porta la classe .shape: il suo clip-path vincerebbe sul
+   border-radius e il bottone resterebbe tagliato in diagonale.
+   Il cerchio e' l'<svg> stesso, nessun contenitore in piu': un .btn senza
+   <svg> e' un bottone di solo testo. Il verde non esce dal cerchio. */
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--base);color:var(--blu);
+     border:2px solid var(--blu);border-radius:14px;text-decoration:none;
+     font-weight:600;font-size:15px;line-height:1;padding:8px 26px 8px 8px;
+     transition:background .15s,color .15s,box-shadow .15s}
+.btn svg{width:34px;height:34px;flex:0 0 34px;padding:8px;border-radius:50%;
+         background:var(--verde);fill:#fff}
+/* sotto il mouse il bordo raddoppia con un'ombra interna, senza spostare il
+   layout; premuto si riempie di blu; da tastiera un anello blu a 3px */
+.btn:hover{background:rgba(15,107,168,.08);box-shadow:inset 0 0 0 1px var(--blu)}
+.btn:active{background:var(--blu);color:#fff;box-shadow:none}
+.btn:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+
+/* ---------- Il bottone WhatsApp fisso (29/09, Fronte 12) ----------
+   Chiesto dal cliente con una foto: pillola verde WhatsApp, icona e scritta
+   bianche, sempre in basso a destra, su PC e telefono. E' l'UNICA deroga
+   alla regola del verde (solo il cerchio della CTA): qui il verde fa da
+   fondo a un testo bianco, 1,98:1 — DESIGN-BRIEF §13, D7.
+   z-index 35: sopra la barra del menu (30), sotto il velo (40) e il
+   pannello (41). Non e' un .btn: niente bordo blu e niente forma della CTA */
+.wa-fisso{position:fixed;right:20px;bottom:20px;z-index:35;
+          display:inline-flex;align-items:center;gap:10px;padding:12px 22px 12px 16px;
+          background:var(--verde);color:#fff;border-radius:999px;text-decoration:none;
+          font-size:18px;font-weight:600;line-height:1;
+          box-shadow:0 4px 14px rgba(60,65,71,.28);transition:box-shadow .15s}
+.wa-fisso svg{width:26px;height:26px;flex:0 0 26px;fill:#fff}
+.wa-fisso:hover{box-shadow:0 6px 20px rgba(60,65,71,.38)}
+.wa-fisso:focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+@media (max-width:720px){
+  .wa-fisso{right:14px;bottom:14px}
+}
+
+/* ---------- Foto delle sezioni. Dove la foto vera non c'è ancora
+     resta il gradiente segnaposto: per sostituirlo, al posto del
+     gradiente mettere background-image:url("immagini/NOMEFILE.jpg");
+     background-size:cover;background-position:center ---------- */
+.foto{position:relative;display:flex;align-items:flex-end;padding:16px 18px;overflow:hidden}
+.foto span{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+           color:rgba(255,255,255,.92);position:relative;z-index:2}
+/* le foto di Paolo in aula e delle problematiche sono dentro gli
+   slideshow dal 25/09 (M1): <img>, non piu' background per classe */
+
+/* ============================================================
+   NAVBAR — due righe: il lockup sopra, la barra del menu sotto
+   ============================================================ */
+/* riga 1: il lockup, centrato. Non e' sticky: scorre via.
+   Il disegno e' un'immagine (ritaglio del vecchio JPG, 54x165 nativi),
+   le scritte sono testo: il corpo lo decide il CSS, non la larghezza
+   dello schermo — e' il motivo per cui il JPG intero e' uscito (D13).
+   Il disegno e' alto quanto il blocco delle due scritte. */
+.nav-logo{background:var(--base);display:flex;justify-content:center;padding:12px 16px}
+/* non e' un collegamento: niente stati, niente fuoco */
+.lockup{display:flex;align-items:center;gap:16px;color:var(--antracite)}
+.lockup .disegno{height:78px;width:auto;display:block}
+/* le due righe in maiuscolo spaziato con il filetto rosso in mezzo: il
+   rosso #AD4D4C e' quello del logo e vive SOLO qui e nell'immagine
+   (DESIGN-BRIEF §2). Il margine negativo a destra toglie lo spazio che
+   letter-spacing lascia dopo l'ultima lettera, cosi' il filetto — che
+   si stira sulla riga piu' larga — finisce sull'ultima lettera e non oltre */
+.lockup .nome{display:flex;flex-direction:column;align-items:center;gap:7px;
+              text-transform:uppercase;line-height:1;white-space:nowrap}
+.lockup .pl{font-family:Newsreader,serif;font-weight:500;font-size:40px;
+            letter-spacing:.42em;margin-right:-.42em}
+.lockup .filo{align-self:stretch;height:1px;background:#AD4D4C}
+/* .ruolo e' un <h1>: font-family, line-height e margin-block spengono la
+   regola generale h1 senza toccare il margin-right negativo qui sopra */
+.lockup .ruolo{font-weight:500;font-size:22px;letter-spacing:.24em;margin-right:-.24em;
+               color:var(--grigio);font-family:inherit;line-height:1;margin-block:0}
+
+/* riga 2: la barra del menu, l'unica ferma in alto allo scorrimento */
+.nav-menu{position:sticky;top:0;z-index:30;background:var(--blu)}
+/* il panino e la scritta si centrano insieme, come un blocco solo.
+   I 16px di padding del bottone servono al velo del passaggio, che
+   cosi' deborda dalle lettere invece di tagliarle.
+   Corpo 20px (da 14) su richiesta di Paolo, 15/09: la barra e' alta 48 */
+.nav-menu .in{display:flex;justify-content:center}
+.apri{display:flex;align-items:center;gap:14px;height:48px;padding:0 18px;
+      background:transparent;border:0;cursor:pointer;color:#fff;
+      font-size:20px;font-weight:600;transition:background .15s}
+/* bianco sul blu medicale: 5,69:1, sopra AA. Al passaggio e al fuoco da
+   tastiera non entra nessun colore nuovo, la fascia SCURISCE con un velo
+   di nero — come il bottone primario del brief, §6.
+   Schiarire era la scelta naturale ed e' sbagliata: un velo di bianco al
+   12% porta il fondo a #2C7DB2 e il testo bianco a 4,49:1, sotto la
+   soglia AA per un pelo. Scurendo si sale a 6,88:1. */
+.apri:hover,.apri:focus-visible{background:rgba(0,0,0,.12);outline:none}
+.panino{display:flex;flex-direction:column;gap:6px;width:28px;flex:0 0 28px}
+.panino i{display:block;height:2px;width:100%;background:#fff}
+
+/* ---------- Il pannello laterale ---------- */
+.velo{position:fixed;inset:0;background:rgba(24,27,31,.4);opacity:0;pointer-events:none;
+      transition:opacity .25s;z-index:40}
+.velo.on{opacity:1;pointer-events:auto}
+.lat{position:fixed;top:0;bottom:0;left:0;width:372px;max-width:88vw;z-index:41;
+     transform:translateX(-102%);transition:transform .3s;
+     background:rgba(255,255,255,.94);border-right:1px solid rgba(60,65,71,.14);
+     -webkit-backdrop-filter:saturate(140%) blur(18px);backdrop-filter:saturate(140%) blur(18px);
+     padding:24px 30px 40px;overflow-y:auto}
+.lat.on{transform:translateX(0)}
+.lat .testa{display:flex;justify-content:flex-end;margin-bottom:22px}
+.lat .chiudi{background:transparent;border:0;font-size:20px;cursor:pointer;padding:0;line-height:1;color:var(--grigio)}
+.lat h4{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:0 0 6px;
+        position:relative;padding-left:16px;color:var(--grigio)}
+.lat h4::before{content:"";position:absolute;left:0;top:4px;bottom:2px;width:1px;background:rgba(15,107,168,.9)}
+.lat ul{list-style:none;margin:16px 0 0;padding:0}
+.lat li{border-bottom:1px solid rgba(60,65,71,.12)}
+/* voci a 21px (da 17) su richiesta di Paolo, 15/09. Nessuna sottovoce:
+   il sotto-menu delle problematiche e' uscito insieme al primo tocco che
+   lo apriva — e con lui il difetto «clicco una voce e se ne apre un'altra» */
+.lat a.riga{display:flex;align-items:center;gap:8px;text-decoration:none;
+            font-size:21px;padding:15px 0;font-family:Newsreader,serif;font-weight:500;color:var(--antracite)}
+.lat a.riga:hover,.lat a.riga:focus-visible{color:var(--blu);outline:none}
+.lat .wa-lat{display:flex;align-items:center;gap:10px;margin-top:22px;text-decoration:none;font-size:21px;
+             font-family:Newsreader,serif;font-weight:500;color:var(--antracite);padding:15px 0}
+.lat .wa-lat:hover,.lat .wa-lat:focus-visible{color:var(--blu);outline:none}
+.lat .wa-lat svg{width:20px;height:20px;fill:currentColor}
+
+/* ============================================================
+   1 · HERO
+   ============================================================ */
+/* Colonna unica: occhiello, poi il blocco testo+ritratto e la CTA sotto,
+   nella stessa colonna. Niente H1 dal 15/09 (l'H1 della pagina e' nello
+   studio): l'occhiello e' il primo elemento e si allinea al bordo sinistro
+   del testo, non piu' al centro di un titolo che non c'e'.
+   Il ritratto FLOTTA a destra del paragrafo.
+   Nessuna altezza minima dal 15/09: il vecchio 100vh meno 306 era tarato sul
+   banner delle recensioni che seguiva e che ora sta in fondo alla pagina
+   (R8). La hero e' alta quanto il suo contenuto, e «Chi sono» comincia
+   sopra la piega. */
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;
+      padding:clamp(32px,3.6vw,52px) clamp(20px,4vw,48px) clamp(28px,3vw,44px)}
+/* lo sfondo a tutta larghezza: oggi bianco. Quando arriva la foto dello
+   studio si aggiunge qui background-image:url("immagini/NOMEFILE.jpg") */
+.hero .sfondo{position:absolute;inset:0;background:var(--base) center/cover no-repeat}
+.hero .dentro{position:relative;width:100%;max-width:1440px;margin:0 auto;
+              display:flex;flex-direction:column;gap:clamp(8px,.8vw,12px)}
+/* stessa gabbia del corpo, e i 22px a sinistra lo mettono in asse col
+   testo oltre il filetto. Dal 29/09 (Simone) l'occhiello e' IDENTICO agli
+   H2 — Newsreader 500 blu, stessa misura, maiuscole e minuscole come scritte, niente spaziatura (era Inter 700 maiuscolo 12px; per poco Inter maiuscolo alla misura degli H2, sembrava piu' grosso) e piu' vicino al testo (gap della colonna 8-12, era
+   14-24); puo' andare a capo, a quella misura sul telefono non ci sta */
+.hero .eb{font-family:Newsreader,serif;font-weight:500;font-size:clamp(22px,calc(1.6vw + 6px),30px);line-height:1.14;
+          letter-spacing:-.015em;text-transform:none;
+          width:100%;max-width:min(960px,86%);margin:0 auto;padding-left:22px}
+/* flow-root contiene il flottante: il blocco e' alto quanto il piu' alto
+   fra ritratto e paragrafo, e la CTA che segue non ci finisce sotto */
+.hero .corpo{width:100%;max-width:min(960px,86%);margin:0 auto;display:flow-root}
+/* +20% il 26/09 (Simone): era clamp(140px,15vw,220px), tarato perche'
+   fosse alto quanto paragrafo piu' CTA; ora sporge di piu' sotto la CTA */
+.hero .ritratto{float:right;width:clamp(168px,18vw,264px);aspect-ratio:1/1;
+                margin:0 0 12px clamp(18px,3vw,48px);
+                background:url("immagini/ritratto-paolo.jpg") center/cover no-repeat}
+/* il paragrafo e' in Newsreader, col filetto blu a sinistra: e' la voce di
+   Paolo, non un sottotitolo di sistema. hyphens:auto lavora grazie al lang */
+/* dal 09/10 il paragrafo veste come quello di «Inghilterra, e poi l'aula»
+   (.coda p): Inter 17 / 1.7, filetto e 22px a sinistra (Simone) */
+.hero .sub{font-family:inherit;font-size:17px;line-height:1.7;
+           color:var(--antracite);margin:0;padding-left:22px;
+           border-left:1px solid rgba(15,107,168,.55);
+           -webkit-hyphens:auto;hyphens:auto;text-wrap:pretty}
+/* i 22 a sinistra allineano la CTA al testo, oltre il filetto */
+.hero .cta-riga{display:flex;padding:clamp(24px,3vw,40px) 0 0 22px}
+/* ============================================================
+   6 · COSA DICONO I PAZIENTI — recensioni Google, banner a tutta larghezza
+   ============================================================ */
+/* Dal 15/09 sta fra contatti e corsi (D5): i due filetti la chiudono sopra e
+   sotto, e il respiro glielo danno i padding delle sezioni accanto — niente
+   margine suo e niente z-index, che serviva solo ad appoggiarla sopra lo
+   sfondo della hero (R3).
+   L'unico colore fuori dal sistema e' il giallo delle stelle, #F4B400:
+   e' il colore di Google, non nostro, e non esce da questa sezione.
+   Dal 25/09 (M3) comincia col respiro delle sezioni e la banda blu; il
+   riquadro del voto (4,8, 37 recensioni) e' uscito (M8) e il nastro
+   scorre su tutta la larghezza */
+.recensioni{background:var(--base);padding-top:clamp(44px,5vw,84px);
+            border-top:1px solid rgba(60,65,71,.16);border-bottom:1px solid rgba(60,65,71,.16)}
+.rev{display:flex;align-items:stretch;overflow:hidden}
+/* il nastro: la finestra taglia, il binario e' largo quanto tutte le card e
+   scorre di meta' — cioe' di una serie intera — e ricomincia. Le card hanno
+   il margine a SINISTRA, cosi' le due serie sono lunghe uguali al pixel.
+   Dal 26/09 non e' piu' un'animazione CSS: lo muove script.js spostando lo
+   scorrimento della .vista, a 47px al secondo (Simone: «bloccare solo se
+   tengo premuto e scorrere su mobile; su pc non si possono bloccare o
+   scorrere»). Sul PC la .vista taglia e basta: niente pausa al passaggio
+   del mouse, niente scorrimento a mano. Sui dispositivi a dito la .vista
+   si puo' trascinare, con la barra nascosta: il taglio del nastro resta
+   quello. Vale per le recensioni e per le foto delle problematiche.
+   Il nastro scorre sempre, anche con «riduci animazioni» acceso (risparmio
+   energetico su Android), come gli slideshow (Simone, 25/09/2026) */
+.vista{flex:1 1 auto;padding:10px 0;overflow:hidden}
+.nastro{display:flex;align-items:stretch;width:max-content}
+@media (hover:none) and (pointer:coarse){
+  .vista{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .vista::-webkit-scrollbar{display:none}
+}
+/* card da 380 (era 340): la recensione piu' lunga sta su meno righe e detta
+   un'altezza minore a tutte — le card restano alte uguali (stretch) */
+.card{display:flex;flex-direction:column;gap:7px;width:380px;flex:0 0 380px;margin-left:12px;
+      padding:11px 18px 12px;background:#fff;border:1px solid rgba(60,65,71,.16);border-radius:14px}
+.card .chi{display:flex;align-items:center;gap:10px}
+.card .ini{width:32px;height:32px;flex:0 0 32px;border-radius:50%;background:var(--blu);color:#fff;
+           font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.card .nome{display:flex;flex-direction:column;line-height:1.25;font-size:12px;color:var(--grigio)}
+.card .nome b{font-size:13.5px;font-weight:600;color:var(--antracite)}
+.card .st{font-size:13px;color:#F4B400;letter-spacing:1px;line-height:1}
+.card .st .off{color:rgba(60,65,71,.25)}
+.card p{font-size:14px;color:var(--antracite);line-height:1.45;margin:0;text-wrap:pretty}
+
+/* ============================================================
+   2 · CHI SONO
+   ============================================================ */
+/* la testa: H2 e paragrafo centrati, niente foto. Il tetto di 74 caratteri
+   (DESIGN-BRIEF §4) sta sul solo paragrafo: l'H2 resta su una riga. */
+/* l'occhiello «Chi sono» e' uscito il 25/09: al suo posto la banda (M3) */
+.esperienza .testa{margin:0 auto clamp(26px,3vw,40px)}
+.esperienza .col-testo{text-align:center}
+.esperienza .col-testo h2{margin-bottom:16px;text-wrap:pretty}
+.esperienza .col-testo p.forte{max-width:74ch;margin:0 auto;text-wrap:pretty}
+/* sempre tre colonne; due su telefono, in fondo al file */
+.griglia{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+/* LA CARD E' A DUE STRATI, e la logica non si tocca.
+   Un border CSS e un clip-path non convivono: il taglio cancella il bordo
+   sulla diagonale (DESIGN-BRIEF §6). Lo strato esterno .cella porta il
+   colore del bordo, lo strato interno .dentro il bianco, e i 2px di padding
+   sono lo spessore. L'esterno non ha un colore piatto ma una sfumatura:
+   la stessa linea e' blu pieno sopra e lungo il taglio, sfuma sui fianchi e
+   torna piena nella spalla in basso a destra. Una linea sola a intensita'
+   variabile, non piu' linee sovrapposte.
+   La forma interna NON e' l'esterna rimpicciolita in proporzione: e'
+   calcolata scostando la retta di 2px perpendicolari. */
+.cella{display:grid;padding:2px;
+  background:radial-gradient(circle at 100% 100%, var(--blu) 0 44px,
+                             rgba(15,107,168,.12) 84px),
+             linear-gradient(to bottom, var(--blu) 0 34px,
+                             rgba(15,107,168,.12) 104px)}
+.cella > .dentro{background:var(--base);padding:30px 30px 28px 34px;
+  border-radius:0 8px 54px 8px;
+  clip-path:polygon(90.3px 0,100% 0,100% 100%,0 100%,0 25.5px,
+                    .8px 22px,3.5px 19.1px,82.8px 2.4px,85.8px 1px)}
+.cella h3{font-family:Newsreader,serif;font-weight:600;font-size:18.5px;
+          color:var(--antracite);margin:0 0 6px;line-height:1.25}
+.cella p{font-size:14.5px;line-height:1.6;color:var(--grigio);margin:0}
+/* la coda: testo e foto affiancati, si impilano da soli quando non ci
+   stanno (flex-wrap, nessuna soglia). Il paragrafo ha il filetto blu, come
+   quello della hero: e' Paolo che parla. Dal 29/09 (Fronte 12) il paragrafo
+   e' in Inter 17 / 1.7 come il testo del sito (era Newsreader) e il titolo
+   h3 ha la faccia e la misura dell'H2, in blu */
+.coda{display:flex;flex-wrap:wrap;gap:clamp(20px,2.5vw,44px);align-items:center;
+      margin-top:clamp(28px,3vw,48px);padding-top:clamp(24px,3vw,40px);
+      border-top:1px solid rgba(60,65,71,.14)}
+.coda .testo{flex:1 1 min(100%,340px)}
+.coda h3{font-weight:500;font-size:clamp(22px,calc(1.6vw + 6px),30px);line-height:1.14;
+         letter-spacing:-.015em;color:var(--blu);margin:0 0 16px}
+.coda p{font-size:17px;line-height:1.7;
+        color:var(--antracite);margin:0;padding-left:22px;
+        border-left:1px solid rgba(15,107,168,.55);text-wrap:pretty}
+/* lo slideshow della coda (M1, 25/09) prende il posto della foto fissa e la
+   sua proporzione, 16:10, cosi' il blocco non cambia forma (sotto si
+   aggiunge solo la barra con frecce e numero). Resta a destra: l'order
+   delle Docenze qui non vale */
+.coda .slideshow{order:0;flex:1 1 min(100%,300px)}
+.coda .stage{aspect-ratio:16/10;min-height:0;max-height:none}
+
+/* ============================================================
+   3 · DI CHE PROBLEMATICHE MI OCCUPO
+   ============================================================ */
+/* il titolo della sezione e' la banda (M3, 25/09): la regola del vecchio
+   H2 centrato e' uscita con lui */
+/* il paragrafo d'apertura (09/10): impostato come la frase sotto l'H2 di
+   Chi sono (p.forte, stesso spazio prima del blocco sotto). Dal 11/10
+   (Simone): la linea laterale del paragrafo di «Inghilterra» (.coda p),
+   allineato a sinistra, blocco centrato largo 95ch: tre righe su PC (da 80
+   a 110ch restano tre, 95 le fa piu' pari) */
+.problematiche .intro{max-width:95ch;margin:0 auto clamp(26px,3vw,40px);padding-left:22px;
+                      border-left:1px solid rgba(15,107,168,.55);text-align:left;text-wrap:pretty}
+/* le otto card (09/10, Simone): la card a due strati di Chi sono (.cella,
+   §6), orizzontale — foto a sinistra al vivo, testo a destra. Il taglio di
+   .dentro taglia anche la foto. Due per riga su PC, una sotto i 900 (foto di 120 sotto i 720).
+   La foto e' assoluta e alta quanto la card: l'altezza la decide il testo
+   (minimo 180px; il testo sta al centro). Sopra il titolo la lineetta blu 32x2 dei dati dello
+   Studio. Titolo e testo prendono .cella h3 / .cella p */
+.problematiche .griglia{grid-template-columns:repeat(2,minmax(0,1fr))}
+.problematiche .cella > .dentro{--ph-w:clamp(150px,38%,250px);
+  position:relative;display:flex;align-items:center;min-height:180px;
+  padding:0 0 0 var(--ph-w)}
+.problematiche .cella img{position:absolute;inset:0 auto 0 0;width:var(--ph-w);height:100%;
+  object-fit:cover}
+.ptesto{padding:24px 30px 26px 26px}
+.ptesto h3::before{content:"";display:block;width:32px;height:2px;
+  background:var(--blu);margin:0 0 12px}
+.problematiche .cella h3{font-size:22px}
+.problematiche .cella p{font-size:15px}
+@media (max-width:900px){
+  .problematiche .griglia{grid-template-columns:1fr}
+  /* a due a due, solo con una card per riga (12/10, Simone: «su pc no»):
+     la 3, 4, 7 e 8 girano tutta la card, taglio compreso — foto a destra.
+     Foto e testo si rigirano per restare dritti */
+  .problematiche .cella:nth-child(4n+3),.problematiche .cella:nth-child(4n+4),
+  .problematiche .cella:nth-child(4n+3) :is(img,.ptesto),
+  .problematiche .cella:nth-child(4n+4) :is(img,.ptesto){transform:scaleX(-1)}
+  /* il testo occupa tutto lo spazio accanto alla foto: girato, un titolo
+     corto finiva attaccato alla foto invece di partire dal bordo */
+  .problematiche .ptesto{flex:1}
+}
+/* il nastro di foto sotto le card (M9, 26/09; tolto e rimesso il 09/10): il
+   nastro delle recensioni (.vista/.nastro) con dentro delle foto. Tutte alte
+   uguali — 280px, 200 sotto i 720 — e larghe quanto chiede la proporzione;
+   12px a SINISTRA di ognuna, cosi' le due serie sono lunghe uguali e il giro
+   non salta. A tutta larghezza: i margini negativi annullano il padding
+   laterale della sezione (.sez) — 100vw porterebbe dentro la barra di
+   scorrimento e uno scorrimento orizzontale */
+.nastro-foto{margin:clamp(28px,3vw,44px) calc(-1 * clamp(20px,4vw,48px)) 0}
+.nastro-foto img{display:block;height:280px;width:auto;flex:0 0 auto;margin-left:12px}
+@media (max-width:720px){
+  .nastro-foto img{height:200px}
+}
+
+/* ============================================================
+   4 · STUDIO
+   ============================================================ */
+/* Non piu' al vivo: la sezione sta nella gabbia (1536 col padding = 1440 di
+   contenuto), testo a sinistra e mappa a destra. Le due colonne hanno base
+   360: fino ai 901 restano affiancate, sotto i 900 vanno a colonna unica
+   (nel blocco responsive). Con base 420 si spezzavano gia' a ~990 mentre
+   la cornice teneva la posizione da desktop e sporgeva dal bordo (15/09). */
+.studio{max-width:1536px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;
+        gap:clamp(28px,3vw,56px)}
+.studio .sx{flex:1 1 min(100%,360px);display:flex;flex-direction:column;align-items:flex-start;
+            gap:clamp(22px,2.4vw,32px);padding-right:clamp(0px,2vw,24px)}
+/* l'occhiello «Solo su appuntamento» sopra l'H2 e' uscito il 29/09: e'
+   tornato un dato, l'ultimo di .dati, da solo sulla sua riga */
+/* il titolo dello studio: un H2 come gli altri titoli di sezione (l'H1 della
+   pagina e' la qualifica nel lockup). Questa regola sta dopo la h2 generale
+   e vince su tutto, margine compreso */
+.studio h2{margin:0;font-family:Newsreader,serif;font-weight:500;color:var(--blu);
+           font-size:clamp(22px,calc(1.6vw + 6px),30px);line-height:1.16;letter-spacing:-.015em;text-wrap:pretty}
+/* la banda (M3) e' un figlio della riga flex dello studio: prende tutta la
+   riga, e il margine negativo riporta a 14px lo stacco che il gap della
+   sezione (28-56) allargherebbe */
+.studio .banda{flex:0 0 100%;margin-bottom:calc(14px - clamp(28px,3vw,56px))}
+/* i dati dello studio dal 26/09 (M8): quelli della sezione Contatti, che
+   e' uscita — due righe da due (indirizzo · telefono, email · Facebook),
+   griglia e gap dei Contatti, e la lineetta blu 32x2 sopra ogni dato.
+   La voce resta a 15px normale antracite come la sotto-riga (M2), cosi'
+   l'H2 resta l'unica cosa in evidenza. Due per riga anche sul telefono:
+   minmax(0,1fr) perche' una voce lunga vada a capo invece di allargare la
+   colonna (l'email ha un <wbr> prima della @) */
+.studio .dati{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-self:stretch}
+.studio .dati>div::before{content:"";display:block;width:32px;height:2px;
+  background:var(--blu);margin:0 0 8px}
+.studio .dati .k{font-size:15px;font-weight:400}
+/* .dati: coppie valore (.k) / sotto-riga (.v). Nato nello studio, dal 15/09
+   e' anche la sezione contatti (D15): un componente solo, senza prefisso */
+.dati{display:flex;flex-direction:column;gap:16px}
+.dati .k{font-size:17px;font-weight:600;color:var(--antracite);margin:0 0 3px}
+/* i collegamenti dentro .k — telefono, WhatsApp (senza glifo dal 15/09:
+   «Toglierei il logo whatsApp»), email, indirizzo che apre la scheda su
+   Google Maps con la stessa query dell'incorporamento — hanno tutti la
+   stessa faccia: antracite senza sottolineatura, blu al passaggio e al
+   fuoco da tastiera */
+.dati .k a{text-decoration:none;color:var(--antracite);transition:color .15s}
+.dati .k a:hover,
+.dati .k a:focus-visible{color:var(--blu);outline:none}
+/* Facebook col suo logo (Simone, 12/10): cerchio con la f, nell'azzurro
+   di Facebook da subito, non solo al passaggio */
+.dati .k a.fb{display:inline-flex;align-items:center;gap:8px}
+.dati .k a.fb svg{width:20px;height:20px;fill:#0866FF;flex:none}
+.dati .v{font-size:15px;color:var(--grigio);margin:0;line-height:1.5}
+.studio .dx{flex:1.15 1 min(100%,360px);position:relative;padding-left:clamp(0px,4vw,56px)}
+/* la mappa non prende il taglio: solo contorno sottile (incorporamento di terze parti) */
+.mappa{position:relative;border:1px solid rgba(60,65,71,.22);aspect-ratio:720/520}
+.mappa iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* la foto in cornice si appoggia sull'angolo basso-sinistro della mappa e
+   sconfina verso il testo. Il bianco e' la cornice, e porta il taglio di
+   sistema; la foto dentro ha un taglio piu' piccolo (78 di taglio, 44 di
+   spalla) parallelo a quello della cornice: stesso angolo, ridotto del
+   padding — un bordo e il taglio non convivono sullo stesso elemento
+   (DESIGN-BRIEF §6). */
+.studio .cornice{position:absolute;left:-9%;bottom:7.7%;width:50%;min-width:170px;
+                 background:var(--base);padding:clamp(8px,1vw,16px)}
+/* dal 26/09 (M8) nella cornice c'e' uno slideshow (esterno, poi interno):
+   il riquadro delle foto tiene il 4:3 e il taglio piccolo della foto di
+   prima, e la cornice resta stretta attorno alla foto come prima. Le
+   frecce NON stanno sotto la foto — dentro il bianco allungavano la
+   cornice e la deformavano («brutto», Simone, 26/09) —: stanno SOPRA la
+   foto, in basso a sinistra (l'angolo quasi dritto: a destra c'e' la
+   spalla da 44), in due cerchi bianchi. Posizione e altezze delle
+   Docenze qui non valgono */
+.studio .cornice .slideshow{order:0;position:relative}
+.studio .cornice .stage{aspect-ratio:4/3;min-height:0;max-height:none;border-radius:0 8px 44px 8px;
+  clip-path:polygon(78px 0,100% 0,100% 100%,0 100%,0 22px,.7px 19px,3px 16.6px,71.5px 2px,74px .9px)}
+.studio .cornice .barra{position:absolute;left:10px;bottom:10px;margin:0;gap:6px;justify-content:flex-start}
+.studio .cornice .frec{background:rgba(255,255,255,.9);border-radius:50%;color:var(--antracite)}
+.studio .cornice .frec:hover,.studio .cornice .frec:focus-visible{color:var(--blu)}
+
+/* ============================================================
+   6 · DOCENZE
+   ============================================================ */
+/* fondo bianco, niente occhiello: slideshow a sinistra e testo a destra,
+   che si impilano da soli (flex-wrap). Su telefono il testo viene prima */
+.docenze{background:var(--base)}
+.docenze .wrapc{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4vw,64px)}
+.docenze .testo{flex:1 1 min(100%,460px)}
+/* l'H2 «Corsi disponibili» e' la banda dal 25/09 (M3): con lui esce la
+   deroga D6 dell'H2 antracite */
+/* i due corsi sono due card (29/09, Fronte 12): hanno la forma delle card
+   degli approfondimenti (.ap-riga, sezione 8) — filetto blu a due strati
+   da 1,5px, al passaggio e al fuoco blu pieno da 2,5px con la forma
+   interna stretta di conseguenza — ma classi loro, perche' il blocco
+   .ap-riga lo scrive WordPress e non si tocca. Colonna del logo 140px (la
+   misura di .ap-riga sotto i 900), 112 sotto i 640: il logo intero
+   (contain) su bianco, niente sfumatura e niente zoom. Altezza minima e
+   non fissa, cosi' il titolo non viene mai tagliato. Il titolo prende la
+   classe del titolo delle card (.rtitolo) e con lei la sua scala */
+.corsi-card{display:flex;flex-direction:column;gap:16px}
+.corso-card{display:block;background:rgba(15,107,168,.62);padding:1.5px;
+     text-decoration:none;color:inherit;transition:background .22s ease,padding .22s ease}
+.corso-card > .dentro{display:grid;grid-template-columns:140px minmax(0,1fr);background:var(--base);
+     min-height:116px}
+.corso-card:hover,.corso-card:focus-visible{background:var(--blu);padding:2.5px;outline:none}
+.corso-card:hover > .dentro,.corso-card:focus-visible > .dentro{
+  border-radius:0 7.5px 53.5px 7.5px;
+  clip-path:polygon(89.8px 0,100% 0,100% 100%,0 100%,0 25.4px,
+                    .8px 21.9px,3.5px 19px,82.3px 2.4px,85.3px 1px)}
+.clogo{display:flex;align-items:center;justify-content:center;padding:14px;background:var(--base)}
+.clogo img{display:block;width:100%;height:100%;max-height:88px;object-fit:contain}
+/* il corso di manipolazioni non ha piu' il logo Formaction (30/09, Simone):
+   al suo posto la colonna vertebrale, verticale e scurita perche' si legga
+   sul bianco. E' stretta e alta: prende tutta l'altezza della card */
+.clogo.colonna{position:relative}
+.clogo.colonna img{position:absolute;top:6px;bottom:6px;left:14px;width:calc(100% - 28px);height:calc(100% - 12px);max-height:none}
+.ctesto{padding:14px 28px 14px 22px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+/* il nome del corso non si taglia mai: sotto i 900 .rtitolo lo chiuderebbe
+   a due righe coi puntini, come le card degli approfondimenti */
+.ctesto .rtitolo{margin:0;display:block;-webkit-line-clamp:none;overflow:visible}
+.cinfo{font-size:15px;font-weight:600;color:var(--blu);line-height:1.4}
+@media (prefers-reduced-motion:reduce){
+  .corso-card{transition:none}
+}
+@media (max-width:640px){
+  .corso-card > .dentro{grid-template-columns:112px minmax(0,1fr);min-height:104px}
+  .clogo{padding:12px}
+  .ctesto{padding:10px 14px 10px 16px}
+}
+/* lo slideshow: il taglio sta sul contenitore (.shape-el nell'HTML), le 16
+   foto si dissolvono dentro. .slideshow e' il figlio flex (order:-1 lo porta
+   a sinistra del testo); .stage e' solo il riquadro tagliato che le contiene.
+   .slideshow e' a sua volta flex in colonna: senza, .stage tornerebbe un
+   blocco normale e, con aspect-ratio+max-height, l'auto-width si
+   restringerebbe per restare in proporzione, lasciando un vuoto a destra
+   invece di riempire la colonna come faceva da solo prima di questo cambio */
+.slideshow{order:-1;flex:1.2 1 min(100%,480px);display:flex;flex-direction:column}
+.stage{position:relative;aspect-ratio:4/3;
+       min-height:240px;max-height:clamp(240px,34vw,460px);overflow:hidden}
+.stage .f{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.stage .f.on{opacity:1}
+.stage .f img{width:100%;height:100%;object-fit:cover;display:block}
+/* contatore e frecce, sotto la foto: comando manuale che ferma per sempre
+   la rotazione automatica (script.js) */
+.barra{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:10px}
+.conta{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+       color:rgba(60,65,71,.55);font-variant-numeric:tabular-nums}
+.frec{display:inline-flex;align-items:center;justify-content:center;
+      width:28px;height:28px;padding:0;border:0;background:transparent;
+      color:rgba(60,65,71,.45);cursor:pointer;transition:color .15s}
+.frec:hover,.frec:focus-visible{color:var(--blu)}
+.frec:focus-visible{outline:2px solid var(--blu);outline-offset:2px}
+
+/* 5 · CONTATTI — la sezione e' uscita il 26/09 (M8): i suoi dati sono
+   nello Studio, e con lei sono uscite le sue regole e il filetto
+   verticale sfumato (.divisore) che usava solo lei */
+
+/* ============================================================
+   8 · APPROFONDIMENTI (M6, 25/09)
+   ============================================================ */
+/* La card e' QUELLA della vecchia pagina indice su WordPress (Simone,
+   25/09 pomeriggio), copiata dal tema (approfondimenti.css) con le sue
+   misure — PAGE-BRIEF-APPROFONDIMENTI §5.2-5.5: larga 1040, alta 130, foto
+   da 240 che sfuma nel fondo per 32px, filetto blu 1,5px a due strati; al
+   passaggio e al fuoco il filetto diventa blu pieno e 2,5px e la foto
+   zooma. Tutta la card e' il collegamento all'articolo.
+   Con lei entra nella home la forma interna dei box, .shape-el-in (e la
+   -forte dello stato acceso): calcolata per scarto perpendicolare, NON
+   ricavata rimpicciolendo .shape-el. Fino a oggi viveva solo nel tema. */
+.shape-el-in{border-radius:0 8.5px 54.5px 8.5px;
+  clip-path:polygon(90.7px 0,100% 0,100% 100%,0 100%,0 25.6px,
+                    .8px 22.1px,3.5px 19.2px,83.2px 2.4px,86.2px 1px)}
+.ap-lista{display:flex;flex-direction:column;gap:24px;align-items:center}
+.ap-riga{display:block;width:1040px;max-width:100%;background:rgba(15,107,168,.62);padding:1.5px;
+     text-decoration:none;color:inherit;transition:background .22s ease,padding .22s ease}
+/* minmax(0,1fr) e non 1fr: con 1fr l'anteprima su una riga non si taglia
+   con i puntini (nota del tema, misurata il 21/08) */
+.ap-riga > .dentro{display:grid;grid-template-columns:240px minmax(0,1fr);background:var(--base);
+     height:130px;overflow:hidden}
+.ap-riga:hover,.ap-riga:focus-visible{background:var(--blu);padding:2.5px;outline:none}
+.ap-riga:hover > .dentro,.ap-riga:focus-visible > .dentro{
+  border-radius:0 7.5px 53.5px 7.5px;
+  clip-path:polygon(89.8px 0,100% 0,100% 100%,0 100%,0 25.4px,
+                    .8px 21.9px,3.5px 19px,82.3px 2.4px,85.3px 1px)}
+.rfoto{overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 32px),transparent 100%);
+          mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 32px),transparent 100%)}
+/* senza foto resta il gradiente segnaposto del tema */
+.rfoto i{display:block;width:100%;height:100%;
+  background:linear-gradient(150deg,#B9AFA5 0%,#A79C92 46%,#8E857C 100%);
+  transform:scale(1);transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+/* la foto riempie la colonna, come nella pagina indice online (provate
+   il 25/09 la foto intera e una via di mezzo: tornati a questa) */
+.rfoto i.con-foto{background-size:cover;background-position:center}
+.ap-riga:hover .rfoto i,.ap-riga:focus-visible .rfoto i{transform:scale(1.07)}
+.rtesto{padding:15px 36px 15px 34px;display:flex;flex-direction:column;justify-content:center}
+.rtesto .eb{margin:0 0 8px}
+.rtitolo{font-family:Newsreader,serif;font-weight:600;font-size:23px;line-height:1.28;
+     color:var(--antracite);margin:0 0 5px}
+/* anteprima su DUE righe coi puntini, e niente data (Simone, 25/09): il
+   tema la teneva su una riga, con la data sotto */
+.ranteprima{font-size:15px;line-height:1.5;color:var(--grigio);margin:0;
+     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* oltre i 5 articoli (li scrive solo il plugin): la riga che apre gli
+   altri, testo d'interfaccia grigio con la freccia dello slideshow girata
+   in giu', che si gira in su da aperta */
+.altri{width:1040px;max-width:100%;margin:24px auto 0}
+.altri>summary{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 0;
+     cursor:pointer;list-style:none;font-size:15px;font-weight:600;color:var(--grigio);transition:color .15s}
+.altri>summary::-webkit-details-marker{display:none}
+.altri>summary:hover,.altri>summary:focus-visible{color:var(--blu)}
+.altri>summary:focus-visible{outline:2px solid var(--blu);outline-offset:2px}
+.altri>summary svg{transition:transform .25s}
+.altri[open]>summary svg{transform:rotate(180deg)}
+.altri>.ap-lista{margin-top:16px}
+@media (prefers-reduced-motion:reduce){
+  .ap-riga,.rfoto i,.altri>summary svg{transition:none}
+}
+/* su telefono restano righe, non schede: la foto si stringe ma resta a
+   sinistra con la sua sfumatura (misure del tema, §5.5 del suo brief) */
+@media (max-width:900px){
+  .ap-lista{gap:16px}
+  .ap-riga > .dentro{grid-template-columns:140px minmax(0,1fr);height:116px}
+  .rtesto{padding:12px 18px 12px 22px}
+  .rtesto .eb{margin:0 0 5px}
+  .rtitolo{font-size:17px;line-height:1.25;margin:0 0 4px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ranteprima{font-size:13px}
+}
+@media (max-width:640px){
+  .ap-riga > .dentro{grid-template-columns:112px minmax(0,1fr);height:104px}
+  .rtesto{padding:10px 14px 10px 16px}
+  .rtitolo{font-size:15.5px}
+  /* senza la data, titolo e anteprima (due righe ciascuno) ci stanno anche
+     qui: il tema la nascondeva per far posto alla data */
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+/* 64px sotto (29/09, era 0): a fondo pagina la riga legale resta sopra il
+   bottone WhatsApp fisso (alto 50, a 20/14 dal fondo), che la copriva a
+   tutte le larghezze */
+.foot{background:var(--base);color:var(--antracite);border-top:1px solid rgba(60,65,71,.14);
+      padding:clamp(32px,4vw,52px) clamp(20px,3vw,44px) 64px}
+.foot a{text-decoration:none;font-size:13.5px;color:var(--antracite)}
+.foot a:hover{color:var(--blu)}
+/* tre colonne flex che si impilano da sole: logo, mappa, contatti — prese
+   per CLASSE (f-logo, f-mappa, f-contatti), non per posizione: i selettori
+   nth-child di prima si rompevano in silenzio togliendo una colonna (R7).
+   Su telefono diventa una griglia, in fondo */
+.fgrid{display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,38px);padding-bottom:34px;
+       max-width:1440px;margin:0 auto}
+.f-logo{flex:0 1 90px;display:flex;justify-content:center}
+.fcol{flex:1 1 min(100%,220px)}
+.f-mappa{flex:1.4 1 min(100%,260px)}
+/* il logo del footer dal 25/09 (M7): logo-footer.jpg, 402x757 — piu' largo
+   in proporzione del vecchio (1:1,9 contro 1:3). Prende tutta la colonna
+   (90px) e l'altezza viene dalla proporzione, 169px: la colonna resta
+   quella di prima e il footer non cambia impaginazione. Il vecchio era
+   76 x clamp(150px,18vw,230px) */
+.flogo{width:90px;aspect-ratio:402/757;align-self:flex-start;background-image:url("immagini/logo-footer.jpg");
+       background-repeat:no-repeat;background-size:contain;background-position:center}
+.fcol ul{list-style:none;margin:0;padding:0}
+.fcol ul li{border-top:1px solid rgba(60,65,71,.10)}
+.fcol ul li:first-child{border-top:0}
+.fcol ul li a{display:block;padding:9px 0}
+.fcol ul.ico li a{display:flex;gap:11px;align-items:flex-start;line-height:1.5;padding:11px 0}
+.fcol ul.ico svg{width:15px;height:15px;flex:0 0 15px;margin-top:2px;fill:var(--grigio)}
+.gbp{font-size:11px;letter-spacing:.06em;color:var(--grigio);margin:0 0 8px}
+.mappa-f{position:relative;height:148px;border:1px solid rgba(60,65,71,.22)}
+.mappa-f iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.flegal{border-top:1px solid rgba(60,65,71,.12);padding:16px 0 20px;display:flex;gap:18px;
+        align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--grigio);
+        max-width:1440px;margin:0 auto}
+.flegal .dx{margin-left:auto;display:flex;gap:16px;align-items:center}
+.flegal a{font-size:12.5px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+/* Il layout e' fluido — clamp, flex-wrap, min(100%, N) — e le sezioni si
+   impilano da sole. Qui restano solo le cose che il fluido non sa fare:
+   la barra del menu piu' sottile, e la soglia unica da telefono a 720. */
+@media (max-width:900px){
+  body{font-size:16.5px}
+  h3{font-size:20px}
+  /* navbar: il lockup scala — 28px e' il minimo per «PAOLO LEONE» su
+     telefono (D13); il tracking si stringe perche' a 360px di schermo
+     la riga deve starci intera */
+  .nav-logo{padding:10px 14px}
+  .lockup{gap:12px}
+  .lockup .disegno{height:56px}
+  .lockup .nome{gap:5px}
+  .lockup .pl{font-size:28px;letter-spacing:.3em;margin-right:-.3em}
+  .lockup .ruolo{font-size:15.5px;letter-spacing:.17em;margin-right:-.17em}
+  /* la barra si assottiglia appena: 44 di altezza, 19px di corpo */
+  .apri{height:44px;font-size:19px}
+  /* barra 44 + 16 di aria: le ancore si fermano appena sotto */
+  [id]{scroll-margin-top:60px}
+
+  /* studio a colonna unica: la foto in cornice si appoggia sull'angolo
+     basso-destro della mappa, e la colonna si allunga sotto per farle posto */
+  .studio .sx,.studio .dx{flex-basis:100%}
+  .studio .dx{padding-left:0;padding-bottom:56px}
+  .studio .cornice{left:auto;right:16px;bottom:0;width:58%;padding:8px}
+}
+
+/* i dati dello studio restano due per riga anche sul telefono (Simone,
+   26/09 sera): fino ad allora sotto i 760 andavano uno sotto l'altro */
+
+@media (max-width:720px){
+  /* hero: ritratto piccolo in alto (4:5, con un taglio ridotto in proporzione
+     — DEROGA come per le card qui sotto), CTA centrata sotto tutto.
+     Nessuna altezza minima dal 25/09 (M5, richiesta di Paolo): la hero
+     finisce dopo la CTA col suo margine, e «Chi sono» comincia li', dentro
+     il primo schermo. Fino ad allora era calc(100svh - 120px), perche'
+     «Chi sono» partisse esattamente alla piega (15/09). */
+  .hero{align-items:stretch;padding-top:30px;padding-bottom:44px}
+  /* Il contenuto riempie la gabbia invece di galleggiarci in mezzo come una
+     card (esempio di Paolo, foto 3-4 del PDF): gabbia a tutta larghezza,
+     e .corpo in display:contents cosi' .testo (ritratto + paragrafo) e la
+     CTA sono figli diretti di .dentro. Griglia a cinque righe: occhiello,
+     8 di spazio (piu' gli 8 di margine del paragrafo = 16; erano 32+8 fino
+     al 29/09), testo, 32 di spazio (piu' gli 8 di padding della CTA = 40),
+     CTA. La sesta riga elastica (1fr), che assorbiva l'altezza minima, e'
+     uscita con lei. L'occhiello dal 29/09 ha la misura degli H2 (22px) */
+  .hero .dentro{display:grid;gap:0;
+    grid-template-rows:auto 8px auto 32px auto}
+  .hero .corpo{display:contents}
+  .hero .eb{grid-row:1;padding-left:10px;max-width:none}
+  .hero .testo{grid-row:3}
+  /* foto 110, 8 dal testo, 10 oltre il filetto e 18.5 di corpo sono tarati
+     insieme sui 384 di larghezza (il telefono di Simone): la colonna
+     accanto alla foto e' 216px e «Mi occupo di problematiche» ne misura
+     211, cosi' la prima riga resta intera. Con 19 di corpo la foto
+     scenderebbe a 104 — Simone, 15/09/2026.
+     Il 26/09 la foto e' passata a 132 (+20%, Simone): la colonna accanto
+     scende a 194 e la prima riga si spezza anche a 384 */
+  .hero .ritratto{width:132px;aspect-ratio:2/3;margin:4px 0 8px 8px;
+    border-radius:0 6px 26px 6px;
+    clip-path:polygon(44px 0,100% 0,100% 100%,0 100%,0 12.5px,.4px 10.8px,1.7px 9.4px,40.4px 1.1px,41.9px .5px)}
+  /* niente sillabazione qui: si va a capo per parole e il testo scorre
+     sotto la foto, come nell'esempio di Paolo. A 360 la colonna accanto
+     alla foto e' 192px e «muscoloscheletriche.» ne misura 155: ci sta.
+     overflow-wrap:anywhere resta come rete per gli schermi da 320 */
+  /* (la regola che sul telefono avvicinava l'occhiello dello studio alla
+     banda e' uscita con l'occhiello, 29/09: la banda torna a 14 dall'H2) */
+  .hero .sub{margin-top:8px;
+    -webkit-hyphens:manual;hyphens:manual;overflow-wrap:anywhere}
+  .hero .cta-riga{grid-row:5;justify-content:center;padding:8px 0 0}
+
+  /* recensioni: senza il riquadro del voto (M8) resta solo il nastro */
+  .vista{padding:6px 0 14px}
+
+  /* esperienza: le sei celle a due colonne, compatte.
+     DEROGA alla forma di sistema: qui la card e' larga ~167px e il taglio
+     da 92 si mangerebbe meta' del lato. Scende a 55 di taglio e 34 di
+     spalla — stesso angolo, stesso disegno, piu' piccolo. */
+  .griglia{grid-template-columns:1fr 1fr;gap:12px}
+  .esperienza .cella,.problematiche .cella{border-radius:0 6px 34px 6px;
+    clip-path:polygon(55px 0,100% 0,100% 100%,0 100%,0 15.5px,
+                      .5px 13.5px,2.1px 11.7px,50.5px 1.4px,52.3px .6px);
+    background:radial-gradient(circle at 100% 100%, var(--blu) 0 26px,
+                               rgba(15,107,168,.12) 56px),
+               linear-gradient(to bottom, var(--blu) 0 22px,
+                               rgba(15,107,168,.12) 78px)}
+  .esperienza .cella > .dentro,.problematiche .cella > .dentro{padding:18px 14px 16px 20px;
+    border-radius:0 4px 32px 4px;
+    clip-path:polygon(53.3px 0,100% 0,100% 100%,0 100%,0 15px,
+                      .5px 13px,2.1px 11.2px,48.8px 1.4px,50.6px .6px)}
+  .esperienza .cella h3{font-size:15.5px}
+  .esperienza .cella p{font-size:12.5px}
+  /* le card delle problematiche: una per riga, stessa deroga di forma
+     (09/10), foto a sinistra larga 120 */
+  .problematiche .griglia{grid-template-columns:1fr}
+  .problematiche .cella > .dentro{--ph-w:120px;min-height:132px;padding:0 0 0 var(--ph-w)}
+  .ptesto{padding:14px 16px 16px 16px}
+  .ptesto h3::before{margin-bottom:8px}
+  .problematiche .cella h3{font-size:17px}
+  .problematiche .cella p{font-size:13.5px}
+
+  /* docenze: testo prima, foto dopo */
+  .slideshow{order:1}
+  /* coda, solo sotto i 720 (10/10, Simone): titolo, foto a tutta larghezza,
+     testo. .testo si scioglie (display:contents) cosi' titolo e paragrafo
+     diventano figli della colonna e la foto si mette fra i due. Su PC il
+     blocco resta quello di prima: testo centrato accanto alla foto */
+  .coda{flex-direction:column;align-items:stretch;gap:0}
+  .coda .testo{display:contents}
+  .coda h3{order:0}
+  .coda .slideshow{order:1;flex:none;width:100%;margin:0 0 18px}
+  .coda .stage{flex:none}
+  .coda .slideshow{display:block}
+  .coda p{order:2}
+
+  /* footer: logo stretto a sinistra su tutta l'altezza; a destra la mappa
+     sopra e i contatti sotto. Per classe, non per posizione (R7) */
+  .fgrid{display:grid;grid-template-columns:56px 1fr;gap:14px 16px;padding-bottom:18px}
+  .f-logo{grid-column:1;grid-row:1 / 3;justify-content:flex-start;align-items:start}
+  /* il logo nuovo prende la colonna da 56: 56 x 105 (il vecchio 50 x 150) */
+  .flogo{width:56px}
+  .f-mappa{grid-column:2;grid-row:1}
+  .mappa-f{height:120px}
+  .f-contatti{grid-column:2;grid-row:2}
+  .fcol ul li a{padding:5px 0;font-size:12.5px;line-height:1.35}
+  .fcol ul.ico li a{padding:7px 0;font-size:12.5px}
+  /* le due righe legali in fondo: una riga sola, corpo piu' piccolo */
+  .flegal{padding:12px 0 16px;gap:10px;font-size:10.5px;flex-wrap:nowrap;
+    white-space:nowrap;overflow-x:auto}
+  .flegal a{font-size:10.5px}
+  .flegal .dx{margin-left:0;gap:10px;flex-wrap:nowrap}
+}
+
+/* ---------- Le due policy (cookie-policy.html, privacy-policy.html) ----------
+   Testo del vecchio sito com'e' (LAVORO-GROSSO-PASSAGGIO.md D6): una colonna
+   di 74 caratteri, la gabbia di lettura gia' usata in Chi sono; il resto
+   (p, h2, strong, elenchi) lo danno le regole di base. 28/09/2026 */
+.policy{max-width:74ch;margin:0 auto}
+.policy a{color:var(--blu)}
+
+
+/* ============================================================
+   ============================================================
+   PELLE CREMA — 15/10/2026, cartella sito-crema (COPIA, non va online)
+   Il foglio sopra e' stile.css del sito com'e'. Da qui in giu' la
+   grammatica dei siti di salute fatti bene (Parsley, Hinge, Alma, SPEAR,
+   Six Physio, Pure Sports), applicata al sito di Paolo in sei punti:
+     1 · pagina crema, non bianca
+     2 · il blu di Paolo resta su menu, titoli, bottoni; entra un blu
+         PROFONDO della stessa famiglia per UNA sezione piena (Studio)
+     3 · card piene, senza contorno; il taglio resta
+     4 · le bande col titolo escono: occhiello piccolo + H2 grande
+     5 · foto grandi: hero, Inghilterra, Studio, Corsi a mezza pagina
+     6 · tinte chiare della famiglia (ghiaccio, sabbia) sulle sezioni
+         intermedie; niente filetti, niente lineette
+   Testi, struttura, foto, taglio, blu #0F6BA8: invariati.
+   ============================================================ */
+
+:root{
+  --crema:#F8F6F2;        /* la pagina (Parsley #F8F6F2) */
+  --crema-2:#F1EDE5;      /* un passo piu' pieno: card del blog, cornici */
+  --sabbia:#E6DED0;       /* blocco «Inghilterra» */
+  --ghiaccio:#E8EFF5;     /* blocco «Corsi» — la famiglia del blu, chiarissima */
+  --blu-profondo:#0B2E4A; /* lo Studio: la famiglia del blu, scura */
+  --ombra:0 10px 30px rgba(43,46,56,.08),0 2px 6px rgba(43,46,56,.05);
+  --pad:clamp(32px,4.5vw,72px)}
+
+/* ---------- 1 · la pagina ---------- */
+body{background:var(--crema)}
+.hero .sfondo{background-color:var(--crema)}
+.recensioni,.docenze,.foot,.clogo{background:transparent}
+.foot{background:var(--crema);border-top:1px solid rgba(60,65,71,.1)}
+
+/* ---------- 4 · via le bande: occhiello + titolo grande ---------- */
+.sez-eb{display:block;text-align:center;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--blu);margin:0 0 12px;line-height:1.4}
+h2,.titolo{font-family:Newsreader,serif;font-weight:500;color:var(--antracite);
+  font-size:clamp(30px,calc(2.4vw + 10px),46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance}
+.titolo{text-align:center;margin:0 auto clamp(24px,3vw,40px);max-width:22ch}
+.studio h2,.esperienza .col-testo h2,.hero .eb{font-size:clamp(30px,calc(2.4vw + 10px),46px);line-height:1.08;letter-spacing:-.02em}
+.esperienza .col-testo h2{color:var(--antracite)}
+.hero .eb{color:var(--antracite);margin-bottom:18px}
+.sez{padding-top:clamp(56px,7vw,112px);padding-bottom:clamp(56px,7vw,112px)}
+/* il titolo delle recensioni era un <p class="banda"> */
+.recensioni .sez-eb{margin-bottom:0}
+.recensioni .titolo-rec{display:block;text-align:center;font-family:Newsreader,serif;font-weight:500;color:var(--antracite);
+  font-size:clamp(30px,calc(2.4vw + 10px),46px);line-height:1.08;letter-spacing:-.02em;margin:10px auto clamp(24px,3vw,40px)}
+
+/* ---------- 6 · niente linee ---------- */
+.hero .sub,.coda p,.problematiche .intro{border-left:0;padding-left:0}
+.ptesto h3::before,.studio .dati>div::before{display:none}
+.coda{border-top:0}
+.recensioni{border-top:0;border-bottom:0}
+.lat h4::before{display:none}
+
+/* ---------- 3 · card piene, senza contorno; il taglio resta ----------
+   La card era a due strati: fuori il velo blu (il bordo), dentro il
+   bianco. Qui lo strato fuori sparisce e il bianco porta il taglio da
+   solo, con un'ombra morbida. */
+.cella{background:none;padding:0;filter:drop-shadow(0 8px 18px rgba(43,46,56,.07)) drop-shadow(0 1px 3px rgba(43,46,56,.05))}
+.cella > .dentro{background:#fff;border-radius:0 10px 56px 10px;
+  clip-path:polygon(92px 0,100% 0,100% 100%,0 100%,0 26px,.8px 22.5px,3.5px 19.6px,84.5px 2.4px,87.5px 1px)}
+.esperienza .cella > .dentro{padding:30px 32px 28px 36px}
+.corso-card,.ap-riga{background:none;padding:0;filter:drop-shadow(0 8px 18px rgba(43,46,56,.07))}
+.corso-card:hover,.corso-card:focus-visible,.ap-riga:hover,.ap-riga:focus-visible{background:none;padding:0;filter:drop-shadow(0 12px 26px rgba(43,46,56,.12))}
+.corso-card > .dentro,.ap-riga > .dentro{background:#fff;border-radius:0 10px 56px 10px;
+  clip-path:polygon(92px 0,100% 0,100% 100%,0 100%,0 26px,.8px 22.5px,3.5px 19.6px,84.5px 2.4px,87.5px 1px)}
+.recensioni .card{border:0;border-radius:18px;box-shadow:var(--ombra);padding:16px 22px 18px}
+.recensioni .card .ini{background:var(--blu-profondo)}
+.mappa{border:0}
+@media (max-width:720px){
+  .cella > .dentro,.corso-card > .dentro,.ap-riga > .dentro{border-radius:0 6px 34px 6px;
+    clip-path:polygon(55px 0,100% 0,100% 100%,0 100%,0 15.5px,.5px 13.5px,2.1px 11.7px,50.5px 1.4px,52.3px .6px)}
+}
+
+/* ---------- 2 · i bottoni: pieni ---------- */
+.btn{background:var(--blu);color:#fff;border-color:var(--blu);border-radius:999px;padding:14px 26px 14px 16px}
+.btn:hover{background:#0C5A8E;border-color:#0C5A8E;box-shadow:none}
+.btn:active{background:var(--blu-profondo);border-color:var(--blu-profondo)}
+
+/* ---------- 5 · hero: la foto dello studio sfuma nel crema ---------- */
+.hero{min-height:clamp(460px,46vw,660px);padding-top:clamp(40px,5vw,72px)}
+.hero .sfondo{background-image:url("immagini/interno-studio-lettino.jpg");background-position:center 76%;
+  -webkit-mask-image:linear-gradient(to right,transparent 0 38%,#000 72%),linear-gradient(to bottom,#000 70%,transparent);
+          mask-image:linear-gradient(to right,transparent 0 38%,#000 72%),linear-gradient(to bottom,#000 70%,transparent);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+.hero .dentro{margin:0;max-width:min(720px,47%);z-index:1}
+.hero .corpo{max-width:none;margin:0}
+.hero .ritratto{display:none}
+.hero .cta-riga{padding-left:0}
+
+/* ---------- 5 · i tre blocchi a mezza pagina ---------- */
+.coda,.studio,.docenze .wrapc{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;
+  max-width:none;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);min-height:clamp(440px,40vw,600px)}
+:is(.coda,.studio,.docenze) .slideshow{display:block;position:relative;flex:none;order:0;height:100%}
+:is(.coda,.studio,.docenze) .stage{height:100%;aspect-ratio:auto;min-height:0;max-height:none;border-radius:0;clip-path:none}
+:is(.coda,.studio,.docenze) .barra{position:absolute;left:auto;right:16px;bottom:12px;width:auto;margin:0;z-index:2;justify-content:flex-end}
+:is(.coda,.studio,.docenze) .conta{color:rgba(255,255,255,.85)}
+:is(.coda,.studio,.docenze) .frec{color:#fff;background:rgba(43,46,56,.35);border-radius:50%}
+:is(.coda,.studio,.docenze) .frec:hover,:is(.coda,.studio,.docenze) .frec:focus-visible{color:#fff;background:rgba(43,46,56,.6)}
+html,body{overflow-x:clip}
+
+/* «Inghilterra, e poi l'aula»: foto | sabbia */
+.coda{margin-top:clamp(40px,5vw,80px);padding-top:0}
+.coda .slideshow{order:0}
+.coda .testo{order:1;flex:none;display:flex;flex-direction:column;justify-content:center;background:var(--sabbia);padding:var(--pad)}
+.coda h3{color:var(--antracite);font-size:clamp(26px,calc(1.8vw + 8px),36px);line-height:1.1;letter-spacing:-.015em}
+.coda p{max-width:58ch}
+.esperienza{padding-bottom:0}
+
+/* «Dov'e' lo studio & contatti»: BLU PROFONDO | foto dello studio */
+.studio{padding:0;grid-template-rows:auto;max-width:none}
+.studio .sx-eb{text-align:left;color:rgba(255,255,255,.72);margin:0}
+.studio .intesta{grid-column:1/-1;padding:clamp(56px,7vw,112px) clamp(20px,4vw,48px) clamp(24px,3vw,40px);text-align:center}
+.studio .sx{background:var(--blu-profondo);color:#fff;padding:var(--pad);justify-content:center;gap:clamp(22px,2.4vw,32px)}
+.studio h2{color:#fff}
+.studio .dati .k,.studio .dati .k a{color:#fff}
+.studio .dati .v{color:rgba(255,255,255,.72)}
+.studio .dati .k a.fb svg{fill:#fff}
+.studio .btn{background:#fff;color:var(--blu-profondo);border-color:#fff}
+.studio .btn:hover{background:var(--crema);border-color:var(--crema)}
+.studio .dx{padding:0;position:relative;min-height:0}
+.studio .cornice{position:static;width:auto;min-width:0;padding:0;background:transparent;height:100%}
+.studio .cornice .slideshow{height:100%}
+.studio .cornice .stage{aspect-ratio:auto}
+.studio .mappa{position:absolute;left:24px;bottom:24px;width:40%;min-width:180px;z-index:2;
+  aspect-ratio:4/3;background:#fff;padding:8px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.studio .mappa iframe{inset:8px;width:auto;height:auto;border-radius:6px}
+
+/* «Corsi»: foto dell'aula | ghiaccio */
+.docenze{padding-left:0;padding-right:0;padding-bottom:0}
+.docenze .intesta{text-align:center;padding:0 clamp(20px,4vw,48px) clamp(24px,3vw,40px)}
+.docenze .wrapc{margin-top:0}
+.docenze .slideshow{order:0}
+.docenze .testo{order:1;flex:none;display:flex;flex-direction:column;justify-content:center;background:var(--ghiaccio);padding:var(--pad)}
+.docenze .stage{max-height:none}
+
+/* ---------- 6 · le sezioni intermedie ---------- */
+.problematiche{background:var(--crema)}
+.approfondimenti{background:var(--crema-2)}
+.approfondimenti .ap-riga > .dentro{background:#fff}
+.problematiche .intro{max-width:74ch;text-align:center}
+
+/* ---------- telefono: foto sopra, blocco sotto ---------- */
+@media (max-width:720px){
+  .hero{min-height:0;padding-top:300px}
+  .hero .dentro{max-width:none}
+  .hero .sfondo{background-position:62% 70%;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0 170px,transparent 340px);
+            mask-image:linear-gradient(to bottom,#000 0 170px,transparent 340px);-webkit-mask-composite:source-over;mask-composite:add}
+  .coda,.studio,.docenze .wrapc{grid-template-columns:1fr;min-height:0}
+  :is(.coda,.studio,.docenze) .slideshow{height:auto;width:100%;margin:0}
+  :is(.coda,.studio,.docenze) .stage{aspect-ratio:4/3;height:auto}
+  .coda{gap:0}
+  .coda .testo{display:flex;order:1}
+  .coda h3,.coda p{order:0}
+  .studio{grid-template-rows:auto auto auto}
+  .studio .sx{order:1}
+  .studio .dx{order:2;padding-bottom:0}
+  .studio .cornice{height:auto}
+  .studio .cornice .slideshow{height:auto}
+  .studio .cornice .stage{aspect-ratio:4/3;height:auto}
+  .studio .mappa{left:16px;bottom:16px;width:46%;padding:6px}
+  .studio .mappa iframe{inset:6px}
+  .docenze .testo{order:1}
+  h2,.titolo,.studio h2,.esperienza .col-testo h2,.hero .eb,.recensioni .titolo-rec{font-size:clamp(26px,8vw,34px)}
+}
+
+/* ---------- 15/10, secondo giro (Simone): le bande tornano, gli H2 restano ----------
+   La banda e' quella di prima, identica (regole di .banda qui sopra).
+   Negli H2 grandi (Chi sono, Studio) cambia niente. */
+.banda{margin-bottom:14px}
+.studio .banda{grid-column:1/-1;flex:none;margin:0}
+.docenze .banda{margin-bottom:0}
+.studio{padding-top:clamp(56px,7vw,112px)}
+.sez-eb,.titolo,.titolo-rec,.intesta{display:none}
+
+/* ---------- 15/10, secondo giro (Simone): Paolo nella hero ----------
+   Testo a sinistra, Paolo nel mezzo, lo studio a destra. La foto sfuma
+   sopra e sotto come il logo nella testata del tema (.mark). */
+.hero .dentro{max-width:min(600px,40%)}
+.hero .paolo{position:absolute;top:0;bottom:0;left:44%;width:clamp(220px,22vw,320px);z-index:1;
+  background:url("immagini/paolo-studio.jpg") center 30%/cover no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 84%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 84%,transparent 100%)}
+.hero .sfondo{-webkit-mask-image:linear-gradient(to right,transparent 0 42%,#000 74%),linear-gradient(to bottom,#000 70%,transparent);
+              mask-image:linear-gradient(to right,transparent 0 42%,#000 74%),linear-gradient(to bottom,#000 70%,transparent)}
+@media (max-width:720px){
+  .hero .paolo{display:none}
+  .hero .dentro{max-width:none}
+}
+
+/* ---------- 15/10, terzo giro (Simone, dal telefono): occhiello e Paolo anche sul telefono ----------
+   «Studio privato · Solo su appuntamento» e' un occhiello: blu, piccolo.
+   L'H1 e' «FISIOTERAPISTA - OSTEOPATA» nella testata. */
+.hero .eb{font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:13px;line-height:1.4;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin:0 0 14px}
+@media (max-width:720px){
+  .hero .eb{font-size:12px}
+  /* sul telefono Paolo sta a destra del testo, come il ritratto di prima:
+     e' il .ritratto che c'era, con la foto e la dissolvenza di .paolo */
+  .hero .ritratto{display:block;float:right;width:42%;aspect-ratio:3/4;margin:0 0 10px 14px;
+    background:url("immagini/paolo-studio.jpg") center 30%/cover no-repeat;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 86%,transparent 100%);
+            mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 86%,transparent 100%)}
+}
+/* la regola del telefono per lo sfondo della hero, ripetuta in fondo: la
+   regola PC qui sopra (terzo giro) e' scritta dopo quella del telefono e
+   la vinceva */
+@media (max-width:720px){
+  .hero .sfondo{background-position:62% 70%;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0 170px,transparent 340px);
+            mask-image:linear-gradient(to bottom,#000 0 170px,transparent 340px);-webkit-mask-composite:source-over;mask-composite:add}
+}
+/* ---------- 15/10, quarto giro (Simone): nel mezzo la faccia di Paolo ----------
+   ritratto-paolo.jpg (530x530), quadrata, centrata in altezza nella hero,
+   dissolvenza leggera sopra e sotto. Vale anche sul telefono. */
+.hero .paolo{top:50%;bottom:auto;height:auto;aspect-ratio:1/1;transform:translateY(-50%);
+  background-image:url("immagini/ritratto-paolo.jpg");background-position:center;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%)}
+@media (max-width:720px){
+  .hero .ritratto{background-image:url("immagini/ritratto-paolo.jpg");background-position:center;aspect-ratio:1/1}
+}
+/* ---------- 15/10, quinto giro (Simone, dal telefono) ----------
+   1 · la CTA torna quella del sito: bianca, bordo e testo blu, cerchio verde */
+.btn{background:var(--base);color:var(--blu);border:2px solid var(--blu);border-radius:14px;padding:12px 22px 12px 16px}
+.btn:hover{background:rgba(15,107,168,.08);border-color:var(--blu);box-shadow:inset 0 0 0 1px var(--blu)}
+.btn:active{background:var(--blu);color:#fff;border-color:var(--blu);box-shadow:none}
+.studio .btn{background:var(--base);color:var(--blu);border-color:var(--base)}
+.studio .btn:hover{background:#fff;border-color:#fff;box-shadow:inset 0 0 0 1px var(--blu)}
+/* 2 · la sabbia di «Inghilterra» continua fino alla banda delle Problematiche,
+   poi dentro la sezione fino a meta', e da meta' sfuma a zero alla fine */
+.problematiche{background:linear-gradient(to bottom,var(--sabbia) 0 50%,rgba(230,222,208,0) 100%)}
+/* 3 · l'ombra quadrata dietro le card: era lo strato esterno della card a
+   due strati, che sotto i 720 tornava col suo velo blu (regola del
+   telefono di stile.css). Lo strato esterno sparisce ovunque. */
+.esperienza .cella,.problematiche .cella,.corso-card,.ap-riga{background:none;padding:0}
+@media (max-width:720px){
+  .esperienza .cella,.problematiche .cella{background:none;padding:0;clip-path:none;border-radius:0}
+}
+.cella,.corso-card,.ap-riga{filter:drop-shadow(0 6px 14px rgba(43,46,56,.06))}
+/* 4 · nello Studio tornano le lineette sopra i dati, bianche */
+.studio .dati>div::before{display:block;background:rgba(255,255,255,.7)}
+/* ---------- 15/10, sesto giro (Simone) ----------
+   1 · dietro la CTA lo stesso colore dello sfondo: crema sulla pagina,
+       trasparente (bordo e testo bianchi) sul blu scuro dello Studio */
+.btn{background:var(--crema)}
+.btn:hover{background:#EFEAE2}
+.studio .btn{background:transparent;color:#fff;border-color:#fff}
+.studio .btn:hover{background:rgba(255,255,255,.1);border-color:#fff;box-shadow:none}
+.studio .btn:active{background:#fff;color:var(--blu-profondo)}
+/* 2 · nelle Problematiche la sabbia e' piena fino alla fine del testo
+       d'apertura; la sfumatura verso il crema comincia dove comincia la
+       griglia delle card e finisce dove finiscono le card. Il nastro e
+       il respiro sotto sono crema. */
+.problematiche{background:var(--sabbia);padding-bottom:0}
+.problematiche .griglia{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);
+  background:linear-gradient(to bottom,var(--sabbia) 0,var(--crema) 100%)}
+.problematiche .vista.nastro-foto{background:var(--crema);margin-top:0;
+  padding-top:clamp(28px,3vw,44px);padding-bottom:clamp(56px,7vw,112px)}
+/* ---------- 15/10, settimo giro (Simone, dal telefono): un bordino blu sottile
+   SOLO sulle sei card di Chi sono. Torna lo strato esterno della card, blu,
+   con 1px di spessore; il taglio esterno e' quello di .shape-el, l'interno
+   e' quello di prima (pensato per 2px: lungo la diagonale la linea viene
+   appena piu' piena, e' voluto che resti sottile sui lati). */
+.esperienza .cella{background:var(--blu);padding:1px}
+.esperienza .cella > .dentro{border-radius:0 9px 55px 9px;
+  clip-path:polygon(91.1px 0,100% 0,100% 100%,0 100%,0 25.7px,.8px 22.2px,3.5px 19.4px,83.6px 2.4px,86.6px 1px)}
+@media (max-width:720px){
+  .esperienza .cella{background:var(--blu);padding:1px;border-radius:0 6px 34px 6px;
+    clip-path:polygon(55px 0,100% 0,100% 100%,0 100%,0 15.5px,.5px 13.5px,2.1px 11.7px,50.5px 1.4px,52.3px .6px)}
+  .esperienza .cella > .dentro{border-radius:0 5px 33px 5px;
+    clip-path:polygon(54.1px 0,100% 0,100% 100%,0 100%,0 15.2px,.5px 13.2px,2.1px 11.4px,49.6px 1.4px,51.4px .6px)}
+}
+/* ---------- 15/10, ottavo giro (Simone, dal telefono) ----------
+   1 · la faccia di Paolo senza dissolvenza, un po' piu' grande e piu' alta
+       che larga (4:5). Su PC e sul telefono. */
+.hero .paolo{-webkit-mask-image:none;mask-image:none;width:clamp(250px,25vw,360px);aspect-ratio:4/5;
+  border-radius:12px;background-position:center 20%}
+/* 2 · lo sfondo: la scrivania dello studio senza Paolo (finestra, diplomi,
+       scheletro, legno): lui c'e' gia' nel ritratto in mezzo */
+.hero .sfondo{background-image:url("immagini/interno-studio-scrivania-vuota.jpg");background-position:center 55%}
+@media (max-width:720px){
+  .hero .ritratto{-webkit-mask-image:none;mask-image:none;width:46%;aspect-ratio:4/5;border-radius:10px;
+    background-image:url("immagini/ritratto-paolo.jpg");background-position:center 20%}
+  /* 3 · sul telefono lo spazio sopra il testo scende del 15%: 300 -> 255 */
+  .hero{padding-top:255px}
+  .hero .sfondo{background-position:center 30%;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0 145px,transparent 290px);
+            mask-image:linear-gradient(to bottom,#000 0 145px,transparent 290px);-webkit-mask-composite:source-over;mask-composite:add}
+}
+/* ---------- 15/10, nono giro (Simone, dal telefono) ----------
+   1 · nella hero niente foto di Paolo: ne' la faccia in mezzo, ne' lui nello
+       studio. Resta il testo a sinistra e la scrivania dello studio dietro. */
+.hero .paolo{display:none}
+.hero .dentro{max-width:min(720px,47%)}
+@media (max-width:720px){.hero .ritratto{display:none}.hero .dentro{max-width:none}}
+/* 2 · Studio: la foto in cornice ha il taglio; dietro, negli angoli, il blu
+       scuro del blocco continua e sfuma, invece del crema a stacco netto */
+.studio .dx{background:linear-gradient(to right,var(--blu-profondo),rgba(11,46,74,.35) 55%,var(--crema))}
+@media (max-width:720px){
+  .studio .dx{background:linear-gradient(to bottom,var(--blu-profondo),rgba(11,46,74,.35) 55%,var(--crema))}
+}
+/* ---------- 15/10, decimo giro (Simone, dal telefono): correzione ----------
+   La faccia di Paolo nella hero RESTA (senza dissolvenza, 4:5, in mezzo su
+   PC e a destra del testo sul telefono). Lo sfondo torna il lettino,
+   inquadrato piu' in basso sul telefono: lettino, rulli e pianta, non il
+   poster. La scrivania coi diplomi esce. */
+.hero .paolo{display:block}
+.hero .dentro{max-width:min(600px,40%)}
+.hero .sfondo{background-image:url("immagini/interno-studio-lettino.jpg");background-position:center 76%}
+@media (max-width:720px){
+  .hero .ritratto{display:block}
+  .hero .dentro{max-width:none}
+  .hero .sfondo{background-position:72% 88%}
+}
+@media (max-width:720px){
+  /* sul telefono la foto intera ci stava tutta nei 290px e si vedeva il
+     poster: ingrandita e ancorata in basso, si vedono lettino, rulli e pianta */
+  .hero .sfondo{background-size:175% auto;background-position:62% 100%}
+}
+@media (max-width:720px){
+  .hero .paolo{display:none}
+  .hero .sfondo{background-size:175% auto;background-position:62% -210px}
+}
+/* ---------- 15/10, undicesimo giro (Simone, dal telefono) ----------
+   1 · Problematiche: la sfumatura parte subito sotto la banda blu. La sezione
+       e' sabbia; la parte dopo la banda (testo + card) sfuma da sabbia a
+       crema per tutta la sua altezza. La griglia non ha piu' una sua sfumatura. */
+.problematiche .griglia{background:none}
+.problematiche .wrapc{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);
+  background:linear-gradient(to bottom,var(--sabbia),var(--crema))}
+/* 2 · gli stacchi netti in fondo: il ghiaccio dei Corsi continua fino alla
+       banda del Blog; dopo la banda il Blog sfuma da crema piena a crema
+       della pagina, cosi' arriva al footer senza stacco */
+.approfondimenti{background:var(--ghiaccio);padding-bottom:0}
+.approfondimenti .wrapc{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);
+  padding-bottom:clamp(56px,7vw,112px);
+  background:linear-gradient(to bottom,var(--crema-2),var(--crema))}
+.foot{border-top:0}
+/* ---------- 15/10, dodicesimo giro (Simone, dal telefono): il blu scende ----------
+   Un'unica discesa di colore: blu scuro dietro la foto dello Studio ->
+   blu medio sotto le Recensioni -> ghiaccio alla banda dei Corsi ->
+   ghiaccio che sfuma a crema entro la fine dei Corsi -> Blog crema. */
+:root{--blu-mezzo:#C5D4E2}
+.studio .dx{background:linear-gradient(to right,var(--blu-profondo),rgba(11,46,74,.45) 50%,var(--blu-mezzo))}
+.recensioni{background:linear-gradient(to bottom,var(--blu-mezzo),var(--ghiaccio))}
+.docenze{background:linear-gradient(to bottom,var(--ghiaccio),var(--crema))}
+.docenze .testo{background:transparent}
+.approfondimenti{background:var(--crema)}
+@media (max-width:720px){
+  .studio .dx{background:linear-gradient(to bottom,var(--blu-profondo),rgba(11,46,74,.45) 50%,var(--blu-mezzo))}
+}
+/* ---------- 15/10, tredicesimo giro (Simone): la discesa del blu vale SOLO
+   sul telefono. Su PC torna com'era prima (ottavo-undicesimo giro). */
+@media (min-width:721px){
+  .studio .dx{background:linear-gradient(to right,var(--blu-profondo),rgba(11,46,74,.35) 55%,var(--crema))}
+  .recensioni{background:transparent}
+  .docenze{background:transparent}
+  .docenze .testo{background:var(--ghiaccio)}
+  .approfondimenti{background:var(--ghiaccio)}
+}
+/* ---------- 15/10, quattordicesimo giro (Simone, dal telefono): Blog ----------
+   Il cambio di colore sta esattamente sotto la banda (niente striscia
+   crema fra banda e colore) e la parte finale e' sabbia, che sfuma al
+   crema del footer. Solo telefono. */
+@media (max-width:720px){
+  .approfondimenti .banda{margin-bottom:0}
+  .approfondimenti .wrapc{padding-top:14px;background:linear-gradient(to bottom,var(--sabbia) 0 60%,var(--crema))}
+}
+/* ---------- 15/10, quindicesimo giro (Simone): bordino blu sottile anche
+   sulle otto card delle Problematiche, come quelle di Chi sono */
+.problematiche .cella{background:var(--blu);padding:1px}
+.problematiche .cella > .dentro{border-radius:0 9px 55px 9px;
+  clip-path:polygon(91.1px 0,100% 0,100% 100%,0 100%,0 25.7px,.8px 22.2px,3.5px 19.4px,83.6px 2.4px,86.6px 1px)}
+@media (max-width:720px){
+  .problematiche .cella{background:var(--blu);padding:1px;border-radius:0 6px 34px 6px;
+    clip-path:polygon(55px 0,100% 0,100% 100%,0 100%,0 15.5px,.5px 13.5px,2.1px 11.7px,50.5px 1.4px,52.3px .6px)}
+  .problematiche .cella > .dentro{border-radius:0 5px 33px 5px;
+    clip-path:polygon(54.1px 0,100% 0,100% 100%,0 100%,0 15.2px,.5px 13.2px,2.1px 11.4px,49.6px 1.4px,51.4px .6px)}
+}
+/* ---------- 15/10, sedicesimo giro (Simone): nella hero del telefono la foto
+   dello studio intera, non il dettaglio ingrandito ---------- */
+@media (max-width:720px){
+  .hero .sfondo{background-size:cover;background-position:center top}
+}
+@media (max-width:720px){
+  /* la foto intera: larga quanto lo schermo, appoggiata in alto (cover la ingrandiva) */
+  .hero .sfondo{background-size:100% auto;background-position:center top}
+}
+/* ---------- 15/10, diciassettesimo giro (Simone, dal PC) ----------
+   1 · la foto di «Inghilterra» ha il taglio (lo stesso delle card e della
+       cornice dello Studio). Dietro gli angoli tagliati si vede il fondo
+       del blocco, non un buco: il blocco intero ha una sfumatura
+       crema -> sabbia dall'alto, che e' anche il punto 2. */
+@media (min-width:721px){
+  .coda .stage{border-radius:0 10px 56px 10px;
+    clip-path:polygon(92px 0,100% 0,100% 100%,0 100%,0 26px,.8px 22.5px,3.5px 19.6px,84.5px 2.4px,87.5px 1px)}
+  /* 2 · i cambi di colore sfumano (solo PC):
+       a · «Inghilterra»: la sabbia non parte a stacco dal crema, sfuma
+           dentro il blocco nel primo terzo; poi continua alla banda delle
+           Problematiche come prima */
+  .coda{background:linear-gradient(to bottom,var(--crema),var(--sabbia) 34%)}
+  .coda .testo{background:transparent}
+  /* b · Recensioni: il crema sfuma piano nel ghiaccio verso il fondo,
+       cosi' il ghiaccio dei Corsi non arriva a stacco alla sua banda */
+  .recensioni{background:linear-gradient(to bottom,var(--crema) 45%,var(--ghiaccio))}
+  /* 3 · Studio: il blu scuro va fino alla banda delle Recensioni, anche
+       dietro la foto (via la sfumatura al crema dietro la cornice). Sopra
+       la banda dello Studio resta il crema (il blu parte dalla banda). */
+  .studio{padding-bottom:clamp(44px,5vw,84px);
+    background:linear-gradient(to bottom,var(--crema) 0 clamp(56px,7vw,112px),var(--blu-profondo) clamp(56px,7vw,112px))}
+  .studio .dx{background:var(--blu-profondo)}
+  .recensioni{padding-top:0}
+  /* 4 · la faccia di Paolo nella hero molto piu' piccola (era 250-360px) */
+  .hero .paolo{width:clamp(150px,14vw,200px)}
+}
+/* 5 · (tre per riga: provato e tolto subito, Simone: «tornano su 2») */
+/* 6 · nei tre blocchi (Inghilterra, Studio, Corsi) la foto si stacca un
+       pelo dal bordo alto: sopra c'e' una striscia del fondo del blocco
+       (crema, blu scuro, ghiaccio) e la foto ci sfuma dentro dall'alto,
+       invece di partire a spigolo sotto la banda. Solo PC. */
+@media (min-width:721px){
+  :is(.coda,.studio,.docenze) .slideshow{padding-top:clamp(18px,2vw,28px)}
+  :is(.coda,.studio,.docenze) .stage{
+    -webkit-mask-image:linear-gradient(to bottom,transparent,#000 44px);
+            mask-image:linear-gradient(to bottom,transparent,#000 44px)}
+  .docenze .wrapc{background:var(--ghiaccio)}
+}
+/* 7 · (Simone, dal PC) due stacchi:
+       a · Blog: sotto la banda c'era una striscia di ghiaccio e poi il
+           crema pieno a spigolo. La banda non ha piu' margine sotto: il
+           crema pieno parte dalla banda, come sul telefono.
+       b · Recensioni -> Corsi: fra le card e la banda c'era il respiro
+           dei Corsi, crema, sopra il fondo che era appena sfumato al
+           ghiaccio. Il respiro dei Corsi sopra la banda esce; le
+           Recensioni tengono un respiro corto sotto le card, e la
+           sfumatura crema -> ghiaccio arriva fino alla banda. */
+@media (min-width:721px){
+  .approfondimenti .banda{margin-bottom:0}
+  .approfondimenti .wrapc{padding-top:14px}
+  .docenze{padding-top:0}
+  .recensioni{padding-bottom:clamp(28px,3vw,44px)}
+}
+/* 8 · (Simone, dal PC) l'ombra quadrata dietro le card col taglio, anche
+       su PC. Causa: l'ombra (filter: drop-shadow) viene disegnata PRIMA
+       del taglio (clip-path) e il taglio la ritaglia: fuori dalla card
+       sparisce, e resta solo il pezzo dentro l'angolo in basso a destra,
+       fra la curva e lo spigolo del riquadro. Un'ombra e il taglio non
+       convivono sullo stesso elemento: l'ombra esce da tutte le card col
+       taglio (Chi sono, Problematiche, Corsi, Blog). Le Recensioni, che
+       sono tonde e senza taglio, tengono la loro. */
+.cella,.corso-card,.ap-riga,
+.corso-card:hover,.corso-card:focus-visible,.ap-riga:hover,.ap-riga:focus-visible{filter:none}
