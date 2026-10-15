@@ -1280,3 +1280,11 @@ html,body{overflow-x:clip}
        sono tonde e senza taglio, tengono la loro. */
 .cella,.corso-card,.ap-riga,
 .corso-card:hover,.corso-card:focus-visible,.ap-riga:hover,.ap-riga:focus-visible{filter:none}
+/* ---------- 15/10, fix schermi larghi: le fasce a tutta larghezza di
+   Problematiche e Blog si spostavano a sinistra sopra i 1440px, perche'
+   .wrapc ha max-width:1440px. Qui la fascia e' sempre larga quanto lo
+   schermo e il contenuto resta centrato entro i 1440px. La griglia non
+   ha piu' una fascia sua (non ha sfondo), quindi niente sbordo. */
+.problematiche .wrapc,.approfondimenti .wrapc{max-width:none;
+  padding-inline:max(calc(50vw - 50%),calc(50vw - 720px))}
+.problematiche .griglia{margin-inline:0;padding-inline:0}
