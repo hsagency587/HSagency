@@ -1288,3 +1288,16 @@ html,body{overflow-x:clip}
 .problematiche .wrapc,.approfondimenti .wrapc{max-width:none;
   padding-inline:max(calc(50vw - 50%),calc(50vw - 720px))}
 .problematiche .griglia{margin-inline:0;padding-inline:0}
+/* ---------- 16/10 (Simone): hero divisa a meta' anche su PC ----------
+   A sinistra l'impostazione del telefono: occhiello, poi il testo con la
+   faccia di Paolo a destra che il paragrafo aggira, poi la CTA. A destra
+   resta solo la foto dello studio. La faccia in mezzo (.paolo) esce:
+   torna il .ritratto, con la misura che aveva in mezzo (quarto punto del
+   diciassettesimo giro) e il 4:5 del telefono. */
+@media (min-width:721px){
+  .hero .paolo{display:none}
+  .hero .dentro{max-width:min(720px,47%)}
+  .hero .ritratto{display:block;float:right;width:clamp(150px,14vw,200px);aspect-ratio:4/5;
+    margin:0 0 10px clamp(18px,2vw,28px);border-radius:12px;
+    background:url("immagini/ritratto-paolo.jpg") center 20%/cover no-repeat}
+}
