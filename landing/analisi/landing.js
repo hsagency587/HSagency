@@ -758,7 +758,7 @@
       nome_attivita: companyName,
       whatsapp,
       nome_persona: firstName,
-      domanda: document.getElementById("question").value.trim(),
+      domanda: [document.getElementById("question").value.trim(), "[Provenienza] landing: Simone"].filter(Boolean).join("\n\n"),
       data_invio: new Date().toLocaleString("it-IT", { dateStyle: "medium", timeStyle: "short" })
     };
 

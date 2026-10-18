@@ -212,7 +212,9 @@
           });
           const text = await res.text();
           if (!res.ok) throw new Error(text || ("Errore " + res.status));
-          say((type === "purchase" ? "Cliente segnalato a Meta" : "Lead qualificato segnalato a Meta") + (testEventCode ? " (test)" : "") + ".", true);
+          let codici = false;
+          try { codici = Boolean(JSON.parse(text).codici); } catch (e) {}
+          say((type === "purchase" ? "Cliente segnalato a Meta" : "Lead qualificato segnalato a Meta") + (testEventCode ? " (test)" : "") + (codici ? ", con i codici del clic." : ". Senza codici del clic: conta il telefono."), true);
           document.getElementById("phone").value = "";
           document.getElementById("value").value = "";
         } catch (error) {
