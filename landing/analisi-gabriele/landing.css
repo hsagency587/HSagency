@@ -268,6 +268,21 @@ body.analysis-page {
   margin-top: 8px;
 }
 
+/* Scelta "Non ho un Profilo Google": pulsante secondario (ghost del brief), non CTA. */
+.activity-link--choice {
+  padding: 11px 16px;
+  color: #111;
+  background: rgba(0, 0, 0, .04);
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: 14px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.activity-link--choice:hover {
+  background: rgba(0, 0, 0, .07);
+}
+
 .activity-link:hover {
   color: #111;
 }
@@ -557,6 +572,12 @@ body.analysis-page {
   .activity-options .activity-link {
     width: 100%;
     font-size: clamp(10px, 3vw, 12px);
+  }
+
+  .activity-options .activity-link--choice {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    text-align: center;
   }
 
   .analysis-submit {

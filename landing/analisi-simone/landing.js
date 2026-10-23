@@ -7,22 +7,17 @@
   const googlePath = document.getElementById("google-profile-path");
   const manualPath = document.getElementById("manual-business-path");
   const businessSearch = document.getElementById("business-search");
-  const businessLocation = document.getElementById("business-location");
-  const locationField = document.getElementById("location-field");
-  const showLocationButton = document.getElementById("show-location");
-  const hideLocationButton = document.getElementById("hide-location");
   const manualBusinessName = document.getElementById("manual-business-name");
   const businessSector = document.getElementById("business-sector");
   const resultsPanel = document.getElementById("business-results-panel");
   const resultsList = document.getElementById("business-results");
   const businessAutocomplete = document.getElementById("business-autocomplete");
-  const locationAutocomplete = document.getElementById("location-autocomplete");
-  const locationResultsPanel = document.getElementById("location-results-panel");
-  const locationResultsList = document.getElementById("location-results");
   const searchStatus = document.getElementById("search-status");
   const formStatus = document.getElementById("form-status");
   const submitButton = form.querySelector(".analysis-submit");
   const searchDebounceMs = 100;
+  // Pausa di digitazione prima della ricerca tipo Google Maps (a pagamento oltre la soglia gratuita).
+  const textSearchDelayMs = 500;
 
   const state = {
     mode: "google",
@@ -32,10 +27,7 @@
     mapsPromise: null,
     mapsAuthFailed: false,
     searchTimer: null,
-    requestId: 0,
-    locationSessionToken: null,
-    locationSearchTimer: null,
-    locationRequestId: 0
+    requestId: 0
   };
 
   const getMapsApiKey = () => {
@@ -101,7 +93,8 @@
 
   const buildGbpLink = () => {
     if (!state.selectedPlace?.id) return "";
-    return `https://www.google.com/maps/place/?q=place_id:${state.selectedPlace.id}`;
+    const query = [state.selectedPlace.label, state.selectedPlace.address].filter(Boolean).join(", ");
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}&query_place_id=${encodeURIComponent(state.selectedPlace.id)}`;
   };
 
   const closeResults = () => {
@@ -142,15 +135,6 @@
     cancelPendingSearch();
     showManualFallback("La ricerca Google non è disponibile. Puoi proseguire inserendo il nome manualmente.");
     if (typeof previousGoogleAuthFailure === "function") previousGoogleAuthFailure();
-  };
-
-  const resetLocationFallback = () => {
-    locationField.hidden = true;
-    hideLocationButton.hidden = true;
-    showLocationButton.hidden = false;
-    businessLocation.value = "";
-    cancelPendingCitySearch();
-    clearLocationResults();
   };
 
   const loadMaps = () => {
@@ -301,17 +285,39 @@
     state.sessionToken = null;
   };
 
-  const renderSuggestions = (suggestions) => {
+  // Ricerca tipo barra di Google Maps: capisce nomi scritti male, parole in ordine diverso e
+  // "categoria + nome + città". Restituisce oggetti con la stessa forma delle previsioni
+  // dell'autocompletamento, così rendering e selezione restano quelli.
+  const searchPlacesByText = async (query) => {
+    const { Place } = await getPlacesLibrary();
+    if (!Place?.searchByText) return [];
+
+    const { places } = await Place.searchByText({
+      textQuery: query,
+      fields: ["id", "displayName", "formattedAddress"],
+      language: "it",
+      region: "it",
+      maxResultCount: 5
+    });
+
+    return (places || [])
+      .filter((place) => place.id && place.displayName)
+      .map((place) => ({
+        placeId: place.id,
+        mainText: place.displayName,
+        secondaryText: place.formattedAddress || "",
+        text: [place.displayName, place.formattedAddress].filter(Boolean).join(", ")
+      }));
+  };
+
+  const renderSuggestions = (predictionList) => {
     resultsList.replaceChildren();
 
-    const predictions = (suggestions || [])
-      .map((suggestion) => suggestion.placePrediction)
-      .filter(Boolean)
-      .slice(0, 6);
+    const predictions = (predictionList || []).slice(0, 6);
 
     if (!predictions.length) {
       closeResults();
-      searchStatus.textContent = "Nessun risultato trovato. Puoi aggiungere la posizione o inviare il nome manualmente.";
+      searchStatus.textContent = "Nessun risultato. Prova ad aggiungere la città, oppure premi «Non ho un Profilo Google».";
       return;
     }
 
@@ -350,18 +356,15 @@
       item.appendChild(button);
       resultsList.appendChild(item);
     });
-    closeLocationResults();
     resultsPanel.hidden = false;
     businessSearch.setAttribute("aria-expanded", "true");
-    searchStatus.textContent = `${predictions.length} risultati trovati.`;
+    searchStatus.textContent = "Tocca la tua attività nella lista.";
   };
 
   const searchBusinesses = async (currentRequestId) => {
-    const name = businessSearch.value.trim();
-    const location = businessLocation.value.trim();
-    const query = [name, location].filter(Boolean).join(", ");
+    const query = businessSearch.value.trim();
 
-    if (!name) {
+    if (!query) {
       clearResults();
       searchStatus.textContent = "";
       state.sessionToken = null;
@@ -385,7 +388,27 @@
       });
 
       if (currentRequestId !== state.requestId) return;
-      renderSuggestions(suggestions);
+      const autocompleteResults = (suggestions || []).map((suggestion) => suggestion.placePrediction).filter(Boolean);
+      if (autocompleteResults.length) renderSuggestions(autocompleteResults);
+
+      // Dopo una pausa nella digitazione, la ricerca tipo Google Maps: i suoi risultati vanno in
+      // cima, poi quelli dell'autocompletamento che non ha già trovato.
+      await new Promise((resolve) => window.setTimeout(resolve, textSearchDelayMs));
+      if (currentRequestId !== state.requestId) return;
+
+      let textResults = [];
+      try {
+        textResults = await searchPlacesByText(query);
+      } catch (error) {
+        console.warn("Google Places text search unavailable:", error);
+      }
+      if (currentRequestId !== state.requestId) return;
+
+      const seen = new Set(textResults.map((result) => result.placeId));
+      const merged = [...textResults, ...autocompleteResults.filter((result) => !seen.has(result.placeId))];
+      const shownIds = autocompleteResults.slice(0, 6).map((result) => result.placeId).join();
+      const mergedIds = merged.slice(0, 6).map((result) => result.placeId).join();
+      if (!autocompleteResults.length || mergedIds !== shownIds) renderSuggestions(merged);
     } catch (error) {
       if (currentRequestId !== state.requestId) return;
       console.warn("Google Places search unavailable:", error);
@@ -409,129 +432,6 @@
     state.searchTimer = window.setTimeout(() => searchBusinesses(currentRequestId), searchDebounceMs);
   };
 
-  const closeLocationResults = () => {
-    locationResultsPanel.hidden = true;
-    businessLocation.setAttribute("aria-expanded", "false");
-    businessLocation.removeAttribute("aria-activedescendant");
-
-    locationResultsList.querySelectorAll(".autocomplete__option").forEach((option) => {
-      option.setAttribute("aria-selected", "false");
-    });
-  };
-
-  const clearLocationResults = () => {
-    locationResultsList.replaceChildren();
-    closeLocationResults();
-  };
-
-  const cancelPendingCitySearch = () => {
-    window.clearTimeout(state.locationSearchTimer);
-    state.locationSearchTimer = null;
-    state.locationRequestId += 1;
-  };
-
-  const selectCity = (cityPrediction) => {
-    cancelPendingCitySearch();
-    const selected = getPredictionData(cityPrediction);
-    businessLocation.value = selected.fullText || selected.name;
-    clearLocationResults();
-    state.locationSessionToken = null;
-    clearSelectedPlace();
-    scheduleSearch();
-  };
-
-  const renderCitySuggestions = (suggestions) => {
-    locationResultsList.replaceChildren();
-
-    const predictions = (suggestions || [])
-      .map((suggestion) => suggestion.placePrediction)
-      .filter(Boolean)
-      .slice(0, 6);
-
-    if (!predictions.length) {
-      closeLocationResults();
-      return;
-    }
-
-    predictions.forEach((prediction, index) => {
-      const predictionData = getPredictionData(prediction);
-      const item = document.createElement("li");
-      item.setAttribute("role", "presentation");
-
-      const button = document.createElement("button");
-      button.id = `location-result-${index}`;
-      button.className = "autocomplete__option";
-      button.type = "button";
-      button.setAttribute("role", "option");
-      button.setAttribute("aria-selected", "false");
-
-      const name = document.createElement("span");
-      name.className = "autocomplete__optionName";
-      name.textContent = predictionData.name;
-      button.appendChild(name);
-
-      if (predictionData.address) {
-        const address = document.createElement("span");
-        address.className = "autocomplete__optionAddress";
-        address.textContent = predictionData.address;
-        button.appendChild(address);
-      }
-
-      button.addEventListener("click", () => selectCity(prediction));
-      button.addEventListener("focus", () => {
-        locationResultsList.querySelectorAll(".autocomplete__option").forEach((option) => {
-          option.setAttribute("aria-selected", String(option === button));
-        });
-        businessLocation.setAttribute("aria-activedescendant", button.id);
-      });
-
-      item.appendChild(button);
-      locationResultsList.appendChild(item);
-    });
-    closeResults();
-    locationResultsPanel.hidden = false;
-    businessLocation.setAttribute("aria-expanded", "true");
-  };
-
-  const searchCities = async (currentRequestId) => {
-    const city = businessLocation.value.trim();
-
-    if (!city) {
-      clearLocationResults();
-      state.locationSessionToken = null;
-      return;
-    }
-
-    try {
-      const { AutocompleteSuggestion, AutocompleteSessionToken } = await getPlacesLibrary();
-      if (currentRequestId !== state.locationRequestId) return;
-      if (!state.locationSessionToken) state.locationSessionToken = new AutocompleteSessionToken();
-
-      const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
-        input: city,
-        includedPrimaryTypes: ["(cities)"],
-        includedRegionCodes: ["it"],
-        language: "it-IT",
-        region: "it",
-        sessionToken: state.locationSessionToken
-      });
-
-      if (currentRequestId !== state.locationRequestId) return;
-      renderCitySuggestions(suggestions);
-    } catch (error) {
-      if (currentRequestId !== state.locationRequestId) return;
-      console.warn("Google city search unavailable:", error);
-      clearLocationResults();
-      state.locationSessionToken = null;
-    }
-  };
-
-  const scheduleCitySearch = () => {
-    window.clearTimeout(state.locationSearchTimer);
-    const currentRequestId = ++state.locationRequestId;
-    state.locationSearchTimer = window.setTimeout(() => searchCities(currentRequestId), searchDebounceMs);
-  };
-
   const setMode = (mode) => {
     state.mode = mode;
     const isManual = mode === "manual";
@@ -540,12 +440,10 @@
     manualPath.hidden = !isManual;
     businessSearch.required = !isManual;
     businessSearch.disabled = isManual;
-    businessLocation.disabled = isManual;
     manualBusinessName.required = isManual;
     manualBusinessName.disabled = !isManual;
     businessSector.required = isManual;
     businessSector.disabled = !isManual;
-    resetLocationFallback();
 
     if (isManual) {
       manualBusinessName.value = manualBusinessName.value || businessSearch.value;
@@ -630,93 +528,9 @@
     }
   });
 
-    businessLocation.addEventListener("input", () => {
-    clearSelectedPlace();
-    scheduleCitySearch();
-  });
-  businessLocation.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeLocationResults();
-      return;
-    }
-
-    const options = Array.from(locationResultsList.querySelectorAll(".autocomplete__option"));
-
-    if ((event.key === "ArrowDown" || event.key === "ArrowUp") && options.length) {
-      if (locationResultsPanel.hidden) {
-        locationResultsPanel.hidden = false;
-        businessLocation.setAttribute("aria-expanded", "true");
-      }
-
-      const option = event.key === "ArrowDown" ? options[0] : options[options.length - 1];
-      if (option) {
-        event.preventDefault();
-        option.focus();
-      }
-      return;
-    }
-
-    if (event.key === "Enter" && !locationResultsPanel.hidden && options.length) {
-      event.preventDefault();
-      options[0].click();
-    }
-  });
-
-  locationResultsList.addEventListener("keydown", (event) => {
-    if (!(event.target instanceof HTMLButtonElement)) return;
-
-    const options = Array.from(locationResultsList.querySelectorAll(".autocomplete__option"));
-    const currentIndex = options.indexOf(event.target);
-    if (currentIndex < 0) return;
-
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeLocationResults();
-      businessLocation.focus();
-      return;
-    }
-
-    if (event.key === "Enter") {
-      event.preventDefault();
-      event.target.click();
-      return;
-    }
-
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      options[(currentIndex + 1) % options.length].focus();
-      return;
-    }
-
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      if (currentIndex === 0) {
-        businessLocation.focus();
-      } else {
-        options[currentIndex - 1].focus();
-      }
-    }
-  });
-
   manualBusinessName.addEventListener("input", () => {
     businessSearch.value = manualBusinessName.value;
     clearSelectedPlace();
-  });
-
-  showLocationButton.addEventListener("click", () => {
-    locationField.hidden = false;
-    showLocationButton.hidden = true;
-    hideLocationButton.hidden = false;
-    businessLocation.focus();
-    cancelPendingSearch();
-    closeResults();
-    businessLocation.focus();
-  });
-
-  hideLocationButton.addEventListener("click", () => {
-    resetLocationFallback();
-    businessSearch.focus();
-    if (businessSearch.value.trim()) scheduleSearch();
   });
 
   document.getElementById("show-manual-path").addEventListener("click", () => setMode("manual"));
@@ -725,7 +539,6 @@
   document.addEventListener("click", (event) => {
     if (!(event.target instanceof Element)) return;
     if (!businessAutocomplete.contains(event.target)) closeResults();
-    if (!locationAutocomplete.contains(event.target)) closeLocationResults();
   });
 
   form.addEventListener("submit", async (event) => {

@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="stylesheet" href="./styles.css?v=20261015a">
   <link rel="stylesheet" href="./consent.css">
-  <link rel="stylesheet" href="./landing.css?v=20261015a">
+  <link rel="stylesheet" href="./landing.css?v=20261023b">
 
   <script type="application/ld+json">
   {
@@ -36,7 +36,7 @@
 
   <script src="./runtime-config.js" defer></script>
   <script src="./consent.js" defer></script>
-  <script src="./landing.js?v=20261017a" defer></script>
+  <script src="./landing.js?v=20261023d" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <script>
     window.addEventListener("DOMContentLoaded", () => {
@@ -127,32 +127,8 @@
 
                 <p id="search-status" class="activity-status" aria-live="polite"></p>
 
-                <div id="location-field" class="analysis-field analysis-field--full" hidden>
-                  <label class="visually-hidden" for="business-location">Posizione</label>
-                  <div id="location-autocomplete" class="autocomplete">
-                    <input
-                      id="business-location"
-                      name="business_location"
-                      type="text"
-                      autocomplete="off"
-                      placeholder="Posizione"
-                      role="combobox"
-                      aria-autocomplete="list"
-                      aria-haspopup="listbox"
-                      aria-controls="location-results"
-                      aria-expanded="false"
-                    >
-                    <div id="location-results-panel" class="autocomplete__panel" hidden>
-                      <ul id="location-results" class="autocomplete__results" role="listbox"></ul>
-                      <img class="autocomplete__attribution" src="https://storage.googleapis.com/geo-devrel-public-buckets/powered_by_google_on_white.png" alt="Powered by Google">
-                    </div>
-                  </div>
-                  <button id="hide-location" class="activity-link activity-link--return" type="button" hidden>Torna alla ricerca</button>
-                </div>
-
                 <div class="activity-options">
-                  <button id="show-location" class="activity-link" type="button">Non trovi la tua attività?</button>
-                  <button id="show-manual-path" class="activity-link" type="button">Non ho un Profilo Google</button>
+                  <button id="show-manual-path" class="activity-link activity-link--choice" type="button">Non ho un Profilo Google</button>
                 </div>
               </div>
 
