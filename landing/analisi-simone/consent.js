@@ -6,11 +6,12 @@
  *   - HSConsent.hasConsent()      -> true | false | null (null = non ancora deciso)
  *   - HSConsent.onGrant(callback) -> esegue callback subito se già concesso,
  *                                    altrimenti lo mette in coda finché l'utente accetta
+ *   - HSConsent.open()            -> riapre il banner
  *
- * Solo l'accettazione viene ricordata (persistita) e nasconde il banner per sempre,
- * senza lasciare alcuna icona. Se l'utente rifiuta, il banner si riduce a una
- * piccola icona in basso (non persistita: torna comunque il banner intero ad ogni
- * nuovo caricamento) da cui può riaprirlo e cambiare idea in qualsiasi momento.
+ * Solo l'accettazione viene ricordata (persistita) e nasconde il banner per sempre.
+ * Se l'utente rifiuta, il banner si chiude (non persistito: torna ad ogni nuovo
+ * caricamento) e si può riaprire dal link "Preferenze cookie" nel footer, cioè da
+ * qualsiasi elemento con data-hs-consent="open" (02/11/2026, prima c'era un'icona bianca fissa).
  *
  * Include anche `loadMetaPixel(pixelId)`, usato dalle pagine che devono
  * caricare il Pixel dopo il consenso.
@@ -63,11 +64,9 @@
     decided = "denied";
     queue.length = 0;
     hideBanner();
-    showManageIcon();
   };
 
   let bannerEl = null;
-  let manageEl = null;
 
   const buildBanner = () => {
     const el = document.createElement("div");
@@ -93,41 +92,24 @@
     return el;
   };
 
-  const buildManageIcon = () => {
-    const el = document.createElement("button");
-    el.type = "button";
-    el.className = "hs-consent__manage";
-    el.textContent = "Preferenze cookie";
-    el.hidden = true;
-    el.addEventListener("click", () => {
-      hideManageIcon();
-      showBanner();
-    });
-    document.body.appendChild(el);
-    return el;
-  };
-
   function showBanner() {
     if (!bannerEl) bannerEl = buildBanner();
     bannerEl.hidden = false;
-    hideManageIcon();
   }
 
   function hideBanner() {
     if (bannerEl) bannerEl.hidden = true;
   }
 
-  function showManageIcon() {
-    if (!manageEl) manageEl = buildManageIcon();
-    manageEl.hidden = false;
-  }
-
-  function hideManageIcon() {
-    if (manageEl) manageEl.hidden = true;
-  }
-
   const init = () => {
     decided = readStoredConsent();
+
+    document.querySelectorAll('[data-hs-consent="open"]').forEach((el) => {
+      el.addEventListener("click", (event) => {
+        event.preventDefault();
+        showBanner();
+      });
+    });
 
     if (decided === "granted") {
       runQueue();
@@ -144,6 +126,7 @@
 
   window.HSConsent = {
     hasConsent: () => decided === "granted",
+    open: () => showBanner(),
     onGrant: (callback) => {
       if (decided === "granted") {
         callback();

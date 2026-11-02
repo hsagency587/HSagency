@@ -3,32 +3,131 @@ body.analysis-page {
   background: var(--bg);
 }
 
-@media (min-width: 761px) {
-  body.analysis-page .footer__grid {
-    grid-template-columns: minmax(260px, 1.5fr) repeat(2, minmax(160px, .7fr));
-  }
+/* Footer snello (02/11/2026, Simone): logo grande con la frase a destra, i contatti, in fondo Privacy e Preferenze cookie.
+   Il PNG del logo ha molto vuoto sopra e sotto (il disegno occupa 155-308 px su 480): i margini negativi lo tolgono, come in navbar. */
+body.analysis-page .footer {
+  padding: 34px 0 16px;
+}
+
+body.analysis-page .footer__grid {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px 48px;
+  align-items: center;
+}
+
+body.analysis-page .footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  grid-column: auto;
+  max-width: none;
 }
 
 .footer__logo {
   display: block;
-  height: 88px;
+  height: 200px;
   width: auto;
-  object-fit: contain;
+  margin: -64px 0 -71px;
+  flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
-  .footer__logo {
-    height: 64px;
+body.analysis-page .footer__description {
+  max-width: 400px;
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+body.analysis-page .footer__head {
+  margin-bottom: 10px;
+}
+
+body.analysis-page .footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
+body.analysis-page .footer__list a {
+  font-size: 17px;
+}
+
+body.analysis-page .footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 24px;
+  padding-top: 14px;
+}
+
+.footer__legal {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+}
+
+.footer__legal a,
+.footer__legal button {
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, .66);
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+
+.footer__legal a:hover,
+.footer__legal button:hover {
+  color: #fff;
+}
+
+.footer__legal button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 760px) {
+  body.analysis-page .footer {
+    padding-top: 30px;
   }
-}
 
-@media (max-width: 520px) {
   body.analysis-page .footer__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   body.analysis-page .footer__brand {
-    grid-column: 1 / -1;
+    gap: 16px;
+  }
+
+  .footer__logo {
+    height: 150px;
+    margin: -48px 0 -54px;
+  }
+
+  body.analysis-page .footer__description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  body.analysis-page .footer__brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .footer__logo {
+    margin-left: -15px; /* il disegno nel PNG parte a 55 px su 720: così resta allineato al testo */
   }
 }
 
@@ -71,11 +170,13 @@ body.analysis-page {
   border-left: 1px solid rgba(0, 0, 0, .09);
 }
 
+/* Attributi sopra il modulo (02/11/2026, Simone): riga sottile come le etichette del modulo, fulmine e "3 minuti" in giallo,
+   lucchetto e "Senza impegno" in verde. Icone a linea, non emoji. */
 .analysis-microRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: space-between; /* da computer: uno a sinistra, uno a destra, tutta la larghezza del modulo */
+  gap: 22px;
   width: 100%;
   margin-bottom: 26px;
 }
@@ -83,38 +184,23 @@ body.analysis-page {
 .analysis-micro {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: #bf8c12;
-  font-size: 20px;
+  gap: 11px;
+  font-size: 18.4px; /* +15% rispetto ai 16 px (Simone, 02/11) */
   font-weight: 800;
-  letter-spacing: .02em;
+  letter-spacing: .1em;
   line-height: 1.2;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
+.analysis-micro--tempo { color: #bf8c12; }
+.analysis-micro--libero { color: var(--green-text); }
+
 .analysis-micro__icon {
-  display: inline-block;
-  color: var(--yellow);
-  font-size: 48px;
-  font-weight: 800;
-  line-height: 1;
-  filter: drop-shadow(0 7px 12px rgba(0, 0, 0, .12));
-  transform: translateY(-1px);
-}
-
-.analysis-micro__icon--lock {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-}
-
-.analysis-micro__icon--lock svg {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
 }
 
 .analysis-form {
@@ -490,10 +576,6 @@ body.analysis-page {
     padding: 38px 0 0;
     border-left: 0;
   }
-
-  .analysis-microRow {
-    justify-content: space-between;
-  }
 }
 
 @media (max-width: 640px) {
@@ -534,25 +616,20 @@ body.analysis-page {
     padding-top: 30px;
   }
 
+  /* Telefono: stessa riga a tutta larghezza, uno a sinistra e uno a destra, un po' più piccoli */
   .analysis-microRow {
-    display: flex;
-    gap: clamp(8px, 2.4vw, 14px);
+    gap: 16px;
     margin-bottom: 22px;
   }
 
   .analysis-micro {
-    gap: clamp(4px, 1.2vw, 6px);
-    font-size: clamp(11px, 3.4vw, 14px);
-    letter-spacing: 0;
+    gap: 9px;
+    font-size: 14.4px; /* +15% rispetto ai 12,5 px (Simone, 02/11) */
   }
 
   .analysis-micro__icon {
-    font-size: clamp(18px, 5.6vw, 24px);
-  }
-
-  .analysis-micro__icon--lock {
-    width: clamp(18px, 5.6vw, 24px);
-    height: clamp(18px, 5.6vw, 24px);
+    width: 21px;
+    height: 21px;
   }
 
   .analysis-form {
@@ -595,3 +672,130 @@ body.analysis-page {
 
 /* "su Google e dalle IA" resta unito, anche su desktop */
 .analysis-hero__mobileLine.serif-italic{ display: inline-block; }
+
+/* ===== Il team (02/11/2026): stesse misure della sezione in home (styles.css del sito); sotto le foto solo i nomi (Simone) ===== */
+:root{
+  --blu-hs: #1d8f35;
+  --blu-hs-scuro: #17752b;
+  --blu-hs-chiaro: rgba(45,178,74,.08);
+  --blu-hs-filo: rgba(45,178,74,.35);
+  --green-text: #17752b; /* verde scurito, contrasto AA su bianco: scritta e icona del pulsante WhatsApp */
+}
+.team{ scroll-margin-top: 80px; }
+.team .badge{ color: var(--blu-hs-scuro); }
+.team .badge__icon{ color: var(--blu-hs); background: var(--blu-hs-chiaro); border-color: var(--blu-hs-filo); }
+.team__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  max-width: 1092px;
+  margin: 18px auto 0;
+}
+.team__member{ position: relative; margin: 0; }
+.team__member img{
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: var(--r20);
+  border: 1px solid var(--stroke);
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+/* Nome in corsivo in alto a sinistra sulla foto (02/11/2026, Simone); lo sfondo delle foto è chiaro, quindi testo scuro */
+.team__name{
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  margin: 0;
+  color: var(--text);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.team__wa{ display: flex; justify-content: center; margin: 22px 0 0; }
+.team__wa .btn-wa{ padding: 16px 28px; gap: 11px; font-size: 18px; }
+.team__wa .btn-wa__icon{ width: 22px; height: 22px; }
+
+@media (max-width: 780px){
+  .team__grid{ grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 640px){
+  .team .container{ width: min(var(--container), calc(100% - 32px)); }
+  .team .h2{ font-size: clamp(26px, 7.4vw, 32px); line-height: 1.12; }
+  .team__grid{ gap: 24px; }
+  .team__name{ top: 14px; left: 16px; font-size: 24px; }
+}
+
+/* ===== Navbar (02/11/2026, Simone): a destra l'ancora "Il team" e il pulsante WhatsApp al posto del numero.
+   .btn-wa è lo stesso pulsante anche sotto le foto del team: bianco, icona e scritta verdi. ===== */
+.nav__right{ display: flex; align-items: center; gap: 28px; }
+.nav__team{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.38);
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.nav__team:hover{ background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.7); transform: translateY(-1px); }
+.nav__team__icon{ width: 14px; height: 14px; flex-shrink: 0; }
+.btn-wa{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 16px;
+  color: var(--green-text);
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-wa:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(0,0,0,.3); }
+.btn-wa:focus-visible{ outline: 3px solid rgba(0,0,0,.35); outline-offset: 3px; }
+.btn-wa__icon{ width: 18px; height: 18px; flex-shrink: 0; }
+.btn-wa__short{ display: none; }
+
+@media (max-width: 640px){
+  .nav__right{ gap: 10px; }
+  /* Logo più grande senza alzare la navbar (02/11/2026, Simone): il PNG ha molto vuoto intorno al disegno
+     (disegno a 55-618 × 155-308 su 720×480), i margini negativi lo tolgono. La misura segue lo schermo per
+     stare in riga con "Il team" e WhatsApp anche a 360 px. */
+  .brand__logo{
+    --logo-h: min(104px, 25vw);
+    height: var(--logo-h);
+    margin: calc(var(--logo-h) * -0.31) calc(var(--logo-h) * -0.20) calc(var(--logo-h) * -0.34) calc(var(--logo-h) * -0.10);
+  }
+  .nav__team{ padding: 8px 11px; gap: 5px; font-size: 14px; }
+  .btn-wa{ padding: 9px 12px; gap: 7px; }
+  .nav__wa .btn-wa__full{ display: none; }
+  .nav__wa .btn-wa__short{ display: inline; }
+}
+
+/* Video della landing (02/11/2026, Simone): sotto H1 e sottotitolo, nella colonna del testo:
+   su PC a sinistra del modulo, su telefono fra sottotitolo e modulo. Parte solo se si preme play. */
+.analysis-hero__video{
+  display: block;
+  width: 100%;
+  max-width: 610px;
+  height: auto;
+  margin-top: 28px;
+  background: #000;
+  border-radius: var(--r20);
+}
+
+@media (max-width: 640px){
+  .analysis-hero__video{ margin-top: 22px; }
+}

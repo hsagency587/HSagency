@@ -63,19 +63,3 @@
   .hs-consent__btn { flex: 1 1 100%; }
 }
 
-.hs-consent__manage {
-  position: fixed;
-  left: 16px;
-  bottom: 16px;
-  z-index: 9998;
-  font-family: var(--font, "Inter", system-ui, sans-serif);
-  font-size: 12px;
-  color: var(--muted, rgba(0,0,0,.55));
-  background: var(--card, #fff);
-  border: 1px solid var(--stroke, rgba(0,0,0,.10));
-  border-radius: 999px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.hs-consent__manage[hidden] { display: none; }

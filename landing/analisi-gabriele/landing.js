@@ -1,6 +1,13 @@
 (() => {
   "use strict";
 
+  // Logo in navbar (02/11/2026, Simone): riporta in cima e toglie l'ancora dall'indirizzo, senza ricaricare la pagina
+  document.querySelector(".brand[href]")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    history.replaceState(null, "", location.pathname + location.search);
+  });
+
   const form = document.getElementById("analysis-form");
   if (!form) return;
 
