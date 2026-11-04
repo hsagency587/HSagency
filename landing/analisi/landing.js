@@ -1,6 +1,17 @@
 (() => {
   "use strict";
 
+  // Video visto da chi compila (04/11/2026, Simone): lo sceglie lo script sotto il tag video in index.html
+  // e finisce nell'email nella riga [Provenienza], così si sa quale dei due video ha portato il contatto.
+  const videoVisto = document.documentElement.getAttribute("data-video-landing") === "gabriele" ? "Gabriele" : "Simone";
+
+  // Logo in navbar (02/11/2026, Simone): riporta in cima e toglie l'ancora dall'indirizzo, senza ricaricare la pagina
+  document.querySelector(".brand[href]")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    history.replaceState(null, "", location.pathname + location.search);
+  });
+
   const form = document.getElementById("analysis-form");
   if (!form) return;
 
@@ -29,6 +40,12 @@
     searchTimer: null,
     requestId: 0
   };
+
+  // Luoghi che non sono attività (02/11/2026, Simone): città, province, zone e uffici del comune.
+  // Troppe persone sceglievano la città invece della loro attività: Google li segna con questi tipi.
+  const tipiNonAttivita = ["locality", "political", "country", "postal_code", "postal_town", "colloquial_area", "neighborhood", "city_hall", "local_government_office"];
+  const eLuogoNonAttivita = (tipi) =>
+    (tipi || []).some((tipo) => tipiNonAttivita.includes(tipo) || tipo.startsWith("administrative_area_level_") || tipo.startsWith("sublocality"));
 
   const getMapsApiKey = () => {
     const configuredKey = window.HS_AGENCY_ANALYSIS_CONFIG?.googleMapsApiKey;
@@ -240,6 +257,26 @@
     return state.placesLibrary;
   };
 
+  // Se il nome scritto a mano è una città o un comune (es. "Milano", "Comune di Monza"), Google lo riconosce
+  // e l'invio si ferma. Se la verifica non risponde in tempo o dà errore, non blocca nessuno.
+  const normalizzaNome = (testo) =>
+    String(testo || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/^comune di\s+/, "").replace(/[^a-z0-9]+/g, " ").trim();
+
+  const eNomeDiCitta = async (nome) => {
+    try {
+      const library = await withTimeout(getPlacesLibrary(), 4000);
+      if (!library?.Place?.searchByText) return false;
+      const risposta = await withTimeout(
+        library.Place.searchByText({ textQuery: nome, fields: ["displayName", "types"], language: "it", region: "it", maxResultCount: 3 }),
+        4000
+      );
+      const cercato = normalizzaNome(nome);
+      return (risposta?.places || []).some((place) => eLuogoNonAttivita(place.types) && normalizzaNome(place.displayName) === cercato);
+    } catch (error) {
+      return false;
+    }
+  };
+
   const predictionText = (value) => {
     if (!value) return "";
     return typeof value.toString === "function" ? value.toString().trim() : String(value).trim();
@@ -294,14 +331,14 @@
 
     const { places } = await Place.searchByText({
       textQuery: query,
-      fields: ["id", "displayName", "formattedAddress"],
+      fields: ["id", "displayName", "formattedAddress", "types"],
       language: "it",
       region: "it",
       maxResultCount: 5
     });
 
     return (places || [])
-      .filter((place) => place.id && place.displayName)
+      .filter((place) => place.id && place.displayName && !eLuogoNonAttivita(place.types))
       .map((place) => ({
         placeId: place.id,
         mainText: place.displayName,
@@ -388,7 +425,7 @@
       });
 
       if (currentRequestId !== state.requestId) return;
-      const autocompleteResults = (suggestions || []).map((suggestion) => suggestion.placePrediction).filter(Boolean);
+      const autocompleteResults = (suggestions || []).map((suggestion) => suggestion.placePrediction).filter(Boolean).filter((prediction) => !eLuogoNonAttivita(prediction.types));
       if (autocompleteResults.length) renderSuggestions(autocompleteResults);
 
       // Dopo una pausa nella digitazione, la ricerca tipo Google Maps: i suoi risultati vanno in
@@ -571,7 +608,7 @@
       nome_attivita: companyName,
       whatsapp,
       nome_persona: firstName,
-      domanda: [document.getElementById("question").value.trim(), "[Provenienza] landing: Simone"].filter(Boolean).join("\n\n"),
+      domanda: [document.getElementById("question").value.trim(), "[Provenienza] landing: Analisi (video " + videoVisto + ")"].filter(Boolean).join("\n\n"),
       data_invio: new Date().toLocaleString("it-IT", { dateStyle: "medium", timeStyle: "short" })
     };
 
@@ -580,6 +617,15 @@
     formStatus.style.color = "";
     submitButton.disabled = true;
     submitButton.textContent = "Invio in corso…";
+
+    // Il nome scelto dalla lista è già un'attività; quello scritto a mano si controlla.
+    if (!(state.mode === "google" && state.selectedPlace) && await eNomeDiCitta(companyName)) {
+      formStatus.textContent = "Hai scritto una città. Inserisci il nome della tua attività.";
+      formStatus.style.color = "var(--red-text)";
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalLabel;
+      return;
+    }
 
     try {
       ensureEmailjsInitialized();
