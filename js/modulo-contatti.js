@@ -6,6 +6,7 @@
  * Attributi del <form id="contact-form">:
  *   data-servizio  nome del servizio, finisce nel campo "settore" della mail
  *   data-grazie    pagina di ringraziamento
+ * Campi facoltativi letti se ci sono: sito, campagne, obiettivi, bisogno (pulsanti della pagina /contatti/).
  */
 (() => {
   "use strict";
@@ -14,7 +15,7 @@
   if (!form) return;
 
   const servizio = form.dataset.servizio || "Contatto";
-  const thankYouUrl = form.dataset.grazie || "/contatti/grazie-consulenza/";
+  const thankYouUrl = form.dataset.grazie || "/grazie/consulenza.html";
   const status = form.querySelector("[data-form-status]");
   const submitButton = form.querySelector('button[type="submit"]');
   const config = window.HS_AGENCY_ANALYSIS_CONFIG?.emailjs || {};
@@ -69,6 +70,7 @@
 
     const source = window.HSLead ? window.HSLead.info(servizio) : { servizio };
     const extra = [];
+    if (value("bisogno")) extra.push(`Di cosa ha bisogno: ${value("bisogno")}`);
     if (value("sito")) extra.push(`Sito: ${value("sito")}`);
     if (value("campagne")) extra.push(`Campagne: ${value("campagne")}`);
     if (value("obiettivi")) extra.push(`Cosa vorrebbe migliorare: ${value("obiettivi")}`);
