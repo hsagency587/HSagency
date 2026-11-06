@@ -1,13 +1,13 @@
 (() => {
   "use strict";
 
-  // Copia della vecchia landing (landing/analisi/landing.js) per le pagine /google-maps/analisi/ e /chatgpt/analisi/.
+  // Copia della vecchia landing (landing/analisi/landing.js) per le pagine /servizi/dettagli/top-3-contatti.html e /servizi/dettagli/ai-search-contatti.html.
   // Differenze: servizio, pagina di ringraziamento e Pixel letti dagli attributi data-* del modulo;
   // provenienza del contatto (js/analytics.js) allegata alla richiesta.
   const form = document.getElementById("analysis-form");
   if (!form) return;
   const servizio = form.dataset.servizio || "Analisi";
-  const thankYouUrl = form.dataset.grazie || "/contatti/grazie-analisi/";
+  const thankYouUrl = form.dataset.grazie || "/grazie/analisi.html";
   const usesPixel = form.dataset.pixel === "true";
 
   form.addEventListener("input", () => {

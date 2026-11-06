@@ -441,3 +441,8 @@
 .service-card--garanzia .card__icon{ margin: 0; }
 .service-card--garanzia h3{ margin: 0; }
 .service-card--garanzia > p{ grid-column: 1 / -1; margin-top: 12px; }
+/* Card del "Perché noi": icona accanto al titolo anche su computer, come la card della garanzia (06/11/2026, Simone) */
+#perche-noi .service-card{ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; }
+#perche-noi .service-card .card__icon{ margin: 0; }
+#perche-noi .service-card h3{ margin: 0; }
+#perche-noi .service-card > p{ grid-column: 1 / -1; margin-top: 12px; }
