@@ -435,3 +435,9 @@
   .service-hero__videos, .hero-video{ order: 1; margin-top: 28px; }
   .service-hero__grid:has(.service-hero__videos) .service-actions, .service-hero__grid:has(.hero-video) .service-actions{ order: 2; }
 }
+
+/* Card della garanzia: icona accanto al titolo anche su computer, testo sotto (06/11/2026, Simone) */
+.service-card--garanzia{ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; }
+.service-card--garanzia .card__icon{ margin: 0; }
+.service-card--garanzia h3{ margin: 0; }
+.service-card--garanzia > p{ grid-column: 1 / -1; margin-top: 12px; }
