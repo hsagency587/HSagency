@@ -437,12 +437,36 @@
 }
 
 /* Card della garanzia: icona accanto al titolo anche su computer, testo sotto (06/11/2026, Simone) */
-.service-card--garanzia{ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; }
+.service-card--garanzia{ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; align-content: start; }
 .service-card--garanzia .card__icon{ margin: 0; }
 .service-card--garanzia h3{ margin: 0; }
 .service-card--garanzia > p{ grid-column: 1 / -1; margin-top: 12px; }
 /* Card del "Perché noi": icona accanto al titolo anche su computer, come la card della garanzia (06/11/2026, Simone) */
-#perche-noi .service-card{ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; }
+#perche-noi .service-card{ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; align-content: start; }
 #perche-noi .service-card .card__icon{ margin: 0; }
 #perche-noi .service-card h3{ margin: 0; }
 #perche-noi .service-card > p{ grid-column: 1 / -1; margin-top: 12px; }
+
+/* AlbergADV come sul suo sito (06/11/2026, Simone): titolo Source Serif 4 600 con dimensioni ottiche, 36px;
+   i due testi in due box bianchi con la cornice verde interna, al posto delle barre */
+.alberg .service-heading h2{ font-family: "Source Serif 4", Georgia, "Times New Roman", serif; font-weight: 600; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.12; letter-spacing: -.005em; font-optical-sizing: auto; }
+.alberg__text p{ position: relative; padding: 24px; border-left: 0; background: #fff; border-radius: 10px; font-size: 19px; line-height: 1.55; color: #4A4740; }
+.alberg__text p::after{ content: ""; position: absolute; inset: 6px; pointer-events: none; border: 1.5px solid #187C31; border-radius: 4px; }
+.alberg__text strong{ margin-bottom: 10px; font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: 22.5px; line-height: 1.25; color: #1A1A18; font-optical-sizing: auto; }
+
+/* "Perché noi" con quattro card: due per riga anche su computer (06/11/2026, Simone).
+   In una fila sola i titoli andavano su tre righe e le card restavano sfasate */
+@media (min-width: 1100px){
+  #perche-noi .service-cards--four{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+
+/* Nessuna parola sola sull'ultima riga (06/11/2026, Simone): il browser ridistribuisce le parole
+   del paragrafo invece di lasciarne una o due da sole a capo, a qualsiasi larghezza di schermo */
+.service-page p, .service-page h3, .service-page .acc__body, .service-page li{ text-wrap: pretty; }
+
+/* Card con icona nelle pagine servizio: icona accanto al titolo, testo sotto (06/11/2026, Simone).
+   Copia della regola di styles.css, solo per .service-card, così si pubblica senza toccare home e chi siamo */
+.service-card:has(> .card__icon){ display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; align-items: center; align-content: start; }
+.service-card:has(> .card__icon) > .card__icon{ margin: 0; }
+.service-card:has(> .card__icon) > h3{ margin: 0; }
+.service-card:has(> .card__icon) > p{ grid-column: 1 / -1; margin-top: 12px; }
