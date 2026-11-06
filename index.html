@@ -19,7 +19,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-  <link rel="stylesheet" href="/styles.css?v=20261105m" />
+  <link rel="stylesheet" href="/styles.css?v=20261106b" />
   <link rel="stylesheet" href="/consent.css?v=20261014p" />
   <script src="/js/navigation.js?v=20261014m" defer></script>
   <script src="/js/consent.js?v=20261013j" defer></script>
@@ -768,6 +768,16 @@
     </div>
   </footer>
 
+  <!-- Telefono (06/11/2026, Simone): Instagram e WhatsApp compaiono appena si scorre, così in cima non coprono i pulsanti della hero.
+       La classe in-cima la usa styles.css solo sotto i 640px. Lo script sta prima delle icone: non si vedono mai comparire e sparire al caricamento. -->
+  <script>
+    (function () {
+      var html = document.documentElement;
+      function controlla() { html.classList.toggle("in-cima", window.scrollY < 1); }
+      controlla();
+      window.addEventListener("scroll", controlla, { passive: true });
+    })();
+  </script>
   <div class="social-float">
     <a class="ig-float" href="https://www.instagram.com/hs.agency_seo" target="_blank" rel="noopener" aria-label="HS AGENCY su Instagram">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="ig-grad" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#feda75"/><stop offset=".3" stop-color="#fa7e1e"/><stop offset=".55" stop-color="#d62976"/><stop offset=".8" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5" stroke="url(#ig-grad)" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="url(#ig-grad)" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="url(#ig-grad)"/></svg>
