@@ -579,7 +579,7 @@ body.secondary{ background: var(--bg); color: var(--text); font-weight: 500; }
    così il video sta nella prima schermata */
 @media (max-width: 640px){
   .secondary-intro__copy{ text-align: center; }
-  .secondary-intro h1{ margin: 10px 0 16px; font-size: clamp(27px, 8.6vw, 40px); line-height: 1; }
+  .secondary-intro h1{ margin: 10px 0 6px; font-size: clamp(27px, 8.6vw, 40px); line-height: 1; }
   .secondary-intro__copy p{ margin-bottom: 20px; font-size: 18px; line-height: 1.58; }
 }
 
@@ -600,6 +600,8 @@ body.secondary{ background: var(--bg); color: var(--text); font-weight: 500; }
   background:#000;
   border-radius:var(--r20);
 }
+/* Telefono (06/11/2026, Simone): spazi uguali tra etichetta, titolo, testo e video, circa 16 px a vista */
 @media (max-width: 640px){
-  .secondary-intro__video{ margin-top:22px; }
+  .secondary-intro__video{ margin-top:12px; }
+  .secondary-intro__copy p{ margin-bottom: 0; }
 }
