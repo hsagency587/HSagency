@@ -1822,6 +1822,11 @@ html{ scroll-padding-top: 96px; }
 .team__line{ display:block; margin-top: 4px; color: var(--muted); line-height: 1.5; }
 /* WhatsApp sotto il team (01/11/2026): pulsante nero delle CTA (.btn .btn--primary) */
 .team__wa{ display: flex; justify-content: center; margin-top: 22px; }
+/* WhatsApp sotto il team (2026-11-07, Simone): bordo, icona e scritta verdi, sfondo vuoto;
+   il verde riempie il pulsante quando ci passi sopra o lo clicchi */
+.btn--wa{ background: transparent; color: var(--green-text); border: 2px solid var(--green-text); transition: transform .18s ease, background .18s ease, color .18s ease; }
+.btn--wa:hover,
+.btn--wa:active{ background: var(--green-text); color: #fff; transform: translateY(-1px); }
 
 /* Icona Instagram fissa a destra (E1) */
 .ig-float{
