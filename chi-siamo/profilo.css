@@ -96,3 +96,10 @@
 .lang-switch a.is-active{ color: #111; background: rgba(0,0,0,.06); }
 .lang-switch a:hover{ color: #111; }
 @media (max-width: 640px){ .lang-switch{ top: 12px; right: 14px; } }
+
+/* Hero a due colonne, testo a sinistra e foto a destra, come online prima del 05/11 (Simone, 06/11/2026).
+   Serve perché servizio.css mette su una colonna le hero senza video. */
+@media (min-width: 981px){
+  .prof .service-hero__grid:has(.hero-photo){ grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr); }
+  .prof .service-hero__grid:has(.hero-photo) > div{ max-width: none; }
+}
