@@ -470,3 +470,13 @@
 .service-card:has(> .card__icon) > .card__icon{ margin: 0; }
 .service-card:has(> .card__icon) > h3{ margin: 0; }
 .service-card:has(> .card__icon) > p{ grid-column: 1 / -1; margin-top: 12px; }
+
+/* Hero delle pagine servizio come in home (2026-11-07, Simone): su computer le righe dell'H1 si dividono in parti più uguali;
+   su telefono etichetta, H1 e testo al centro, H1 alla stessa misura della home */
+.service-hero h1{ text-wrap: balance; }
+@media (max-width: 640px){
+  .service-hero .hero__loc{ justify-content: center; align-items: center; }
+  .service-hero .hero__loc .dot{ margin-top: 0; }
+  .service-hero h1{ text-align: center; font-size: clamp(26px, 7.5vw, 34px); line-height: 1.04; letter-spacing: -.03em; }
+  .service-hero__lead{ text-align: center; }
+}

@@ -2730,3 +2730,11 @@ input, select, textarea, button{ font-family: inherit; }
   .social-float{ transition: opacity .25s ease, visibility .25s; }
   .in-cima .social-float{ opacity: 0; visibility: hidden; }
 }
+
+/* 2026-11-07 (Simone): bolle Instagram e WhatsApp ancora un po' più grandi (+10%), su computer e telefono */
+.social-float .ig-float{ width: 62px; height: 62px; }
+.social-float .ig-float svg{ width: 31px; height: 31px; }
+@media (max-width: 640px){
+  .social-float .ig-float{ width: 56px; height: 56px; }
+  .social-float .ig-float svg{ width: 29px; height: 29px; }
+}

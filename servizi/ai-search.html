@@ -19,8 +19,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-  <link rel="stylesheet" href="/styles.css?v=20261106g" />
-  <link rel="stylesheet" href="/servizi/servizio.css?v=20261106o" />
+  <link rel="stylesheet" href="/styles.css?v=20261107d" />
+  <link rel="stylesheet" href="/servizi/servizio.css?v=20261107a" />
   <link rel="stylesheet" href="/consent.css?v=20261014p" />
   <script src="/js/navigation.js?v=20261014m" defer></script>
   <script src="/js/consent.js?v=20261013j" defer></script>
@@ -386,6 +386,17 @@
       <p>© 2026 HS AGENCY · Via Roma, 72, 27025 Gambolò PV · P. IVA 03057440186 · Lavoriamo in tutta la Lombardia.</p>
     </div>
   </footer>
+
+  <!-- Telefono (06/11/2026, Simone; nelle pagine servizio dal 2026-11-07): Instagram e WhatsApp compaiono appena si scorre, così in cima non coprono i pulsanti della hero.
+       La classe in-cima la usa styles.css solo sotto i 640px. Lo script sta prima delle icone: non si vedono mai comparire e sparire al caricamento. -->
+  <script>
+    (function () {
+      var html = document.documentElement;
+      function controlla() { html.classList.toggle("in-cima", window.scrollY < 1); }
+      controlla();
+      window.addEventListener("scroll", controlla, { passive: true });
+    })();
+  </script>
 
   <div class="social-float">
     <a class="ig-float" href="https://www.instagram.com/hs.agency_seo" target="_blank" rel="noopener" aria-label="HS AGENCY su Instagram">
