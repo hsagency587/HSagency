@@ -103,3 +103,7 @@
   .prof .service-hero__grid:has(.hero-photo){ grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr); }
   .prof .service-hero__grid:has(.hero-photo) > div{ max-width: none; }
 }
+
+/* 2026-11-08 (Simone): nelle pagine di Simone (IT e EN) le righe dell'H1 si riempiono fino in fondo,
+   invece di dividersi in parti uguali: in inglese la frase è più lunga e il titolo si stringeva */
+.prof .service-hero h1{ text-wrap: pretty; }
