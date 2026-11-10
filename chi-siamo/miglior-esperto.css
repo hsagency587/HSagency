@@ -1,0 +1,40 @@
+/* Pagina "Miglior esperto SEO della Lombardia" (IT) e "Best SEO expert in Lombardy" (EN), 2026-11-10.
+   Hero e foto come nella pagina di Simone (profilo.css). Nessun componente nuovo: riusa quelli già online
+   (box nero della home, "In breve" delle pagine servizio, card dei servizi della home, FAQ della home).
+   Qui ci sono solo le piccole varianti che la pagina chiede.
+   Solo token di :root (styles.css); nessun colore nuovo. CTA nera come nel resto del sito. */
+
+/* Hero: tre paragrafi nello stesso stile del testo d'apertura della pagina di Simone; il link è sottolineato */
+.lomb .service-hero__lead + .service-hero__lead{ margin-top: 16px; }
+.lomb .service-hero__lead a{ color: #111; text-decoration: underline; text-underline-offset: 3px; }
+
+/* "In breve" dentro la colonna di testo: testo in grassetto, etichetta nella lingua della pagina */
+.lomb-brief{ margin: 28px 0 0; padding: 16px 18px; font-size: 18px; line-height: 1.6; }
+.lomb-brief::before{ content: attr(data-label); }
+.lomb-brief strong{ font-weight: 800; color: #111; }
+.lomb .prof-prose + .lomb-brief + .prof-prose{ margin-top: 28px; }
+.lomb .prof-prose:has(+ .lomb-brief){ margin-bottom: 0; }
+
+/* Box nero della home (.cons-card) senza pulsante e senza etichette: icona in alto accanto al titolo */
+.lomb .cons-card{ grid-template-columns: auto minmax(0, 1fr); align-items: start; margin: 28px 0; }
+.lomb .cons-card__icon{ grid-row: 1; align-self: start; }
+.lomb .cons-card__title{ margin: 0; }
+.lomb .cons-card__text{ margin-top: 8px; }
+
+/* Frase della ricerca: stessa misura della riga "Ti mettiamo in prima linea…" della home (.hero__bold), centrata */
+.lomb .lomb-search{ margin: 26px 0; text-align: center; }
+
+/* Card bianca dei servizi della home (.step), qui senza link: icona in alto accanto al titolo */
+.lomb .lomb-step{ cursor: default; align-items: flex-start; }
+.lomb .lomb-step .step__desc{ max-width: none; font-size: 18px; line-height: 1.6; }
+.lomb .lomb-step .step__num{ margin-bottom: 6px; }
+
+/* Domande: stessa FAQ della home (.accordion .acc), in colonna di lettura */
+.lomb-faq{ max-width: 760px; margin: 0 auto; }
+
+/* Chiusura */
+.lomb-cta{ margin-top: 28px; }
+
+@media (max-width: 640px){
+  .lomb .lomb-step .step__desc{ font-size: 17px; }
+}
